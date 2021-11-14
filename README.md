@@ -1,7 +1,7 @@
 # TP-POO
- Trabalho Prático de Programação Orientada a Objetos - Engenharia Informática - Universidade da Beira Interior 2020/2021
+Trabalho Prático de Programação Orientada a Objetos - Engenharia Informática - Universidade da Beira Interior 2020/2021
  
- Deixo aqui algumas instruções para a instalação do material necessário...Caso concordem, tentem fazer isso tudo e caso n consigam fazer algo podem pedir ajuda, que eu ajudo com o que souber...
+Deixo aqui algumas instruções para a instalação do material necessário...Caso concordem, tentem fazer isso tudo e caso n consigam fazer algo podem pedir ajuda, que eu ajudo com o que souber...
  
 1 - Instalar VSCODE, instalar as extensões "Language Support for Java(TM) by Red Hat" e "Extension Pack for Java"
 2 - Criar conta GitHub, fazer download do Github Desktop e logar-se.

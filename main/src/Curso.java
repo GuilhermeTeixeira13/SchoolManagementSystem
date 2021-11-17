@@ -102,15 +102,37 @@ public class Curso {
         return this.dataFim;
     }
 
+    // To String
+    public String toString(){
+        String s;
+        s = "Curso: "+nomeCurso+"/ Cód.Curso: "+codCurso+"/ Duração: "+duracaoEmHoras+"h/ Média do Último Colocado: "+mediaUltimoColocado+" / Data de Início: "+dataInicio+"/ Data de Fim: "+dataFim;
+        s = s + "Disciplinas: (";
+        for(int i=0; i<disciplinasCurso.size(); i++){
+            if(i != disciplinasCurso.size() - 1)
+                s = s + disciplinasCurso.get(i) + ", ";
+            else
+                s = s + disciplinasCurso.get(i) + ")\n";
+        }
+        s = s + "Provas Ingresso: (";
+        for(int i=0; i<provasIngresso.size(); i++){
+            if(i != provasIngresso.size() - 1)
+                s = s + provasIngresso.get(i) + ", ";
+            else
+                s = s + provasIngresso.get(i) + ")\n";
+        }
+        s = s + "Alunos Inscritos:\n";
+        for(int i=0; i<alunosCurso.size(); i++)
+            s = s + alunosCurso.get(i) + "\n";     
+        return s;
+    }
+
     // Equals
     public boolean equals(Object obj){
         boolean ig = false;
         if(obj != null && obj.getClass() == this.getClass()){
             Curso e = (Curso) obj;
-            ig = (this.nomeCurso.equals(e.nomeCurso) && (this.codCurso == e.codCurso));
-            ig = ig && (this.disciplinasCurso.equals(e.disciplinasCurso)) && (this.provasIngresso.equals(e.provasIngresso));
-            ig = ig && (this.alunosCurso.equals(e.alunosCurso)) && (this.duracaoEmHoras == e.duracaoEmHoras) && (this.mediaUltimoColocado == e.mediaUltimoColocado);
-            ig = ig && (this.dataInicio.equals(e.dataInicio)) && (this.dataFim.equals(e.dataFim));
+            ig = this.nomeCurso.equals(e.nomeCurso) && (this.codCurso == e.codCurso) && (this.disciplinasCurso.equals(e.disciplinasCurso)) && (this.provasIngresso.equals(e.provasIngresso));
+            ig = ig && (this.alunosCurso.equals(e.alunosCurso)) && (this.duracaoEmHoras == e.duracaoEmHoras) && (this.mediaUltimoColocado == e.mediaUltimoColocado) && (this.dataInicio.equals(e.dataInicio)) && (this.dataFim.equals(e.dataFim));
         }
         else
             ig = false;

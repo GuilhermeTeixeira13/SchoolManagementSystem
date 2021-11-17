@@ -105,7 +105,7 @@ public class Curso {
     // To String
     public String toString(){
         String s;
-        s = "Curso: "+nomeCurso+"/ Cód.Curso: "+codCurso+"/ Duração: "+duracaoEmHoras+"h/ Média do Último Colocado: "+mediaUltimoColocado+" / Data de Início: "+dataInicio+"/ Data de Fim: "+dataFim;
+        s = "\nCurso: "+nomeCurso+"/ Cód.Curso: "+codCurso+"/ Duração: "+duracaoEmHoras+"h/ Média do Último Colocado: "+mediaUltimoColocado+" / Data de Início: "+dataInicio+"/ Data de Fim: "+dataFim;
         s = s + "Disciplinas: (";
         for(int i=0; i<disciplinasCurso.size(); i++){
             if(i != disciplinasCurso.size() - 1)
@@ -122,7 +122,7 @@ public class Curso {
         }
         s = s + "Alunos Inscritos:\n";
         for(int i=0; i<alunosCurso.size(); i++)
-            s = s + alunosCurso.get(i) + "\n";     
+            s = s + alunosCurso.get(i) + "\n\n";     
         return s;
     }
 

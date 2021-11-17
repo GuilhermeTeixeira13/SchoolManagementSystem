@@ -1,8 +1,6 @@
 import java.io.*;
 
 public class Ler {
-// Método para ler uma String:
-
     public static String umaString() {
         String s = "";
         try {
@@ -13,8 +11,6 @@ public class Ler {
         }
         return s;
     }
-// Método para ler um int:
-
     public static int umInt() {
         while (true) {
             try {
@@ -24,8 +20,6 @@ public class Ler {
             }
         }
     }
-
-// Método para ler um byte:
     public static byte umByte() {
         while (true) {
             try {
@@ -35,8 +29,6 @@ public class Ler {
             }
         }
     }
-// Método para ler um short:
-
     public static short umShort() {
         while (true) {
             try {
@@ -46,8 +38,6 @@ public class Ler {
             }
         }
     }
-// Método para ler um long:
-
     public static long umLong() {
         while (true) {
             try {
@@ -57,8 +47,6 @@ public class Ler {
             }
         }
     }
-//// Método para ler um float;
-
     public static float umFloat() {
         while (true) {
             try {

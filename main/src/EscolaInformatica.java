@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class EscolaInformatica {
     private String NomeEscola;

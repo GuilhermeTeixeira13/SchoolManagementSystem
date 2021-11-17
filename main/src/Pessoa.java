@@ -6,4 +6,7 @@ public class Pessoa {
     public class Professor extends Pessoa{
         
     }
+    public class Diretor extends Pessoa{
+        
+    }
 }

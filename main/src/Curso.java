@@ -6,8 +6,8 @@ public class Curso {
     private String nomeCurso;
     private int codCurso;
     private ArrayList<Disciplina> disciplinasCurso;
-    private ArrayList<Disciplina> disciplinasIngresso;
-    private ArrayList<Aluno> alunosCurso;
+    private ArrayList<ProvasIngresso> provasIngresso;
+    private ArrayList<Pessoa.Aluno> alunosCurso;
     private int duracaoEmHoras;
     private float mediaUltimoColocado;
     private Date dataInicio;
@@ -18,8 +18,8 @@ public class Curso {
         this.nomeCurso = "";
         this.codCurso = 0;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.disciplinasIngresso = new ArrayList<Disciplina>();
-        this.alunosCurso = new ArrayList<Aluno>();
+        this.provasIngresso = new ArrayList<ProvasIngresso>();
+        this.alunosCurso = new ArrayList<Pessoa.Aluno>();
         this.duracaoEmHoras = 0;
         this.mediaUltimoColocado = 0;
         this.dataInicio = new Date();
@@ -29,8 +29,8 @@ public class Curso {
         this.nomeCurso = nomeCurso;
         this.codCurso = codCurso;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.disciplinasIngresso = new ArrayList<Disciplina>();
-        this.alunosCurso = new ArrayList<Aluno>();
+        this.provasIngresso = new ArrayList<ProvasIngresso>();
+        this.alunosCurso = new ArrayList<Pessoa.Aluno>();
         this.duracaoEmHoras = duracaoEmHoras;
         this.mediaUltimoColocado = mediaUltimoColocado;
         this.dataInicio = new Date();
@@ -59,17 +59,17 @@ public class Curso {
         return this.disciplinasCurso;
     }
 
-    public void setDisciplinasIngresso(ArrayList<Disciplina> disciplinasIngresso){
-        this.disciplinasIngresso = (ArrayList<Disciplina>) disciplinasIngresso.clone();
+    public void setProvasIngresso(ArrayList<ProvasIngresso> provasIngresso){
+        this.provasIngresso = (ArrayList<ProvasIngresso>) provasIngresso.clone();
     }
-    public ArrayList<Disciplina> getDisciplinasIngresso(){
-        return this.disciplinasIngresso;
+    public ArrayList<ProvasIngresso> getProvasIngresso(){
+        return this.provasIngresso;
     }
 
-    public void setAlunosCurso(ArrayList<Aluno> alunosCurso){
-        this.alunosCurso = (ArrayList<Aluno>) alunosCurso.clone();
+    public void setAlunosCurso(ArrayList<Pessoa.Aluno> alunosCurso){
+        this.alunosCurso = (ArrayList<Pessoa.Aluno>) alunosCurso.clone();
     }
-    public ArrayList<Aluno> getAlunosCurso(){
+    public ArrayList<Pessoa.Aluno> getAlunosCurso(){
         return this.alunosCurso;
     }
 
@@ -108,7 +108,7 @@ public class Curso {
         if(obj != null && obj.getClass() == this.getClass()){
             Curso e = (Curso) obj;
             ig = (this.nomeCurso.equals(e.nomeCurso) && (this.codCurso == e.codCurso));
-            ig = ig && (this.disciplinasCurso.equals(e.disciplinasCurso)) && (this.disciplinasIngresso.equals(e.disciplinasIngresso));
+            ig = ig && (this.disciplinasCurso.equals(e.disciplinasCurso)) && (this.provasIngresso.equals(e.provasIngresso));
             ig = ig && (this.alunosCurso.equals(e.alunosCurso)) && (this.duracaoEmHoras == e.duracaoEmHoras) && (this.mediaUltimoColocado == e.mediaUltimoColocado);
             ig = ig && (this.dataInicio.equals(e.dataInicio)) && (this.dataFim.equals(e.dataFim));
         }
@@ -124,8 +124,8 @@ public class Curso {
         copia.nomeCurso = this.nomeCurso;
         copia.codCurso = this.codCurso;
         copia.disciplinasCurso = (ArrayList<Disciplina>) this.disciplinasCurso.clone();
-        copia.disciplinasIngresso = (ArrayList<Disciplina>) this.disciplinasIngresso.clone();
-        copia.alunosCurso = (ArrayList<Aluno>) this.alunosCurso.clone();
+        copia.provasIngresso = (ArrayList<ProvasIngresso>) this.provasIngresso.clone();
+        copia.alunosCurso = (ArrayList<Pessoa.Aluno>) this.alunosCurso.clone();
         copia.duracaoEmHoras = this.duracaoEmHoras;
         copia.mediaUltimoColocado = this.mediaUltimoColocado;
         copia.dataInicio = this.dataInicio;

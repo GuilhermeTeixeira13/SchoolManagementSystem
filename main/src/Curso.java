@@ -7,7 +7,7 @@ public class Curso {
     private int codCurso;
     private ArrayList<Disciplina> disciplinasCurso;
     private ArrayList<ProvasIngresso> provasIngresso;
-    private ArrayList<Pessoa.Aluno> alunosCurso;
+    private ArrayList<Aluno> alunosCurso;
     private int duracaoEmHoras;
     private float mediaUltimoColocado;
     private Date dataInicio;
@@ -19,7 +19,7 @@ public class Curso {
         this.codCurso = 0;
         this.disciplinasCurso = new ArrayList<Disciplina>();
         this.provasIngresso = new ArrayList<ProvasIngresso>();
-        this.alunosCurso = new ArrayList<Pessoa.Aluno>();
+        this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = 0;
         this.mediaUltimoColocado = 0;
         this.dataInicio = new Date();
@@ -30,7 +30,7 @@ public class Curso {
         this.codCurso = codCurso;
         this.disciplinasCurso = new ArrayList<Disciplina>();
         this.provasIngresso = new ArrayList<ProvasIngresso>();
-        this.alunosCurso = new ArrayList<Pessoa.Aluno>();
+        this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = duracaoEmHoras;
         this.mediaUltimoColocado = mediaUltimoColocado;
         this.dataInicio = new Date();
@@ -66,10 +66,10 @@ public class Curso {
         return this.provasIngresso;
     }
 
-    public void setAlunosCurso(ArrayList<Pessoa.Aluno> alunosCurso){
-        this.alunosCurso = (ArrayList<Pessoa.Aluno>) alunosCurso.clone();
+    public void setAlunosCurso(ArrayList<Aluno> alunosCurso){
+        this.alunosCurso = (ArrayList<Aluno>) alunosCurso.clone();
     }
-    public ArrayList<Pessoa.Aluno> getAlunosCurso(){
+    public ArrayList<Aluno> getAlunosCurso(){
         return this.alunosCurso;
     }
 
@@ -105,7 +105,7 @@ public class Curso {
     // To String
     public String toString(){
         String s;
-        s = "Curso: "+nomeCurso+"/ Cód.Curso: "+codCurso+"/ Duração: "+duracaoEmHoras+"h/ Média do Último Colocado: "+mediaUltimoColocado+" / Data de Início: "+dataInicio+"/ Data de Fim: "+dataFim;
+        s = "\nCurso: "+nomeCurso+"/ Cód.Curso: "+codCurso+"/ Duração: "+duracaoEmHoras+"h/ Média do Último Colocado: "+mediaUltimoColocado+" / Data de Início: "+dataInicio+"/ Data de Fim: "+dataFim;
         s = s + "Disciplinas: (";
         for(int i=0; i<disciplinasCurso.size(); i++){
             if(i != disciplinasCurso.size() - 1)
@@ -122,7 +122,7 @@ public class Curso {
         }
         s = s + "Alunos Inscritos:\n";
         for(int i=0; i<alunosCurso.size(); i++)
-            s = s + alunosCurso.get(i) + "\n";     
+            s = s + alunosCurso.get(i) + "\n\n";     
         return s;
     }
 
@@ -147,7 +147,7 @@ public class Curso {
         copia.codCurso = this.codCurso;
         copia.disciplinasCurso = (ArrayList<Disciplina>) this.disciplinasCurso.clone();
         copia.provasIngresso = (ArrayList<ProvasIngresso>) this.provasIngresso.clone();
-        copia.alunosCurso = (ArrayList<Pessoa.Aluno>) this.alunosCurso.clone();
+        copia.alunosCurso = (ArrayList<Aluno>) this.alunosCurso.clone();
         copia.duracaoEmHoras = this.duracaoEmHoras;
         copia.mediaUltimoColocado = this.mediaUltimoColocado;
         copia.dataInicio = this.dataInicio;

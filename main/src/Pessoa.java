@@ -67,6 +67,7 @@ public class Pessoa {
         return s;
     }
 
+    // Equals
     public boolean equals(Object obj){
         boolean ig = false;
         if(obj != null && this.getClass() == obj.getClass()){
@@ -79,6 +80,7 @@ public class Pessoa {
         return ig;
     }
 
+    // Clone
     public Object clone(){
         Pessoa copia = new Pessoa();
         copia.nome = this.nome;
@@ -89,4 +91,7 @@ public class Pessoa {
         return copia;
     }
 
+    public static void main(String[] args) {
+        //À  espera das outras classes para conseguir elaborar a classe teste do Curso
+    }
 }

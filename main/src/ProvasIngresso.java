@@ -4,17 +4,19 @@ public class ProvasIngresso {
     private String nomPI;
     private int codProva;
     private ArrayList<String> listaPI;
-    
+    String e_ou;
     
     public ProvasIngresso(){
         nomPI = "";
         codProva = 0;
         listaPI = new ArrayList<String>();
+        String e_ou;
     }
 
-    public ProvasIngresso(String nomPI, int codProva){
+    public ProvasIngresso(String nomPI, int codProva, String e_ou){
         this.nomPI = nomPI;
         this.codProva = codProva;
+        this.e_ou = e_ou;
         listaPI = new ArrayList<String>();
     }
 
@@ -43,15 +45,24 @@ public class ProvasIngresso {
 
     }
 
+    public String getE_OU(){
+        return this.e_ou;
+    }
+
+    public void setE_OU(String e_ou){
+        this.e_ou = e_ou;
+     
+    }
+
     public String toString(){
         String s;
         s = "\nProva de Ingresso: " + nomPI + "/ Cód.Prova: " + codProva;
         s = s + "Lista das Provas de Ingresso: (";
         for (int i = 0; i < listaPI.size(); i++) {
             if (i != listaPI.size() - 1)
-                s = s + listaPI.get(i) + ", ";
+                s = s + listaPI.get(i) + this.e_ou + ", " ;
             else
-                s = s + listaPI.get(i) + ")\n";
+                s = s + listaPI.get(i) + this.e_ou + ")\n";
         }
         return s;
     }
@@ -60,7 +71,7 @@ public class ProvasIngresso {
         boolean ig = false;
         if(obj != null && this.getClass() == obj.getClass()){
             ProvasIngresso pi = (ProvasIngresso) obj;
-            ig = this.codProva == pi.codProva && (this.nomPI.equals(pi.nomPI));
+            ig = this.codProva == pi.codProva && (this.nomPI.equals(pi.nomPI)) && (this.e_ou.equals(pi.e_ou));
             ig = ig && (this.listaPI.equals(pi.listaPI));
         }
         else{
@@ -73,6 +84,7 @@ public class ProvasIngresso {
         ProvasIngresso copia = new ProvasIngresso();
         copia.codProva = this.codProva;
         copia.nomPI = this.nomPI;
+        copia.e_ou = this.e_ou;
         copia.listaPI = (ArrayList<String>) this.listaPI.clone();
         return copia;
     }

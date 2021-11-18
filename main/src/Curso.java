@@ -6,7 +6,7 @@ public class Curso {
     private String nomeCurso;
     private int codCurso;
     private ArrayList<Disciplina> disciplinasCurso;
-    private ArrayList<ProvasIngresso> provasIngresso;
+    private ProvasIngresso provasIngresso;
     private ArrayList<Aluno> alunosCurso;
     private int duracaoEmHoras;
     private float mediaUltimoColocado;
@@ -18,18 +18,18 @@ public class Curso {
         this.nomeCurso = "";
         this.codCurso = 0;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.provasIngresso = new ArrayList<ProvasIngresso>();
+        this.provasIngresso = new ProvasIngresso();
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = 0;
         this.mediaUltimoColocado = 0;
         this.dataInicio = new Date();
         this.dataFim = new Date();
     }
-    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, Date dataInicio, Date dataFim){
+    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, ProvasIngresso provasIngresso,Date dataInicio, Date dataFim){
         this.nomeCurso = nomeCurso;
         this.codCurso = codCurso;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.provasIngresso = new ArrayList<ProvasIngresso>();
+        this.provasIngresso = provasIngresso;
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = duracaoEmHoras;
         this.mediaUltimoColocado = mediaUltimoColocado;
@@ -59,10 +59,10 @@ public class Curso {
         return this.disciplinasCurso;
     }
 
-    public void setProvasIngresso(ArrayList<ProvasIngresso> provasIngresso){
-        this.provasIngresso = (ArrayList<ProvasIngresso>) provasIngresso.clone();
+    public void setProvasIngresso(ProvasIngresso provasIngresso){
+        this.provasIngresso = provasIngresso;
     }
-    public ArrayList<ProvasIngresso> getProvasIngresso(){
+    public ProvasIngresso getProvasIngresso(){
         return this.provasIngresso;
     }
 
@@ -113,13 +113,7 @@ public class Curso {
             else
                 s = s + disciplinasCurso.get(i) + ")\n";
         }
-        s = s + "Provas Ingresso: (";
-        for(int i=0; i<provasIngresso.size(); i++){
-            if(i != provasIngresso.size() - 1)
-                s = s + provasIngresso.get(i) + ", ";
-            else
-                s = s + provasIngresso.get(i) + ")\n";
-        }
+        s = s + "Provas Ingresso: ("+provasIngresso+")";     
         s = s + "Alunos Inscritos:\n";
         for(int i=0; i<alunosCurso.size(); i++)
             s = s + alunosCurso.get(i) + "\n\n";     
@@ -146,7 +140,7 @@ public class Curso {
         copia.nomeCurso = this.nomeCurso;
         copia.codCurso = this.codCurso;
         copia.disciplinasCurso = (ArrayList<Disciplina>) this.disciplinasCurso.clone();
-        copia.provasIngresso = (ArrayList<ProvasIngresso>) this.provasIngresso.clone();
+        copia.provasIngresso = this.provasIngresso;
         copia.alunosCurso = (ArrayList<Aluno>) this.alunosCurso.clone();
         copia.duracaoEmHoras = this.duracaoEmHoras;
         copia.mediaUltimoColocado = this.mediaUltimoColocado;
@@ -158,6 +152,6 @@ public class Curso {
 
     // Teste
     public static void main(String[] args) {
-        // Há espera das outras classes para conseguir elaborar a classe teste do Curso
+        //À  espera das outras classes para conseguir elaborar a classe teste do Curso
     }
 }

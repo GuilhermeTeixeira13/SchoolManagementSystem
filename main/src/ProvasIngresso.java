@@ -1,39 +1,18 @@
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 public class ProvasIngresso {
-    private String nomPI;
-    private int codProva;
     private ArrayList<String> listaPI;
     String e_ou;
     
     public ProvasIngresso(){
-        nomPI = "";
-        codProva = 0;
         listaPI = new ArrayList<String>();
-        String e_ou;
+        e_ou = "";
     }
 
-    public ProvasIngresso(String nomPI, int codProva, String e_ou){
-        this.nomPI = nomPI;
-        this.codProva = codProva;
+    public ProvasIngresso(String e_ou){
         this.e_ou = e_ou;
         listaPI = new ArrayList<String>();
-    }
-
-    public String getNomPI(){
-        return this.nomPI;
-    }
-
-    public void setNomPI(String nomPI){
-        this.nomPI	= nomPI;
-    }
-
-    public int getCodProva(){
-        return this.codProva;
-    }
-
-    public void setCodProva(int codProva){
-        this.codProva = codProva;
     }
 
     public ArrayList<String> getListaPI(){
@@ -42,7 +21,6 @@ public class ProvasIngresso {
 
     public void setListaPI(ArrayList<String> listaPI){
         this.listaPI = (ArrayList<String>) listaPI.clone();
-
     }
 
     public String getE_OU(){
@@ -56,11 +34,10 @@ public class ProvasIngresso {
 
     public String toString(){
         String s;
-        s = "\nProva de Ingresso: " + nomPI + "/ Cód.Prova: " + codProva;
-        s = s + "Lista das Provas de Ingresso: (";
+        s = " ";
         for (int i = 0; i < listaPI.size(); i++) {
             if (i != listaPI.size() - 1)
-                s = s + listaPI.get(i) + this.e_ou + ", " ;
+                s = s + listaPI.get(i) + this.e_ou + " " + e_ou + " ";
             else
                 s = s + listaPI.get(i) + this.e_ou + ")\n";
         }
@@ -71,8 +48,7 @@ public class ProvasIngresso {
         boolean ig = false;
         if(obj != null && this.getClass() == obj.getClass()){
             ProvasIngresso pi = (ProvasIngresso) obj;
-            ig = this.codProva == pi.codProva && (this.nomPI.equals(pi.nomPI)) && (this.e_ou.equals(pi.e_ou));
-            ig = ig && (this.listaPI.equals(pi.listaPI));
+            ig = (this.e_ou.equals(pi.e_ou)) && (this.listaPI.equals(pi.listaPI));
         }
         else{
             ig = false;
@@ -82,14 +58,12 @@ public class ProvasIngresso {
 
     public Object clone(){
         ProvasIngresso copia = new ProvasIngresso();
-        copia.codProva = this.codProva;
-        copia.nomPI = this.nomPI;
         copia.e_ou = this.e_ou;
         copia.listaPI = (ArrayList<String>) this.listaPI.clone();
         return copia;
     }
 
     public static void main(String[] args) {
-        // Há espera das outras classes para conseguir elaborar a classe teste da Disciplina.
+        // à espera das outras classes para conseguir elaborar a classe teste das ProvasIngresso.
     }
 }

@@ -13,7 +13,6 @@ public class Disciplina {
         this.listalunos = new ArrayList<Aluno>();
         this.listprof = new ArrayList<Professor>();
         this.listfreq = new ArrayList<Frequencia>();
-
     }
 
     public Disciplina(int numdisc, String nomedisc) {
@@ -69,7 +68,7 @@ public class Disciplina {
     public String toString() {
 
         String s;
-        s = "\nDisciplina: " + nomedisc + "/ Num.Disciplina: " + numdisc;
+        s = "\nDisciplina: " + nomedisc + "/ Nº.Disciplina: " + numdisc;
         s = s + "Lista de Alunos: (";
         for (int i = 0; i < listalunos.size(); i++) {
             if (i != listalunos.size() - 1)
@@ -115,7 +114,7 @@ public class Disciplina {
     }
 
     public static void main(String[] args) {
-        // Há espera das outras classes para conseguir elaborar a classe teste da Disciplina.
+        // à espera das outras classes para conseguir elaborar a classe teste da Disciplina.
     }
 
 

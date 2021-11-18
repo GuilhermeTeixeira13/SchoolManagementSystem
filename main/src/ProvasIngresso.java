@@ -1,4 +1,3 @@
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 public class ProvasIngresso {

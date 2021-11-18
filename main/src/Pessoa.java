@@ -57,13 +57,13 @@ public class Pessoa {
     public void setDataNascimento(Date dataNascimento){
         this.dataNascimento = dataNascimento;
     }
-    public Date getDataNascimento(Date dataNascimento){
+    public Date getDataNascimento(){
         return this.dataNascimento;
     }
 
     public String toString(){
         String s;
-        s = "\nNome: "+nome+"/ Data de Nascimento: "+dataNascimento+"/ email: "+email+"/ Local De Origem: "+localDeOrigem+" / Contactos: "+contactos+"\n";    
+        s = "\nNome: "+nome+"/ Data de Nascimento: "+dataNascimento+"/ email: "+email+"/ Local De Origem: "+localDeOrigem+" / Contactos: "+contactos;    
         return s;
     }
 

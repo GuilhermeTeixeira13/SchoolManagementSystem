@@ -1,11 +1,12 @@
+import java.util.ArrayList;
 import java.util.Date;
-
 
 public class Aluno extends Pessoa{
     //Atributos
     private static int ultimo=0;
     private int numAluno;
-    private double mediaAtual;
+    private ArrayList<MediaDisciplina> mediaDisciplinas;
+    private ArrayList<Disciplina> disciplinasInscrito;
     private double mediaEntrada;
 
     // Construtores
@@ -13,16 +14,26 @@ public class Aluno extends Pessoa{
         super();
         ultimo ++;
         this.numAluno = ultimo;
-        this.mediaAtual = 0;
+        this.disciplinasInscrito = new ArrayList<Disciplina>();
+        this.mediaDisciplinas = new ArrayList<MediaDisciplina>();
         this.mediaEntrada = 0;
     }
 
-    public Aluno(String nome, Contactos contactos, String localDeOrigem, String email, Date dataNascimento, double mediaEntrada, double mediaAtual){
-        super(nome, contactos, localDeOrigem, email, dataNascimento);
+    public Aluno(Pessoa p, double mediaEntrada, double mediaAtual){
+        super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getEmail(), p.getDataNascimento());
         ultimo ++;
         this.numAluno = ultimo;
-        this.mediaAtual = mediaAtual;
+        this.disciplinasInscrito = new ArrayList<Disciplina>();
+        this.mediaDisciplinas = new ArrayList<MediaDisciplina>();
         this.mediaEntrada = mediaEntrada;
+    }
+
+    public Aluno(Aluno a){
+        super(a.getNome(), a.getContactos(), a.getLocalDeOrigem(), a.getEmail(), a.getDataNascimento());
+        this.numAluno = a.numAluno;
+        this.disciplinasInscrito = (ArrayList<Disciplina>) a.disciplinasInscrito.clone();
+        this.mediaDisciplinas = (ArrayList<MediaDisciplina>) a.mediaDisciplinas.clone();
+        this.mediaEntrada = a.mediaEntrada;
     }
 
     //Getters e Setters
@@ -54,10 +65,10 @@ public class Aluno extends Pessoa{
        return super.getEmail();
     }
 
-    public void setDataDeNascimento(Date dataNascimento){
+    public void setDataNascimento(Date dataNascimento){
         super.setDataNascimento(dataNascimento);
     }
-    public Date getDataDeNascimento(){
+    public Date getDataNascimento(){
        return super.getDataNascimento();
     }
 
@@ -68,18 +79,25 @@ public class Aluno extends Pessoa{
        return this.mediaEntrada;
     }
 
-    public void setMediaAtual(double mediaAtual){
-        this.mediaAtual = mediaAtual;
+    public void setMediaDisciplinas(ArrayList<MediaDisciplina> mediaDisciplinas){
+        this.mediaDisciplinas = (ArrayList<MediaDisciplina>) mediaDisciplinas.clone();
     }
-    public double getMediaAtual(){
-       return this.mediaAtual;
+    public ArrayList<MediaDisciplina> getMediaDisciplinas(){
+       return this.mediaDisciplinas;
+    }
+
+    public void setDisciplinasInscrito(ArrayList<Disciplina> disciplinasInscrito){
+        this.disciplinasInscrito = (ArrayList<Disciplina>) disciplinasInscrito.clone();
+    }
+    public ArrayList<Disciplina> getDisciplinasInscrito(){
+       return this.disciplinasInscrito;
     }
 
     // toString
     public String toString(){
         String s;
         s = super.toString();
-        s = s + " / Média de entrada: " + this.mediaEntrada + " / Média Atual de Curso: " + this.mediaAtual + " / Nº.Aluno: "+numAluno+"\n";
+        s = s + " / Média de entrada: " + this.mediaEntrada + " / Nº.Aluno: "+numAluno+"\n" + "Média das Disciplinas: " + mediaDisciplinas + "\n" + "Disciplinas do Aluno: " + disciplinasInscrito;
         return s;
     }
 
@@ -89,7 +107,7 @@ public class Aluno extends Pessoa{
         if(obj != null && this.getClass() == obj.getClass()){
             Aluno e = (Aluno) obj;
             ig = super.equals(e);
-            ig = ig && (this.mediaAtual == e.mediaAtual) && (this.mediaEntrada == e.mediaEntrada) && (this.numAluno == e.numAluno);
+            ig = ig && (this.mediaDisciplinas.equals(e.mediaDisciplinas)) && (this.mediaEntrada == e.mediaEntrada) && (this.numAluno == e.numAluno) && (this.disciplinasInscrito.equals(e.disciplinasInscrito));
         }
         else
             ig = false;
@@ -98,15 +116,11 @@ public class Aluno extends Pessoa{
 
     // Clone
     public Object clone(){
-        Aluno copia = new Aluno();
-        copia = (Aluno)super.clone();
-        copia.mediaAtual = this.mediaAtual;
-        copia.mediaEntrada = this.mediaAtual;
-        copia.numAluno = this.numAluno;
+        Aluno copia = new Aluno(this);
         return copia;
     }
 
     public static void main(String[] args) {
-        
+        //À  espera das outras classes para conseguir elaborar a classe teste do Aluno
     }
 }

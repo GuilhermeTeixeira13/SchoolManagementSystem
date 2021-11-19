@@ -13,10 +13,16 @@ public class Diretor extends Pessoa{
         this.formacaoAcademica = "";
     }
 
-    public Diretor(String nome, Contactos contactos, String localDeOrigem, String email, Date dataNascimento, int anosDeServico, String formacaoAcademica){
-        super(nome, contactos, localDeOrigem, email, dataNascimento);
+    public Diretor(Pessoa p, int anosDeServico, String formacaoAcademica){
+        super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getEmail(), p.getDataNascimento());
         this.anosDeServico = anosDeServico;
         this.formacaoAcademica = formacaoAcademica;
+    }
+
+    public Diretor(Diretor d){
+        super(d.getNome(), d.getContactos(), d.getLocalDeOrigem(), d.getEmail(), d.getDataNascimento());
+        this.formacaoAcademica = d.formacaoAcademica;
+        this.anosDeServico = d.anosDeServico;
     }
 
     //Getters e Setters
@@ -83,7 +89,7 @@ public class Diretor extends Pessoa{
         if(obj != null && this.getClass() == obj.getClass()){
             Diretor e = (Diretor) obj;
             ig = super.equals(e);
-            ig = ig && (this.anosDeServico == e.anosDeServico) && (this.formacaoAcademica == e.formacaoAcademica);
+            ig = ig && (this.anosDeServico == e.anosDeServico) && (this.formacaoAcademica.equals(e.formacaoAcademica));
         }
         else
             ig = false;
@@ -92,10 +98,7 @@ public class Diretor extends Pessoa{
 
     // Clone
     public Object clone(){
-        Diretor copia = new Diretor();
-        copia = (Diretor)super.clone();
-        copia.anosDeServico = this.anosDeServico;
-        copia.formacaoAcademica = this.formacaoAcademica;
+        Diretor copia = new Diretor(this);
         return copia;
     }
 

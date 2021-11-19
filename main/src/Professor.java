@@ -3,40 +3,35 @@ import java.util.ArrayList;
 
 public class Professor extends Pessoa {
     // Atributos
-
     private int numProf;
     private int rating;
-    private ArrayList<String> discLec;
+    private ArrayList<Disciplina> discLec;
 
     // Construtor sem parâmetros
-
     public Professor() {
         super();
         this.numProf = 0;
         this.rating = 0;
-        this.discLec = new ArrayList<String>();
+        this.discLec = new ArrayList<Disciplina>();
     }
 
     // Construtor com parâmetros
-
     public Professor(int numProf, int rating, Pessoa p) {
         super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getEmail(), p.getDataNascimento());
         this.numProf = numProf;
         this.rating = rating;
-        this.discLec = new ArrayList<String>();
+        this.discLec = new ArrayList<Disciplina>();
     }
 
     // Construtor cópia
-
     public Professor(Professor prof) {
         super(prof.getNome(), prof.getContactos(), prof.getLocalDeOrigem(), prof.getEmail(), prof.getDataNascimento());
         this.numProf = prof.numProf;
         this.rating = prof.rating;
-        this.discLec = new ArrayList<String>();
+        this.discLec = (ArrayList<Disciplina>) prof.discLec.clone();
     }
 
     // Getters e Setters
-
     public String getNome() {
         return super.getNome();
     }
@@ -93,16 +88,15 @@ public class Professor extends Pessoa {
         this.rating = rating;
     }
 
-    public ArrayList<String> getDiscLec() {
+    public ArrayList<Disciplina> getDiscLec() {
         return this.discLec;
     }
 
-    public void setDiscLec(ArrayList<String> discLec) {
-        this.discLec = discLec;
+    public void setDiscLec(ArrayList<Disciplina> discLec) {
+        this.discLec = (ArrayList<Disciplina>) discLec.clone();
     }
 
     // To String
-
     public String ToString() {
         String s;
         s = super.toString();
@@ -110,16 +104,15 @@ public class Professor extends Pessoa {
         s = s + "Lista de Disciplinas Lecionadas pelo Docente: (";
         for (int i = 0; i < discLec.size(); i++) {
             if (i != discLec.size() - 1)
-                s = s + discLec.get(i) + ", ";
+                s = s + discLec.get(i).getNomDisc() + ", ";
             else
-                s = s + discLec.get(i) + ")\n";
+                s = s + discLec.get(i).getNomDisc() + ")\n";
         }
         return s;
 
     }
 
     // Método Equals
-
     public boolean equals(Object obj) {
         boolean ig = false;
         if (obj != null && this.getClass() == obj.getClass()) {
@@ -133,22 +126,10 @@ public class Professor extends Pessoa {
     }
 
     // Método Clone
-
     public Object clone() {
         Professor copia = new Professor(this);
         return copia;
     }
-
-    /*
-
-    public Object clone() {
-        Pessoa copiapessoa = new Pessoa(super.getNome(), super.getContactos(), super.getLocalDeOrigem(), super.getEmail(), super.getDataNascimento());
-        Professor copiaprof = new Professor(this.numProf, this.rating, copiapessoa);
-        copiaprof.setDiscLec(this.discLec);
-        return copiaprof;
-    }
-
-    */
 
     public static void main(String[] args) {
         //À  espera das outras classes para conseguir elaborar a classe teste do Professor

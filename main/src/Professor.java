@@ -136,6 +136,8 @@ public class Professor extends Pessoa {
 
     public Object clone() {
         Professor copia = new Professor(this);
+        copia.numProf = this.numProf;
+        copia.rating = this.rating;
         copia.setDiscLec(this.discLec);
         return copia;
     }

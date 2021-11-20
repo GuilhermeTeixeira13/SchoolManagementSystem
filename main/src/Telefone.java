@@ -1,7 +1,9 @@
 public class Telefone {
+    // Atributos
     private String tipo;
     private int numero;
 
+    // Construtores
     public Telefone(){
         this.tipo = "";
         this.numero = 0;
@@ -12,6 +14,7 @@ public class Telefone {
         this.numero = numero;
     }
 
+    // Getters e Setters
     public String getTipo(){
         return tipo;
     }
@@ -28,11 +31,13 @@ public class Telefone {
         this.numero = numero;
     }
 
+    // To String
     public String toString(){
         String s = "Tipo: " + tipo + "\nNúmero: " + numero;
         return s;
     }
 
+    // Equals
     public boolean equal(Object obj){
         if(obj != null && this.getClass() == obj.getClass()){
             Telefone tel = (Telefone) obj;
@@ -41,6 +46,7 @@ public class Telefone {
         return false;
     }
 
+    // Clone
     public Object clone(){
         Telefone tel = new Telefone();
         tel.numero = this.numero;

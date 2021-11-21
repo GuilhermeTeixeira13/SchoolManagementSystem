@@ -131,7 +131,7 @@ public class Professor extends Pessoa {
         return copia;
     }
 
-    public static void main(String[] args) {
+    public static void Teste(String[] args) {
         //À  espera das outras classes para conseguir elaborar a classe teste do Professor
     }
 

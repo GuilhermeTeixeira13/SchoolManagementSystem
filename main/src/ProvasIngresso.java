@@ -62,7 +62,7 @@ public class ProvasIngresso {
         return copia;
     }
 
-    public static void main(String[] args) {
+    public static void Teste(String[] args) {
         // à espera das outras classes para conseguir elaborar a classe teste das ProvasIngresso.
     }
 }

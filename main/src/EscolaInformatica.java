@@ -92,7 +92,7 @@ public class EscolaInformatica {
         return copia;
     }
 
-    public static void main(String[] args) {
+    public static void Teste(String[] args) {
         // Há espera das outras classes para conseguir elaborar a classe teste do Curso
     } 
 }

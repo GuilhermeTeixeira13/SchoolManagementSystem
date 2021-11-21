@@ -102,7 +102,7 @@ public class Diretor extends Pessoa{
         return copia;
     }
 
-    public static void main(String[] args) {
+    public static void Teste(String[] args) {
         
     }
 }

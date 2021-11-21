@@ -112,10 +112,4 @@ public class Disciplina {
         copia.listprof = (ArrayList<Professor>) this.listprof.clone();
         return copia;
     }
-
-    public static void Teste(String[] args) {
-        // à espera das outras classes para conseguir elaborar a classe teste da Disciplina.
-    }
-
-
 }

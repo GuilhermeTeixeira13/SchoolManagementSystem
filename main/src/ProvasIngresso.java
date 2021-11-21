@@ -61,8 +61,4 @@ public class ProvasIngresso {
         copia.listaPI = (ArrayList<String>) this.listaPI.clone();
         return copia;
     }
-
-    public static void Teste(String[] args) {
-        // à espera das outras classes para conseguir elaborar a classe teste das ProvasIngresso.
-    }
 }

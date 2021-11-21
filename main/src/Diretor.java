@@ -101,8 +101,4 @@ public class Diretor extends Pessoa{
         Diretor copia = new Diretor(this);
         return copia;
     }
-
-    public static void Teste(String[] args) {
-        
-    }
 }

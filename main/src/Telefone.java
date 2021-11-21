@@ -53,8 +53,4 @@ public class Telefone {
         tel.tipo = this.tipo;
         return tel;
     }
-
-    public static void Teste(String[] args) {
-        // Testes
-    }
 }

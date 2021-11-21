@@ -130,9 +130,4 @@ public class Professor extends Pessoa {
         Professor copia = new Professor(this);
         return copia;
     }
-
-    public static void Teste(String[] args) {
-        //À  espera das outras classes para conseguir elaborar a classe teste do Professor
-    }
-
 }

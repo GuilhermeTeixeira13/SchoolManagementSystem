@@ -11,7 +11,7 @@ public class Programa {
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
-        System.out.print("💻 ESCOLA PROFESSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
+        System.out.print("💻 ESCOLA PROFISSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
         opcaoUtilizador = Ler.umInt();
         while(opcaoUtilizador > 0 && opcaoUtilizador <= 6){
             switch (opcaoUtilizador) {
@@ -32,7 +32,7 @@ public class Programa {
                                 pedeTecla();
                                 break;
                             case 2:
-                                // Alterar o diretor, removendo o anterior de forma automética;
+                                // Alterar o diretor, removendo o anterior de forma automática;
                                 
                                 pedeTecla();        
                                 break;
@@ -317,7 +317,7 @@ public class Programa {
                     break;
             }
             limpaTela();       
-            System.out.print("💻 ESCOLA PROFESSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
+            System.out.print("💻 ESCOLA PROFISSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
             opcaoUtilizador = Ler.umInt();
         }
         limpaTela();

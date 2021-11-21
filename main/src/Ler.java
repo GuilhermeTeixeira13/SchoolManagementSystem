@@ -16,7 +16,7 @@ public class Ler {
             try {
                 return Integer.parseInt(umaString().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Não é um inteiro válido!!!");
+                System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
             }
         }
     }

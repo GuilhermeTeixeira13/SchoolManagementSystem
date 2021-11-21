@@ -91,4 +91,8 @@ public class EscolaInformatica {
         copia.CursosEscola = (ArrayList<Curso>) this.CursosEscola.clone();
         return copia;
     }
+
+    public static void main(String[] args) {
+        // Testes
+    }
 }

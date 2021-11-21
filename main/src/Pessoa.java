@@ -90,4 +90,8 @@ public class Pessoa {
         copia.dataNascimento = this.dataNascimento;
         return copia;
     }
+    
+    public static void main(String[] args) {
+        // Testes
+    }
 }

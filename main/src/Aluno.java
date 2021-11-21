@@ -119,4 +119,8 @@ public class Aluno extends Pessoa{
         Aluno copia = new Aluno(this);
         return copia;
     }
+
+    public static void main(String[] args) {
+        // Testes
+    }
 }

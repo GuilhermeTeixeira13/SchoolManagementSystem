@@ -112,4 +112,8 @@ public class Disciplina {
         copia.listprof = (ArrayList<Professor>) this.listprof.clone();
         return copia;
     }
+
+    public static void main(String[] args) {
+        // Testes
+    }
 }

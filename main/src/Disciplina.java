@@ -113,9 +113,7 @@ public class Disciplina {
         return copia;
     }
 
-    public static void Teste(String[] args) {
-        // à espera das outras classes para conseguir elaborar a classe teste da Disciplina.
+    public static void main(String[] args) {
+        // Testes
     }
-
-
 }

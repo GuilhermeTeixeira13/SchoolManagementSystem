@@ -63,7 +63,7 @@ public class Contactos {
         return copia;
     }
 
-    public static void Teste(String[] args) {
+    public static void main(String[] args) {
         // Testes
     }
 }

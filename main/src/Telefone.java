@@ -54,7 +54,7 @@ public class Telefone {
         return tel;
     }
 
-    public static void Teste(String[] args) {
+    public static void main(String[] args) {
         // Testes
     }
 }

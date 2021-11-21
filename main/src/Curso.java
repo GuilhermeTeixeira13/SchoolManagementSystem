@@ -150,8 +150,7 @@ public class Curso {
         return copia;
     }
 
-    // Teste
-    public static void Teste(String[] args) {
-        //À  espera das outras classes para conseguir elaborar a classe teste do Curso
+    public static void main(String[] args) {
+        // Testes
     }
 }

@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Contactos {
     // Atributos
-
     private ArrayList<Telefone> telefones;
     private String e_mail;
 
@@ -37,16 +36,7 @@ public class Contactos {
     // To String
     public String toString(){
         String s;
-        s = "E_mail: " + e_mail;
-        s = s + "Telefones: (";
-        for(int i=0; i<telefones.size(); i++){
-            if(i != telefones.size() - 1){
-                s = s + telefones.get(i) + ", ";
-            }
-            else{
-                s = s + telefones.get(i) + ")\n";
-            }
-        }
+        s = "E_mail: " + e_mail + ", Telefones: " + telefones;
         return s;
     }
 
@@ -58,7 +48,7 @@ public class Contactos {
             ig = this.e_mail.equals(e.e_mail) && (this.telefones.equals(e.telefones));
         }
         else{
-        ig = false;
+            ig = false;
         }
         return ig;
     }
@@ -71,5 +61,9 @@ public class Contactos {
         copia.telefones = (ArrayList<Telefone>) this.telefones.clone();
 
         return copia;
+    }
+
+    public static void main(String[] args) {
+        // Testes
     }
 }

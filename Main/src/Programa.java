@@ -11,7 +11,7 @@ public class Programa {
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
-        System.out.print("💻 ESCOLA PROFESSIONAL DE INFORMÁTICA 💻\n\n1. Gerir Escola 🏫\n2. Gerir Cursos 🔖\n3. Gerir Disciplinas 📘\n4. Gerir Professores 👨‍🏫\n5. Gerir Alunos 👨‍🎓\n6. Gerir Frequências 📑\n\n0. Sair\n\nESCOLHA A SUA OPÇÃO -> ");
+        System.out.print("💻 ESCOLA PROFESSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
         opcaoUtilizador = Ler.umInt();
         while(opcaoUtilizador > 0 && opcaoUtilizador <= 6){
             switch (opcaoUtilizador) {
@@ -151,7 +151,7 @@ public class Programa {
                 case 4:
                     do{
                         limpaTela();
-                        System.out.print("👨‍🏫  GERIR PROFESSORES  👨‍🏫\n\n1. Listar professores\n2. Criar professor\n3. Consultar informações de determinado professor\n4. Modificar dados sobre um determinado professor\n5. Remover professor\n6. Mostrar quais disciplinas lecionou determinado professor\n7. Mostrar professor que lecionou mais disciplinas\n8. Mostrar professores deslocados\n9. Mostrar qual é o professore com melhor rating\n10. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("👴  GERIR PROFESSORES  👴\n\n1. Listar professores\n2. Criar professor\n3. Consultar informações de determinado professor\n4. Modificar dados sobre um determinado professor\n5. Remover professor\n6. Mostrar quais disciplinas lecionou determinado professor\n7. Mostrar professor que lecionou mais disciplinas\n8. Mostrar professores deslocados\n9. Mostrar qual é o professore com melhor rating\n10. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while(opcaoUtilizador > 10 || opcaoUtilizador < 0){
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -215,7 +215,7 @@ public class Programa {
                 case 5:
                     do{
                         limpaTela();
-                        System.out.print("👨‍🎓  GERIR ALUNOS  👨‍🎓\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Mostrar alunos não deslocados\n7. Mostrar aluno mais velho e mais novo\n8. Mostrar aluno com melhor e pior média, de determinado curso\n9. Mostrar aluno com melhor e pior média, de determinado curso\n10. Mostrar aluno com melhor nota numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("👨  GERIR ALUNOS  👨\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Mostrar alunos não deslocados\n7. Mostrar aluno mais velho e mais novo\n8. Mostrar aluno com melhor e pior média, de determinado curso\n9. Mostrar aluno com melhor e pior média, de determinado curso\n10. Mostrar aluno com melhor nota numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while(opcaoUtilizador > 10 || opcaoUtilizador < 0){
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -317,11 +317,12 @@ public class Programa {
                     break;
             }
             limpaTela();       
-            System.out.print("💻 ESCOLA PROFESSIONAL DE INFORMÁTICA 💻\n\n1. Gerir Escola 🏫\n2. Gerir Cursos 🔖\n3. Gerir Disciplinas 📘\n4. Gerir Professores 👨‍🏫\n5. Gerir Alunos 👨‍🎓\n6. Gerir Frequências 📑\n\n0. Sair\n\nESCOLHA A SUA OPÇÃO -> ");
+            System.out.print("💻 ESCOLA PROFESSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
             opcaoUtilizador = Ler.umInt();
         }
-        System.out.print("\033[H\033[2J");
-        System.out.flush(); 
+        limpaTela();
+        System.out.print("_______________________________________________\n");
         System.out.print("🔌 Programa elaborado por:\n\n👉 João Martins\n👉 Guilherme Teixeira\n👉 Cláudio Redondo\n👉 Tiago Ribeiro\n\n🖥️  POO - Engenharia Informática - UBI 🖥️");
+        System.out.print("\n_______________________________________________\n");
     }
 }

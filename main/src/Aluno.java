@@ -5,7 +5,7 @@ public class Aluno extends Pessoa{
     //Atributos
     private static int ultimo=0;
     private int numAluno;
-    private ArrayList<MediaDisciplina> mediaDisciplinas;
+    private ArrayList<NotasDisciplina> mediaDisciplinas;
     private ArrayList<Disciplina> disciplinasInscrito;
     private double mediaEntrada;
 
@@ -15,7 +15,7 @@ public class Aluno extends Pessoa{
         ultimo ++;
         this.numAluno = ultimo;
         this.disciplinasInscrito = new ArrayList<Disciplina>();
-        this.mediaDisciplinas = new ArrayList<MediaDisciplina>();
+        this.mediaDisciplinas = new ArrayList<NotasDisciplina>();
         this.mediaEntrada = 0;
     }
 
@@ -24,7 +24,7 @@ public class Aluno extends Pessoa{
         ultimo ++;
         this.numAluno = ultimo;
         this.disciplinasInscrito = new ArrayList<Disciplina>();
-        this.mediaDisciplinas = new ArrayList<MediaDisciplina>();
+        this.mediaDisciplinas = new ArrayList<NotasDisciplina>();
         this.mediaEntrada = mediaEntrada;
     }
 
@@ -32,7 +32,7 @@ public class Aluno extends Pessoa{
         super(a.getNome(), a.getContactos(), a.getLocalDeOrigem(), a.getEmail(), a.getDataNascimento());
         this.numAluno = a.numAluno;
         this.disciplinasInscrito = (ArrayList<Disciplina>) a.disciplinasInscrito.clone();
-        this.mediaDisciplinas = (ArrayList<MediaDisciplina>) a.mediaDisciplinas.clone();
+        this.mediaDisciplinas = (ArrayList<NotasDisciplina>) a.mediaDisciplinas.clone();
         this.mediaEntrada = a.mediaEntrada;
     }
 
@@ -79,10 +79,10 @@ public class Aluno extends Pessoa{
        return this.mediaEntrada;
     }
 
-    public void setMediaDisciplinas(ArrayList<MediaDisciplina> mediaDisciplinas){
-        this.mediaDisciplinas = (ArrayList<MediaDisciplina>) mediaDisciplinas.clone();
+    public void setMediaDisciplinas(ArrayList<NotasDisciplina> mediaDisciplinas){
+        this.mediaDisciplinas = (ArrayList<NotasDisciplina>) mediaDisciplinas.clone();
     }
-    public ArrayList<MediaDisciplina> getMediaDisciplinas(){
+    public ArrayList<NotasDisciplina> getMediaDisciplinas(){
        return this.mediaDisciplinas;
     }
 

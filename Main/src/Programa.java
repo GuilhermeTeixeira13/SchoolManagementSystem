@@ -274,9 +274,9 @@ public class Programa {
                 case 6:
                     do{
                         limpaTela();
-                        System.out.print("📑  GERIR FREQUÊNCIAS  📑\n\n1. Listar Frequências de determinada disciplina\n2. Mostrar determinada frequência, dado o ID da mesma\n3. Mostrar a pergunta com maior cotação, de determinada frequência\n4. Mostrar frequências por nível de dificuldade\n5. Mostrar frequências elaboradas por determinado professor\n6. Mostrar frequências de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("📑  GERIR FREQUÊNCIAS  📑\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequências de determinado curso\n10. Mostrar frequências de determinada disciplina\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while(opcaoUtilizador > 6 || opcaoUtilizador < 0){
+                        while(opcaoUtilizador > 10 || opcaoUtilizador < 0){
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -288,32 +288,52 @@ public class Programa {
                                 pedeTecla();
                                 break;
                             case 2:
-                                // Mostrar determinada Frequência, dado o ID da mesma
+                                // Criar Frequência
 
                                 pedeTecla();
                                 break;
                             case 3:
-                                // Mostrar a pergunta com maior cotação, de determinada frequência
+                                // Mostrar determinada frequência, dado o ID da mesma
 
                                 pedeTecla(); 
                                 break;
                             case 4:
-                                // Mostrar frequências por nível de dificuldade
+                                // Modificar dados sobre uma Frequência 
 
                                 pedeTecla();
                                 break;
                             case 5:
-                                // Mostrar frequências elaboradas por determinado professor
+                                // Remover Frequência
 
                                 pedeTecla(); 
                                 break;
                             case 6:
+                                // Mostrar a pergunta com maior cotação, de determinada frequência
+
+                                pedeTecla();
+                                break;    
+                            case 7:
+                                // Mostrar frequências por nível de dificuldade
+
+                                pedeTecla();
+                                break;  
+                            case 8:
+                                // Mostrar frequências elaboradas por determinado professor
+
+                                pedeTecla();
+                                break;  
+                            case 9:
                                 // Mostrar frequências de determinado curso
 
                                 pedeTecla();
-                                break;                                  
+                                break;  
+                            case 10:
+                                // Mostrar frequências de determinada disciplina
+
+                                pedeTecla();
+                                break;                                
                         }
-                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 6);
+                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 10);
                     break;
             }
             limpaTela();       

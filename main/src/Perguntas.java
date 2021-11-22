@@ -1,6 +1,6 @@
 public class Perguntas {
     int numpergunta;
-    int cotaçao;
+    float cotaçao;
     String pergunta;
 
     public Perguntas() {
@@ -19,15 +19,15 @@ public class Perguntas {
         return this.numpergunta;
     }
 
-    public void setnumpergunta() {
+    public void setnumpergunta(int numpergunta) {
         this.numpergunta = numpergunta;
     }
 
-    public int getcotaçao() {
+    public float getcotaçao() {
         return this.cotaçao;
     }
 
-    public void setcotaçao() {
+    public void setcotaçao(float cotaçao) {
         this.cotaçao = cotaçao;
     }
 
@@ -35,32 +35,35 @@ public class Perguntas {
         return this.pergunta;
     }
 
-    public void setpergunta() {
+    public void setpergunta(String pergunta) {
         this.pergunta = pergunta;
     }
 
     public String toString() {
         String s;
-        s = "numero da pergunta: " + numpergunta + "pergunta: " + pergunta + "cotação" + cotaçao;
+        s = "Número da pergunta: " + numpergunta + "// Pergunta: " + pergunta + "// Cotação:" + cotaçao;
         return s;
     }
 
-public boolean equals(Object obj){
-boolean ig=false;
-if(obj != null && this.getClass()==obj.getClass()){
-    Perguntas perg1=(Perguntas) obj;
-    ig= (this.cotaçao==perg1.cotaçao)&&(this.numpergunta==perg1.numpergunta)&&(this.pergunta.equals(perg1.pergunta));
-}else{
-    ig=false;
-}
-return ig;
+    public boolean equals(Object obj){
+        boolean ig=false;
+        if(obj != null && this.getClass()==obj.getClass()){
+            Perguntas e = (Perguntas) obj;
+            ig= (this.cotaçao==e.cotaçao)&&(this.numpergunta==e.numpergunta)&&(this.pergunta.equals(e.pergunta));
+        }else
+            ig=false;
+        return ig;
+    }
 
-}
-public Object clone(){
-    Perguntas copia=new Perguntas();
-    copia.numpergunta= this.numpergunta;
-copia.pergunta=this.pergunta;
-copia.cotaçao=this.cotaçao;
-return copia;
-}
+    public Object clone(){
+        Perguntas copia=new Perguntas();
+        copia.numpergunta= this.numpergunta;
+        copia.pergunta=this.pergunta;
+        copia.cotaçao=this.cotaçao;
+        return copia;
+    }
+
+    public static void main(String[] args) {
+        // Teste
+    }
 }

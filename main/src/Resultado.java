@@ -1,23 +1,26 @@
 public class Resultado {
-    private int id;
+    // Atributos
+    private int idFreq;
     private int cotaçao;
 
+    // Contrutores
     public Resultado() {
-        this.id = 0;
+        this.idFreq = 0;
         this.cotaçao = 0;
     }
 
-    public Resultado(int id, int cotaçao) {
-        this.id = 0;
+    public Resultado(int idFreq, int cotaçao) {
+        this.idFreq = 0;
         this.cotaçao = 0;
     }
 
+    // Getters e Setters
     public int getid() {
-        return this.id;
+        return this.idFreq;
     }
 
-    public void setid(int id) {
-        this.id = id;
+    public void setid(int idFreq) {
+        this.idFreq = idFreq;
     }
 
     public int getcotaçao() {
@@ -30,26 +33,30 @@ public class Resultado {
 
     public String toString() {
         String s;
-        s = "\nFrequencia ID :" + id + "\nresultado (" + cotaçao + ")";
+        s = "\nID Frequência: " + idFreq + "// Resultado: "+ cotaçao;
         return s;
     }
 
-public boolean equals(Object obj){
-    boolean ig = false;
-    if (obj != null && this.getClass() == obj.getClass()) {
-        Resultado res1=(Resultado) obj;
-        ig=((this.id==res1.id)&&(this.cotaçao==res1.cotaçao));
-    }else{
-        ig=false;
+    // Equals
+    public boolean equals(Object obj){
+        boolean ig = false;
+        if (obj != null && this.getClass() == obj.getClass()) {
+            Resultado res1=(Resultado) obj;
+            ig=((this.idFreq==res1.idFreq)&&(this.cotaçao==res1.cotaçao));
+        }else
+            ig=false;
+        return ig;
     }
-    return ig;
-}
 
+    // Clone
     public Object clone() {
         Resultado copia = new Resultado();
-        copia.id = this.id;
+        copia.idFreq = this.idFreq;
         copia.cotaçao = this.cotaçao;
         return copia;
     }
 
+    public static void main(String[] args) {
+        // Testes
+    }
 }

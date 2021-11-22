@@ -2,34 +2,38 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Frequencia {
+    // Atributos
     private int id;
-    private ArrayList<Disciplina> listdisc;
+    private String disc;
     private Date datafreq;
-    private ArrayList<Professor> listprof;
+    private Professor professorResp;
     private int numpergtotal;
     private ArrayList<Perguntas> listperg;
     private String dificuldade;
 
+    // Contrutores
     public Frequencia() {
         this.id = 0;
-        this.listdisc = new ArrayList<Disciplina>();
+        this.disc = "";
         this.datafreq = new Date();
-        this.listprof = new ArrayList<Professor>();
+        this.professorResp = new Professor();
         this.numpergtotal = 0;
         this.listperg = new ArrayList<Perguntas>();
         this.dificuldade = "";
+        this.datafreq = new Date();
     }
 
-    public Frequencia(int id, int numpergtotal, String dificuldade) {
+    public Frequencia(int id, String disc, int numpergtotal, String dificuldade, Date datafreq, Professor professorResp){
         this.id = id;
-        this.listdisc = new ArrayList<Disciplina>();
-        this.datafreq = new Date();
-        this.listprof = new ArrayList<Professor>();
+        this.disc = disc;
+        this.datafreq = datafreq;
+        this.professorResp = professorResp;
         this.numpergtotal = numpergtotal;
         this.listperg = new ArrayList<Perguntas>();
         this.dificuldade = dificuldade;
     }
 
+    // Getters e Setters
     public int getid() {
         return this.id;
     }
@@ -38,12 +42,12 @@ public class Frequencia {
         this.id = id;
     }
 
-    public ArrayList<Disciplina> getListdisc() {
-        return this.listdisc;
+    public String getDisc() {
+        return this.disc;
     }
 
-    public void setlistdisc(ArrayList<Disciplina> listdisc) {
-        this.listdisc = (ArrayList<Disciplina>) listdisc.clone();
+    public void setDisc(String disc) {
+        this.disc = disc;
     }
 
     public Date getdatefreq() {
@@ -54,19 +58,19 @@ public class Frequencia {
         this.datafreq = datafreq;
     }
 
-    public ArrayList<Professor> getprofessor() {
-        return this.listprof;
+    public Professor getProfessorResponsavel() {
+        return this.professorResp;
     }
 
-    public void setListProf(ArrayList<Professor> listprof) {
-        this.listprof = (ArrayList<Professor>) listprof.clone();
+    public void setProfessorResponsavel(Professor professorResp) {
+        this.professorResp = professorResp;
     }
 
-    public int getmumpergtotal() {
+    public int getNumPergTotal() {
         return this.numpergtotal;
     }
 
-    public void setnumpergtotal(int numpergtotal) {
+    public void setNumPergTotal(int numpergtotal) {
         this.numpergtotal = numpergtotal;
     }
 
@@ -86,55 +90,50 @@ public class Frequencia {
         this.dificuldade = dificuldade;
     }
 
+    // toString
     public String toString() {
         String s;
-        s = "\nID Disciplina: " + id;
-        s = s + ";Disciplina: ";
-        for (int i = 0; i < listdisc.size(); i++) {
-            if (i != listdisc.size() - 1)
-                s = s + listdisc.get(i) + ", ";
-            else
-                s = s + listdisc.get(i) + "\n";
-        }
-        s = s + ";Data da frequencia(" + datafreq + ")";
-        s = s + "Professores regentes: (";
-        for (int i = 0; i < listprof.size(); i++) {
-            if (i != listprof.size() - 1)
-                s = s + listprof.get(i) + ", ";
-            else
-                s = s + listprof.get(i) + ")\n";
-        }
-        s = s + "Numero de perguntas: " + numpergtotal;
+        s = "\nID Frequência: " + id;
+        s = s + "; Disciplina: " + disc;
+        s = s + "; Data da frequencia = " + datafreq;
+        s = s + "; Professores que a realizou: "+professorResp;
+        s = s + "; Dificuldade: "+dificuldade;
+        s = s + "; Número de perguntas: " + numpergtotal;
         s = s + "Lista de perguntas:\n";
         for (int i = 0; i < listperg.size(); i++)
             s = s + listperg.get(i) + "\n\n";
         return s;
     }
 
+    // Equals
     public boolean equals(Object obj) {
         boolean ig = false;
         if (obj != null && this.getClass() == obj.getClass()) {
-            Frequencia freq1 = (Frequencia) obj;
-            ig = ((this.id == freq1.id) && (this.listdisc.equals(freq1.listdisc))
-                    && (this.datafreq.equals(freq1.datafreq)) && (this.listprof.equals(freq1.listprof))
-                    && (this.numpergtotal == freq1.numpergtotal) && (this.listperg.equals(freq1.listperg))
-                    && (this.dificuldade.equals(freq1.dificuldade)));
+            Frequencia e = (Frequencia) obj;
+            ig = ((this.id == e.id) && (this.disc.equals(e.disc))
+                    && (this.datafreq.equals(e.datafreq)) && (this.professorResp.equals(e.professorResp))
+                    && (this.numpergtotal == e.numpergtotal) && (this.listperg.equals(e.listperg))
+                    && (this.dificuldade.equals(e.dificuldade)));
         } else {
             ig = false;
         }
         return ig;
     }
 
+    // Clone
     public Object clone() {
         Frequencia copia = new Frequencia();
         copia.id = this.id;
-        copia.listdisc = (ArrayList<Disciplina>) this.listdisc.clone();
+        copia.disc = this.disc;
         copia.datafreq = this.datafreq;
-        copia.listprof = (ArrayList<Professor>) this.listprof.clone();
+        copia.professorResp = this.professorResp;
         copia.numpergtotal = this.numpergtotal;
         copia.listperg = (ArrayList<Perguntas>) this.listperg.clone();
         copia.dificuldade = this.dificuldade;
         return copia;
     }
 
+    public static void main(String[] args) {
+        // Testes
+    }
 }

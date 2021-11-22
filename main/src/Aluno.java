@@ -5,7 +5,7 @@ public class Aluno extends Pessoa{
     //Atributos
     private static int ultimo=0;
     private int numAluno;
-    private ArrayList<NotasDisciplina> mediaDisciplinas;
+    private ArrayList<NotasDisciplina> notasDisciplinas;
     private ArrayList<Disciplina> disciplinasInscrito;
     private double mediaEntrada;
 
@@ -15,7 +15,7 @@ public class Aluno extends Pessoa{
         ultimo ++;
         this.numAluno = ultimo;
         this.disciplinasInscrito = new ArrayList<Disciplina>();
-        this.mediaDisciplinas = new ArrayList<NotasDisciplina>();
+        this.notasDisciplinas = new ArrayList<NotasDisciplina>();
         this.mediaEntrada = 0;
     }
 
@@ -24,7 +24,7 @@ public class Aluno extends Pessoa{
         ultimo ++;
         this.numAluno = ultimo;
         this.disciplinasInscrito = new ArrayList<Disciplina>();
-        this.mediaDisciplinas = new ArrayList<NotasDisciplina>();
+        this.notasDisciplinas = new ArrayList<NotasDisciplina>();
         this.mediaEntrada = mediaEntrada;
     }
 
@@ -32,7 +32,7 @@ public class Aluno extends Pessoa{
         super(a.getNome(), a.getContactos(), a.getLocalDeOrigem(), a.getEmail(), a.getDataNascimento());
         this.numAluno = a.numAluno;
         this.disciplinasInscrito = (ArrayList<Disciplina>) a.disciplinasInscrito.clone();
-        this.mediaDisciplinas = (ArrayList<NotasDisciplina>) a.mediaDisciplinas.clone();
+        this.notasDisciplinas = (ArrayList<NotasDisciplina>) a.notasDisciplinas.clone();
         this.mediaEntrada = a.mediaEntrada;
     }
 
@@ -79,11 +79,11 @@ public class Aluno extends Pessoa{
        return this.mediaEntrada;
     }
 
-    public void setMediaDisciplinas(ArrayList<NotasDisciplina> mediaDisciplinas){
-        this.mediaDisciplinas = (ArrayList<NotasDisciplina>) mediaDisciplinas.clone();
+    public void setMediaDisciplinas(ArrayList<NotasDisciplina> notasDisciplinas){
+        this.notasDisciplinas = (ArrayList<NotasDisciplina>) notasDisciplinas.clone();
     }
     public ArrayList<NotasDisciplina> getMediaDisciplinas(){
-       return this.mediaDisciplinas;
+       return this.notasDisciplinas;
     }
 
     public void setDisciplinasInscrito(ArrayList<Disciplina> disciplinasInscrito){
@@ -97,7 +97,7 @@ public class Aluno extends Pessoa{
     public String toString(){
         String s;
         s = super.toString();
-        s = s + " / Média de entrada: " + this.mediaEntrada + " / Nº.Aluno: "+numAluno+"\n" + "Média das Disciplinas: " + mediaDisciplinas + "\n" + "Disciplinas do Aluno: " + disciplinasInscrito;
+        s = s + " / Média de entrada: " + this.mediaEntrada + " / Nº.Aluno: "+numAluno+"\n" + "Média das Disciplinas: " + notasDisciplinas + "\n" + "Disciplinas do Aluno: " + disciplinasInscrito;
         return s;
     }
 
@@ -107,7 +107,7 @@ public class Aluno extends Pessoa{
         if(obj != null && this.getClass() == obj.getClass()){
             Aluno e = (Aluno) obj;
             ig = super.equals(e);
-            ig = ig && (this.mediaDisciplinas.equals(e.mediaDisciplinas)) && (this.mediaEntrada == e.mediaEntrada) && (this.numAluno == e.numAluno) && (this.disciplinasInscrito.equals(e.disciplinasInscrito));
+            ig = ig && (this.notasDisciplinas.equals(e.notasDisciplinas)) && (this.mediaEntrada == e.mediaEntrada) && (this.numAluno == e.numAluno) && (this.disciplinasInscrito.equals(e.disciplinasInscrito));
         }
         else
             ig = false;

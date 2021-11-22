@@ -215,7 +215,7 @@ public class Programa {
                 case 5:
                     do{
                         limpaTela();
-                        System.out.print("👨  GERIR ALUNOS  👨\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Mostrar alunos não deslocados\n7. Mostrar aluno mais velho e mais novo\n8. Mostrar aluno com melhor e pior média, de determinado curso\n9. Mostrar aluno com melhor e pior média, de determinado curso\n10. Mostrar aluno com melhor nota numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("👨  GERIR ALUNOS  👨\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Mostrar alunos não deslocados\n7. Mostrar aluno mais velho e mais novo\n8. Mostrar aluno com melhor e pior média, de determinado curso\n9. Mostrar aluno com melhor nota, numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while(opcaoUtilizador > 10 || opcaoUtilizador < 0){
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -259,7 +259,7 @@ public class Programa {
                                 pedeTecla();
                                 break;
                             case 8:
-                                // Mostrar aluno com melhor e com pior média
+                                // Mostrar aluno com melhor e com pior média num determinado curso
 
                                pedeTecla();
                                 break;

@@ -93,7 +93,7 @@ public class Programa {
                                 formacaoacademica = Ler.umaString();
 
                                 Diretor diretor = new Diretor(pdiretor, anosdeservico, formacaoacademica);
-                                // ADICIONAR DIRETOR À ESCOLA
+                                // ADICIONAR DIRETOR À ESCOLA -> setDiretor
 
                                 //System.out.println(diretor);
 

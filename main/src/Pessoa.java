@@ -1,7 +1,4 @@
 import java.util.Date;
-
-import javax.sound.sampled.SourceDataLine;
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -107,7 +104,7 @@ public class Pessoa {
             return 0;
         }
     }
-      
+
     public static void main(String[] args) throws Exception{
         Pessoa p1 = new Pessoa();
 

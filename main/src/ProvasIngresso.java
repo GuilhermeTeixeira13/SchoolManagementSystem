@@ -36,9 +36,9 @@ public class ProvasIngresso {
         s = " ";
         for (int i = 0; i < listaPI.size(); i++) {
             if (i != listaPI.size() - 1)
-                s = s + listaPI.get(i) + this.e_ou + " " + e_ou + " ";
+                s = s + listaPI.get(i) + " " + e_ou + " ";
             else
-                s = s + listaPI.get(i) + this.e_ou + ")\n";
+                s = s + listaPI.get(i) +  "\n";
         }
         return s;
     }
@@ -63,6 +63,40 @@ public class ProvasIngresso {
     }
 
     public static void main(String[] args) {
-        // Testes
+        // Variáveis 
+        boolean igual = false;
+
+        // Disciplinas
+
+        ArrayList<String> discPI1 = new ArrayList<>();
+        ArrayList<String> discPI2 = new ArrayList<>();
+        discPI1.add("Matemática");
+        discPI1.add("Fisica e Quimica");
+        discPI2.add("Economia");
+        discPI2.add("Geografia");
+
+
+
+        // Criar Provas de Ingresso
+
+        ProvasIngresso pi1 = new ProvasIngresso("e");
+        pi1.setListaPI(discPI1);
+        pi1.setE_OU("ou");
+        // System.out.println(pi1);
+        ProvasIngresso pi2= new ProvasIngresso("ou");
+        pi2.setListaPI(discPI2);
+        // System.out.println(pi2);
+        Object pi3 = new ProvasIngresso();
+
+
+        // Testar métodos
+        pi3 = pi2.clone();
+        System.out.println(pi3);
+        igual = pi3.equals(pi2);
+        System.out.println(igual);
+
+        
+
+
     }
 }

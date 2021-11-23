@@ -1,39 +1,49 @@
 public class Telefone {
     // Atributos
-    private String tipo;
-    private int numero;
+    private String nomecontact;
+    private long numero;
+    private String email;
 
     // Construtores
     public Telefone(){
-        this.tipo = "";
+        this.nomecontact = "";
         this.numero = 0;
     }
 
-    public Telefone(String tipo, int numero){
-        this.tipo = tipo;
+    public Telefone(String nomecontact, long numero, String email){
+        this.nomecontact = nomecontact;
         this.numero = numero;
+        this.email = email;
     }
 
     // Getters e Setters
-    public String getTipo(){
-        return tipo;
+    public String getNomeContact(){
+        return nomecontact;
     }
 
-    public void setTipo(String tipo){
-        this.tipo = tipo;
+    public void setNomeContact(String nomecontact){
+        this.nomecontact = nomecontact;
     }
 
-    public int getNumero(){
+    public long getNumero(){
         return numero;
     }
 
-    public void setNumero(int numero){
+    public void setNumero(long numero){
         this.numero = numero;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
 
     // To String
     public String toString(){
-        String s = "Tipo: " + tipo + "\nNúmero: " + numero;
+        String s = "Nome: " + nomecontact + "\nNúmero: " + numero + "\nEmail: " + email;
         return s;
     }
 
@@ -41,7 +51,7 @@ public class Telefone {
     public boolean equal(Object obj){
         if(obj != null && this.getClass() == obj.getClass()){
             Telefone tel = (Telefone) obj;
-            return (this.numero == tel.numero && this.tipo.equals(tel.tipo));
+            return (this.numero == tel.numero && this.nomecontact.equals(tel.nomecontact) && (this.email.equals(tel.email)));
         }
         return false;
     }
@@ -50,7 +60,8 @@ public class Telefone {
     public Object clone(){
         Telefone tel = new Telefone();
         tel.numero = this.numero;
-        tel.tipo = this.tipo;
+        tel.nomecontact= this.nomecontact;
+        tel.email = this.email;
         return tel;
     }
 

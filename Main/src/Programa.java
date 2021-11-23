@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Programa {
     public static void limpaTela() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
     public static void pedeTecla() {
         System.out.print("Pressione alguma tecla para avançar --> ");
         Ler.umaString();
@@ -18,7 +22,7 @@ public class Programa {
                 case 1:
                     do{
                         limpaTela();
-                        System.out.print("🏫 GERIR ESCOLA 🏫\n\n1. Informações sobre o Diretor\n2. Alterar diretor\n3. Modificar dados acerca do atual diretor\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("🏫 GERIR ESCOLA 🏫\n\n1. Criar Diretor\n2. Alterar diretor\n3. Modificar dados acerca do atual diretor\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while(opcaoUtilizador > 3 || opcaoUtilizador < 0){
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -27,12 +31,70 @@ public class Programa {
                         limpaTela();
                         switch (opcaoUtilizador) {
                             case 1:
-                                // Mostrar dados acerca do atual diretor;
-                                
-                                pedeTecla();
-                                break;
+                                // Criar Pessoa
+                                String nomepessoa, nomecontacto, localDeOrigem, email, emailcontact;
+                                int opcaoaddcontact, opcaocontactomenu;
+                                long numerocontacto;
+                                ArrayList<Telefone> telefones = new ArrayList<>();
+                                Contactos contactosdir = new Contactos();
+                                System.out.println("Nome do Diretor: ");
+                                nomepessoa = Ler.umaString();
+                                limpaTela();
+                                System.out.println("📱 MENU CONTACTOS ");
+                                System.out.println("1. 📞 Adicionar Contactos\n0. 🔙 Saltar Contactos");
+                                System.out.println("\nESCOLHA A SUA OPCÃO - ");
+                                opcaoaddcontact = Ler.umInt();
+                                if(opcaoaddcontact == 1){
+                                    do{
+                                        System.out.println("Nome do Contacto: ");
+                                        nomecontacto = Ler.umaString();
+                                        
+                                        System.out.println("Número do Contacto: ");
+                                        numerocontacto = Ler.umLong();
+
+                                        System.out.println("Email do Contacto: ");
+                                        emailcontact = Ler.umaString();
+                                        
+                                        Telefone telefone = new Telefone(nomecontacto, numerocontacto, emailcontact);
+                                        telefones = new ArrayList<>();
+                                        telefones.add(telefone);
+                                        contactosdir.setTelefone(telefones);
+                                        limpaTela();
+                                        System.out.println("0. ⛔ Finalizar a inserção de contactos.\nClique noutra tecla qualquer se deseja prosseguir!");
+
+                                        opcaocontactomenu = Ler.umInt();
+
+                                    }while(opcaocontactomenu != 0);
+                                    
+
+
+                                }
+                                limpaTela();
+                                Date dNow = new Date();
+   
+                                System.out.println("Local de Origem do Diretor: ");
+                                localDeOrigem = Ler.umaString();
+                                System.out.println("Email do Diretor: ");
+                                email = Ler.umaString();
+                                Pessoa pdiretor = new Pessoa(nomepessoa, contactosdir, localDeOrigem, email, dNow);
+
+                                // Criar Diretor
+
+                                int anosdeservico;
+                                String formacaoacademica;
+
+                                System.out.println("Anos de Serviço: ");
+                                anosdeservico = Ler.umInt();
+
+                                System.out.println("Formação Académica: ");
+                                formacaoacademica = Ler.umaString();
+
+                                Diretor diretor = new Diretor(pdiretor, anosdeservico, formacaoacademica);
+                                System.out.println(diretor);
+
+
                             case 2:
-                                // Alterar o diretor, removendo o anterior de forma automática;
+                                
                                 
                                 pedeTecla();        
                                 break;
@@ -340,9 +402,6 @@ public class Programa {
             System.out.print("💻 ESCOLA PROFISSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
             opcaoUtilizador = Ler.umInt();
         }
-        limpaTela();
-        System.out.print("_______________________________________________\n");
-        System.out.print("🔌 Programa elaborado por:\n\n👉 João Martins\n👉 Guilherme Teixeira\n👉 Cláudio Redondo\n👉 Tiago Ribeiro\n\n🖥️  POO - Engenharia Informática - UBI 🖥️");
-        System.out.print("\n_______________________________________________\n");
-    }
-}
+
+    limpaTela();System.out.print("_______________________________________________\n");System.out.print("🔌 Programa elaborado por:\n\n👉 João Martins\n👉 Guilherme Teixeira\n👉 Cláudio Redondo\n👉 Tiago Ribeiro\n\n🖥️  POO - Engenharia Informática - UBI 🖥️");System.out.print("\n_______________________________________________\n");
+}}

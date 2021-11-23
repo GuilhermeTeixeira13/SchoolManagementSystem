@@ -14,8 +14,6 @@ public class Programa {
         System.out.print("Digite uma data no formato 'dd/MM/yyyy' --> ");
         String sDataNascimento = Ler.umaString();
         Date DataNascimento = new SimpleDateFormat("dd/MM/yyy").parse(sDataNascimento);
-        // System.out.println(DataNascimento.toString().substring(0, 28));
-        // System.out.println(DataNascimento.toString().substring(0, 11)+DataNascimento.toString().substring(24, 28)); // Pode ser útil ao imprimir data de nascimento nos dados do aluno
         return DataNascimento;
     }
 

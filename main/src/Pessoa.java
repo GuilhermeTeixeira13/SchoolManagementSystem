@@ -1,4 +1,8 @@
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.text.SimpleDateFormat;
 
 public class Pessoa {
     // Atributos
@@ -63,7 +67,7 @@ public class Pessoa {
 
     public String toString(){
         String s;
-        s = "\nNome: "+nome+"/ Data de Nascimento: "+dataNascimento+"/ email: "+email+"/ Local De Origem: "+localDeOrigem+" / Contactos: "+contactos;    
+        s = "\nNome: "+nome+"/ Data de Nascimento: "+ dataNascimento.toString().substring(0, 11)+dataNascimento.toString().substring(24, 28) +"/ email: "+email+"/ Local De Origem: "+localDeOrigem+" / Contactos: "+contactos;    
         return s;
     }
 
@@ -90,8 +94,25 @@ public class Pessoa {
         copia.dataNascimento = this.dataNascimento;
         return copia;
     }
-    
-    public static void main(String[] args) {
-        // Testes
+
+    public int calculaIdade() {
+        LocalDate LdataNascimento = this.dataNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate currentDate = LocalDate.now();
+        if ((dataNascimento != null) && (currentDate != null)) {
+            return Period.between(LdataNascimento, currentDate).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args) throws Exception{
+        Pessoa p1 = new Pessoa();
+
+        // As duas seguintes linhas serão implementadas na main a partir de uma função definida na mesma
+        String sDataNascimento = Ler.umaString();
+        Date DataNascimento = new SimpleDateFormat("dd/MM/yyy").parse(sDataNascimento);
+
+        p1.setDataNascimento(DataNascimento);
+        System.out.println(p1.calculaIdade());
     }
 }

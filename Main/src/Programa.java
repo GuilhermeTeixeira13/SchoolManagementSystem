@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Programa {
     public static void limpaTela() {
@@ -10,6 +11,12 @@ public class Programa {
     public static void pedeTecla() {
         System.out.print("Pressione alguma tecla para avançar --> ");
         Ler.umaString();
+    }
+    public static Date pedeDatanascimento() throws Exception{
+        System.out.print("Digite uma data no formato 'dd/MM/yyyy' --> ");
+        String sDataNascimento = Ler.umaString();
+        Date DataNascimento = new SimpleDateFormat("dd/MM/yyy").parse(sDataNascimento);
+        return DataNascimento;
     }
 
     public static void main(String[] args) {

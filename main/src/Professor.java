@@ -1,5 +1,6 @@
 import java.util.Date;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Professor extends Pessoa {
     // Atributos
@@ -17,7 +18,7 @@ public class Professor extends Pessoa {
 
     // Construtor com parâmetros
     public Professor(int numProf, int rating, Pessoa p) {
-        super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getEmail(), p.getDataNascimento());
+        super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getDataNascimento());
         this.numProf = numProf;
         this.rating = rating;
         this.discLec = new ArrayList<Disciplina>();
@@ -25,7 +26,7 @@ public class Professor extends Pessoa {
 
     // Construtor cópia
     public Professor(Professor prof) {
-        super(prof.getNome(), prof.getContactos(), prof.getLocalDeOrigem(), prof.getEmail(), prof.getDataNascimento());
+        super(prof.getNome(), prof.getContactos(), prof.getLocalDeOrigem(), prof.getDataNascimento());
         this.numProf = prof.numProf;
         this.rating = prof.rating;
         this.discLec = (ArrayList<Disciplina>) prof.discLec.clone();
@@ -56,19 +57,11 @@ public class Professor extends Pessoa {
         super.setLocalDeOrigem(localDeOrigem);
     }
 
-    public String getEmail() {
-        return super.getEmail();
-    }
-
-    public void setEmail(String email) {
-        super.setEmail(email);
-    }
-
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return super.getDataNascimento();
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         super.setDataNascimento(dataNascimento);
     }
 

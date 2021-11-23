@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Aluno extends Pessoa{
     //Atributos
@@ -20,7 +21,7 @@ public class Aluno extends Pessoa{
     }
 
     public Aluno(Pessoa p, double mediaEntrada, double mediaAtual){
-        super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getEmail(), p.getDataNascimento());
+        super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getDataNascimento());
         ultimo ++;
         this.numAluno = ultimo;
         this.disciplinasInscrito = new ArrayList<Disciplina>();
@@ -29,7 +30,7 @@ public class Aluno extends Pessoa{
     }
 
     public Aluno(Aluno a){
-        super(a.getNome(), a.getContactos(), a.getLocalDeOrigem(), a.getEmail(), a.getDataNascimento());
+        super(a.getNome(), a.getContactos(), a.getLocalDeOrigem(), a.getDataNascimento());
         this.numAluno = a.numAluno;
         this.disciplinasInscrito = (ArrayList<Disciplina>) a.disciplinasInscrito.clone();
         this.notasDisciplinas = (ArrayList<NotasDisciplina>) a.notasDisciplinas.clone();
@@ -58,17 +59,10 @@ public class Aluno extends Pessoa{
         return super.getLocalDeOrigem();
     }
 
-    public void setEmail(String email){
-        super.setEmail(email);
-    }
-    public String getEmail(){
-       return super.getEmail();
-    }
-
-    public void setDataNascimento(Date dataNascimento){
+    public void setDataNascimento(LocalDate dataNascimento){
         super.setDataNascimento(dataNascimento);
     }
-    public Date getDataNascimento(){
+    public LocalDate getDataNascimento(){
        return super.getDataNascimento();
     }
 

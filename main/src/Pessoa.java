@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -9,23 +10,20 @@ public class Pessoa {
     private String nome;
     private Contactos contactos;
     private String localDeOrigem;
-    private String email;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     // Construtores
     public Pessoa(){
         this.nome = "";
         this.contactos = new Contactos();
         this.localDeOrigem = "";
-        this.email = "";
-        this.dataNascimento = new Date();
+        this.dataNascimento = LocalDate.now();
     }
 
-    public Pessoa(String nome, Contactos contactos, String localDeOrigem, String email, Date dataNascimento){
+    public Pessoa(String nome, Contactos contactos, String localDeOrigem, LocalDate dataNascimento){
         this.nome = nome;
         this.contactos = contactos;
         this.localDeOrigem = localDeOrigem;
-        this.email = email;
         this.dataNascimento = dataNascimento;
     }
 
@@ -51,23 +49,16 @@ public class Pessoa {
         return this.localDeOrigem;
     }
 
-    public void setEmail(String email){
-        this.email = email;
-    }
-    public String getEmail(){
-        return this.email;
-    }
-
-    public void setDataNascimento(Date dataNascimento){
+    public void setDataNascimento(LocalDate dataNascimento){
         this.dataNascimento = dataNascimento;
     }
-    public Date getDataNascimento(){
+    public LocalDate getDataNascimento(){
         return this.dataNascimento;
     }
 
     public String toString(){
         String s;
-        s = "\nNome: "+nome+"/ Data de Nascimento: "+ dataNascimento.toString().substring(0, 11)+dataNascimento.toString().substring(24, 28) +"/ email: "+email+"/ Local De Origem: "+localDeOrigem+" / Contactos: "+contactos;    
+        s = "\nNome: "+nome+"/ Data de Nascimento: " + this.dataNascimento.toString() + "/ Local De Origem: "+localDeOrigem+" / Contactos: "+contactos;    
         return s;
     }
 
@@ -76,7 +67,7 @@ public class Pessoa {
         boolean ig = false;
         if(obj != null && this.getClass() == obj.getClass()){
             Pessoa e = (Pessoa) obj;
-            ig = (this.nome.equals(e.nome)) && (this.localDeOrigem.equals(e.localDeOrigem)) && (this.email.equals(e.email)) && (this.contactos.equals(e.contactos)) && (this.dataNascimento.equals(e.dataNascimento));
+            ig = (this.nome.equals(e.nome)) && (this.localDeOrigem.equals(e.localDeOrigem)) && (this.contactos.equals(e.contactos)) && (this.dataNascimento.equals(e.dataNascimento));
         }
         else
             ig = false;
@@ -88,7 +79,6 @@ public class Pessoa {
     public Object clone(){
         Pessoa copia = new Pessoa();
         copia.nome = this.nome;
-        copia.email = this.nome;
         copia.localDeOrigem = this.localDeOrigem;
         copia.contactos = this.contactos;
         copia.dataNascimento = this.dataNascimento;
@@ -96,23 +86,24 @@ public class Pessoa {
     }
 
     public int calculaIdade() {
-        LocalDate LdataNascimento = this.dataNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate currentDate = LocalDate.now();
-        if ((dataNascimento != null) && (currentDate != null)) {
-            return Period.between(LdataNascimento, currentDate).getYears();
-        } else {
+        if ((dataNascimento != null) && (currentDate != null))
+            return Period.between(this.dataNascimento, currentDate).getYears();
+        else
             return 0;
-        }
     }
 
     public static void main(String[] args) throws Exception{
         Pessoa p1 = new Pessoa();
 
-        // As duas seguintes linhas serão implementadas na main a partir de uma função definida na mesma
-        String sDataNascimento = Ler.umaString();
-        Date DataNascimento = new SimpleDateFormat("dd/MM/yyy").parse(sDataNascimento);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        System.out.print("Digite uma data no formato 'dd/MM/yyyy' --> ");
+        String dateString = Ler.umaString();
+        LocalDate data = LocalDate.parse(dateString, formatter);
 
-        p1.setDataNascimento(DataNascimento);
-        System.out.println(p1.calculaIdade());
+        p1.setDataNascimento(data);
+        System.out.println("Idade: " + p1.calculaIdade());
+
+        System.out.println("Data: " + data.toString());
     }
 }

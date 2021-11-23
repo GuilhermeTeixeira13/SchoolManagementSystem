@@ -98,6 +98,7 @@ public class Programa {
                                 //System.out.println(diretor);
 
                                 System.out.println("\n✔️  Diretor criado com sucesso!!\n");
+                                
                                 pedeTecla();  
                                 break;
                             case 2:

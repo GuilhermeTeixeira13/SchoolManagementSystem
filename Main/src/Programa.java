@@ -1,3 +1,6 @@
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 public class Programa {
     public static void limpaTela() {
         System.out.print("\033[H\033[2J");
@@ -6,6 +9,14 @@ public class Programa {
     public static void pedeTecla() {
         System.out.print("Pressione alguma tecla para avançar --> ");
         Ler.umaString();
+    }
+    public static Date pedeDatanascimento() throws Exception{
+        System.out.print("Digite uma data no formato 'dd/MM/yyyy' --> ");
+        String sDataNascimento = Ler.umaString();
+        Date DataNascimento = new SimpleDateFormat("dd/MM/yyy").parse(sDataNascimento);
+        // System.out.println(DataNascimento.toString().substring(0, 28));
+        // System.out.println(DataNascimento.toString().substring(0, 11)+DataNascimento.toString().substring(24, 28)); // Pode ser útil ao imprimir data de nascimento nos dados do aluno
+        return DataNascimento;
     }
 
     public static void main(String[] args) {

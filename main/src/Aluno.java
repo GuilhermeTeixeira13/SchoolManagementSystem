@@ -121,6 +121,6 @@ public class Aluno extends Pessoa{
     }
 
     public static void main(String[] args) {
-        // Testes
+        
     }
 }

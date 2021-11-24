@@ -141,6 +141,8 @@ public class Programa {
                                 pessoasEscola.add(novodiretor);
                                 escolaInformatica.setPessoasEscola(pessoasEscola);
 
+                                // Tirar duracao de curso e criar funcao que dadas duas datas a calcule
+
                                 System.out.println("\n✔️  Diretor criado com sucesso!!\n");
 
                                 //System.out.println(pessoasEscola);

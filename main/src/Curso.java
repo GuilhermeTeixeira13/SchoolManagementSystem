@@ -6,7 +6,7 @@ public class Curso {
     private String nomeCurso;
     private int codCurso, duracaoEmHoras;
     private ArrayList<Disciplina> disciplinasCurso;
-    private ProvasIngresso provasIngresso;
+    private ArrayList<String> provasIngresso;
     private ArrayList<Aluno> alunosCurso;
     private float mediaUltimoColocado;
     private LocalDate dataInicio;
@@ -17,18 +17,18 @@ public class Curso {
         this.nomeCurso = "";
         this.codCurso = 0;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.provasIngresso = new ProvasIngresso();
+        this.provasIngresso = new ArrayList<String>();
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = 0;
         this.mediaUltimoColocado = 0;
         this.dataInicio = LocalDate.now();
         this.dataFim = LocalDate.now();
     }
-    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, ProvasIngresso provasIngresso, LocalDate dataInicio, LocalDate dataFim){
+    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, String provasIngresso, LocalDate dataInicio, LocalDate dataFim){
         this.nomeCurso = nomeCurso;
         this.codCurso = codCurso;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.provasIngresso = provasIngresso;
+        this.provasIngresso = new ArrayList<String>();
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = duracaoEmHoras;
         this.mediaUltimoColocado = mediaUltimoColocado;
@@ -58,10 +58,10 @@ public class Curso {
         return this.disciplinasCurso;
     }
 
-    public void setProvasIngresso(ProvasIngresso provasIngresso){
+    public void setProvasIngresso(ArrayList<String> provasIngresso){
         this.provasIngresso = provasIngresso;
     }
-    public ProvasIngresso getProvasIngresso(){
+    public ArrayList<String> getProvasIngresso(){
         return this.provasIngresso;
     }
 
@@ -105,17 +105,28 @@ public class Curso {
     public String toString(){
         String s;
         s = "\nCurso: "+nomeCurso+"/ Cód.Curso: "+codCurso+"/ Duração: "+duracaoEmHoras+"h/ Média do Último Colocado: "+mediaUltimoColocado+" / Data de Início: "+dataInicio+"/ Data de Fim: "+dataFim;
-        s = s + "Disciplinas: (";
+        s = s + "/ Disciplinas: ";
         for(int i=0; i<disciplinasCurso.size(); i++){
-            if(i != disciplinasCurso.size() - 1)
-                s = s + disciplinasCurso.get(i) + ", ";
+            if(i == disciplinasCurso.size() - 1)
+                s = s + disciplinasCurso.get(i) + ")";
+            else if(i == 1)
+                s = s + disciplinasCurso.get(i) + "(";
             else
-                s = s + disciplinasCurso.get(i) + ")\n";
+                s = s + disciplinasCurso.get(i) + ", ";
         }
-        s = s + "Provas Ingresso: ("+provasIngresso+")";     
-        s = s + "Alunos Inscritos:\n";
+        s = s + "/ Provas Ingresso: ";
+        for(int i=0; i<provasIngresso.size(); i++){
+            if(i == provasIngresso.size() - 1)
+                s = s + provasIngresso.get(i);
+            else
+                s = s + provasIngresso.get(i) + ",";  
+        }   
+        s = s + "/ Alunos Inscritos: ";
         for(int i=0; i<alunosCurso.size(); i++)
-            s = s + alunosCurso.get(i) + "\n\n";     
+            if(i == provasIngresso.size() - 1)
+                s = s + alunosCurso.get(i).getNome();
+            else
+                s = s + alunosCurso.get(i).getNome() + ",";     
         return s;
     }
 
@@ -139,7 +150,7 @@ public class Curso {
         copia.nomeCurso = this.nomeCurso;
         copia.codCurso = this.codCurso;
         copia.disciplinasCurso = (ArrayList<Disciplina>) this.disciplinasCurso.clone();
-        copia.provasIngresso = this.provasIngresso;
+        copia.provasIngresso = (ArrayList<String>) this.disciplinasCurso.clone();
         copia.alunosCurso = (ArrayList<Aluno>) this.alunosCurso.clone();
         copia.duracaoEmHoras = this.duracaoEmHoras;
         copia.mediaUltimoColocado = this.mediaUltimoColocado;

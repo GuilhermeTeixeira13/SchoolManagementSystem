@@ -194,39 +194,28 @@ public class Programa {
                                 int duracaoEmHoras, codCurso, escolhaDisc;
                                 float mediaUltimoColocado;
                                 ArrayList<Disciplina> disciplinasCurso;
-                                ProvasIngresso provasIngresso = new ProvasIngresso();
+                                LocalDate dataInicioCurso, dataFimCurso;
+                                ArrayList<String> provasIngresso = new ArrayList<String>();
 
                                 System.out.print("Nome do Curso: ");
                                 nomeCurso = Ler.umaString();
                                 novocurso.setNomeCurso(nomeCurso);
 
+                                System.out.print("\nCódigo do Curso: ");
+                                codCurso = Ler.umInt();
+                                novocurso.setCodCurso(codCurso);;
+
                                 System.out.println("\n------------------------------------------------------------------------------");
                                 System.out.println("Disciplinas do Curso: \n");
-                                
-                                    /*int i = 0;
-                                    System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
-                                    for(i=0; i<escolaInformatica.getDisciplinaEscola().size();i++){
-                                        System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
-                                    }
-                                    System.out.println("Disciplina para adicionar ao curso --> ");
-                                    escolhaDisc = Ler.umInt();
-                                    if(escolaInformatica.getDisciplinaEscola().isEmpty() == false){
-                                        while(i<0 || i>escolaInformatica.getDisciplinaEscola().size()-1){
-                                            System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
-                                            escolhaDisc = Ler.umInt();
-                                        }
-                                    }
-                                    else
-                                        System.out.println("Ainda não há disciplinas criadas.");*/
-
-                               
+                            
                                 if(escolaInformatica.getDisciplinaEscola().isEmpty() == false){
                                     do{ 
                                         int i = 0;
                                         ArrayList<Integer> adicionados = new ArrayList<Integer>();
                                         System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
                                         for(i=0; i<escolaInformatica.getDisciplinaEscola().size();i++){
-                                            if(adicionados.contai)
+                                            if(!adicionados.contains(i))
+                                                System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());       
                                         }
                                         System.out.println("Disciplina para adicionar ao curso --> ");
                                         escolhaDisc = Ler.umInt();
@@ -244,12 +233,35 @@ public class Programa {
                                     System.out.println("Ainda não há disciplinas criadas.");
                                 System.out.println("------------------------------------------------------------------------------\n");
                                     
+                                System.out.println("Provas Ingresso:");
+                                String prova;
+                                do{ 
+                                    System.out.print("\nAdicione uma prova de ingresso --> ");
+                                    prova = Ler.umaString();      
+                                    provasIngresso.add(prova);
+                                    System.out.print("Pretende inserir mais provas de ingresso? [S/N] -> ");
+                                    opcaoContactoMenu = Ler.umaString();
+                                }while(!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));  
+                                novocurso.setProvasIngresso(provasIngresso);
+                                System.out.println("------------------------------------------------------------------------------\n");
 
-                                    
+                                System.out.print("Data de ínicio de curso - ");
+                                dataInicioCurso = pedeData();
+                                novocurso.setDataInicio(dataInicioCurso);
 
+                                System.out.print("\nData de fim de curso - ");
+                                dataFimCurso = pedeData();
+                                novocurso.setDataFim(dataFimCurso);
+
+                                System.out.print("\nMédia do Último Colocado: ");
+                                mediaUltimoColocado = Ler.umInt();
+                                novocurso.setMediaUltimoColocado(mediaUltimoColocado);
+
+                                escolaInformatica.addCurso(novocurso);
                                 
+                                System.out.println("\n✔️  Curso criado com sucesso!!\n");
 
-                                System.out.println("\n✔️  Diretor criado com sucesso!!\n");
+                                System.out.println(escolaInformatica.getCursosEscola());
 
                                 //System.out.println(pessoasEscola);
                                 

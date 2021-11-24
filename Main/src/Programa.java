@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -12,10 +13,31 @@ public class Programa {
         System.out.print("Pressione alguma tecla para avançar --> ");
         Ler.umaString();
     }
+
+    public static boolean verificaData(String data){
+        boolean correto = false;
+        if(data.length() != 10)
+            correto = false;
+        else{
+            if((data.charAt(0) == '0' && data.charAt(1) == '0') || (data.charAt(3) == '0' && data.charAt(4) == '0') || (data.charAt(6) == '0' && data.charAt(7) == '0' && data.charAt(8) == '0' && data.charAt(9) == '0') || (data.charAt(2) != '/' || data.charAt(5) != '/'))
+                correto = false;
+            else
+                correto = true; 
+        }
+        return correto;
+    }
+
     public static LocalDate pedeData() throws Exception{
+        boolean verificaString;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         System.out.print("Digite uma data no formato 'dd/MM/yyyy' --> ");
         String dateString = Ler.umaString();
+        verificaString = verificaData(dateString);
+        while(verificaString == false){
+            System.out.print("INVÁLIDA! Digite uma data no formato 'dd/MM/yyyy' --> ");
+            dateString = Ler.umaString();
+            verificaString = verificaData(dateString);
+        }
         LocalDate data = LocalDate.parse(dateString, formatter);
         return data;
     }

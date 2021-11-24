@@ -167,9 +167,9 @@ public class Programa {
                 case 2:
                     do{
                         limpaTela();
-                        System.out.print("🔖  GERIR CURSOS 🔖\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Mostrar curso mais frequentado\n7. Mostrar professores que lecionam disciplinas de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("🔖  GERIR CURSOS 🔖\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Mostrar curso mais frequentado\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while(opcaoUtilizador > 7 || opcaoUtilizador < 0){
+                        while(opcaoUtilizador > 6 || opcaoUtilizador < 0){
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -204,15 +204,9 @@ public class Programa {
                                 // Mostrar curso mais frequentado
 
                                 pedeTecla();
-                                break;
-                            case 7:
-                                // Mostrar professores que lecionam as disciplinas de determinado curso
-
-                                pedeTecla();
-                                break;
-                                
+                                break;                              
                         }
-                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 7);
+                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 6);
                     break;    
                 case 3:
                     do{

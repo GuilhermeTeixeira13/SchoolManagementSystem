@@ -1,17 +1,16 @@
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Curso {
     // Atributos
     private String nomeCurso;
-    private int codCurso;
+    private int codCurso, duracaoEmHoras;
     private ArrayList<Disciplina> disciplinasCurso;
     private ProvasIngresso provasIngresso;
     private ArrayList<Aluno> alunosCurso;
-    private int duracaoEmHoras;
     private float mediaUltimoColocado;
-    private Date dataInicio;
-    private Date dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
 
     // Construtores
     public Curso(){
@@ -22,10 +21,10 @@ public class Curso {
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = 0;
         this.mediaUltimoColocado = 0;
-        this.dataInicio = new Date();
-        this.dataFim = new Date();
+        this.dataInicio = LocalDate.now();
+        this.dataFim = LocalDate.now();
     }
-    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, ProvasIngresso provasIngresso,Date dataInicio, Date dataFim){
+    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, ProvasIngresso provasIngresso, LocalDate dataInicio, LocalDate dataFim){
         this.nomeCurso = nomeCurso;
         this.codCurso = codCurso;
         this.disciplinasCurso = new ArrayList<Disciplina>();
@@ -33,8 +32,8 @@ public class Curso {
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = duracaoEmHoras;
         this.mediaUltimoColocado = mediaUltimoColocado;
-        this.dataInicio = new Date();
-        this.dataFim = new Date();
+        this.dataInicio = LocalDate.now();
+        this.dataFim = LocalDate.now();
     }
 
     //Getters e Setters
@@ -88,17 +87,17 @@ public class Curso {
     }
 
     // Seria interessante não deixar que a data de fim fosse antes da de início nem que a de início fosse depois da de fim 
-    public void setDataInicio(Date dataInicio){
+    public void setDataInicio(LocalDate dataInicio){
         this.dataInicio = dataInicio;
     }
-    public Date getDataInicio(){
+    public LocalDate getDataInicio(){
         return this.dataInicio;
     }
 
-    public void setDataFim(Date dataFim){
+    public void setDataFim(LocalDate dataFim){
         this.dataFim = dataFim;
     }
-    public Date getDataFim(){
+    public LocalDate getDataFim(){
         return this.dataFim;
     }
 

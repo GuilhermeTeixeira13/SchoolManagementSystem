@@ -52,6 +52,9 @@ public class Programa {
         int opcaoUtilizador;
         limpaTela();
         System.out.print("💻 ESCOLA PROFISSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
+        
+        
+
         ArrayList<Curso> cursosEscola = new ArrayList<Curso>();
         ArrayList<Pessoa> pessoasEscola = new ArrayList<Pessoa>();
         ArrayList<Disciplina> disciplinasEscola = new ArrayList<Disciplina>();
@@ -59,6 +62,9 @@ public class Programa {
         Contactos contactosEscola = new Contactos();
         String locallizaçãoEscola = "Covilhã";
         EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8, cursosEscola, pessoasEscola, disciplinasEscola, diretorEscola, contactosEscola, locallizaçãoEscola);
+        
+        
+        
         opcaoUtilizador = Ler.umInt();
         while(opcaoUtilizador > 0 && opcaoUtilizador <= 5){
             switch (opcaoUtilizador) {
@@ -181,9 +187,73 @@ public class Programa {
                                 pedeTecla(); 
                                 break;
                             case 2:
-                                // Criar Curso
+                                System.out.println("1. CRIAR CURSO\n");
+                                Curso novocurso = new Curso();
 
-                                pedeTecla();
+                                String nomeCurso;
+                                int duracaoEmHoras, codCurso;
+                                float mediaUltimoColocado;
+                                ArrayList<Disciplina> disciplinasCurso;
+                                ArrayList<Aluno> alunosCurso;
+                                ProvasIngresso provasIngresso = new ProvasIngresso();
+
+                                System.out.print("Nome do Diretor: ");
+                                nomePessoa = Ler.umaString();
+                                novodiretor.setNome(nomePessoa);
+                                
+                                System.out.print("\nLocal de Origem do Diretor: ");
+                                localDeOrigem = Ler.umaString();
+                                novodiretor.setLocalDeOrigem(localDeOrigem);
+
+                                System.out.print("\nData de nascimento - ");
+                                LocalDate dataNascimentoDiretor = pedeData();
+                                novodiretor.setDataDeNascimento(dataNascimentoDiretor);
+
+                                System.out.println("\n------------------------------------------------------------------------------");
+                                System.out.println("Telefones");
+                                do{
+                                    System.out.print("\nTipo: ");
+                                    tipoContacto = Ler.umaString();
+                                        
+                                    System.out.print("Número: ");
+                                    numeroContacto = Ler.umLong();
+                                        
+                                    Telefone telefone = new Telefone(tipoContacto, numeroContacto);
+
+                                    telefones.add(telefone);
+
+                                    System.out.print("Pretende inserir mais telefones? [S/N] -> ");
+
+                                    opcaoContactoMenu = Ler.umaString();
+                                }while(!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));   
+                                contactosdir.setTelefone(telefones);
+                                System.out.println("------------------------------------------------------------------------------");
+                                System.out.print("\nEmail do Diretor: ");
+                                email = Ler.umaString();
+                                contactosdir.setE_mail(email);
+                                novodiretor.setContactos(contactosdir);
+
+                                int anosdeservico;
+                                String formacaoacademica;
+
+                                System.out.print("\nAnos de Serviço: ");
+                                anosdeservico = Ler.umInt();
+                                novodiretor.setAnosDeServico(anosdeservico);
+
+                                System.out.print("\nFormação Académica: ");
+                                formacaoacademica = Ler.umaString();
+                                novodiretor.setFormacaoAcademica(formacaoacademica);
+
+                                escolaInformatica.setDiretorEscola(novodiretor);
+                                Programa.removeDiretorDaListaDePessoas(pessoasEscola);
+                                pessoasEscola.add(novodiretor);
+                                escolaInformatica.setPessoasEscola(pessoasEscola);
+
+                                System.out.println("\n✔️  Diretor criado com sucesso!!\n");
+
+                                //System.out.println(pessoasEscola);
+                                
+                                pedeTecla();  
                                 break;
                             case 3:
                                 // Consultar informações de determinado curso

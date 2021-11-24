@@ -149,6 +149,10 @@ public class Curso {
         return copia;
     }
 
+    public void addDisciplina(Disciplina d){
+        this.disciplinasCurso.add(d);
+    }
+
     public static void main(String[] args) {
         // Testes
     }

@@ -190,64 +190,64 @@ public class Programa {
                                 System.out.println("1. CRIAR CURSO\n");
                                 Curso novocurso = new Curso();
 
-                                String nomeCurso;
-                                int duracaoEmHoras, codCurso;
+                                String nomeCurso, opcaoContactoMenu;
+                                int duracaoEmHoras, codCurso, escolhaDisc;
                                 float mediaUltimoColocado;
                                 ArrayList<Disciplina> disciplinasCurso;
-                                ArrayList<Aluno> alunosCurso;
                                 ProvasIngresso provasIngresso = new ProvasIngresso();
 
-                                System.out.print("Nome do Diretor: ");
-                                nomePessoa = Ler.umaString();
-                                novodiretor.setNome(nomePessoa);
-                                
-                                System.out.print("\nLocal de Origem do Diretor: ");
-                                localDeOrigem = Ler.umaString();
-                                novodiretor.setLocalDeOrigem(localDeOrigem);
-
-                                System.out.print("\nData de nascimento - ");
-                                LocalDate dataNascimentoDiretor = pedeData();
-                                novodiretor.setDataDeNascimento(dataNascimentoDiretor);
+                                System.out.print("Nome do Curso: ");
+                                nomeCurso = Ler.umaString();
+                                novocurso.setNomeCurso(nomeCurso);
 
                                 System.out.println("\n------------------------------------------------------------------------------");
-                                System.out.println("Telefones");
-                                do{
-                                    System.out.print("\nTipo: ");
-                                    tipoContacto = Ler.umaString();
-                                        
-                                    System.out.print("Número: ");
-                                    numeroContacto = Ler.umLong();
-                                        
-                                    Telefone telefone = new Telefone(tipoContacto, numeroContacto);
+                                System.out.println("Disciplinas do Curso: \n");
+                                
+                                    /*int i = 0;
+                                    System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
+                                    for(i=0; i<escolaInformatica.getDisciplinaEscola().size();i++){
+                                        System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
+                                    }
+                                    System.out.println("Disciplina para adicionar ao curso --> ");
+                                    escolhaDisc = Ler.umInt();
+                                    if(escolaInformatica.getDisciplinaEscola().isEmpty() == false){
+                                        while(i<0 || i>escolaInformatica.getDisciplinaEscola().size()-1){
+                                            System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
+                                            escolhaDisc = Ler.umInt();
+                                        }
+                                    }
+                                    else
+                                        System.out.println("Ainda não há disciplinas criadas.");*/
 
-                                    telefones.add(telefone);
+                               
+                                if(escolaInformatica.getDisciplinaEscola().isEmpty() == false){
+                                    do{ 
+                                        int i = 0;
+                                        ArrayList<Integer> adicionados = new ArrayList<Integer>();
+                                        System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
+                                        for(i=0; i<escolaInformatica.getDisciplinaEscola().size();i++){
+                                            if(adicionados.contai)
+                                        }
+                                        System.out.println("Disciplina para adicionar ao curso --> ");
+                                        escolhaDisc = Ler.umInt();
+                                        while(i<0 || i>escolaInformatica.getDisciplinaEscola().size()-1){
+                                            System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
+                                            escolhaDisc = Ler.umInt();
+                                        }
+                                        adicionados.add(escolhaDisc);
+                                        novocurso.addDisciplina(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
+                                        System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
+                                        opcaoContactoMenu = Ler.umaString();
+                                    }while(!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));   
+                                }
+                                else
+                                    System.out.println("Ainda não há disciplinas criadas.");
+                                System.out.println("------------------------------------------------------------------------------\n");
+                                    
 
-                                    System.out.print("Pretende inserir mais telefones? [S/N] -> ");
+                                    
 
-                                    opcaoContactoMenu = Ler.umaString();
-                                }while(!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));   
-                                contactosdir.setTelefone(telefones);
-                                System.out.println("------------------------------------------------------------------------------");
-                                System.out.print("\nEmail do Diretor: ");
-                                email = Ler.umaString();
-                                contactosdir.setE_mail(email);
-                                novodiretor.setContactos(contactosdir);
-
-                                int anosdeservico;
-                                String formacaoacademica;
-
-                                System.out.print("\nAnos de Serviço: ");
-                                anosdeservico = Ler.umInt();
-                                novodiretor.setAnosDeServico(anosdeservico);
-
-                                System.out.print("\nFormação Académica: ");
-                                formacaoacademica = Ler.umaString();
-                                novodiretor.setFormacaoAcademica(formacaoacademica);
-
-                                escolaInformatica.setDiretorEscola(novodiretor);
-                                Programa.removeDiretorDaListaDePessoas(pessoasEscola);
-                                pessoasEscola.add(novodiretor);
-                                escolaInformatica.setPessoasEscola(pessoasEscola);
+                                
 
                                 System.out.println("\n✔️  Diretor criado com sucesso!!\n");
 

@@ -8,6 +8,7 @@ public class Aluno extends Pessoa{
     private int numAluno;
     private ArrayList<NotasDisciplina> notasDisciplinas;
     private ArrayList<Disciplina> disciplinasInscrito;
+    private Curso cursoInscrito;
     private double mediaEntrada;
 
     // Construtores
@@ -17,6 +18,7 @@ public class Aluno extends Pessoa{
         this.numAluno = ultimo;
         this.disciplinasInscrito = new ArrayList<Disciplina>();
         this.notasDisciplinas = new ArrayList<NotasDisciplina>();
+        this.cursoInscrito = new Curso();
         this.mediaEntrada = 0;
     }
 
@@ -26,6 +28,7 @@ public class Aluno extends Pessoa{
         this.numAluno = ultimo;
         this.disciplinasInscrito = new ArrayList<Disciplina>();
         this.notasDisciplinas = new ArrayList<NotasDisciplina>();
+        this.cursoInscrito = new Curso();
         this.mediaEntrada = mediaEntrada;
     }
 
@@ -34,6 +37,7 @@ public class Aluno extends Pessoa{
         this.numAluno = a.numAluno;
         this.disciplinasInscrito = (ArrayList<Disciplina>) a.disciplinasInscrito.clone();
         this.notasDisciplinas = (ArrayList<NotasDisciplina>) a.notasDisciplinas.clone();
+        this.cursoInscrito = a.cursoInscrito;
         this.mediaEntrada = a.mediaEntrada;
     }
 
@@ -66,6 +70,13 @@ public class Aluno extends Pessoa{
        return super.getDataNascimento();
     }
 
+    public void setCurso(Curso curso){
+        this.cursoInscrito = curso;
+    }
+    public Curso getCurso(){
+       return this.cursoInscrito;
+    }
+
     public void setMediaEntrada(double mediaEntrada){
         this.mediaEntrada = mediaEntrada;
     }
@@ -91,7 +102,7 @@ public class Aluno extends Pessoa{
     public String toString(){
         String s;
         s = super.toString();
-        s = s + " / Média de entrada: " + this.mediaEntrada + " / Nº.Aluno: "+numAluno+"\n" + "Média das Disciplinas: " + notasDisciplinas + "\n" + "Disciplinas do Aluno: " + disciplinasInscrito;
+        s = s + " / Média de entrada: " + this.mediaEntrada + " / Nº.Aluno: "+numAluno+"\n" + "Média das Disciplinas: " + notasDisciplinas + "\nDisciplinas do Aluno: " + disciplinasInscrito + "\nCurso: " +cursoInscrito;
         return s;
     }
 
@@ -101,7 +112,7 @@ public class Aluno extends Pessoa{
         if(obj != null && this.getClass() == obj.getClass()){
             Aluno e = (Aluno) obj;
             ig = super.equals(e);
-            ig = ig && (this.notasDisciplinas.equals(e.notasDisciplinas)) && (this.mediaEntrada == e.mediaEntrada) && (this.numAluno == e.numAluno) && (this.disciplinasInscrito.equals(e.disciplinasInscrito));
+            ig = ig && (this.notasDisciplinas.equals(e.notasDisciplinas)) && (this.mediaEntrada == e.mediaEntrada) && (this.numAluno == e.numAluno) && (this.disciplinasInscrito.equals(e.disciplinasInscrito) && this.cursoInscrito.equals(cursoInscrito));
         }
         else
             ig = false;

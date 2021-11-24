@@ -137,7 +137,7 @@ public class Programa {
 
                                 System.out.println("\n✔️  Diretor criado com sucesso!!\n");
 
-                                System.out.println(pessoasEscola);
+                                //System.out.println(pessoasEscola);
                                 
                                 pedeTecla();  
                                 break;
@@ -363,25 +363,30 @@ public class Programa {
                                 pedeTecla(); 
                                 break;
                             case 6:
-                                // Mostrar alunos não deslocados
+                                // Inscrever aluno em curso
 
                                 pedeTecla();
                                 break;
                             case 7:
-                                // Mostrar aluno mais velho e mais novo
+                                // Mostrar alunos não deslocados
 
                                 pedeTecla();
                                 break;
                             case 8:
+                                // Mostrar aluno mais velho e mais novo
+
+                                pedeTecla();
+                                break;
+                            case 9:
                                 // Mostrar aluno com melhor e com pior média num determinado curso
 
                                pedeTecla();
                                 break;
-                            case 9:
+                            case 10:
                                 // Mostrar aluno com melhor nota numa determinada frequência
 
                                 pedeTecla();
-                                break;                                    
+                                break;                                     
                         }
                     }while(opcaoUtilizador > 0 && opcaoUtilizador <= 10);
                     break;

@@ -16,7 +16,7 @@ public class Ler {
             try {
                 return Integer.parseInt(umaString().trim());
             } catch (NumberFormatException e) {
-                System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                System.out.print("OPCÃO INVÁLIDA! DIGITE ALGO VÁLIDO --> ");
             }
         }
     }
@@ -25,7 +25,7 @@ public class Ler {
             try {
                 return Byte.parseByte(umaString().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Não é um byte válido!!!");
+                System.out.print("OPCÃO INVÁLIDA! DIGITE ALGO VÁLIDO --> ");
             }
         }
     }
@@ -34,7 +34,7 @@ public class Ler {
             try {
                 return Short.parseShort(umaString().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Não é um short válido!!!");
+                System.out.print("OPCÃO INVÁLIDA! DIGITE ALGO VÁLIDO --> ");
             }
         }
     }
@@ -43,7 +43,7 @@ public class Ler {
             try {
                 return Long.parseLong(umaString().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Não é um long válido!!!");
+                System.out.print("OPCÃO INVÁLIDA! DIGITE ALGO VÁLIDO --> ");
             }
         }
     }
@@ -52,7 +52,7 @@ public class Ler {
             try {
                 return Float.parseFloat(umaString().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Não é um float válido!!!");
+                System.out.print("OPCÃO INVÁLIDA! DIGITE ALGO VÁLIDO --> ");
             }
         }
     }

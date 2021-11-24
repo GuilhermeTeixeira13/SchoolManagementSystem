@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 
 public class Diretor extends Pessoa{
@@ -14,13 +14,13 @@ public class Diretor extends Pessoa{
     }
 
     public Diretor(Pessoa p, int anosDeServico, String formacaoAcademica){
-        super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getEmail(), p.getDataNascimento());
+        super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getDataNascimento());
         this.anosDeServico = anosDeServico;
         this.formacaoAcademica = formacaoAcademica;
     }
 
     public Diretor(Diretor d){
-        super(d.getNome(), d.getContactos(), d.getLocalDeOrigem(), d.getEmail(), d.getDataNascimento());
+        super(d.getNome(), d.getContactos(), d.getLocalDeOrigem(), d.getDataNascimento());
         this.formacaoAcademica = d.formacaoAcademica;
         this.anosDeServico = d.anosDeServico;
     }
@@ -47,17 +47,10 @@ public class Diretor extends Pessoa{
         return super.getLocalDeOrigem();
     }
 
-    public void setEmail(String email){
-        super.setEmail(email);
-    }
-    public String getEmail(){
-       return super.getEmail();
-    }
-
-    public void setDataDeNascimento(Date dataNascimento){
+    public void setDataDeNascimento(LocalDate dataNascimento){
         super.setDataNascimento(dataNascimento);
     }
-    public Date getDataDeNascimento(){
+    public LocalDate getDataDeNascimento(){
        return super.getDataNascimento();
     }
 

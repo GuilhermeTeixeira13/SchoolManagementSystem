@@ -1,28 +1,26 @@
 public class Telefone {
     // Atributos
-    private String nomecontact;
+    private String tipo;
     private long numero;
-    private String email;
 
     // Construtores
     public Telefone(){
-        this.nomecontact = "";
+        this.tipo = "";
         this.numero = 0;
     }
 
-    public Telefone(String nomecontact, long numero, String email){
-        this.nomecontact = nomecontact;
+    public Telefone(String tipo, long numero){
+        this.tipo = tipo;
         this.numero = numero;
-        this.email = email;
     }
 
     // Getters e Setters
-    public String getNomeContact(){
-        return nomecontact;
+    public String getTipo(){
+        return tipo;
     }
 
-    public void setNomeContact(String nomecontact){
-        this.nomecontact = nomecontact;
+    public void setTipo(String tipo){
+        this.tipo = tipo;
     }
 
     public long getNumero(){
@@ -33,17 +31,9 @@ public class Telefone {
         this.numero = numero;
     }
 
-    public String getEmail(){
-        return email;
-    }
-
-    public void setEmail(String email){
-        this.email = email;
-    }
-
     // To String
     public String toString(){
-        String s = "Nome: " + nomecontact + "\nNúmero: " + numero + "\nEmail: " + email;
+        String s = "Tipo: " + tipo + ", Número: " + numero;
         return s;
     }
 
@@ -51,7 +41,7 @@ public class Telefone {
     public boolean equal(Object obj){
         if(obj != null && this.getClass() == obj.getClass()){
             Telefone tel = (Telefone) obj;
-            return (this.numero == tel.numero && this.nomecontact.equals(tel.nomecontact) && (this.email.equals(tel.email)));
+            return (this.numero == tel.numero && this.tipo.equals(tel.tipo));
         }
         return false;
     }
@@ -60,8 +50,7 @@ public class Telefone {
     public Object clone(){
         Telefone tel = new Telefone();
         tel.numero = this.numero;
-        tel.nomecontact= this.nomecontact;
-        tel.email = this.email;
+        tel.tipo = this.tipo;
         return tel;
     }
 

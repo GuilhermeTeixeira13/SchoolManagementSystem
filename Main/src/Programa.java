@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Programa {
     public static void limpaTela() {
@@ -12,14 +12,15 @@ public class Programa {
         System.out.print("Pressione alguma tecla para avançar --> ");
         Ler.umaString();
     }
-    public static Date pedeDatanascimento() throws Exception{
+    public static LocalDate pedeData() throws Exception{
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         System.out.print("Digite uma data no formato 'dd/MM/yyyy' --> ");
-        String sDataNascimento = Ler.umaString();
-        Date DataNascimento = new SimpleDateFormat("dd/MM/yyy").parse(sDataNascimento);
-        return DataNascimento;
+        String dateString = Ler.umaString();
+        LocalDate data = LocalDate.parse(dateString, formatter);
+        return data;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         int opcaoUtilizador;
         limpaTela();
         System.out.print("💻 ESCOLA PROFISSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
@@ -38,70 +39,69 @@ public class Programa {
                         limpaTela();
                         switch (opcaoUtilizador) {
                             case 1:
-                                // Criar Pessoa
-                                String nomepessoa, nomecontacto, localDeOrigem, email, emailcontact;
-                                int opcaoaddcontact, opcaocontactomenu;
-                                long numerocontacto;
+                                System.out.println("1. CRIAR DIRETOR\n");
+
+                                String nomePessoa, tipoContacto, localDeOrigem, email;
+                                String opcaoContactoMenu;
+                                long numeroContacto;
                                 ArrayList<Telefone> telefones = new ArrayList<>();
                                 Contactos contactosdir = new Contactos();
-                                System.out.println("Nome do Diretor: ");
-                                nomepessoa = Ler.umaString();
-                                limpaTela();
-                                System.out.println("📱 MENU CONTACTOS ");
-                                System.out.println("1. 📞 Adicionar Contactos\n0. 🔙 Saltar Contactos");
-                                System.out.println("\nESCOLHA A SUA OPCÃO - ");
-                                opcaoaddcontact = Ler.umInt();
-                                if(opcaoaddcontact == 1){
-                                    do{
-                                        System.out.println("Nome do Contacto: ");
-                                        nomecontacto = Ler.umaString();
-                                        
-                                        System.out.println("Número do Contacto: ");
-                                        numerocontacto = Ler.umLong();
 
-                                        System.out.println("Email do Contacto: ");
-                                        emailcontact = Ler.umaString();
-                                        
-                                        Telefone telefone = new Telefone(nomecontacto, numerocontacto, emailcontact);
-                                        telefones = new ArrayList<>();
-                                        telefones.add(telefone);
-                                        contactosdir.setTelefone(telefones);
-                                        limpaTela();
-                                        System.out.println("0. ⛔ Finalizar a inserção de contactos.\nClique noutra tecla qualquer se deseja prosseguir!");
-
-                                        opcaocontactomenu = Ler.umInt();
-
-                                    }while(opcaocontactomenu != 0);
-                                    
-
-
-                                }
-                                limpaTela();
-                                Date dNow = new Date();
-   
-                                System.out.println("Local de Origem do Diretor: ");
+                                System.out.print("Nome do Diretor: ");
+                                nomePessoa = Ler.umaString();
+                                
+                                System.out.print("\nLocal de Origem do Diretor: ");
                                 localDeOrigem = Ler.umaString();
-                                System.out.println("Email do Diretor: ");
-                                email = Ler.umaString();
-                                Pessoa pdiretor = new Pessoa(nomepessoa, contactosdir, localDeOrigem, email, dNow);
 
-                                // Criar Diretor
+                                System.out.print("\nData de nascimento - ");
+                                LocalDate dataNascimentoDiretor = pedeData();
+
+                                System.out.println("\n------------------------------------------------------------------------------");
+                                System.out.println("Telefones");
+                                do{
+                                    System.out.print("\nTipo: ");
+                                    tipoContacto = Ler.umaString();
+                                        
+                                    System.out.print("Número: ");
+                                    numeroContacto = Ler.umLong();
+                                        
+                                    Telefone telefone = new Telefone(tipoContacto, numeroContacto);
+
+                                    telefones.add(telefone);
+
+                                    System.out.print("Pretende inserir mais telefones? [S/N] -> ");
+
+                                    opcaoContactoMenu = Ler.umaString();
+                                }while(!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
+                                
+                                contactosdir.setTelefone(telefones);
+
+                                System.out.println("------------------------------------------------------------------------------");
+                                System.out.print("\nEmail do Diretor: ");
+                                email = Ler.umaString();
+                                contactosdir.setE_mail(email);
+
+                                Pessoa pdiretor = new Pessoa(nomePessoa, contactosdir, localDeOrigem, dataNascimentoDiretor);
 
                                 int anosdeservico;
                                 String formacaoacademica;
 
-                                System.out.println("Anos de Serviço: ");
+                                System.out.print("\nAnos de Serviço: ");
                                 anosdeservico = Ler.umInt();
 
-                                System.out.println("Formação Académica: ");
+                                System.out.print("\nFormação Académica: ");
                                 formacaoacademica = Ler.umaString();
 
                                 Diretor diretor = new Diretor(pdiretor, anosdeservico, formacaoacademica);
-                                System.out.println(diretor);
+                                // ADICIONAR DIRETOR À ESCOLA -> setDiretor
 
+                                //System.out.println(diretor);
 
-                            case 2:
+                                System.out.println("\n✔️  Diretor criado com sucesso!!\n");
                                 
+                                pedeTecla();  
+                                break;
+                            case 2:
                                 
                                 pedeTecla();        
                                 break;

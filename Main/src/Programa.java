@@ -191,9 +191,8 @@ public class Programa {
                                 Curso novocurso = new Curso();
 
                                 String nomeCurso, opcaoContactoMenu;
-                                int duracaoEmHoras, codCurso, escolhaDisc;
+                                int duracaoCurso, codCurso, escolhaDisc;
                                 float mediaUltimoColocado;
-                                ArrayList<Disciplina> disciplinasCurso;
                                 LocalDate dataInicioCurso, dataFimCurso;
                                 ArrayList<String> provasIngresso = new ArrayList<String>();
 
@@ -252,6 +251,10 @@ public class Programa {
                                 System.out.print("\nData de fim de curso - ");
                                 dataFimCurso = pedeData();
                                 novocurso.setDataFim(dataFimCurso);
+
+                                System.out.print("\nDuração do Curso: ");
+                                duracaoCurso = Ler.umInt();
+                                novocurso.setDuracaoEmHoras(duracaoCurso);;
 
                                 System.out.print("\nMédia do Último Colocado: ");
                                 mediaUltimoColocado = Ler.umInt();

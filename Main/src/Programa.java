@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -42,19 +41,33 @@ public class Programa {
         return data;
     }
 
+    public static void removeDiretorDaListaDePessoas(ArrayList<Pessoa> pessoasEscola){
+        for(int i=0; i<pessoasEscola.size(); i++){
+            if(pessoasEscola.get(i) instanceof Diretor)
+                pessoasEscola.remove(i);
+        }
+    }
+
     public static void main(String[] args) throws Exception{
         int opcaoUtilizador;
         limpaTela();
         System.out.print("💻 ESCOLA PROFISSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
+        ArrayList<Curso> cursosEscola = new ArrayList<Curso>();
+        ArrayList<Pessoa> pessoasEscola = new ArrayList<Pessoa>();
+        ArrayList<Disciplina> disciplinasEscola = new ArrayList<Disciplina>();
+        Diretor diretorEscola = new Diretor();
+        Contactos contactosEscola = new Contactos();
+        String locallizaçãoEscola = "Covilhã";
+        EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8, cursosEscola, pessoasEscola, disciplinasEscola, diretorEscola, contactosEscola, locallizaçãoEscola);
         opcaoUtilizador = Ler.umInt();
-        while(opcaoUtilizador > 0 && opcaoUtilizador <= 6){
+        while(opcaoUtilizador > 0 && opcaoUtilizador <= 5){
             switch (opcaoUtilizador) {
                 case 1:
                     do{
                         limpaTela();
-                        System.out.print("🏫 GERIR ESCOLA 🏫\n\n1. Criar Diretor\n2. Alterar diretor\n3. Modificar dados acerca do atual diretor\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("🏫 GERIR ESCOLA 🏫\n\n1. Criar Diretor (Removendo automaticamento o anterior)\n2. Modificar dados acerca do atual diretor\n3. Listar Pessoas\n4. Mudar informações acerca da escola (Nome, Número, Contactos, Localização)\n5. Informações da escola\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while(opcaoUtilizador > 3 || opcaoUtilizador < 0){
+                        while(opcaoUtilizador > 4 || opcaoUtilizador < 0){
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -62,6 +75,7 @@ public class Programa {
                         switch (opcaoUtilizador) {
                             case 1:
                                 System.out.println("1. CRIAR DIRETOR\n");
+                                Diretor novodiretor = new Diretor();
 
                                 String nomePessoa, tipoContacto, localDeOrigem, email;
                                 String opcaoContactoMenu;
@@ -71,12 +85,15 @@ public class Programa {
 
                                 System.out.print("Nome do Diretor: ");
                                 nomePessoa = Ler.umaString();
+                                novodiretor.setNome(nomePessoa);
                                 
                                 System.out.print("\nLocal de Origem do Diretor: ");
                                 localDeOrigem = Ler.umaString();
+                                novodiretor.setLocalDeOrigem(localDeOrigem);
 
                                 System.out.print("\nData de nascimento - ");
                                 LocalDate dataNascimentoDiretor = pedeData();
+                                novodiretor.setDataDeNascimento(dataNascimentoDiretor);
 
                                 System.out.println("\n------------------------------------------------------------------------------");
                                 System.out.println("Telefones");
@@ -94,46 +111,58 @@ public class Programa {
                                     System.out.print("Pretende inserir mais telefones? [S/N] -> ");
 
                                     opcaoContactoMenu = Ler.umaString();
-                                }while(!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
-                                
+                                }while(!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));   
                                 contactosdir.setTelefone(telefones);
-
                                 System.out.println("------------------------------------------------------------------------------");
                                 System.out.print("\nEmail do Diretor: ");
                                 email = Ler.umaString();
                                 contactosdir.setE_mail(email);
-
-                                Pessoa pdiretor = new Pessoa(nomePessoa, contactosdir, localDeOrigem, dataNascimentoDiretor);
+                                novodiretor.setContactos(contactosdir);
 
                                 int anosdeservico;
                                 String formacaoacademica;
 
                                 System.out.print("\nAnos de Serviço: ");
                                 anosdeservico = Ler.umInt();
+                                novodiretor.setAnosDeServico(anosdeservico);
 
                                 System.out.print("\nFormação Académica: ");
                                 formacaoacademica = Ler.umaString();
+                                novodiretor.setFormacaoAcademica(formacaoacademica);
 
-                                Diretor diretor = new Diretor(pdiretor, anosdeservico, formacaoacademica);
-                                // ADICIONAR DIRETOR À ESCOLA -> setDiretor
-
-                                //System.out.println(diretor);
+                                escolaInformatica.setDiretorEscola(novodiretor);
+                                Programa.removeDiretorDaListaDePessoas(pessoasEscola);
+                                pessoasEscola.add(novodiretor);
+                                escolaInformatica.setPessoasEscola(pessoasEscola);
 
                                 System.out.println("\n✔️  Diretor criado com sucesso!!\n");
+
+                                System.out.println(pessoasEscola);
                                 
                                 pedeTecla();  
                                 break;
                             case 2:
-                                
+                                // Modificar dados acerca do atual diretor    
+
                                 pedeTecla();        
                                 break;
                             case 3:
-                                // Modificar dados sobre o diretor;
+                                // Listar Pessoas    
 
-                                pedeTecla();
+                                pedeTecla();        
+                                break;
+                            case 4:
+                                // Mudar informações acerca da escola (Nome, Número, Contactos, Localização) 
+
+                                pedeTecla();        
+                                break;
+                            case 5:
+                                // Mostrar informações da escola    
+
+                                pedeTecla();        
                                 break;
                         }
-                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 3);
+                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 5);
                     break;
                 case 2:
                     do{

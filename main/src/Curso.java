@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Curso {
+public class Curso implements Serializable{
     // Atributos
     private String nomeCurso;
     private int codCurso, duracaoEmHoras;

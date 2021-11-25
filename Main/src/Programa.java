@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Programa {
     public static void limpaTela() {
@@ -11,6 +16,37 @@ public class Programa {
     public static void pedeTecla() {
         System.out.print("Pressione alguma tecla para avançar --> ");
         Ler.umaString();
+    }
+ 
+    public static void WriteObjectToFile(String filepath,ArrayList<Curso> serObj) {
+ 
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filepath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(serObj);
+            objectOut.close();
+            System.out.println("The Object  was succesfully written to a file");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Curso> ReadObjectFromFile(String filepath) {
+        try {
+            File file = new File(filepath);
+            FileInputStream fileIn = new FileInputStream(filepath);
+            ArrayList<Curso> obj = new ArrayList<Curso>();
+            if (file.length() != 0){
+                ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+                obj = (ArrayList<Curso>) objectIn.readObject();
+                System.out.println("The Object has been read from the file");
+                objectIn.close();
+            }
+            return obj;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     public static boolean verificaData(String data){
@@ -53,8 +89,6 @@ public class Programa {
         limpaTela();
         System.out.print("💻 ESCOLA PROFISSIONAL DE INFORMÁTICA 💻\n\n1. 🏫 Gerir Escola\n2. 🔖 Gerir Cursos\n3. 📘 Gerir Disciplinas\n4. 👴 Gerir Professores\n5. 👨 Gerir Alunos\n6. 📑 Gerir Frequências\n\n0. ❌ Sair\n\nESCOLHA A SUA OPÇÃO -> ");
         
-        
-
         ArrayList<Curso> cursosEscola = new ArrayList<Curso>();
         ArrayList<Pessoa> pessoasEscola = new ArrayList<Pessoa>();
         ArrayList<Disciplina> disciplinasEscola = new ArrayList<Disciplina>();
@@ -63,7 +97,8 @@ public class Programa {
         String locallizaçãoEscola = "Covilhã";
         EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8, cursosEscola, pessoasEscola, disciplinasEscola, diretorEscola, contactosEscola, locallizaçãoEscola);
         
-        
+        cursosEscola = ReadObjectFromFile("cursoTexto.txt");
+        escolaInformatica.setCursosEscola(cursosEscola);;
         
         opcaoUtilizador = Ler.umInt();
         while(opcaoUtilizador > 0 && opcaoUtilizador <= 5){
@@ -263,12 +298,13 @@ public class Programa {
                                 novocurso.setMediaUltimoColocado(mediaUltimoColocado);
 
                                 escolaInformatica.addCurso(novocurso);
+
+                                WriteObjectToFile("cursoTexto.txt", escolaInformatica.getCursosEscola());
                                 
                                 System.out.println("\n✔️  Curso criado com sucesso!!\n");
 
                                 System.out.println(escolaInformatica.getCursosEscola());
-
-                                //System.out.println(pessoasEscola);
+                                
                                 
                                 pedeTecla();  
                                 break;

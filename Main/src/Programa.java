@@ -60,7 +60,11 @@ public class Programa {
         String locallizaçãoEscola = "Covilhã";
         EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8, cursosEscola, pessoasEscola, disciplinasEscola, diretorEscola, contactosEscola, locallizaçãoEscola);
         opcaoUtilizador = Ler.umInt();
-        while(opcaoUtilizador > 0 && opcaoUtilizador <= 5){
+        while(opcaoUtilizador > 6 || opcaoUtilizador < 0){
+            System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+            opcaoUtilizador = Ler.umInt();
+        }
+        while(opcaoUtilizador > 0 && opcaoUtilizador <= 6){
             switch (opcaoUtilizador) {
                 case 1:
                     do{
@@ -142,9 +146,33 @@ public class Programa {
                                 pedeTecla();  
                                 break;
                             case 2:
-                                // Modificar dados acerca do atual diretor    
+                                int opcaomoddiretor, anosservico;
+                                String formaca;
+                                System.out.println("2. MODIFICAR DIRETOR\n\n");
+                                System.out.println("1. Alterar anos de serviço\n2. Alterar formação académica");  
+                                System.out.print("ESCOLHA A SUA OPÇÃO -> ");
+                                opcaomoddiretor = Ler.umInt();  
+                                while(opcaomoddiretor > 2 || opcaoUtilizador < 0){
+                                    System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                                    opcaoUtilizador = Ler.umInt();
+                                }
+                                if(opcaomoddiretor == 1){
+                                    limpaTela();
+                                    System.out.print("Anos de Serviço --> "); 
+                                    anosservico = Ler.umInt();
+                                    diretorEscola.setAnosDeServico(anosservico);
+                                    System.out.println("\n✔️  Anos de serviço alterados com sucesso!!\n");
 
-                                pedeTecla();        
+                                }
+                                if(opcaomoddiretor == 2){
+                                    limpaTela();
+                                    System.out.println("Formação Académica:"); 
+                                    formaca = Ler.umaString();
+                                    diretorEscola.setFormacaoAcademica(formaca);
+                                    System.out.println("\n✔️  Formação académica alterada com sucesso!!\n");
+
+                                }
+                                pedeTecla();
                                 break;
                             case 3:
                                 // Listar Pessoas    

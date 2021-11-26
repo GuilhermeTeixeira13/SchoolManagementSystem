@@ -82,7 +82,35 @@ public class Programa {
                 pessoasEscola.remove(i);
         }
     }
+    public static ArrayList<Pessoa> identDiretor(ArrayList<Pessoa> pessoas){
+        ArrayList<Pessoa> pessoaDir = new ArrayList<>();
+        for(int i = 0; i < pessoas.size(); i++){
+            if(pessoas.get(i) instanceof Diretor){
+                pessoaDir.add(pessoas.get(i));
+            }
+        }
+        return pessoaDir;
+    }
 
+    public static ArrayList<Pessoa> identProf(ArrayList<Pessoa> pessoas){
+        ArrayList<Pessoa> pessoaAluno = new ArrayList<>();
+        for(int i = 0; i < pessoas.size(); i++){
+            if(pessoas.get(i) instanceof Aluno){
+                pessoaAluno.add(pessoas.get(i));
+            }
+        }
+        return pessoaAluno;
+    }
+
+    public static ArrayList<Pessoa> identAluno(ArrayList<Pessoa> pessoas){
+        ArrayList<Pessoa> pessoaDir = new ArrayList<>();
+        for(int i = 0; i < pessoas.size(); i++){
+            if(pessoas.get(i) instanceof Diretor){
+                pessoaDir.add(pessoas.get(i));
+            }
+        }
+        return pessoaDir;
+    }
     public static void main(String[] args){
         int opcaoUtilizador;
         limpaTela();
@@ -100,7 +128,11 @@ public class Programa {
         escolaInformatica.setCursosEscola(cursosEscola);;
         
         opcaoUtilizador = Ler.umInt();
-        while(opcaoUtilizador > 0 && opcaoUtilizador <= 5){
+        while(opcaoUtilizador > 6 || opcaoUtilizador < 0){
+            System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+            opcaoUtilizador = Ler.umInt();
+        }
+        while(opcaoUtilizador > 0 && opcaoUtilizador <= 6){
             switch (opcaoUtilizador) {
                 case 1:
                     do{
@@ -184,17 +216,91 @@ public class Programa {
                                 pedeTecla();  
                                 break;
                             case 2:
-                                // Modificar dados acerca do atual diretor    
+                                int opcaomoddiretor, anosservico;
+                                String formaca;
+                                int opcaolistpessoas;
+                                ArrayList<Pessoa> listas = new ArrayList<>();
+                                System.out.println("2. MODIFICAR DIRETOR\n\n");
+                                System.out.println("1. Alterar anos de serviço\n2. Alterar formação académica");  
+                                System.out.print("ESCOLHA A SUA OPÇÃO -> ");
+                                opcaomoddiretor = Ler.umInt();  
+                                while(opcaomoddiretor > 2 || opcaoUtilizador < 0){
+                                    System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                                    opcaoUtilizador = Ler.umInt();
+                                }
+                                if(opcaomoddiretor == 1){
+                                    limpaTela();
+                                    System.out.print("Anos de Serviço --> "); 
+                                    anosservico = Ler.umInt();
+                                    diretorEscola.setAnosDeServico(anosservico);
+                                    System.out.println("\n✔️  Anos de serviço alterados com sucesso!!\n");
 
-                                pedeTecla();        
+                                }
+                                if(opcaomoddiretor == 2){
+                                    limpaTela();
+                                    System.out.println("Formação Académica:"); 
+                                    formaca = Ler.umaString();
+                                    diretorEscola.setFormacaoAcademica(formaca);
+                                    System.out.println("\n✔️  Formação académica alterada com sucesso!!\n");
+
+                                }
+                                pedeTecla();
                                 break;
                             case 3:
-                                // Listar Pessoas    
-
+                                System.out.print("3. LISTAR PESSOAS\n\n"); 
+                                System.out.print("1. Listar Diretores\n");
+                                System.out.print("2. Listar Professores\n");
+                                System.out.print("3. Listar Alunos\n");
+                                System.out.print("ESCOLHA A SUA OPÇÃO -> ");
+                                opcaolistpessoas = Ler.umInt();  
+                                while(opcaolistpessoas > 3 || opcaolistpessoas < 0){
+                                    System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                                    opcaoUtilizador = Ler.umInt();
+                                }
+                                if(opcaolistpessoas == 1){
+                                    listas = identDiretor(pessoasEscola);
+                                     System.out.println(listas);
+                                }
+                                if(opcaolistpessoas == 2){
+                                    listas = identProf(pessoasEscola);
+                                    // System.out.println(listas);
+                                }
+                                if(opcaolistpessoas == 3){
+                                    listas = identAluno(pessoasEscola);
+                                    // System.out.println(listas);
+                                }
                                 pedeTecla();        
                                 break;
                             case 4:
-                                // Mudar informações acerca da escola (Nome, Número, Contactos, Localização) 
+                            int opcaomodescola;
+                            String novonome;
+                            int novonum;
+                            Contactos novosContactos;
+                            String novalocalizacao;
+                                System.out.print("4. MUDAR INFORMAÇÕES ACERCA DA ESCOLA\n\n");
+                                System.out.println("1. Nome\n2. Número\n3. Contactos\n4. Localização");
+                                System.out.print("ESCOLHA A SUA OPÇÃO -> ");
+                                opcaomodescola = Ler.umInt();  
+                                while(opcaomodescola > 4 ||  opcaomodescola < 0){
+                                    System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                                    opcaoUtilizador = Ler.umInt();
+                                }
+                                if(opcaomodescola == 1){
+                                    limpaTela();
+                                    System.out.print("Novo Nome: ");
+                                    novonome = Ler.umaString();
+                                    escolaInformatica.setNomeEscola(novonome);
+                                }
+                                if(opcaomodescola == 2){
+                                    limpaTela();
+                                    System.out.print("Novo Número: ");
+                                    novonum= Ler.umInt();
+                                    escolaInformatica.setCodEscola(novonum);
+                                }
+                                
+                                
+
+                            
 
                                 pedeTecla();        
                                 break;

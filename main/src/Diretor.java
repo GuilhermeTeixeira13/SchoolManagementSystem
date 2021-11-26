@@ -95,6 +95,9 @@ public class Diretor extends Pessoa{
         return copia;
     }
 
+    
+
+
     public static void main(String[] args) {
         // Testes
     }

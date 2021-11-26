@@ -1,40 +1,40 @@
 import java.util.ArrayList;
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-public class Curso {
+public class Curso implements Serializable{
     // Atributos
     private String nomeCurso;
-    private int codCurso;
+    private int codCurso, duracaoEmHoras;
     private ArrayList<Disciplina> disciplinasCurso;
-    private ProvasIngresso provasIngresso;
+    private ArrayList<String> provasIngresso;
     private ArrayList<Aluno> alunosCurso;
-    private int duracaoEmHoras;
     private float mediaUltimoColocado;
-    private Date dataInicio;
-    private Date dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
 
     // Construtores
     public Curso(){
         this.nomeCurso = "";
         this.codCurso = 0;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.provasIngresso = new ProvasIngresso();
+        this.provasIngresso = new ArrayList<String>();
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = 0;
         this.mediaUltimoColocado = 0;
-        this.dataInicio = new Date();
-        this.dataFim = new Date();
+        this.dataInicio = LocalDate.now();
+        this.dataFim = LocalDate.now();
     }
-    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, ProvasIngresso provasIngresso,Date dataInicio, Date dataFim){
+    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, String provasIngresso, LocalDate dataInicio, LocalDate dataFim){
         this.nomeCurso = nomeCurso;
         this.codCurso = codCurso;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.provasIngresso = provasIngresso;
+        this.provasIngresso = new ArrayList<String>();
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = duracaoEmHoras;
         this.mediaUltimoColocado = mediaUltimoColocado;
-        this.dataInicio = new Date();
-        this.dataFim = new Date();
+        this.dataInicio = LocalDate.now();
+        this.dataFim = LocalDate.now();
     }
 
     //Getters e Setters
@@ -59,10 +59,10 @@ public class Curso {
         return this.disciplinasCurso;
     }
 
-    public void setProvasIngresso(ProvasIngresso provasIngresso){
+    public void setProvasIngresso(ArrayList<String> provasIngresso){
         this.provasIngresso = provasIngresso;
     }
-    public ProvasIngresso getProvasIngresso(){
+    public ArrayList<String> getProvasIngresso(){
         return this.provasIngresso;
     }
 
@@ -88,35 +88,48 @@ public class Curso {
     }
 
     // Seria interessante não deixar que a data de fim fosse antes da de início nem que a de início fosse depois da de fim 
-    public void setDataInicio(Date dataInicio){
+    public void setDataInicio(LocalDate dataInicio){
         this.dataInicio = dataInicio;
     }
-    public Date getDataInicio(){
+    public LocalDate getDataInicio(){
         return this.dataInicio;
     }
 
-    public void setDataFim(Date dataFim){
+    public void setDataFim(LocalDate dataFim){
         this.dataFim = dataFim;
     }
-    public Date getDataFim(){
+    public LocalDate getDataFim(){
         return this.dataFim;
     }
 
     // To String
     public String toString(){
         String s;
-        s = "\nCurso: "+nomeCurso+"/ Cód.Curso: "+codCurso+"/ Duração: "+duracaoEmHoras+"h/ Média do Último Colocado: "+mediaUltimoColocado+" / Data de Início: "+dataInicio+"/ Data de Fim: "+dataFim;
-        s = s + "Disciplinas: (";
+        s = "\nCurso: "+nomeCurso+"/ Cod.Curso: "+codCurso+"/ Duracao: "+duracaoEmHoras+"h/ Media do Ultimo Colocado: "+mediaUltimoColocado+" / Data de Inicio: "+dataInicio+"/ Data de Fim: "+dataFim;
+        s = s + "/ Disciplinas: ";
         for(int i=0; i<disciplinasCurso.size(); i++){
-            if(i != disciplinasCurso.size() - 1)
-                s = s + disciplinasCurso.get(i) + ", ";
+            if(i == disciplinasCurso.size() - 1)
+                s = s + disciplinasCurso.get(i) + ")";
+            else if(i == 1)
+                s = s + disciplinasCurso.get(i) + "(";
             else
-                s = s + disciplinasCurso.get(i) + ")\n";
+                s = s + disciplinasCurso.get(i) + ", ";
         }
-        s = s + "Provas Ingresso: ("+provasIngresso+")";     
-        s = s + "Alunos Inscritos:\n";
+        s = s + "/ Provas Ingresso: ";
+        for(int i=0; i<provasIngresso.size(); i++){
+            if(i == provasIngresso.size() - 1)
+                s = s + provasIngresso.get(i);
+            else
+                s = s + provasIngresso.get(i) + ",";  
+        }   
+        s = s + "/ Alunos Inscritos: ";
         for(int i=0; i<alunosCurso.size(); i++)
-            s = s + alunosCurso.get(i) + "\n\n";     
+            if(i == provasIngresso.size() - 1)
+                s = s + alunosCurso.get(i).getNome();
+            else if(i == 0)
+                s = s + "";
+            else
+                s = s + alunosCurso.get(i).getNome() + ",";     
         return s;
     }
 
@@ -140,7 +153,7 @@ public class Curso {
         copia.nomeCurso = this.nomeCurso;
         copia.codCurso = this.codCurso;
         copia.disciplinasCurso = (ArrayList<Disciplina>) this.disciplinasCurso.clone();
-        copia.provasIngresso = this.provasIngresso;
+        copia.provasIngresso = (ArrayList<String>) this.disciplinasCurso.clone();
         copia.alunosCurso = (ArrayList<Aluno>) this.alunosCurso.clone();
         copia.duracaoEmHoras = this.duracaoEmHoras;
         copia.mediaUltimoColocado = this.mediaUltimoColocado;
@@ -148,6 +161,10 @@ public class Curso {
         copia.dataFim = this.dataFim;
 
         return copia;
+    }
+
+    public void addDisciplina(Disciplina d){
+        this.disciplinasCurso.add(d);
     }
 
     public static void main(String[] args) {

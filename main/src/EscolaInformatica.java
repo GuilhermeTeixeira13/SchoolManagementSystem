@@ -131,6 +131,10 @@ public class EscolaInformatica {
         return copia;
     }
 
+    public void addCurso(Curso c){
+        this.CursosEscola.add(c);
+    }
+
     public static void main(String[] args) {
         // Testes
     }

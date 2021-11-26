@@ -1,11 +1,11 @@
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Frequencia {
     // Atributos
     private int id;
     private String disc;
-    private Date datafreq;
+    private LocalDate datafreq;
     private Professor professorResp;
     private int numpergtotal;
     private ArrayList<Perguntas> listperg;
@@ -15,15 +15,14 @@ public class Frequencia {
     public Frequencia() {
         this.id = 0;
         this.disc = "";
-        this.datafreq = new Date();
+        this.datafreq = LocalDate.now();
         this.professorResp = new Professor();
         this.numpergtotal = 0;
         this.listperg = new ArrayList<Perguntas>();
         this.dificuldade = "";
-        this.datafreq = new Date();
     }
 
-    public Frequencia(int id, String disc, int numpergtotal, String dificuldade, Date datafreq, Professor professorResp){
+    public Frequencia(int id, String disc, int numpergtotal, String dificuldade, LocalDate datafreq, Professor professorResp){
         this.id = id;
         this.disc = disc;
         this.datafreq = datafreq;
@@ -50,11 +49,11 @@ public class Frequencia {
         this.disc = disc;
     }
 
-    public Date getdatefreq() {
+    public LocalDate getdatefreq() {
         return this.datafreq;
     }
 
-    public void setdatafreq(Date datafreq) {
+    public void setdatafreq(LocalDate datafreq) {
         this.datafreq = datafreq;
     }
 

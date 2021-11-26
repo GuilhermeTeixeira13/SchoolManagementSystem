@@ -32,6 +32,18 @@ public class Programa {
         }
     }
 
+    public static void EscrevePessoasNoFicheiro(String filepath, ArrayList<Pessoa> serObj) {
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filepath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(serObj);
+            objectOut.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void EscreveDiretorNoFicheiro(String filepath, Diretor diretor) {
 
         try {
@@ -52,6 +64,26 @@ public class Programa {
             if (file.length() != 0) {
                 ObjectInputStream oIS = new ObjectInputStream(is);
                 obj = (Diretor) oIS.readObject();
+                oIS.close();
+            }
+            return obj;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("Classe não existente - " + e.getMessage());
+            return null;
+        }
+    }
+
+    public static ArrayList<Pessoa> LePessoaNoFicheiro(String filepath) {
+        try {
+            File file = new File(filepath);
+            FileInputStream is = new FileInputStream(file);
+            ArrayList<Pessoa> obj = new ArrayList<>();
+            if (file.length() != 0) {
+                ObjectInputStream oIS = new ObjectInputStream(is);
+                obj = (ArrayList<Pessoa>) oIS.readObject();
                 oIS.close();
             }
             return obj;
@@ -149,7 +181,8 @@ public class Programa {
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
-        System.out.print( "ESCOLA PROFISSIONAL DE INFORMÁTICA\n\n1. Gerir Escola\n2. Gerir Cursos\n3. Gerir Disciplinas\n4. Gerir Professores\n5. Gerir Alunos\n6. Gerir Frequências\n\n0. Sair\n\nESCOLHA A SUA OPÇÃO -> ");
+        System.out.print(
+                "ESCOLA PROFISSIONAL DE INFORMÁTICA\n\n1. Gerir Escola\n2. Gerir Cursos\n3. Gerir Disciplinas\n4. Gerir Professores\n5. Gerir Alunos\n6. Gerir Frequências\n\n0. Sair\n\nESCOLHA A SUA OPÇÃO -> ");
 
         ArrayList<Curso> cursosEscola = new ArrayList<Curso>();
         ArrayList<Pessoa> pessoasEscola = new ArrayList<Pessoa>();
@@ -162,7 +195,6 @@ public class Programa {
 
         cursosEscola = LeCursosNoFicheiro("cursoTexto.txt");
         escolaInformatica.setCursosEscola(cursosEscola);
-
         opcaoUtilizador = Ler.umInt();
         while (opcaoUtilizador > 6 || opcaoUtilizador < 0) {
             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -204,7 +236,8 @@ public class Programa {
                         LocalDate dataNascimentoDiretor = pedeData();
                         novodiretor.setDataDeNascimento(dataNascimentoDiretor);
 
-                        System.out.println( "\n------------------------------------------------------------------------------");
+                        System.out.println(
+                                "\n------------------------------------------------------------------------------");
                         System.out.println("Telefones");
                         do {
                             System.out.print("\nTipo: ");
@@ -222,7 +255,8 @@ public class Programa {
                             opcaoContactoMenu = Ler.umaString();
                         } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
                         contactosdir.setTelefone(telefones);
-                        System.out.println("------------------------------------------------------------------------------");
+                        System.out.println(
+                                "------------------------------------------------------------------------------");
                         System.out.print("\nEmail do Diretor: ");
                         email = Ler.umaString();
                         contactosdir.setE_mail(email);
@@ -242,8 +276,8 @@ public class Programa {
                         Programa.removeDiretorDaListaDePessoas(pessoasEscola);
                         pessoasEscola.add(novodiretor);
                         escolaInformatica.setPessoasEscola(pessoasEscola);
-                        EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
                         escolaInformatica.setDiretorEscola(novodiretor);
+                        EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
                         System.out.println("\n--> Diretor criado com sucesso!!\n");
 
                         pedeTecla();
@@ -255,9 +289,8 @@ public class Programa {
                         dirlido = LeDiretorNoFicheiro("diretorEscola.txt");
                         int opcaomoddiretor, anosserviconovo;
                         String novoemail, novolocalorigem, novonome, formacaonova;
-                        System.out.println("2. MODIFICAR DIRETOR\n\n");
-                        System.out.println("1. Alterar email\n2. Alterar telefones\n3. Alterar data de nascimento\n4. Alterar local de origem\n5. Alterar nome\n6. Alterar anos de serviço\n7. Alterar formação académica\n0. Voltar Atrás");
-
+                        System.out.println(" MODIFICAR DIRETOR\n");
+                        System.out.println("1. Alterar email\n2. Alterar telefones\n3. Alterar data de nascimento\n4. Alterar local de origem\n5. Alterar nome\n6. Alterar anos de serviço\n7. Alterar formação académica\n\n0. Voltar Atrás");
                         System.out.print("ESCOLHA A SUA OPÇÃO -> ");
                         opcaomoddiretor = Ler.umInt();
                         while (opcaomoddiretor > 7 || opcaoUtilizador < 0) {
@@ -265,15 +298,12 @@ public class Programa {
                             opcaomoddiretor = Ler.umInt();
                         }
                         switch (opcaomoddiretor) {
-                        case 0:
-                            pedeTecla();
                         case 1:
                             limpaTela();
                             System.out.print("\nEmail do Diretor: ");
                             novoemail = Ler.umaString();
                             dirlidocontact = dirlido.getContactos();
                             dirlidocontact.setE_mail(novoemail);
-                            pedeTecla();
                             break;
                         case 2:
                             System.out.println("Telefones");
@@ -293,12 +323,11 @@ public class Programa {
                                 opcaoContactoMenu = Ler.umaString();
                             } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
                             dirlidocontact.setTelefone(dirlidotelefone);
-                            pedeTecla();
                             break;
                         case 3:
                             limpaTela();
                             System.out.print("Data de Nascimento do Diretor: ");
-                            LocalDate dataNascimentoDiretorMod= pedeData();
+                            LocalDate dataNascimentoDiretorMod = pedeData();
                             dirlido.setDataDeNascimento(dataNascimentoDiretorMod);
                             dirlido.setDataDeNascimento(dataNascimentoDiretorMod);
                             pedeTecla();
@@ -308,21 +337,18 @@ public class Programa {
                             System.out.print("Alterar Local de Origem: ");
                             novolocalorigem = Ler.umaString();
                             dirlido.setLocalDeOrigem(novolocalorigem);
-                            pedeTecla();
                             break;
                         case 5:
                             limpaTela();
                             System.out.print("Alterar Nome: ");
                             novonome = Ler.umaString();
                             dirlido.setNome(novonome);
-                            pedeTecla();
                             break;
                         case 6:
                             limpaTela();
                             System.out.print("Anos de Serviço: ");
                             anosserviconovo = Ler.umInt();
                             dirlido.setAnosDeServico(anosserviconovo);
-                            pedeTecla();
                             break;
 
                         case 7:
@@ -330,36 +356,43 @@ public class Programa {
                             System.out.print("Formação Académica: ");
                             formacaonova = Ler.umaString();
                             dirlido.setFormacaoAcademica(formacaonova);
-                            pedeTecla();
                             break;
                         }
                         Programa.removeDiretorDaListaDePessoas(pessoasEscola);
                         pessoasEscola.add(dirlido);
                         escolaInformatica.setPessoasEscola(pessoasEscola);
+                        escolaInformatica.setDiretorEscola(dirlido);
                         EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
-                        System.out.println("\n--> Diretor criado com sucesso!!\n");
                         pedeTecla();
                         break;
                     case 3:
-                        ArrayList<Pessoa> listaside = new ArrayList<>();
+                        EscrevePessoasNoFicheiro("pessoasEscola.txt", pessoasEscola);
+                        ArrayList<Pessoa> pessoasAtaulizada = new ArrayList<Pessoa>();
+                        pessoasAtaulizada = LePessoaNoFicheiro("pessoasEscola.txt");
+                        ArrayList<Pessoa>listapessoas = new ArrayList<>();
+
                         int opcaolistpessoas;
-                        System.out.print("3. LISTAR PESSOAS\n\n");
+                        System.out.print(" LISTAR PESSOAS\n\n");
                         System.out.print("1. Listar Diretores\n");
                         System.out.print("2. Listar Professores\n");
                         System.out.print("3. Listar Alunos\n");
+                        System.out.print("\n0. Voltar Atrás\n");
                         System.out.print("ESCOLHA A SUA OPÇÃO -> ");
                         opcaolistpessoas = Ler.umInt();
                         while (opcaolistpessoas > 3 || opcaolistpessoas < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
-                        switch(opcaolistpessoas){
-                            case 1:
-                                listaside = identDiretor(pessoasEscola);
-                            case 2:
-                                listaside = identProf(pessoasEscola);
-                            case 3: 
-                                listaside = identAluno(pessoasEscola);
+                        switch (opcaolistpessoas) {
+                        case 1:
+                            listapessoas = identDiretor(pessoasAtaulizada);
+                            System.out.println("Diretor: " + listapessoas);
+                        case 2:
+                            listapessoas = identProf(pessoasAtaulizada);
+                            System.out.println("Professores: " + listapessoas);
+                        case 3:
+                            listapessoas = identAluno(pessoasAtaulizada);
+                            System.out.println("Aluno: " + listapessoas);
                         }
                         pedeTecla();
                         break;
@@ -370,24 +403,12 @@ public class Programa {
                         Contactos novosContactos;
                         String novalocalizacao;
                         System.out.print("4. MUDAR INFORMAÇÕES ACERCA DA ESCOLA\n\n");
-                        System.out.println("1. Nome\n2. Número\n3. Contactos\n4. Localização");
+                        System.out.println("1. Nome\n2. Número\n3. Contactos\n4. Localização\n\n0. Voltar");
                         System.out.print("ESCOLHA A SUA OPÇÃO -> ");
                         opcaomodescola = Ler.umInt();
                         while (opcaomodescola > 4 || opcaomodescola < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaomodescola = Ler.umInt();
-                        }
-                        if (opcaomodescola == 1) {
-                            limpaTela();
-                            System.out.print("Novo Nome: ");
-                            novonome = Ler.umaString();
-                            escolaInformatica.setNomeEscola(novonome);
-                        }
-                        if (opcaomodescola == 2) {
-                            limpaTela();
-                            System.out.print("Novo Número: ");
-                            novonum = Ler.umInt();
-                            escolaInformatica.setCodEscola(novonum);
                         }
 
                         pedeTecla();

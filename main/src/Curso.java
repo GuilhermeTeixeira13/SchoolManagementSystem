@@ -105,7 +105,7 @@ public class Curso implements Serializable{
     // To String
     public String toString(){
         String s;
-        s = "\nCurso: "+nomeCurso+"/ Cód.Curso: "+codCurso+"/ Duração: "+duracaoEmHoras+"h/ Média do Último Colocado: "+mediaUltimoColocado+" / Data de Início: "+dataInicio+"/ Data de Fim: "+dataFim;
+        s = "\nCurso: "+nomeCurso+"/ Cod.Curso: "+codCurso+"/ Duracao: "+duracaoEmHoras+"h/ Media do Ultimo Colocado: "+mediaUltimoColocado+" / Data de Inicio: "+dataInicio+"/ Data de Fim: "+dataFim;
         s = s + "/ Disciplinas: ";
         for(int i=0; i<disciplinasCurso.size(); i++){
             if(i == disciplinasCurso.size() - 1)
@@ -126,6 +126,8 @@ public class Curso implements Serializable{
         for(int i=0; i<alunosCurso.size(); i++)
             if(i == provasIngresso.size() - 1)
                 s = s + alunosCurso.get(i).getNome();
+            else if(i == 0)
+                s = s + "";
             else
                 s = s + alunosCurso.get(i).getNome() + ",";     
         return s;

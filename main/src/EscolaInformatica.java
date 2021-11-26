@@ -135,6 +135,7 @@ public class EscolaInformatica {
         this.CursosEscola.add(c);
     }
 
+    
     public static void main(String[] args) {
         // Testes
     }

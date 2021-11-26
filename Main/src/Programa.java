@@ -281,7 +281,7 @@ public class Programa {
                                 opcaomodescola = Ler.umInt();  
                                 while(opcaomodescola > 4 ||  opcaomodescola < 0){
                                     System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
-                                    opcaoUtilizador = Ler.umInt();
+                                    opcaomodescola = Ler.umInt();
                                 }
                                 if(opcaomodescola == 1){
                                     limpaTela();

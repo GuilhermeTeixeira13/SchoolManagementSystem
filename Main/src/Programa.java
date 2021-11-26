@@ -212,52 +212,126 @@ public class Programa {
     public static Curso modificarCurso(EscolaInformatica escolaInformatica, int posicao){
         int opcaoUtilizador;
         do{
-            System.out.print("\nO que pretende modificar no curso de " + escolaInformatica.getCursosEscola().get(posicao).getNomeCurso() + "?\n\n 1. Nome\n 2. Cód.Curso\n 3. Disciplinas\n 4. Provas de Ingresso\n 5. Alunos\n 6. Média do último colocado\n 7. Data de início\n 8. Data de fim\n 0. Mais nada, desejo sair\n\n Escolha a sua opção --> ");  
+            System.out.print("\nO que pretende modificar no curso de " + escolaInformatica.getCursosEscola().get(posicao).getNomeCurso() + "?\n\n 1. Nome\n 2. Cód.Curso\n 3. Média do último colocado\n 4. Provas de Ingresso\n 5. Datas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");  
             opcaoUtilizador = Ler.umInt();
 
-            while(opcaoUtilizador > 8 || opcaoUtilizador < 0){
+            while(opcaoUtilizador > 5 || opcaoUtilizador < 0){
                 System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                 opcaoUtilizador = Ler.umInt();
             }
             limpaTela();
             switch (opcaoUtilizador) {
                 case 1:
-                    
+                    int verificaExistenciaCurso = -1;
+                    String nomeCurso;
+                    do{
+                        if(verificaExistenciaCurso == -1)
+                            System.out.print("Nome do Curso: ");
+                        else
+                            System.out.print("Esse nome já existe! Por favor, escolha outro: ");
+                        nomeCurso = Ler.umaString();
+                        verificaExistenciaCurso = escolaInformatica.devolvePosCurso(nomeCurso);
+                    }while(verificaExistenciaCurso != -1);
+                    escolaInformatica.getCursosEscola().get(posicao).setNomeCurso(nomeCurso);
                     pedeTecla();
                     break;
                 case 2:
-                    
+                    String codCurso;
+                    System.out.print("\nCódigo do Curso: ");
+                    codCurso = Ler.umaString();
+                    escolaInformatica.getCursosEscola().get(posicao).setCodCurso(codCurso);;
                     pedeTecla();
                     break;
                 case 3:
-                    
+                    float mediaUltimoColocado;
+                    System.out.print("\nMédia do Último Colocado: ");
+                    mediaUltimoColocado = Ler.umInt();
+                    escolaInformatica.getCursosEscola().get(posicao).setMediaUltimoColocado(mediaUltimoColocado);
                     pedeTecla();
                     break;
                 case 4:
+                    int opcaoProvas;
+                    System.out.println("\nProvas de Ingresso atuais, do curso de "+ escolaInformatica.getCursosEscola().get(posicao).getNomeCurso() +": ");
+                    for(int i = 0; i < escolaInformatica.getCursosEscola().get(posicao).getProvasIngresso().size(); i++){
+                        System.out.println(" . "+escolaInformatica.getCursosEscola().get(posicao).getProvasIngresso().get(i));
+                    }
+                    System.out.print("\n O que pretende fazer?\n 1. Adicionar prova de ingresso\n 2. Remover prova de ingresso\n 0. Voltar atrás\n\n ESCOLHA A SUA OPÇÃO --> ");
+                    opcaoProvas = Ler.umInt();
                     
-                    pedeTecla();
+                    while(opcaoProvas > 2 || opcaoProvas < 0){
+                        System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                        opcaoProvas = Ler.umInt();
+                    }
+                    limpaTela();
+                    String Prova;
+                    switch (opcaoProvas) {
+                        case 1:
+                            System.out.print("1. ADICIONAR PROVA DE INGRESSO\n\nNome da prova de ingresso a inserir: ");
+                            Prova = Ler.umaString();
+                            escolaInformatica.getCursosEscola().get(posicao).getProvasIngresso().add(Prova);
+                            pedeTecla();
+                            break;
+                        case 2:
+                            System.out.print("2. REMOVER PROVA DE INGRESSO\n\nNome da prova de ingresso a remover: ");
+                            Prova = Ler.umaString();
+                            if(escolaInformatica.getCursosEscola().get(posicao).verificaExistenciaProvaIng(Prova)){
+                                escolaInformatica.getCursosEscola().get(posicao).getProvasIngresso().remove(Prova);
+                                System.out.println("Prova de ingresso removida com sucesso!\n");
+                            }  
+                            else 
+                                System.out.print(Prova+" não é uma prova de ingresso do curso de "+escolaInformatica.getCursosEscola().get(posicao).getNomeCurso());
+                            pedeTecla();    
+                            break;
+                    }
                     break;
                 case 5:
-                    
+                    LocalDate dataInicioCurso, dataFimCurso;
+                    System.out.println("Alterar datas do início e fim do curso de "+ escolaInformatica.getCursosEscola().get(posicao).getNomeCurso()+"\n");
+
+                    System.out.print("Data de ínicio de curso - ");
+                    dataInicioCurso = pedeData();
+            
+                    System.out.print("\nData de fim de curso - ");
+                    dataFimCurso = pedeData();
+                
+                    boolean verificalogicaDatas;
+                    verificalogicaDatas = verificaLogicaData(dataFimCurso, dataInicioCurso);
+                    while(verificalogicaDatas == false){
+                        System.out.println("\nA data de início não pode ser posterior à data final!");
+            
+                        System.out.print("Data de ínicio de curso - ");
+                        dataInicioCurso = pedeData();
+            
+                        System.out.print("Data de fim de curso - ");
+                        dataFimCurso = pedeData();
+            
+                        verificalogicaDatas = verificaLogicaData(dataFimCurso, dataInicioCurso);
+                    }
+                    escolaInformatica.getCursosEscola().get(posicao).setDataInicio(dataInicioCurso);
+                    escolaInformatica.getCursosEscola().get(posicao).setDataFim(dataFimCurso);
+                    System.out.println();
                     pedeTecla();    
-                    break;
-                case 6:
-                    
-                    pedeTecla();
-                    break;
-                case 7:
-                    
-                    pedeTecla();
-                    break;
-                case 8:
-                    
-                    pedeTecla();
                     break;
             }
             limpaTela();
-        }while(opcaoUtilizador > 0 && opcaoUtilizador <= 8);
+        }while(opcaoUtilizador > 0 && opcaoUtilizador <= 5);
         return escolaInformatica.getCursosEscola().get(posicao);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void main(String[] args){
         int opcaoUtilizador;
@@ -452,12 +526,12 @@ public class Programa {
                                 pedeTecla();        
                                 break;
                         }
-                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 5);
+                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 8);
                     break;
                 case 2:
                     do{
                         limpaTela();
-                        System.out.print(" GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Mostrar curso mais frequentado\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print(" GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Inserir e Remover disciplinas de determinado curso\n7. Inserir e Remover alunos de determinado curso\n8. Mostrar curso mais frequentado\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while(opcaoUtilizador > 6 || opcaoUtilizador < 0){
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -497,8 +571,6 @@ public class Programa {
                                 break;
                             case 4:
                                 // Modificar dados sobre determinado curso
-
-                                // Em contrução
                                 String nomeCursomodificar;
                                 int posCursoMod;
                                 
@@ -508,9 +580,9 @@ public class Programa {
                                 if(posCursoMod == -1)
                                     System.out.println("Lamentamos, mas este curso não existe!\n");
                                 else{  
-                                    Curso cursoAtualizado = modificarCurso(escolaInformatica, 0);
+                                    modificarCurso(escolaInformatica, 0);
+                                    EscreveCursosNoFicheiro("cursoTexto.txt", escolaInformatica.getCursosEscola());
                                 }
-                                pedeTecla();
                                 break;
                             case 5:
                                 // Remover Curso
@@ -557,9 +629,19 @@ public class Programa {
                                 // Mostrar curso mais frequentado
 
                                 pedeTecla();
-                                break;                              
+                                break;    
+                            case 7:
+                                // Inserir e Remover disciplinas de determinado curso
+
+                                pedeTecla();
+                                break; 
+                            case 8:
+                                // Inserir e Remover alunos de determinado curso
+
+                                pedeTecla();
+                                break;    
                         }
-                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 6);
+                    }while(opcaoUtilizador > 0 && opcaoUtilizador <= 8);
                     break;    
                 case 3:
                     do{

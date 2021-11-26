@@ -163,6 +163,15 @@ public class Curso implements Serializable{
         return copia;
     }
 
+    public boolean verificaExistenciaProvaIng(String nomeProva){
+        boolean existe = false;
+        for(int i=0; i<this.getProvasIngresso().size(); i++){
+            if(this.getProvasIngresso().get(i).equals(nomeProva))
+                existe = true;
+        }
+        return existe;
+    }
+
     public static void main(String[] args) {
         // Testes
     }

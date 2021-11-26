@@ -231,7 +231,7 @@ public class Programa {
                                     System.out.print("Anos de Serviço --> "); 
                                     anosservico = Ler.umInt();
                                     diretorEscola.setAnosDeServico(anosservico);
-                                    System.out.println("\n✔️  Anos de serviço alterados com sucesso!!\n");
+                                    System.out.println("\n Anos de serviço alterados com sucesso!!\n");
 
                                 }
                                 if(opcaomoddiretor == 2){
@@ -239,7 +239,7 @@ public class Programa {
                                     System.out.println("Formação Académica:"); 
                                     formaca = Ler.umaString();
                                     diretorEscola.setFormacaoAcademica(formaca);
-                                    System.out.println("\n✔️  Formação académica alterada com sucesso!!\n");
+                                    System.out.println("\n Formação académica alterada com sucesso!!\n");
 
                                 }
                                 pedeTecla();

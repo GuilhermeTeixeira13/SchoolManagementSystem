@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class Curso implements Serializable{
     // Atributos
-    private String nomeCurso;
-    private int codCurso, duracaoEmHoras;
+    private String nomeCurso, codCurso;
+    private int duracaoEmHoras;
     private ArrayList<Disciplina> disciplinasCurso;
     private ArrayList<String> provasIngresso;
     private ArrayList<Aluno> alunosCurso;
@@ -16,7 +16,7 @@ public class Curso implements Serializable{
     // Construtores
     public Curso(){
         this.nomeCurso = "";
-        this.codCurso = 0;
+        this.codCurso = "";
         this.disciplinasCurso = new ArrayList<Disciplina>();
         this.provasIngresso = new ArrayList<String>();
         this.alunosCurso = new ArrayList<Aluno>();
@@ -25,11 +25,11 @@ public class Curso implements Serializable{
         this.dataInicio = LocalDate.now();
         this.dataFim = LocalDate.now();
     }
-    public Curso(String nomeCurso, int codCurso, int duracaoEmHoras, float mediaUltimoColocado, String provasIngresso, LocalDate dataInicio, LocalDate dataFim){
+    public Curso(String nomeCurso, String codCurso, int duracaoEmHoras, float mediaUltimoColocado, ArrayList<String> provasIngresso, LocalDate dataInicio, LocalDate dataFim){
         this.nomeCurso = nomeCurso;
         this.codCurso = codCurso;
         this.disciplinasCurso = new ArrayList<Disciplina>();
-        this.provasIngresso = new ArrayList<String>();
+        this.provasIngresso = provasIngresso;
         this.alunosCurso = new ArrayList<Aluno>();
         this.duracaoEmHoras = duracaoEmHoras;
         this.mediaUltimoColocado = mediaUltimoColocado;
@@ -45,10 +45,10 @@ public class Curso implements Serializable{
         return this.nomeCurso;
     }
 
-    public void setCodCurso(int codCurso){
+    public void setCodCurso(String codCurso){
         this.codCurso = codCurso;
     }
-    public int getCodCurso(){
+    public String getCodCurso(){
         return this.codCurso;
     }
 
@@ -138,7 +138,7 @@ public class Curso implements Serializable{
         boolean ig = false;
         if(obj != null && obj.getClass() == this.getClass()){
             Curso e = (Curso) obj;
-            ig = this.nomeCurso.equals(e.nomeCurso) && (this.codCurso == e.codCurso) && (this.disciplinasCurso.equals(e.disciplinasCurso)) && (this.provasIngresso.equals(e.provasIngresso));
+            ig = this.nomeCurso.equals(e.nomeCurso) && (this.codCurso.equals(e.codCurso)) && (this.disciplinasCurso.equals(e.disciplinasCurso)) && (this.provasIngresso.equals(e.provasIngresso));
             ig = ig && (this.alunosCurso.equals(e.alunosCurso)) && (this.duracaoEmHoras == e.duracaoEmHoras) && (this.mediaUltimoColocado == e.mediaUltimoColocado) && (this.dataInicio.equals(e.dataInicio)) && (this.dataFim.equals(e.dataFim));
         }
         else
@@ -161,10 +161,6 @@ public class Curso implements Serializable{
         copia.dataFim = this.dataFim;
 
         return copia;
-    }
-
-    public void addDisciplina(Disciplina d){
-        this.disciplinasCurso.add(d);
     }
 
     public static void main(String[] args) {

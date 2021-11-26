@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+
+import javax.lang.model.util.SimpleElementVisitor14;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
@@ -111,21 +114,109 @@ public class Programa {
         }
         return pessoaDir;
     }
+
+    public static Curso criarCurso(EscolaInformatica escolaInformatica){
+        String nomeCurso, opcaoContactoMenu, codCurso;
+        int duracaoCurso, escolhaDisc;
+        float mediaUltimoColocado;
+        LocalDate dataInicioCurso, dataFimCurso;
+        ArrayList<String> provasIngresso = new ArrayList<String>();
+        ArrayList<Disciplina> disciplinasCurso = new ArrayList<Disciplina>();
+
+        System.out.print("Nome do Curso: ");
+        nomeCurso = Ler.umaString();
+
+        System.out.print("\nCódigo do Curso: ");
+        codCurso = Ler.umaString();
+
+        System.out.println("\n------------------------------------------------------------------------------");
+        System.out.println("Disciplinas do Curso: \n");
+    
+        if(escolaInformatica.getDisciplinaEscola().isEmpty() == false){
+            do{ 
+                int i = 0;
+                ArrayList<Integer> adicionados = new ArrayList<Integer>();
+                System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
+                for(i=0; i<escolaInformatica.getDisciplinaEscola().size();i++){
+                    if(!adicionados.contains(i))
+                        System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());       
+                }
+                System.out.println("Disciplina para adicionar ao curso --> ");
+                escolhaDisc = Ler.umInt();
+                while(i<0 || i>escolaInformatica.getDisciplinaEscola().size()-1 || adicionados.contains(i)){
+                    System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
+                    escolhaDisc = Ler.umInt();
+                }
+                adicionados.add(escolhaDisc);
+                disciplinasCurso.add(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
+                System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
+                opcaoContactoMenu = Ler.umaString();
+                while(!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("S") && !opcaoContactoMenu.equals("s")){
+                    System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
+                    opcaoContactoMenu = Ler.umaString();
+                }
+            }while(opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));   
+        }
+        else
+            System.out.println("Ainda não há disciplinas criadas.");
+        System.out.println("------------------------------------------------------------------------------\n");
+            
+        System.out.println("Provas Ingresso:");
+        String prova;
+        do{ 
+            System.out.print("\nAdicione uma prova de ingresso --> ");
+            prova = Ler.umaString();      
+            provasIngresso.add(prova);
+            System.out.print("Pretende inserir mais provas de ingresso? [S/N] -> ");
+            opcaoContactoMenu = Ler.umaString();
+            while(!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("S") && !opcaoContactoMenu.equals("s")){
+                System.out.print("ERRO! Pretende inserir mais provas de ingresso? [S/N] -> ");
+                opcaoContactoMenu = Ler.umaString();
+            }
+        }while(opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));  
+        System.out.println("------------------------------------------------------------------------------\n");
+
+        System.out.print("Data de ínicio de curso - ");
+        dataInicioCurso = pedeData();
+
+        System.out.print("\nData de fim de curso - ");
+        dataFimCurso = pedeData();
+    
+        boolean verificalogicaDatas;
+        verificalogicaDatas = verificaLogicaData(dataFimCurso, dataInicioCurso);
+        while(verificalogicaDatas == false){
+            System.out.println("\nA data de início não pode ser posterior à data final!");
+
+            System.out.print("Data de ínicio de curso - ");
+            dataInicioCurso = pedeData();
+
+            System.out.print("Data de fim de curso - ");
+            dataFimCurso = pedeData();
+
+            verificalogicaDatas = verificaLogicaData(dataFimCurso, dataInicioCurso);
+        }
+
+        System.out.print("\nDuração do Curso em horas: ");
+        duracaoCurso = Ler.umInt();
+
+        System.out.print("\nMédia do Último Colocado: ");
+        mediaUltimoColocado = Ler.umInt();
+
+        Curso novoCurso = new Curso(nomeCurso, codCurso, duracaoCurso, mediaUltimoColocado, provasIngresso, dataInicioCurso, dataFimCurso);
+        return novoCurso;        
+    }
+
     public static void main(String[] args){
         int opcaoUtilizador;
         limpaTela();
         System.out.print("ESCOLA PROFISSIONAL DE INFORMÁTICA\n\n1. Gerir Escola\n2. Gerir Cursos\n3. Gerir Disciplinas\n4. Gerir Professores\n5. Gerir Alunos\n6. Gerir Frequências\n\n0. Sair\n\nESCOLHA A SUA OPÇÃO -> ");
         
-        ArrayList<Curso> cursosEscola = new ArrayList<Curso>();
         ArrayList<Pessoa> pessoasEscola = new ArrayList<Pessoa>();
         ArrayList<Disciplina> disciplinasEscola = new ArrayList<Disciplina>();
         Diretor diretorEscola = new Diretor();
         Contactos contactosEscola = new Contactos();
         String locallizaçãoEscola = "Covilhã";
-        EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8, cursosEscola, pessoasEscola, disciplinasEscola, diretorEscola, contactosEscola, locallizaçãoEscola);
-        
-        cursosEscola = LeCursosNoFicheiro("cursoTexto.txt");
-        escolaInformatica.setCursosEscola(cursosEscola);;
+        EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8, LeCursosNoFicheiro("cursoTexto.txt"), pessoasEscola, disciplinasEscola, diretorEscola, contactosEscola, locallizaçãoEscola);
         
         opcaoUtilizador = Ler.umInt();
         while(opcaoUtilizador > 6 || opcaoUtilizador < 0){
@@ -323,113 +414,18 @@ public class Programa {
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Cursos
-
+                                System.out.println("1. LISTAR CURSOS\n");
+                                escolaInformatica.setCursosEscola(LeCursosNoFicheiro("cursoTexto.txt"));
+                                escolaInformatica.listaCursos();
                                 pedeTecla(); 
                                 break;
                             case 2:
-                                System.out.println("1. CRIAR CURSO\n");
-                                Curso novocurso = new Curso();
-
-                                String nomeCurso, opcaoContactoMenu;
-                                int duracaoCurso, codCurso, escolhaDisc;
-                                float mediaUltimoColocado;
-                                LocalDate dataInicioCurso, dataFimCurso;
-                                ArrayList<String> provasIngresso = new ArrayList<String>();
-
-                                System.out.print("Nome do Curso: ");
-                                nomeCurso = Ler.umaString();
-                                novocurso.setNomeCurso(nomeCurso);
-
-                                System.out.print("\nCódigo do Curso: ");
-                                codCurso = Ler.umInt();
-                                novocurso.setCodCurso(codCurso);;
-
-                                System.out.println("\n------------------------------------------------------------------------------");
-                                System.out.println("Disciplinas do Curso: \n");
-                            
-                                if(escolaInformatica.getDisciplinaEscola().isEmpty() == false){
-                                    do{ 
-                                        int i = 0;
-                                        ArrayList<Integer> adicionados = new ArrayList<Integer>();
-                                        System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
-                                        for(i=0; i<escolaInformatica.getDisciplinaEscola().size();i++){
-                                            if(!adicionados.contains(i))
-                                                System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());       
-                                        }
-                                        System.out.println("Disciplina para adicionar ao curso --> ");
-                                        escolhaDisc = Ler.umInt();
-                                        while(i<0 || i>escolaInformatica.getDisciplinaEscola().size()-1 || adicionados.contains(i)){
-                                            System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
-                                            escolhaDisc = Ler.umInt();
-                                        }
-                                        adicionados.add(escolhaDisc);
-                                        novocurso.addDisciplina(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
-                                        System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
-                                        opcaoContactoMenu = Ler.umaString();
-                                        while(!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("S") && !opcaoContactoMenu.equals("s")){
-                                            System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
-                                            opcaoContactoMenu = Ler.umaString();
-                                        }
-                                    }while(opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));   
-                                }
-                                else
-                                    System.out.println("Ainda não há disciplinas criadas.");
-                                System.out.println("------------------------------------------------------------------------------\n");
-                                    
-                                System.out.println("Provas Ingresso:");
-                                String prova;
-                                do{ 
-                                    System.out.print("\nAdicione uma prova de ingresso --> ");
-                                    prova = Ler.umaString();      
-                                    provasIngresso.add(prova);
-                                    System.out.print("Pretende inserir mais provas de ingresso? [S/N] -> ");
-                                    opcaoContactoMenu = Ler.umaString();
-                                    while(!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("S") && !opcaoContactoMenu.equals("s")){
-                                        System.out.print("ERRO! Pretende inserir mais provas de ingresso? [S/N] -> ");
-                                        opcaoContactoMenu = Ler.umaString();
-                                    }
-                                }while(opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));  
-                                novocurso.setProvasIngresso(provasIngresso);
-                                System.out.println("------------------------------------------------------------------------------\n");
-
-                                System.out.print("Data de ínicio de curso - ");
-                                dataInicioCurso = pedeData();
-
-                                System.out.print("\nData de fim de curso - ");
-                                dataFimCurso = pedeData();
-                            
-                                boolean verificalogicaDatas;
-                                verificalogicaDatas = verificaLogicaData(dataFimCurso, dataInicioCurso);
-                                while(verificalogicaDatas == false){
-                                    System.out.println("\nA data de início não pode ser posterior à data final!");
-
-                                    System.out.print("Data de ínicio de curso - ");
-                                    dataInicioCurso = pedeData();
-
-                                    System.out.print("Data de fim de curso - ");
-                                    dataFimCurso = pedeData();
-
-                                    verificalogicaDatas = verificaLogicaData(dataFimCurso, dataInicioCurso);
-                                }
-                                novocurso.setDataInicio(dataInicioCurso);
-                                novocurso.setDataFim(dataFimCurso);
-
-                                System.out.print("\nDuração do Curso em horas: ");
-                                duracaoCurso = Ler.umInt();
-                                novocurso.setDuracaoEmHoras(duracaoCurso);;
-
-                                System.out.print("\nMédia do Último Colocado: ");
-                                mediaUltimoColocado = Ler.umInt();
-                                novocurso.setMediaUltimoColocado(mediaUltimoColocado);
-
-                                escolaInformatica.addCurso(novocurso);
-
+                                // Criar curso
+                                System.out.println("2. CRIAR CURSO\n");
+                                escolaInformatica.addCurso(criarCurso(escolaInformatica));
                                 EscreveCursosNoFicheiro("cursoTexto.txt", escolaInformatica.getCursosEscola());
-                                
                                 System.out.println("\n-->  Curso criado com sucesso!!\n");
-
-                                System.out.println(escolaInformatica.getCursosEscola());
-                                 
+                                System.out.println(escolaInformatica.getCursosEscola());   
                                 pedeTecla();  
                                 break;
                             case 3:
@@ -443,8 +439,46 @@ public class Programa {
                                 pedeTecla();
                                 break;
                             case 5:
-                                // Remover curso
+                                // Remover Curso
+                                String nomeCursoRemover;
+                                int opcaoCursos;
+                                System.out.print("5. REMOVER CURSO\n\n  1. Remover pelo nome\n  2. Remover por palavra contida no nome\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
+                                opcaoCursos = Ler.umInt();
+                                while(opcaoCursos > 2 || opcaoCursos < 0){
+                                    System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                                    opcaoCursos = Ler.umInt();
+                                }
+                                limpaTela();
+                                boolean sucesso = false;
+                                switch (opcaoCursos) {
+                                    case 1:
+                                        sucesso = false;
+                                        System.out.print("1. Remover pelo nome\n\nEscreva o nome do curso que pretende remover -->  ");          
+                                        nomeCursoRemover = Ler.umaString();
+                                        sucesso = escolaInformatica.removeCursoEquals(nomeCursoRemover);
+                                        if(sucesso == true){
+                                            EscreveCursosNoFicheiro("cursoTexto.txt", escolaInformatica.getCursosEscola());
+                                            System.out.println("Curso "+ nomeCursoRemover + " removido com sucesso.");
+                                        }
+                                        else 
+                                            System.out.println("Não existe nenhum curso com o nome "+nomeCursoRemover+".");
 
+                                        System.out.println();
+                                        break;
+                                    case 2:
+                                        sucesso = false;
+                                        System.out.print("2. Remover por palavra contida no nome\n\nEscreva o nome do curso que pretende remover -->  ");          
+                                        nomeCursoRemover = Ler.umaString();
+                                        sucesso = escolaInformatica.removeCursoContains(nomeCursoRemover);
+                                        if(sucesso == true){
+                                            EscreveCursosNoFicheiro("cursoTexto.txt", escolaInformatica.getCursosEscola());
+                                            System.out.println("Cursos que contêm a palavra "+ nomeCursoRemover + " removidos com sucesso.");
+                                        }
+                                        else 
+                                            System.out.println("Não existe nenhum curso que contenha a palavra " + nomeCursoRemover +".");
+                                        System.out.println();
+                                        break;
+                                }
                                 pedeTecla();
                                 break;
                             case 6:

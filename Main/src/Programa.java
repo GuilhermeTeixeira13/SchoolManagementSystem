@@ -224,7 +224,7 @@ public class Programa {
                                 opcaomoddiretor = Ler.umInt();  
                                 while(opcaomoddiretor > 2 || opcaoUtilizador < 0){
                                     System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
-                                    opcaoUtilizador = Ler.umInt();
+                                    opcaomoddiretor = Ler.umInt();
                                 }
                                 if(opcaomoddiretor == 1){
                                     limpaTela();

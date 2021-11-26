@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-
-import javax.lang.model.util.SimpleElementVisitor14;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
@@ -117,14 +114,20 @@ public class Programa {
 
     public static Curso criarCurso(EscolaInformatica escolaInformatica){
         String nomeCurso, opcaoContactoMenu, codCurso;
-        int duracaoCurso, escolhaDisc;
+        int duracaoCurso, escolhaDisc, verificaExistenciaCurso = -1;
         float mediaUltimoColocado;
         LocalDate dataInicioCurso, dataFimCurso;
         ArrayList<String> provasIngresso = new ArrayList<String>();
         ArrayList<Disciplina> disciplinasCurso = new ArrayList<Disciplina>();
 
-        System.out.print("Nome do Curso: ");
-        nomeCurso = Ler.umaString();
+        do{
+            if(verificaExistenciaCurso == -1)
+                System.out.print("Nome do Curso: ");
+            else
+                System.out.print("Esse nome já existe! Por favor, escolha outro: ");
+            nomeCurso = Ler.umaString();
+            verificaExistenciaCurso = escolaInformatica.devolvePosCurso(nomeCurso);
+        }while(verificaExistenciaCurso != -1);
 
         System.out.print("\nCódigo do Curso: ");
         codCurso = Ler.umaString();
@@ -204,6 +207,56 @@ public class Programa {
 
         Curso novoCurso = new Curso(nomeCurso, codCurso, duracaoCurso, mediaUltimoColocado, provasIngresso, dataInicioCurso, dataFimCurso);
         return novoCurso;        
+    }
+
+    public static Curso modificarCurso(EscolaInformatica escolaInformatica, int posicao){
+        int opcaoUtilizador;
+        do{
+            System.out.print("\nO que pretende modificar no curso de " + escolaInformatica.getCursosEscola().get(posicao).getNomeCurso() + "?\n\n 1. Nome\n 2. Cód.Curso\n 3. Disciplinas\n 4. Provas de Ingresso\n 5. Alunos\n 6. Média do último colocado\n 7. Data de início\n 8. Data de fim\n 0. Mais nada, desejo sair\n\n Escolha a sua opção --> ");  
+            opcaoUtilizador = Ler.umInt();
+
+            while(opcaoUtilizador > 8 || opcaoUtilizador < 0){
+                System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                opcaoUtilizador = Ler.umInt();
+            }
+            limpaTela();
+            switch (opcaoUtilizador) {
+                case 1:
+                    
+                    pedeTecla();
+                    break;
+                case 2:
+                    
+                    pedeTecla();
+                    break;
+                case 3:
+                    
+                    pedeTecla();
+                    break;
+                case 4:
+                    
+                    pedeTecla();
+                    break;
+                case 5:
+                    
+                    pedeTecla();    
+                    break;
+                case 6:
+                    
+                    pedeTecla();
+                    break;
+                case 7:
+                    
+                    pedeTecla();
+                    break;
+                case 8:
+                    
+                    pedeTecla();
+                    break;
+            }
+            limpaTela();
+        }while(opcaoUtilizador > 0 && opcaoUtilizador <= 8);
+        return escolaInformatica.getCursosEscola().get(posicao);
     }
 
     public static void main(String[] args){
@@ -430,12 +483,33 @@ public class Programa {
                                 break;
                             case 3:
                                 // Consultar informações de determinado curso
-
+                                String nomeCursoConsultar;
+                                int posCurso;
+                                System.out.print("3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO CURSO\n\nEscreva o nome do curso que pretende consultar -->  ");
+                                nomeCursoConsultar = Ler.umaString();
+                                posCurso = escolaInformatica.devolvePosCurso(nomeCursoConsultar);
+                                if(posCurso == -1)
+                                    System.out.println("Lamentamos, mas este curso não existe!\n");
+                                else{
+                                    System.out.println(escolaInformatica.getCursosEscola().get(posCurso).toString()+"\n");
+                                }
                                 pedeTecla(); 
                                 break;
                             case 4:
                                 // Modificar dados sobre determinado curso
 
+                                // Em contrução
+                                String nomeCursomodificar;
+                                int posCursoMod;
+                                
+                                System.out.print("4. MODIFICAR DADOS SOBRE DETERMINADO CURSO\n\nEscreva o nome do curso que pretende modificar -->  ");
+                                nomeCursomodificar = Ler.umaString();
+                                posCursoMod = escolaInformatica.devolvePosCurso(nomeCursomodificar);
+                                if(posCursoMod == -1)
+                                    System.out.println("Lamentamos, mas este curso não existe!\n");
+                                else{  
+                                    Curso cursoAtualizado = modificarCurso(escolaInformatica, 0);
+                                }
                                 pedeTecla();
                                 break;
                             case 5:
@@ -452,7 +526,6 @@ public class Programa {
                                 boolean sucesso = false;
                                 switch (opcaoCursos) {
                                     case 1:
-                                        sucesso = false;
                                         System.out.print("1. Remover pelo nome\n\nEscreva o nome do curso que pretende remover -->  ");          
                                         nomeCursoRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeCursoEquals(nomeCursoRemover);
@@ -466,7 +539,6 @@ public class Programa {
                                         System.out.println();
                                         break;
                                     case 2:
-                                        sucesso = false;
                                         System.out.print("2. Remover por palavra contida no nome\n\nEscreva o nome do curso que pretende remover -->  ");          
                                         nomeCursoRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeCursoContains(nomeCursoRemover);

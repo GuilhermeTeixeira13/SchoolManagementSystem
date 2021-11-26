@@ -105,8 +105,8 @@ public class Curso implements Serializable{
     // To String
     public String toString(){
         String s;
-        s = "\nCurso: "+nomeCurso+"/ Cod.Curso: "+codCurso+"/ Duracao: "+duracaoEmHoras+"h/ Media do Ultimo Colocado: "+mediaUltimoColocado+" / Data de Inicio: "+dataInicio+"/ Data de Fim: "+dataFim;
-        s = s + "/ Disciplinas: ";
+        s = "\nCurso: "+nomeCurso+"\n Cod.Curso: "+codCurso+"\n Media do Ultimo Colocado: "+mediaUltimoColocado+"\n Data de Inicio: "+dataInicio+"\n Data de Fim: "+dataFim+"\n Duracao: "+duracaoEmHoras+"h";
+        s = s + "\n Disciplinas: ";
         for(int i=0; i<disciplinasCurso.size(); i++){
             if(i == disciplinasCurso.size() - 1)
                 s = s + disciplinasCurso.get(i) + ")";
@@ -115,14 +115,14 @@ public class Curso implements Serializable{
             else
                 s = s + disciplinasCurso.get(i) + ", ";
         }
-        s = s + "/ Provas Ingresso: ";
+        s = s + "\n Provas Ingresso: ";
         for(int i=0; i<provasIngresso.size(); i++){
             if(i == provasIngresso.size() - 1)
                 s = s + provasIngresso.get(i);
             else
                 s = s + provasIngresso.get(i) + ",";  
         }   
-        s = s + "/ Alunos Inscritos: ";
+        s = s + "\n Alunos Inscritos: ";
         for(int i=0; i<alunosCurso.size(); i++)
             if(i == provasIngresso.size() - 1)
                 s = s + alunosCurso.get(i).getNome();

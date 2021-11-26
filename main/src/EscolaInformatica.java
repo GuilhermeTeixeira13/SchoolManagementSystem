@@ -164,6 +164,15 @@ public class EscolaInformatica {
         return conseguiuRemover;
     }
 
+    public int devolvePosCurso(String nomeCurso){
+        int pos=-1;
+        for(int i = 0; i < this.getCursosEscola().size(); i++){
+            if(this.getCursosEscola().get(i).getNomeCurso().equals(nomeCurso))
+                pos = i;
+        }
+        return pos;
+    }
+
     public static void main(String[] args) {
         // Testes
     }

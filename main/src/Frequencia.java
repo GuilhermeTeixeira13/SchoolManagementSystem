@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Frequencia {
+public class Frequencia implements Serializable{
     // Atributos
     private int id;
     private String disc;

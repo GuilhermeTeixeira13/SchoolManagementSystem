@@ -7,9 +7,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.io.IOException;
 
-public class Programa {
+public class Programa implements Serializable{
     public static void limpaTela() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -56,6 +57,19 @@ public class Programa {
         }
     }
 
+    public static void EscreveEscolaNoFicheiro(String filepath, EscolaInformatica escolaInformaticas) {
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filepath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(escolaInformaticas);
+            objectOut.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
     public static Diretor LeDiretorNoFicheiro(String filepath) {
         try {
             File file = new File(filepath);
@@ -64,6 +78,26 @@ public class Programa {
             if (file.length() != 0) {
                 ObjectInputStream oIS = new ObjectInputStream(is);
                 obj = (Diretor) oIS.readObject();
+                oIS.close();
+            }
+            return obj;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("Classe não existente - " + e.getMessage());
+            return null;
+        }
+    }
+
+    public static EscolaInformatica LeEscolaNoFicheiro(String filepath) {
+        try {
+            File file = new File(filepath);
+            FileInputStream is = new FileInputStream(file);
+            EscolaInformatica  obj = new EscolaInformatica();
+            if (file.length() != 0) {
+                ObjectInputStream oIS = new ObjectInputStream(is);
+                obj = (EscolaInformatica) oIS.readObject();
                 oIS.close();
             }
             return obj;
@@ -95,7 +129,8 @@ public class Programa {
             return null;
         }
     }
-
+    
+    
     public static ArrayList<Curso> LeCursosNoFicheiro(String filepath) {
         try {
             File file = new File(filepath);
@@ -192,8 +227,12 @@ public class Programa {
         String locallizaçãoEscola = "Covilhã";
         EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8, cursosEscola,
                 pessoasEscola, disciplinasEscola, diretorEscola, contactosEscola, locallizaçãoEscola);
-
+        
         cursosEscola = LeCursosNoFicheiro("cursoTexto.txt");
+        diretorEscola = LeDiretorNoFicheiro("diretorEscola.txt");
+        escolaInformatica.setDiretorEscola(diretorEscola);
+        pessoasEscola = LePessoaNoFicheiro("pessoasEscola.txt");
+        escolaInformatica.setPessoasEscola(pessoasEscola);
         escolaInformatica.setCursosEscola(cursosEscola);
         opcaoUtilizador = Ler.umInt();
         while (opcaoUtilizador > 6 || opcaoUtilizador < 0) {
@@ -277,9 +316,8 @@ public class Programa {
                         pessoasEscola.add(novodiretor);
                         escolaInformatica.setPessoasEscola(pessoasEscola);
                         escolaInformatica.setDiretorEscola(novodiretor);
+                        EscrevePessoasNoFicheiro("pessoasEscola.txt", pessoasEscola);
                         EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
-                        System.out.println("\n--> Diretor criado com sucesso!!\n");
-
                         pedeTecla();
                         break;
                     case 2:
@@ -369,7 +407,7 @@ public class Programa {
                         EscrevePessoasNoFicheiro("pessoasEscola.txt", pessoasEscola);
                         ArrayList<Pessoa> pessoasAtaulizada = new ArrayList<Pessoa>();
                         pessoasAtaulizada = LePessoaNoFicheiro("pessoasEscola.txt");
-                        ArrayList<Pessoa>listapessoas = new ArrayList<>();
+                        ArrayList<Pessoa> listapessoas = new ArrayList<>();
 
                         int opcaolistpessoas;
                         System.out.print(" LISTAR PESSOAS\n\n");
@@ -387,22 +425,27 @@ public class Programa {
                         case 1:
                             listapessoas = identDiretor(pessoasAtaulizada);
                             System.out.println("Diretor: " + listapessoas);
+                            break;
                         case 2:
                             listapessoas = identProf(pessoasAtaulizada);
                             System.out.println("Professores: " + listapessoas);
+                            break;
                         case 3:
                             listapessoas = identAluno(pessoasAtaulizada);
                             System.out.println("Aluno: " + listapessoas);
+                            break;
                         }
                         pedeTecla();
                         break;
                     case 4:
+                        EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                        EscolaInformatica escolaatualizada = new EscolaInformatica();
+                        escolaatualizada = LeEscolaNoFicheiro("escolaInformática.txt");
                         int opcaomodescola;
                         String novonomeescola;
-                        int novonum;
-                        Contactos novosContactos;
+                        int novonumescola;
                         String novalocalizacao;
-                        System.out.print("4. MUDAR INFORMAÇÕES ACERCA DA ESCOLA\n\n");
+                        System.out.print(" MUDAR INFORMAÇÕES ACERCA DA ESCOLA\n\n");
                         System.out.println("1. Nome\n2. Número\n3. Contactos\n4. Localização\n\n0. Voltar");
                         System.out.print("ESCOLHA A SUA OPÇÃO -> ");
                         opcaomodescola = Ler.umInt();
@@ -410,12 +453,57 @@ public class Programa {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaomodescola = Ler.umInt();
                         }
+                        switch(opcaomodescola){
+                            case 1:
+                            System.out.print("Introduza o novo nome: ");
+                            novonomeescola = Ler.umaString();
+                            escolaInformatica.setNomeEscola(novonomeescola);
+                            break;
+                            case 2:
+                            String emailescolaatua; 
+                            System.out.print("Introduza o novo número: ");
+                            novonumescola = Ler.umInt();
+                            escolaInformatica.setCodEscola(novonumescola);
+                            break;
+                            case 3:
+                            Contactos contactosescolaatua;
+                            contactosescolaatua = escolaatualizada.getContactoEscola();
+                            ArrayList<Telefone> telefoneescolaatua = new ArrayList<Telefone>();
+                            System.out.println("Introduza os novos Telefones: ");
+                            do {
+                                System.out.print("\nTipo: ");
+                                tipoContacto = Ler.umaString();
+
+                                System.out.print("Número: ");
+                                numeroContacto = Ler.umLong();
+
+                                Telefone telefone = new Telefone(tipoContacto, numeroContacto);
+                                telefoneescolaatua.add(telefone);
+
+                                
+
+                                System.out.print("Pretende inserir mais telefones? [S/N] -> ");
+
+                                opcaoContactoMenu = Ler.umaString();
+                            } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
+                            emailescolaatua = contactosescolaatua.getE_mail();
+                            Contactos contactescolatua = new Contactos(emailescolaatua);
+                            contactescolatua.setTelefone(telefoneescolaatua);
+                            escolaInformatica.setContactoEscola(contactescolatua);
+                            case 4:
+                            System.out.println("Localização: ");
+                            novalocalizacao = Ler.umaString();
+                            escolaInformatica.setLocalizacao(novalocalizacao);
+                        }
 
                         pedeTecla();
                         break;
                     case 5:
-                        // Mostrar informações da escola
-
+                        System.out.print("INFORMAÇÕES ESCOLA\n\n");
+                        EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                        EscolaInformatica infosescola = LeEscolaNoFicheiro("escolaInformática.txt");
+                        String descricaoescola = infosescola.toString();
+                        System.out.print(descricaoescola);
                         pedeTecla();
                         break;
                     }

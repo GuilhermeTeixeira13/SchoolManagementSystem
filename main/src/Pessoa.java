@@ -1,9 +1,10 @@
 import java.time.format.DateTimeFormatter;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
 
-public class Pessoa {
+public class Pessoa implements Serializable{
     // Atributos
     private String nome;
     private Contactos contactos;

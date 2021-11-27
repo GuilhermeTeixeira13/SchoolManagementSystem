@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.IOException;
 
-public class Programa implements Serializable{
+public class Programa implements Serializable {
     public static void limpaTela() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -213,6 +213,8 @@ public class Programa implements Serializable{
         return pessoaDir;
     }
 
+    
+
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
@@ -344,6 +346,7 @@ public class Programa implements Serializable{
                             dirlidocontact.setE_mail(novoemail);
                             break;
                         case 2:
+                            limpaTela();
                             System.out.println("Telefones");
                             do {
                                 System.out.print("\nTipo: ");
@@ -388,7 +391,6 @@ public class Programa implements Serializable{
                             anosserviconovo = Ler.umInt();
                             dirlido.setAnosDeServico(anosserviconovo);
                             break;
-
                         case 7:
                             limpaTela();
                             System.out.print("Formação Académica: ");
@@ -423,14 +425,17 @@ public class Programa implements Serializable{
                         }
                         switch (opcaolistpessoas) {
                         case 1:
+                            limpaTela(); 
                             listapessoas = identDiretor(pessoasAtaulizada);
                             System.out.println("Diretor: " + listapessoas);
                             break;
                         case 2:
+                            limpaTela();
                             listapessoas = identProf(pessoasAtaulizada);
                             System.out.println("Professores: " + listapessoas);
                             break;
                         case 3:
+                            limpaTela();
                             listapessoas = identAluno(pessoasAtaulizada);
                             System.out.println("Aluno: " + listapessoas);
                             break;
@@ -455,17 +460,20 @@ public class Programa implements Serializable{
                         }
                         switch(opcaomodescola){
                             case 1:
+                            limpaTela();
                             System.out.print("Introduza o novo nome: ");
                             novonomeescola = Ler.umaString();
                             escolaInformatica.setNomeEscola(novonomeescola);
                             break;
                             case 2:
+                            limpaTela();
                             String emailescolaatua; 
                             System.out.print("Introduza o novo número: ");
                             novonumescola = Ler.umInt();
                             escolaInformatica.setCodEscola(novonumescola);
                             break;
                             case 3:
+                            limpaTela();
                             Contactos contactosescolaatua;
                             contactosescolaatua = escolaatualizada.getContactoEscola();
                             ArrayList<Telefone> telefoneescolaatua = new ArrayList<Telefone>();
@@ -490,15 +498,19 @@ public class Programa implements Serializable{
                             Contactos contactescolatua = new Contactos(emailescolaatua);
                             contactescolatua.setTelefone(telefoneescolaatua);
                             escolaInformatica.setContactoEscola(contactescolatua);
+                            break;
                             case 4:
+                            limpaTela();
                             System.out.println("Localização: ");
                             novalocalizacao = Ler.umaString();
                             escolaInformatica.setLocalizacao(novalocalizacao);
+                            break;
                         }
 
                         pedeTecla();
                         break;
                     case 5:
+                        limpaTela();
                         System.out.print("INFORMAÇÕES ESCOLA\n\n");
                         EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                         EscolaInformatica infosescola = LeEscolaNoFicheiro("escolaInformática.txt");

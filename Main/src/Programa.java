@@ -617,10 +617,7 @@ public class Programa implements Serializable {
                                 break;
                             case 3:
                                 EscrevePessoasNoFicheiro("pessoasEscola.txt", escolaInformatica.getPessoasEscola());
-                                ArrayList<Pessoa> pessoasAtaulizada = new ArrayList<Pessoa>();
-                                pessoasAtaulizada = LePessoaNoFicheiro("pessoasEscola.txt");
                                 ArrayList<Pessoa> listapessoas = new ArrayList<>();
-
                                 int opcaolistpessoas;
                                 System.out.print(" LISTAR PESSOAS\n\n");
                                 System.out.print("1. Listar Diretores\n");
@@ -636,19 +633,19 @@ public class Programa implements Serializable {
                                 switch (opcaolistpessoas) {
                                     case 1:
                                         limpaTela();
-                                        listapessoas = identDiretor(pessoasAtaulizada);
+                                        listapessoas = identDiretor(LePessoaNoFicheiro("pessoasEscola.txt"));
                                         System.out.println("Diretor: " + listapessoas);
                                         pedeTecla();
                                         break;
                                     case 2:
                                         limpaTela();
-                                        listapessoas = identProf(pessoasAtaulizada);
+                                        listapessoas = identProf(LePessoaNoFicheiro("pessoasEscola.txt"));
                                         System.out.println("Professores: " + listapessoas);
                                         pedeTecla();
                                         break;
                                     case 3:
                                         limpaTela();
-                                        listapessoas = identAluno(pessoasAtaulizada);
+                                        listapessoas = identAluno(LePessoaNoFicheiro("pessoasEscola.txt"));
                                         System.out.println("Aluno: " + listapessoas);
                                         pedeTecla();
                                         break;

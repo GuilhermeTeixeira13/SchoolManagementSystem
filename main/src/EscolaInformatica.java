@@ -58,8 +58,8 @@ public class EscolaInformatica implements Serializable{
     public void setPessoasEscola(ArrayList<Pessoa> PessoasEscola){
         this.PessoasEscola = (ArrayList<Pessoa>) PessoasEscola.clone();
     }
-    public ArrayList<Curso> getPessoasEscola(){
-        return this.CursosEscola;
+    public ArrayList<Pessoa> getPessoasEscola(){
+        return this.PessoasEscola;
     }
 
     public void setDisciplinasEscola(ArrayList<Disciplina> DisciplinasEscola){
@@ -132,11 +132,48 @@ public class EscolaInformatica implements Serializable{
         return copia;
     }
 
+    public void listaCursos(){
+        System.out.println("Cursos da "+ this.getNomeEscola()+":\n");
+        for(int i = 0; i < this.getCursosEscola().size(); i++)
+            System.out.println(". Cód:" + this.getCursosEscola().get(i).getCodCurso() + " - " + this.getCursosEscola().get(i).getNomeCurso());
+            System.out.println();
+    }
+
     public void addCurso(Curso c){
         this.CursosEscola.add(c);
     }
 
-    
+    public boolean removeCursoContains(String nomeCursoRemover){
+        boolean conseguiuRemover = false;
+        for(int i = 0; i < this.getCursosEscola().size(); i++){
+            if(this.getCursosEscola().get(i).getNomeCurso().contains(nomeCursoRemover)){
+                this.getCursosEscola().remove(this.getCursosEscola().get(i));
+                conseguiuRemover = true;
+            }
+        }
+        return conseguiuRemover;
+    }
+
+    public boolean removeCursoEquals(String nomeCursoRemover){
+        boolean conseguiuRemover = false;
+        for(int i = 0; i < this.getCursosEscola().size(); i++){
+            if(this.getCursosEscola().get(i).getNomeCurso().equals(nomeCursoRemover)){
+                this.getCursosEscola().remove(this.getCursosEscola().get(i));
+                conseguiuRemover = true;
+            }
+        }
+        return conseguiuRemover;
+    }
+
+    public int devolvePosCurso(String nomeCurso){
+        int pos=-1;
+        for(int i = 0; i < this.getCursosEscola().size(); i++){
+            if(this.getCursosEscola().get(i).getNomeCurso().equals(nomeCurso))
+                pos = i;
+        }
+        return pos;
+    }
+
     public static void main(String[] args) {
         // Testes
     }

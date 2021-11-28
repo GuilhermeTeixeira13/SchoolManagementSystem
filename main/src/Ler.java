@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Ler {
+public class Ler implements Serializable{
     public static String umaString() {
         String s = "";
         try {

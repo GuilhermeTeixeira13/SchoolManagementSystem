@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 
 
-public class Aluno extends Pessoa{
+public class Aluno extends Pessoa {
     //Atributos
     private static int ultimo=0;
     private int numAluno;

@@ -1,4 +1,6 @@
-public class Resultado {
+import java.io.Serializable;
+
+public class Resultado implements Serializable{
     // Atributos
     private int idFreq;
     private int cotaçao;

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Contactos {
+public class Contactos implements Serializable{
     // Atributos
     private ArrayList<Telefone> telefones;
     private String e_mail;

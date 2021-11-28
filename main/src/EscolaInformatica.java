@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class EscolaInformatica {
+public class EscolaInformatica implements Serializable{
     private String NomeEscola;
     private int CodEscola;
     private ArrayList<Curso> CursosEscola;
@@ -57,8 +58,8 @@ public class EscolaInformatica {
     public void setPessoasEscola(ArrayList<Pessoa> PessoasEscola){
         this.PessoasEscola = (ArrayList<Pessoa>) PessoasEscola.clone();
     }
-    public ArrayList<Curso> getPessoasEscola(){
-        return this.CursosEscola;
+    public ArrayList<Pessoa> getPessoasEscola(){
+        return this.PessoasEscola;
     }
 
     public void setDisciplinasEscola(ArrayList<Disciplina> DisciplinasEscola){

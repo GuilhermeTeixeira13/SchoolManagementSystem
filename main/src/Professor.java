@@ -1,9 +1,8 @@
-import java.util.Date;
+
 import java.util.ArrayList;
 import java.time.LocalDate;
 
 public class Professor extends Pessoa {
-    // Atributos
     private int numProf;
     private int rating;
     private ArrayList<Disciplina> discLec;

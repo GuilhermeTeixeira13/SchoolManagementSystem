@@ -1,4 +1,6 @@
-public class Telefone {
+import java.io.Serializable;
+
+public class Telefone implements Serializable{
     // Atributos
     private String tipo;
     private long numero;

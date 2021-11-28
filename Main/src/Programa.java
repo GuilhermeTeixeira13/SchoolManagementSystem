@@ -320,6 +320,8 @@ public class Programa implements Serializable {
                         escolaInformatica.setDiretorEscola(novodiretor);
                         EscrevePessoasNoFicheiro("pessoasEscola.txt", pessoasEscola);
                         EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
+
+                        System.out.println();
                         pedeTecla();
                         break;
                     case 2:
@@ -506,7 +508,6 @@ public class Programa implements Serializable {
                             escolaInformatica.setLocalizacao(novalocalizacao);
                             break;
                         }
-
                         pedeTecla();
                         break;
                     case 5:

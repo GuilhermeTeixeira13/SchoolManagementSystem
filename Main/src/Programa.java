@@ -720,9 +720,11 @@ public class Programa implements Serializable {
         ArrayList<Disciplina> disciplinasEscola = new ArrayList<Disciplina>();
         String localizaçãoEscola = "Covilhã";
 
-        EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8,
+        /*EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8,
                 LeCursosNoFicheiro("cursoTexto.txt"), LePessoaNoFicheiro("pessoasEscola.txt"), disciplinasEscola,
-                LeDiretorNoFicheiro("diretorEscola.txt"), contactosEscola, localizaçãoEscola);
+                LeDiretorNoFicheiro("diretorEscola.txt"), contactosEscola, localizaçãoEscola);*/
+
+        EscolaInformatica escolaInformatica = LeEscolaNoFicheiro("escolaInformática.txt");
 
         opcaoUtilizador = Ler.umInt();
         while (opcaoUtilizador > 6 || opcaoUtilizador < 0) {
@@ -754,7 +756,7 @@ public class Programa implements Serializable {
                                 escolaInformatica.setDiretorEscola(diretorCriado);
                                 EscrevePessoasNoFicheiro("pessoasEscola.txt", escolaInformatica.getPessoasEscola());
                                 EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
-                                EscreveEscolaNoFicheiro("escolaInformatica.txt", escolaInformatica);
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
                                 pedeTecla();
                                 break;
@@ -768,6 +770,7 @@ public class Programa implements Serializable {
                                 escolaInformatica.setDiretorEscola(dirMod);
                                 EscrevePessoasNoFicheiro("pessoasEscola.txt", escolaInformatica.getPessoasEscola());
                                 EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
                                 break;
                             case 3:
@@ -814,6 +817,7 @@ public class Programa implements Serializable {
                                 System.out.println("2. CRIAR CURSO\n");
                                 escolaInformatica.addCurso(criarCurso(escolaInformatica));
                                 EscreveCursosNoFicheiro("cursoTexto.txt", escolaInformatica.getCursosEscola());
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println("\n-->  Curso criado com sucesso!!\n");
                                 System.out.println(escolaInformatica.getCursosEscola());
                                 pedeTecla();
@@ -848,6 +852,7 @@ public class Programa implements Serializable {
                                 else {
                                     modificarCurso(escolaInformatica, 0);
                                     EscreveCursosNoFicheiro("cursoTexto.txt", escolaInformatica.getCursosEscola());
+                                    EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
                                 break;
                             case 5:
@@ -872,6 +877,7 @@ public class Programa implements Serializable {
                                         if (sucesso == true) {
                                             EscreveCursosNoFicheiro("cursoTexto.txt",
                                                     escolaInformatica.getCursosEscola());
+                                            EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                             System.out.println("Curso " + nomeCursoRemover + " removido com sucesso.");
                                         } else
                                             System.out.println(
@@ -887,6 +893,7 @@ public class Programa implements Serializable {
                                         if (sucesso == true) {
                                             EscreveCursosNoFicheiro("cursoTexto.txt",
                                                     escolaInformatica.getCursosEscola());
+                                            EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                             System.out.println("Cursos que contêm a palavra " + nomeCursoRemover
                                                     + " removidos com sucesso.");
                                         } else

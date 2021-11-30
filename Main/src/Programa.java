@@ -565,14 +565,12 @@ public class Programa implements Serializable {
                 System.out.print("Introduza o novo nome: ");
                 nomeModEscola = Ler.umaString();
                 modEscola.setNomeEscola(nomeModEscola);
-                pedeTecla();
                 break;
             case 2:
                 limpaTela();
                 System.out.print("Introduza o novo número: ");
                 numeroModEscola = Ler.umInt();
                 modEscola.setCodEscola(numeroModEscola);
-                pedeTecla();
                 break;
             case 3:
                 limpaTela();
@@ -772,10 +770,9 @@ public class Programa implements Serializable {
                                 break;
                             case 4:
                                 EscolaInformatica escolaMod;
-                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                escolaMod = LeEscolaNoFicheiro("escolaInformática.txt");
                                 escolaMod = modificarEscola(LeEscolaNoFicheiro("escolaInformática.txt"));
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaMod);
-                                pedeTecla();
                                 break;
                             case 5:
                                 limpaTela();

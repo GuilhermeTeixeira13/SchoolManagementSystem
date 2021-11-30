@@ -96,13 +96,13 @@ public class EscolaInformatica implements Serializable{
         s = "Escola: "+NomeEscola+"// Cód.Escolaº: "+CodEscola+"// Diretor: "+DiretorEscola+"// Contactos: "+ContactoEscola+"// Localização: "+this.localizacao+"\n";
         s = s + "CURSOS:\n";
         for(int i=0; i<CursosEscola.size();i++)
-            CursosEscola.get(i);
+            CursosEscola.get(i).toString();
         s = s + "\nDISCIPLINAS:\n";
         for(int i=0; i<DisciplinasEscola.size();i++)
-            DisciplinasEscola.get(i);
+            DisciplinasEscola.get(i).toString();
         s = s + "\nPessoas:\n";
         for(int i=0; i<PessoasEscola.size();i++)
-            PessoasEscola.get(i);
+            PessoasEscola.get(i).toString();
         return s;
     }
 

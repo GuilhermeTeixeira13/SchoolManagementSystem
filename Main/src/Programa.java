@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import javax.crypto.Cipher;
 import javax.sound.sampled.SourceDataLine;
 
 import java.time.LocalDate;
@@ -549,11 +550,12 @@ public class Programa implements Serializable {
         int numeroModEscola;
         String opcaoContactoMenu;
         String localizacaoModEscola;
+        String emailModEscola;
         System.out.print(" MUDAR INFORMAÇÕES ACERCA DA ESCOLA\n\n");
         System.out.println("1. Nome\n2. Número\n3. Telefones\n4. Localização\n5. Email\n\n0. Voltar");
         System.out.print("ESCOLHA A SUA OPÇÃO -> ");
         opcaoModEscola = Ler.umInt();
-        while (opcaoModEscola > 4 || opcaoModEscola < 0) {
+        while (opcaoModEscola > 5 || opcaoModEscola < 0) {
             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
             opcaoModEscola = Ler.umInt();
         }
@@ -574,9 +576,10 @@ public class Programa implements Serializable {
                 break;
             case 3:
                 limpaTela();
+                String emailModTEscola;
                 String tipoContacto;
                 Long numeroContacto;
-                ArrayList<Telefone> telefoneescolaatua = new ArrayList<Telefone>();
+                ArrayList<Telefone> telefoneModEscola = new ArrayList<Telefone>();
                 System.out.println("Introduza os novos Telefones: ");
                 do {
                     System.out.print("\nTipo: ");
@@ -586,22 +589,32 @@ public class Programa implements Serializable {
                     numeroContacto = Ler.umLong();
 
                     Telefone telefone = new Telefone(tipoContacto, numeroContacto);
-                    telefoneescolaatua.add(telefone);
+                    telefoneModEscola.add(telefone);
 
                     System.out.print("Pretende inserir mais telefones? [S/N] -> ");
 
                     opcaoContactoMenu = Ler.umaString();
                 } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
-                Contactos contactoModEscola = new Contactos(escolaInformaticafich.getContactoEscola().getE_mail());
-                contactoModEscola.setTelefone(telefoneescolaatua);
-                modEscola.setContactoEscola(contactoModEscola);
+                emailModTEscola = modEscola.getContactoEscola().getE_mail();
+                Contactos contactoModTEscola = new Contactos(emailModTEscola);
+                contactoModTEscola.setTelefone(telefoneModEscola);
+                modEscola.setContactoEscola(contactoModTEscola);
                 pedeTecla();
                 break;
             case 4:
                 limpaTela();
-                System.out.println("Localização: ");
+                System.out.print("Localização: ");
                 localizacaoModEscola = Ler.umaString();
                 modEscola.setLocalizacao(localizacaoModEscola);
+                pedeTecla();
+                break;
+            case 5:
+                limpaTela();
+                System.out.print("Email: ");
+                emailModEscola = Ler.umaString();
+                Contactos oldContact = escolaInformaticafich.getContactoEscola();
+                oldContact.setE_mail(emailModEscola);
+                modEscola.setContactoEscola(oldContact);
                 pedeTecla();
                 break;
         }
@@ -631,10 +644,13 @@ public class Programa implements Serializable {
                 limpaTela();
                 System.out.print("\nEmail do Diretor: ");
                 dirModEmail = Ler.umaString();
-                dirModContact = diretorfich.getContactos();
+                dirModContact = dirMod.getContactos();
                 dirModContact.setE_mail(dirModEmail);
+                dirMod.setContactos(dirModContact);
                 break;
             case 2:
+                Contactos modDiretorContactos = new Contactos();
+                modDiretorContactos = dirMod.getContactos();
                 limpaTela();
                 System.out.println("Telefones");
                 do {
@@ -652,8 +668,8 @@ public class Programa implements Serializable {
 
                     opcaoContactoMenu = Ler.umaString();
                 } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
-                dirModContact = diretorfich.getContactos();
-                dirModContact.setTelefone(dirModTelefone);
+                modDiretorContactos.setTelefone(dirModTelefone);
+                dirMod.setContactos(modDiretorContactos);
                 break;
             case 3:
                 limpaTela();
@@ -715,7 +731,7 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR ESCOLA\n\n1. Criar Diretor (Removendo automaticamento o anterior)\n2. Modificar dados acerca do atual diretor\n3. Listar Pessoas\n4. Mudar informações acerca da escola (Nome, Número, Contactos, Localização)\n5. Informações da escola\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR ESCOLA\n\n1. Criar Diretor (Removendo automaticamento o anterior)\n2. Modificar dados acerca do atual diretor\n3. Listar Pessoas\n4. Mudar informações acerca da escola (Nome, Número, Contactos, Localização, Email)\n5. Informações da escola\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 5 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -763,7 +779,6 @@ public class Programa implements Serializable {
                                 break;
                             case 5:
                                 limpaTela();
-                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 EscolaInformatica escolaFich = LeEscolaNoFicheiro("escolaInformática.txt");
                                 String escolaInfoDetalhes = mostrarEscola(escolaFich);
                                 System.out.print(escolaInfoDetalhes);

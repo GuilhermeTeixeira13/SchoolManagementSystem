@@ -754,6 +754,7 @@ public class Programa implements Serializable {
                                 escolaInformatica.setDiretorEscola(diretorCriado);
                                 EscrevePessoasNoFicheiro("pessoasEscola.txt", escolaInformatica.getPessoasEscola());
                                 EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
+                                EscreveEscolaNoFicheiro("escolaInformatica.txt", escolaInformatica);
                                 System.out.println();
                                 pedeTecla();
                                 break;

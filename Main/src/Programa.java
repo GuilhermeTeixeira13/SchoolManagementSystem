@@ -645,6 +645,7 @@ public class Programa implements Serializable {
                 dirModContact = dirMod.getContactos();
                 dirModContact.setE_mail(dirModEmail);
                 dirMod.setContactos(dirModContact);
+                pedeTecla();
                 break;
             case 2:
                 Contactos modDiretorContactos = new Contactos();
@@ -668,6 +669,7 @@ public class Programa implements Serializable {
                 } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
                 modDiretorContactos.setTelefone(dirModTelefone);
                 dirMod.setContactos(modDiretorContactos);
+                pedeTecla();
                 break;
             case 3:
                 limpaTela();
@@ -681,24 +683,28 @@ public class Programa implements Serializable {
                 System.out.print("Alterar Local de Origem: ");
                 dirModLocalOrigem = Ler.umaString();
                 dirMod.setLocalDeOrigem(dirModLocalOrigem);
+                pedeTecla();
                 break;
             case 5:
                 limpaTela();
                 System.out.print("Alterar Nome: ");
                 dirModNome = Ler.umaString();
                 dirMod.setNome(dirModNome);
+                pedeTecla();
                 break;
             case 6:
                 limpaTela();
                 System.out.print("Anos de Serviço: ");
                 dirModAnosServico = Ler.umInt();
                 dirMod.setAnosDeServico(dirModAnosServico);
+                pedeTecla();
                 break;
             case 7:
                 limpaTela();
                 System.out.print("Alterar Formação Académica: ");
                 dirModFormacaoNova = Ler.umaString();
                 dirMod.setFormacaoAcademica(dirModFormacaoNova);
+                pedeTecla();
                 break;
         }
         return dirMod;
@@ -738,13 +744,13 @@ public class Programa implements Serializable {
                         limpaTela();
                         switch (opcaoUtilizador) {
                             case 1:
+                                // Criar novo diretor e eliminar automaticamente o antigo
                                 Diretor diretorCriado = criarDiretor();
                                 // Diretor antigo removido da lista de pessoas da escola.
-                                Programa.removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
+                                removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
                                 // Diretor criado adicionado à lista de pessoas da escola
                                 escolaInformatica.getPessoasEscola().add(diretorCriado);
-                                // Defenir lista de pessoas atualizada
-                                escolaInformatica.setPessoasEscola(escolaInformatica.getPessoasEscola());
+                                // Definir lista de pessoas atualizada
                                 escolaInformatica.setDiretorEscola(diretorCriado);
                                 EscrevePessoasNoFicheiro("pessoasEscola.txt", escolaInformatica.getPessoasEscola());
                                 EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
@@ -762,11 +768,10 @@ public class Programa implements Serializable {
                                 EscrevePessoasNoFicheiro("pessoasEscola.txt", escolaInformatica.getPessoasEscola());
                                 EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
                                 System.out.println();
-                                pedeTecla();
                                 break;
                             case 3:
                                 ArrayList<Pessoa> pessoasEscola = LePessoaNoFicheiro("pessoasEscola.txt");
-                                listarPessoasEscola(pessoasEscola);;
+                                listarPessoasEscola(pessoasEscola);
                                 break;
                             case 4:
                                 EscolaInformatica escolaMod;

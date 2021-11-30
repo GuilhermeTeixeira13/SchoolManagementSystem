@@ -93,7 +93,7 @@ public class EscolaInformatica implements Serializable{
     // To String
     public String toString(){
         String s;
-        s = "Escola: "+NomeEscola+"/ Cód.Escolaº: "+CodEscola+"/ Diretor: "+DiretorEscola+"/ Contactos: "+ContactoEscola+"/ Localização: "+this.localizacao+"\n";
+        s = "Escola: "+NomeEscola+"// Cód.Escolaº: "+CodEscola+"// Diretor: "+DiretorEscola+"// Contactos: "+ContactoEscola+"// Localização: "+this.localizacao+"\n";
         s = s + "CURSOS:\n";
         for(int i=0; i<CursosEscola.size();i++)
             CursosEscola.get(i);

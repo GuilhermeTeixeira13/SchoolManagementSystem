@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.sound.sampled.SourceDataLine;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
@@ -178,11 +180,16 @@ public class Programa implements Serializable {
     public static void listaPessoasOutput(ArrayList<Pessoa> pessoas) {
         for (int i = 0; i < pessoas.size(); i++) {
             Pessoa pessoa = pessoas.get(i);
-            System.out.println("Nome: " + pessoa.getNome());
-            System.out.print("|| Contactos: " + pessoa.getContactos());
-            System.out.println("|| Local de Origem: " + pessoa.getLocalDeOrigem());
-            System.out.println("|| Data de Nascimento: " + pessoa.getDataNascimento());
+            System.out.print("Nome: " + pessoa.getNome());
+            System.out.print(" // Contactos -> " + pessoa.getContactos());
+            System.out.println(" // Local de Origem: " + pessoa.getLocalDeOrigem());
+            System.out.println(" //  Data de Nascimento: " + pessoa.getDataNascimento());
         }
+    }
+
+    public static String mostrarEscola(EscolaInformatica escolaInformatica){
+        String infoEscola = escolaInformatica.toString();
+        return infoEscola;
     }
 
     public static void removeDiretorDaListaDePessoas(ArrayList<Pessoa> pessoasEscola) {
@@ -222,7 +229,7 @@ public class Programa implements Serializable {
         return pessoaDir;
     }
 
-    public static void listarEscola(ArrayList<Pessoa> pessoasEscola) {
+    public static void listarPessoasEscola(ArrayList<Pessoa> pessoasEscola) {
         ArrayList<Pessoa> listapessoas = new ArrayList<>();
         int opcaolistpessoas;
         System.out.print(" LISTAR PESSOAS\n\n");
@@ -239,19 +246,19 @@ public class Programa implements Serializable {
         switch (opcaolistpessoas) {
             case 1:
                 limpaTela();
-                listapessoas = identDiretor(LePessoaNoFicheiro("pessoasEscola.txt"));
+                listapessoas = identDiretor(pessoasEscola);
                 listaPessoasOutput(listapessoas);
                 pedeTecla();
                 break;
             case 2:
                 limpaTela();
-                listapessoas = identProf(LePessoaNoFicheiro("pessoasEscola.txt"));
+                listapessoas = identProf(pessoasEscola);
                 listaPessoasOutput(listapessoas);
                 pedeTecla();
                 break;
             case 3:
                 limpaTela();
-                listapessoas = identAluno(LePessoaNoFicheiro("pessoasEscola.txt"));
+                listapessoas = identAluno(pessoasEscola);
                 listaPessoasOutput(listapessoas);
                 pedeTecla();
                 break;
@@ -744,19 +751,22 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 3:
-                                listaPessoasOutput(LePessoaNoFicheiro("pessoas.txt"));
+                                ArrayList<Pessoa> pessoasEscola = LePessoaNoFicheiro("pessoasEscola.txt");
+                                listarPessoasEscola(pessoasEscola);;
                                 break;
                             case 4:
+                                EscolaInformatica escolaMod;
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-                                modificarEscola(LeEscolaNoFicheiro("escolaInformática.txt"));
+                                escolaMod = modificarEscola(LeEscolaNoFicheiro("escolaInformática.txt"));
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaMod);
+                                pedeTecla();
                                 break;
                             case 5:
                                 limpaTela();
-                                System.out.print("INFORMAÇÕES ESCOLA\n\n");
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-                                EscolaInformatica infosescola = LeEscolaNoFicheiro("escolaInformática.txt");
-                                String descricaoescola = infosescola.toString();
-                                System.out.print(descricaoescola);
+                                EscolaInformatica escolaFich = LeEscolaNoFicheiro("escolaInformática.txt");
+                                String escolaInfoDetalhes = mostrarEscola(escolaFich);
+                                System.out.print(escolaInfoDetalhes);
                                 pedeTecla();
                                 break;
                         }

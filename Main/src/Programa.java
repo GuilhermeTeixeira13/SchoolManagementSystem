@@ -698,11 +698,11 @@ public class Programa implements Serializable {
 
         Contactos contactosEscola = new Contactos();
         ArrayList<Disciplina> disciplinasEscola = new ArrayList<Disciplina>();
-        String locallizaçãoEscola = "Covilhã";
+        String localizaçãoEscola = "Covilhã";
 
         EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8,
                 LeCursosNoFicheiro("cursoTexto.txt"), LePessoaNoFicheiro("pessoasEscola.txt"), disciplinasEscola,
-                LeDiretorNoFicheiro("diretorEscola.txt"), contactosEscola, locallizaçãoEscola);
+                LeDiretorNoFicheiro("diretorEscola.txt"), contactosEscola, localizaçãoEscola);
 
         opcaoUtilizador = Ler.umInt();
         while (opcaoUtilizador > 6 || opcaoUtilizador < 0) {

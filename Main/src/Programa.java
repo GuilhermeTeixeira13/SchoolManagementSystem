@@ -95,6 +95,18 @@ public class Programa implements Serializable {
         System.out.println();
     }
 
+    public static void listaumaPessoa(ArrayList<Pessoa> pessoas, int i) {
+            Pessoa pessoa = pessoas.get(i);
+            System.out.println("Nome: " + pessoa.getNome());
+            System.out.println("Contactos:");
+            System.out.println("  Email: " + pessoa.getContactos().getE_mail());
+            System.out.println("  Telefones: " + pessoa.getContactos().getTelefones());
+            System.out.println("Local de Origem: " + pessoa.getLocalDeOrigem());
+            System.out.println("Data de Nascimento: " + pessoa.getDataNascimento());
+            System.out.println("-----------------------------------------------------");
+        System.out.println();
+    }
+
     public static String mostrarEscola(EscolaInformatica escolaInformatica){
         String infoEscola = escolaInformatica.toString();
         return infoEscola;
@@ -609,20 +621,27 @@ public class Programa implements Serializable {
         return dirMod;
     }
 
-    public static Aluno criarAluno() {
+    public static Aluno criarAluno(EscolaInformatica escolaInformatica) {
         System.out.println("1. CRIAR ALUNO\n");
         Aluno novoAluno = new Aluno();
 
+        int verificaExistenciaAluno = -1;
         String nomePessoa, tipoContacto, localDeOrigem, email;
         String opcaoContactoMenu;
         long numeroContacto;
         double media;
-        ArrayList<Telefone> telefones = new ArrayList<>();
+        ArrayList<Telefone> telefones = new ArrayList<Telefone>();
+        ArrayList<Pessoa> Alunos = identAluno(escolaInformatica.getPessoasEscola());
         Contactos contactosAluno = new Contactos();
 
-        System.out.print("Nome do aluno: ");
-        nomePessoa = Ler.umaString();
-        novoAluno.setNome(nomePessoa);
+        do {
+            if (verificaExistenciaAluno == -1)
+                System.out.print("Nome do Aluno: ");
+            else
+                System.out.print("Esse nome já existe! Por favor, escolha outro: ");
+                nomePessoa = Ler.umaString();
+            verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa, Alunos);
+        } while (verificaExistenciaAluno != -1);
 
         System.out.print("\nLocal de Origem do aluno: ");
         localDeOrigem = Ler.umaString();
@@ -989,13 +1008,25 @@ public class Programa implements Serializable {
                                 break;
                             case 2:
                                 // Criar Alunos
-                                escolaInformatica.getPessoasEscola().add(criarAluno());
+                                escolaInformatica.getPessoasEscola().add(criarAluno(escolaInformatica));
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 pedeTecla();
                                 break;
                             case 3:
                                 // Consultar informações de determinado aluno
-
+                                String nomeAlunoConsultar;
+                                int posAluno;
+                                ArrayList<Pessoa> alunosDaEscola = identAluno(escolaInformatica.getPessoasEscola());
+                                System.out.print(
+                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO Aluno\n\nEscreva o nome do curso que pretende consultar -->  ");
+                                nomeAlunoConsultar = Ler.umaString();
+                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoConsultar, alunosDaEscola);
+                                if (posAluno == -1)
+                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                else {
+                                    System.out.println();
+                                    listaumaPessoa(alunosDaEscola, posAluno);
+                                }
                                 pedeTecla();
                                 break;
                             case 4:

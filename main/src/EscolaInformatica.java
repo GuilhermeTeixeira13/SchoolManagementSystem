@@ -174,6 +174,17 @@ public class EscolaInformatica implements Serializable{
         return pos;
     }
 
+    public int devolvePosAluno(String nomeAluno, ArrayList<Pessoa> Alunos){
+        int pos=-1;
+
+        for(int i = 0; i < Alunos.size(); i++){
+            if(this.getPessoasEscola().get(i).getNome().equals(nomeAluno))
+                pos = i;
+        }
+
+        return pos;
+    }
+
     public static void main(String[] args) {
         // Testes
     }

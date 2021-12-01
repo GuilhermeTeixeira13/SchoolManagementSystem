@@ -539,9 +539,9 @@ public class Programa implements Serializable {
             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
             opcaomoddiretor = Ler.umInt();
         }
+        limpaTela();
         switch (opcaomoddiretor) {
             case 1:
-                limpaTela();
                 System.out.print("\nEmail do Diretor: ");
                 dirModEmail = Ler.umaString();
                 dirMod.getContactos().setE_mail(dirModEmail);;
@@ -550,7 +550,6 @@ public class Programa implements Serializable {
             case 2:
                 Contactos modDiretorContactos = new Contactos();
                 modDiretorContactos = dirMod.getContactos();
-                limpaTela();
                 System.out.println("Telefones");
                 do {
                     System.out.print("\nTipo: ");
@@ -572,41 +571,37 @@ public class Programa implements Serializable {
                 pedeTecla();
                 break;
             case 3:
-                limpaTela();
                 System.out.print("Data de Nascimento do Diretor: ");
                 LocalDate dataNascimentoDiretorMod = pedeData();
                 dirMod.setDataDeNascimento(dataNascimentoDiretorMod);
                 pedeTecla();
                 break;
             case 4:
-                limpaTela();
                 System.out.print("Alterar Local de Origem: ");
                 dirModLocalOrigem = Ler.umaString();
                 dirMod.setLocalDeOrigem(dirModLocalOrigem);
                 pedeTecla();
                 break;
             case 5:
-                limpaTela();
                 System.out.print("Alterar Nome: ");
                 dirModNome = Ler.umaString();
                 dirMod.setNome(dirModNome);
                 pedeTecla();
                 break;
             case 6:
-                limpaTela();
                 System.out.print("Anos de Serviço: ");
                 dirModAnosServico = Ler.umInt();
                 dirMod.setAnosDeServico(dirModAnosServico);
                 pedeTecla();
                 break;
             case 7:
-                limpaTela();
                 System.out.print("Alterar Formação Académica: ");
                 dirModFormacaoNova = Ler.umaString();
                 dirMod.setFormacaoAcademica(dirModFormacaoNova);
                 pedeTecla();
                 break;
         }
+        limpaTela();
         return dirMod;
     }
 

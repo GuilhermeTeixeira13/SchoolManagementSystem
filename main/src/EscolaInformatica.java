@@ -189,6 +189,17 @@ public class EscolaInformatica implements Serializable{
         return pos;
     }
 
+    public int devolveposDisc(String nomeDiscP, ArrayList<Disciplina> disciplinas){
+        int pos = -1;
+
+        for(int i = 0; i < disciplinas.size(); i++){
+            if(disciplinas.get(i).getNomDisc().equals(nomeDiscP)){
+                pos = i;
+            }
+        }
+        return pos;
+    }
+
     public static void main(String[] args) {
         // Testes
     }

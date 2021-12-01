@@ -783,7 +783,7 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
     }
 
-    public void listaumaFreq(Frequencia f){
+    public static void listaumaFreq(Frequencia f){
         System.out.println("ID: " + f.getid());
         System.out.println("Disciplina: " + f.getDisc());
         System.out.println("data da Frequência: " + f.getdatefreq());
@@ -1265,14 +1265,26 @@ public class Programa implements Serializable {
                             opcaoUtilizador = Ler.umInt();
                         }
                         limpaTela();
-                        Disciplina listafreqDisc;
-                        ArrayList<Disciplina> listfrequencia = listafreq(listafreqDisc.getListFreq());  
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Frequências de determinada disciplina
-                                for(int i = 0; i < listfrequencia.size();i++){
-                                    listaumaFreq((Disciplina)listfrequencia.get(i));
-                                }
+                                ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
+                                String nomediscp;
+                                int posdisc;
+                                System.out.print("Introduza o nome da disciplina: ");
+                                nomediscp = Ler.umaString(); 
+                                posdisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
+                                    if(posdisc == -1){
+                                        System.out.println("Lamento, mas esta disciplina não existe!\n");
+
+                                    }
+                                    else {
+                                        ArrayList<Frequencia> listaFreqDisc = disciplinas.get(posdisc).getListFreq();
+                                        for(int i = 0; i < listaFreqDisc.size(); i++){
+                                            listaumaFreq(listaFreqDisc.get(i));
+                                        }
+                                
+                                    }
                                 pedeTecla();
                                 break;
                             case 2:

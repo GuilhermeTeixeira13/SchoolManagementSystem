@@ -84,11 +84,15 @@ public class Programa implements Serializable {
     public static void listaPessoasOutput(ArrayList<Pessoa> pessoas) {
         for (int i = 0; i < pessoas.size(); i++) {
             Pessoa pessoa = pessoas.get(i);
-            System.out.print("Nome: " + pessoa.getNome());
-            System.out.print(" // Contactos -> " + pessoa.getContactos());
-            System.out.println(" // Local de Origem: " + pessoa.getLocalDeOrigem());
-            System.out.println(" //  Data de Nascimento: " + pessoa.getDataNascimento());
+            System.out.println("Nome: " + pessoa.getNome());
+            System.out.println("Contactos:");
+            System.out.println("  Email: " + pessoa.getContactos().getE_mail());
+            System.out.println("  Telefones: " + pessoa.getContactos().getTelefones());
+            System.out.println("Local de Origem: " + pessoa.getLocalDeOrigem());
+            System.out.println("Data de Nascimento: " + pessoa.getDataNascimento());
+            System.out.println("-----------------------------------------------------");
         }
+        System.out.println();
     }
 
     public static String mostrarEscola(EscolaInformatica escolaInformatica){
@@ -116,7 +120,7 @@ public class Programa implements Serializable {
     public static ArrayList<Pessoa> identProf(ArrayList<Pessoa> pessoas) {
         ArrayList<Pessoa> pessoaAluno = new ArrayList<>();
         for (int i = 0; i < pessoas.size(); i++) {
-            if (pessoas.get(i) instanceof Aluno) {
+            if (pessoas.get(i) instanceof Professor) {
                 pessoaAluno.add(pessoas.get(i));
             }
         }
@@ -126,7 +130,7 @@ public class Programa implements Serializable {
     public static ArrayList<Pessoa> identAluno(ArrayList<Pessoa> pessoas) {
         ArrayList<Pessoa> pessoaDir = new ArrayList<>();
         for (int i = 0; i < pessoas.size(); i++) {
-            if (pessoas.get(i) instanceof Diretor) {
+            if (pessoas.get(i) instanceof Aluno) {
                 pessoaDir.add(pessoas.get(i));
             }
         }
@@ -605,6 +609,63 @@ public class Programa implements Serializable {
         return dirMod;
     }
 
+    public static Aluno criarAluno() {
+        System.out.println("1. CRIAR ALUNO\n");
+        Aluno novoAluno = new Aluno();
+
+        String nomePessoa, tipoContacto, localDeOrigem, email;
+        String opcaoContactoMenu;
+        long numeroContacto;
+        double media;
+        ArrayList<Telefone> telefones = new ArrayList<>();
+        Contactos contactosAluno = new Contactos();
+
+        System.out.print("Nome do aluno: ");
+        nomePessoa = Ler.umaString();
+        novoAluno.setNome(nomePessoa);
+
+        System.out.print("\nLocal de Origem do aluno: ");
+        localDeOrigem = Ler.umaString();
+        novoAluno.setLocalDeOrigem(localDeOrigem);
+
+        System.out.print("\nData de nascimento - ");
+        LocalDate dataNascimentoAluno = pedeData();
+        novoAluno.setDataNascimento(dataNascimentoAluno);
+
+        System.out.println(
+                "\n------------------------------------------------------------------------------");
+        System.out.println("Telefones");
+        do {
+            System.out.print("\nTipo: ");
+            tipoContacto = Ler.umaString();
+
+            System.out.print("Número: ");
+            numeroContacto = Ler.umLong();
+
+            Telefone telefone = new Telefone(tipoContacto, numeroContacto);
+
+            telefones.add(telefone);
+
+            System.out.print("Pretende inserir mais telefones? [S/N] -> ");
+
+            opcaoContactoMenu = Ler.umaString();
+        } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
+        contactosAluno.setTelefone(telefones);
+        System.out.println(
+                "------------------------------------------------------------------------------");
+        System.out.print("\nEmail do Aluno: ");
+        email = Ler.umaString();
+        contactosAluno.setE_mail(email);
+        novoAluno.setContactos(contactosAluno);
+
+        System.out.print("\nMédia de entrada: ");
+        media = Ler.umFloat();
+        novoAluno.setMediaEntrada(media);
+        System.out.println();
+
+        return novoAluno;
+    }
+
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
@@ -913,9 +974,9 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR ALUNOS\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Mostrar alunos não deslocados\n7. Mostrar aluno mais velho e mais novo\n8. Mostrar aluno com melhor e pior média, de determinado curso\n9. Mostrar aluno com melhor nota, numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR ALUNOS\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Atribuir notas a alunos\n7. Inscrever aluno em curso\n8. Mostrar alunos não deslocados\n9. Mostrar aluno mais velho e mais novo\n10. Mostrar aluno com melhor e pior média, de determinado curso\n11. Mostrar aluno com melhor nota, numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 10 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 11 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -923,12 +984,13 @@ public class Programa implements Serializable {
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Alunos
-
+                                listaPessoasOutput(identAluno(escolaInformatica.getPessoasEscola()));
                                 pedeTecla();
                                 break;
                             case 2:
                                 // Criar Alunos
-
+                                escolaInformatica.getPessoasEscola().add(criarAluno());
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 pedeTecla();
                                 break;
                             case 3:
@@ -947,32 +1009,37 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 6:
-                                // Inscrever aluno em curso
+                                // Atribuir notas a alunos
 
                                 pedeTecla();
                                 break;
                             case 7:
-                                // Mostrar alunos não deslocados
+                                // Inscrever aluno em curso
 
                                 pedeTecla();
                                 break;
                             case 8:
-                                // Mostrar aluno mais velho e mais novo
+                                // Mostrar alunos não deslocados
 
                                 pedeTecla();
                                 break;
                             case 9:
-                                // Mostrar aluno com melhor e com pior média num determinado curso
+                                // Mostrar aluno mais velho e mais novo
 
                                 pedeTecla();
                                 break;
                             case 10:
-                                // Mostrar aluno com melhor nota numa determinada frequência
+                                // Mostrar aluno com melhor e pior média, de determinado curso
+
+                                pedeTecla();
+                                break;
+                            case 11:
+                                // Mostrar aluno com melhor nota, numa determinada frequência
 
                                 pedeTecla();
                                 break;
                         }
-                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 10);
+                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 11);
                     break;
                 case 6:
                     do {

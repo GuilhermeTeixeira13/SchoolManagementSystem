@@ -783,6 +783,32 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
     }
 
+    public void listaumaFreq(Frequencia f){
+        System.out.println("ID: " + f.getid());
+        System.out.println("Disciplina: " + f.getDisc());
+        System.out.println("data da Frequência: " + f.getdatefreq());
+        System.out.println("Professor Responsável" + f.getProfessorResponsavel());
+        System.out.println("Número de perguntas: " + f.getNumPergTotal());
+        System.out.println("Dificuldade: " + f.getdificuldade());
+        System.out.println("-----------------------------------------------------");
+        System.out.println();
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
@@ -1232,10 +1258,14 @@ public class Programa implements Serializable {
                             opcaoUtilizador = Ler.umInt();
                         }
                         limpaTela();
+                        Disciplina listafreqDisc;
+                        ArrayList<Disciplina> listfrequencia = listafreq(listafreqDisc.getListFreq());  
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Frequências de determinada disciplina
-
+                                for(int i = 0; i < listfrequencia.size();i++){
+                                    listaumaFreq((Disciplina)listfrequencia.get(i));
+                                }
                                 pedeTecla();
                                 break;
                             case 2:

@@ -1137,9 +1137,9 @@ public class Programa implements Serializable {
                             case 4:
                                 // Modificar dados sobre uma determinado aluno
                                 System.out.print(
-                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO Aluno\n\nEscreva o nome do aluno que pretende modificar -->  ");
-                                nomeAlunoConsultar = Ler.umaString();
-                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoConsultar, escolaInformatica.getPessoasEscola());
+                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\nEscreva o nome do aluno que pretende modificar -->  ");
+                                String nomeAlunoModificar = Ler.umaString();
+                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoModificar, escolaInformatica.getPessoasEscola());
                                 if (posAluno == -1){
                                     System.out.println("Lamentamos, mas este aluno não existe!\n");
                                     pedeTecla();
@@ -1151,7 +1151,18 @@ public class Programa implements Serializable {
                                 break;
                             case 5:
                                 // Remover aluno
-
+                                System.out.print(
+                                    "5. REMOVER ALUNO\n\nEscreva o nome do aluno que pretende remover -->  ");
+                                String nomeAlunoRemover = Ler.umaString();
+                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoRemover, escolaInformatica.getPessoasEscola());
+                                if (posAluno == -1){
+                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                }
+                                else{
+                                    escolaInformatica.getPessoasEscola().remove(posAluno);
+                                    System.out.println("Aluno " + nomeAlunoRemover + " removido com sucesso.\n");
+                                    EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                }   
                                 pedeTecla();
                                 break;
                             case 6:

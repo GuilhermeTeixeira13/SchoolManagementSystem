@@ -81,6 +81,17 @@ public class Programa implements Serializable {
         return data;
     }
 
+    public static void listaumaFreq(Frequencia f){
+        System.out.println("ID: " + f.getid());
+        System.out.println("Disciplina: " + f.getDisc());
+        System.out.println("data da Frequência: " + f.getdatefreq());
+        System.out.println("Professor Responsável" + f.getProfessorResponsavel());
+        System.out.println("Número de perguntas: " + f.getNumPergTotal());
+        System.out.println("Dificuldade: " + f.getdificuldade());
+        System.out.println("-----------------------------------------------------");
+        System.out.println();
+    }
+
     public static void listaPessoasOutput(ArrayList<Pessoa> pessoas) {
         for (int i = 0; i < pessoas.size(); i++) {
             Pessoa pessoa = pessoas.get(i);
@@ -781,17 +792,6 @@ public class Programa implements Serializable {
             if(opcaoUtilizador!=0)
                 escolaInformatica.changeAluno(posicao, novoAluno);
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
-    }
-
-    public static void listaumaFreq(Frequencia f){
-        System.out.println("ID: " + f.getid());
-        System.out.println("Disciplina: " + f.getDisc());
-        System.out.println("data da Frequência: " + f.getdatefreq());
-        System.out.println("Professor Responsável" + f.getProfessorResponsavel());
-        System.out.println("Número de perguntas: " + f.getNumPergTotal());
-        System.out.println("Dificuldade: " + f.getdificuldade());
-        System.out.println("-----------------------------------------------------");
-        System.out.println();
     }
 
     public static Frequencia criarfrequencia(){

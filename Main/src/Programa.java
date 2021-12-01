@@ -95,14 +95,29 @@ public class Programa implements Serializable {
         System.out.println();
     }
 
-    public static void listaumaPessoa(ArrayList<Pessoa> pessoas, int i) {
-            Pessoa pessoa = pessoas.get(i);
-            System.out.println("Nome: " + pessoa.getNome());
+    public static void listaAlunosOutput(ArrayList<Aluno> alunos) {
+        for (int i = 0; i < alunos.size(); i++) {
+            Aluno a = alunos.get(i);
+            System.out.println("Nome: " + a.getNome());
             System.out.println("Contactos:");
-            System.out.println("  Email: " + pessoa.getContactos().getE_mail());
-            System.out.println("  Telefones: " + pessoa.getContactos().getTelefones());
-            System.out.println("Local de Origem: " + pessoa.getLocalDeOrigem());
-            System.out.println("Data de Nascimento: " + pessoa.getDataNascimento());
+            System.out.println("  Email: " + a.getContactos().getE_mail());
+            System.out.println("  Telefones: " + a.getContactos().getTelefones());
+            System.out.println("Local de Origem: " + a.getLocalDeOrigem());
+            System.out.println("Data de Nascimento: " + a.getDataNascimento());
+            System.out.println("Média de Entrada: " + a.getMediaEntrada());
+            System.out.println("-----------------------------------------------------");
+        }
+        System.out.println();
+    }
+
+    public static void listaumAluno(Aluno a) {
+            System.out.println("Nome: " + a.getNome());
+            System.out.println("Contactos:");
+            System.out.println("  Email: " + a.getContactos().getE_mail());
+            System.out.println("  Telefones: " + a.getContactos().getTelefones());
+            System.out.println("Local de Origem: " + a.getLocalDeOrigem());
+            System.out.println("Data de Nascimento: " + a.getDataNascimento());
+            System.out.println("Média de Entrada: " + a.getMediaEntrada());
             System.out.println("-----------------------------------------------------");
         System.out.println();
     }
@@ -642,6 +657,7 @@ public class Programa implements Serializable {
                 nomePessoa = Ler.umaString();
             verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa, Alunos);
         } while (verificaExistenciaAluno != -1);
+        novoAluno.setNome(nomePessoa);
 
         System.out.print("\nLocal de Origem do aluno: ");
         localDeOrigem = Ler.umaString();
@@ -683,6 +699,93 @@ public class Programa implements Serializable {
         System.out.println();
 
         return novoAluno;
+    }
+
+    public static void modificarAluno(EscolaInformatica escolaInformatica,int posicao) {
+        int opcaoUtilizador;
+        Aluno novoAluno = (Aluno) escolaInformatica.getPessoasEscola().get(posicao);
+        do {
+            int verificaExistenciaAluno = -1;
+            String nomePessoa, tipoContacto, localDeOrigem, email;
+            String opcaoContactoMenu;
+            long numeroContacto;
+            double media;
+            ArrayList<Telefone> telefones = new ArrayList<Telefone>();
+            Contactos contactosAluno = new Contactos();
+
+            System.out.print("\nO que pretende modificar no aluno "+ novoAluno.getNome() +"?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Média de Entrada\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
+            opcaoUtilizador = Ler.umInt();
+
+            while (opcaoUtilizador > 6  || opcaoUtilizador < 0) {
+                System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                opcaoUtilizador = Ler.umInt();
+            }
+            limpaTela();
+            switch (opcaoUtilizador) {
+                case 1:
+                    do {
+                        if (verificaExistenciaAluno == -1)
+                            System.out.print("Nome do Aluno: ");
+                        else
+                            System.out.print("Esse nome já existe! Por favor, escolha outro: ");
+                            nomePessoa = Ler.umaString();
+                        verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa, escolaInformatica.getPessoasEscola());
+                    } while (verificaExistenciaAluno != -1);   
+                    novoAluno.setNome(nomePessoa);
+                    pedeTecla();
+                    break;
+                case 2:
+                    System.out.print("\nLocal de Origem do aluno: ");
+                    localDeOrigem = Ler.umaString();
+                    novoAluno.setLocalDeOrigem(localDeOrigem);
+                    pedeTecla();
+                    break;
+                case 3:
+                    System.out.print("\nData de nascimento - ");
+                    LocalDate dataNascimentoAluno = pedeData();
+                    novoAluno.setDataNascimento(dataNascimentoAluno);
+                    pedeTecla();
+                    break;
+                case 4:
+                    System.out.println("Telefones");
+                    do {
+                        System.out.print("\nTipo: ");
+                        tipoContacto = Ler.umaString();
+            
+                        System.out.print("Número: ");
+                        numeroContacto = Ler.umLong();
+            
+                        Telefone telefone = new Telefone(tipoContacto, numeroContacto);
+            
+                        telefones.add(telefone);
+            
+                        System.out.print("Pretende inserir mais telefones? [S/N] -> ");
+            
+                        opcaoContactoMenu = Ler.umaString();
+                    } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
+                    contactosAluno.setTelefone(telefones);
+                    novoAluno.setContactos(contactosAluno);
+                    pedeTecla();
+                    break;
+                case 5:
+                    System.out.print("\nEmail do Aluno: ");
+                    email = Ler.umaString();
+                    contactosAluno.setE_mail(email);
+                    novoAluno.setContactos(contactosAluno);
+                    pedeTecla();
+                    break;
+                case 6:
+                    System.out.print("\nMédia de entrada: ");
+                    media = Ler.umFloat();
+                    novoAluno.setMediaEntrada(media);
+                    System.out.println();
+                    pedeTecla();
+                    break;
+            }
+            limpaTela();
+            if(opcaoUtilizador!=0)
+                escolaInformatica.changeAluno(posicao, novoAluno);
+        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
     }
 
     public static void main(String[] args) {
@@ -1000,10 +1103,12 @@ public class Programa implements Serializable {
                             opcaoUtilizador = Ler.umInt();
                         }
                         limpaTela();
+                        ArrayList<Pessoa> alunosDaEscola = identAluno(escolaInformatica.getPessoasEscola());
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Alunos
-                                listaPessoasOutput(identAluno(escolaInformatica.getPessoasEscola()));
+                                for(int i = 0; i<alunosDaEscola.size(); i++)
+                                    listaumAluno((Aluno)alunosDaEscola.get(i));
                                 pedeTecla();
                                 break;
                             case 2:
@@ -1016,23 +1121,33 @@ public class Programa implements Serializable {
                                 // Consultar informações de determinado aluno
                                 String nomeAlunoConsultar;
                                 int posAluno;
-                                ArrayList<Pessoa> alunosDaEscola = identAluno(escolaInformatica.getPessoasEscola());
+                                alunosDaEscola = identAluno(escolaInformatica.getPessoasEscola());
                                 System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO Aluno\n\nEscreva o nome do curso que pretende consultar -->  ");
+                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\nEscreva o nome do aluno que pretende consultar -->  ");
                                 nomeAlunoConsultar = Ler.umaString();
                                 posAluno = escolaInformatica.devolvePosAluno(nomeAlunoConsultar, alunosDaEscola);
                                 if (posAluno == -1)
                                     System.out.println("Lamentamos, mas este aluno não existe!\n");
                                 else {
                                     System.out.println();
-                                    listaumaPessoa(alunosDaEscola, posAluno);
+                                    listaumAluno((Aluno)alunosDaEscola.get(posAluno));
                                 }
                                 pedeTecla();
                                 break;
                             case 4:
                                 // Modificar dados sobre uma determinado aluno
-
-                                pedeTecla();
+                                System.out.print(
+                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO Aluno\n\nEscreva o nome do aluno que pretende modificar -->  ");
+                                nomeAlunoConsultar = Ler.umaString();
+                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoConsultar, escolaInformatica.getPessoasEscola());
+                                if (posAluno == -1){
+                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                    pedeTecla();
+                                }
+                                else{
+                                    modificarAluno(escolaInformatica, posAluno);
+                                    EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                }                    
                                 break;
                             case 5:
                                 // Remover aluno

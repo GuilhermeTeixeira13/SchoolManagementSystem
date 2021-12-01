@@ -291,11 +291,15 @@ public class Programa implements Serializable {
         System.out.print("Número: ");
         numProfC = Ler.umInt();
         professorC.setNumProf(numProfC);
-
-        System.out.print("Contactos: ");
         System.out.print(
-                "\n------------------------------------------------------------------------------");
-        System.out.print("Telefones");
+            "\n------------------------------------------------------------------------------");
+
+        System.out.print(" Contactos ");
+
+        System.out.print(
+            "\n------------------------------------------------------------------------------");
+
+        System.out.print("\nTelefones");
         do {
             System.out.print("\nTipo: ");
             tipoContactoC = Ler.umaString();
@@ -325,10 +329,6 @@ public class Programa implements Serializable {
         datadenascimentoC = pedeData();
         professorC.setDataNascimento(datadenascimentoC);
 
-        System.out.print("Email: ");
-        emailC = Ler.umaString();
-        contactosC.setE_mail(emailC);
-        professorC.setContactos(contactosC);
 
         System.out.print("Rating: ");
         ratingProfC = Ler.umInt();
@@ -336,7 +336,7 @@ public class Programa implements Serializable {
 
         System.out.print(
                 "\n------------------------------------------------------------------------------");
-        System.out.print("Disciplinas");
+        System.out.print("\n Disciplinas");
         do {
             System.out.print("\nCódigo: ");
             codDisciplinaC = Ler.umInt();
@@ -821,8 +821,9 @@ public class Programa implements Serializable {
                     pedeTecla();
                     break;
                 case 8:
-                   int opcaoUtilizadorMenuDiscp;
-                    System.out.print("\nO que pretende modificar nas disciplinas lecionadas pelo professor " + novoProfessor.getNome()
+                    int opcaoUtilizadorMenuDiscp;
+                    System.out.print("\nO que pretende modificar nas disciplinas lecionadas pelo professor "
+                            + novoProfessor.getNome()
                             + "?\n\n 1. Eliminar disciplinas\n 2. Adicionar disciplinas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
                     opcaoUtilizadorMenuDiscp = Ler.umInt();
 
@@ -830,44 +831,45 @@ public class Programa implements Serializable {
                         System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                         opcaoUtilizador = Ler.umInt();
                     }
-                    switch(opcaoUtilizadorMenuDiscp) {
+                    switch (opcaoUtilizadorMenuDiscp) {
                         case 1:
-                        int numdiscRemove = 0;
-                        System.out.print("Disciplinas Lecionadas pelo Docente: ");
-                        for(int i = 0; i < novoProfessor.getDiscLec().size(); i++){
-                            System.out.print("Disciplina número: " + i);
-                            listaumaDisciplinaProf(novoProfessor.getDiscLec().get(i));
-                            System.out.println("----------------------");
-                        }
-                        System.out.print("Digite o número da disciplina que deseja remover: ");
-                        numdiscRemove = Ler.umInt();
-                        for(int i = 0; i < novoProfessor.getDiscLec().size(); i++){
-                            if(i == numdiscRemove){
-                                novoProfessor.getDiscLec().remove(i);
+                            int numdiscRemove = 0;
+                            System.out.print("Disciplinas Lecionadas pelo Docente: ");
+                            for (int i = 0; i < novoProfessor.getDiscLec().size(); i++) {
+                                System.out.print("Disciplina número: " + i);
+                                listaumaDisciplinaProf(novoProfessor.getDiscLec().get(i));
+                                System.out.println("----------------------");
                             }
-                        }
-                        pedeTecla();
-                        break;
+                            System.out.print("Digite o número da disciplina que deseja remover: ");
+                            numdiscRemove = Ler.umInt();
+                            for (int i = 0; i < novoProfessor.getDiscLec().size(); i++) {
+                                if (i == numdiscRemove) {
+                                    novoProfessor.getDiscLec().remove(i);
+                                }
+                            }
+                            pedeTecla();
+                            break;
                         case 2:
-                        String nomediscAdd;
-                        int avaliacao;
-                        int codigoDisc;
-                        System.out.print("Nome da Disciplina que deseja adicionar à coleção de disciplinas lecionadas pelo docente: ");
-                        Disciplina discAdd = new Disciplina();
-                        nomediscAdd = Ler.umaString();
-                        avaliacao = novoProfessor.devolveposDisciplina(nomediscAdd, novoProfessor.getDiscLec());
-                        if(avaliacao == -1){
-                            discAdd.setNomDisc(nomediscAdd);
-                            System.out.print("Introduza o código da Disciplina: ");
-                            codigoDisc = Ler.umInt();
-                            discAdd.setNumDisc(codigoDisc);
-                            novoProfessor.getDiscLec().add(discAdd);
-                        }
-                        else{
-                            System.out.println("Disciplina introduzida já pertence ao conjunto de disciplinas lecionadas pelo docente.");
-                        }
-                        pedeTecla();
-                        break;
+                            String nomediscAdd;
+                            int avaliacao;
+                            int codigoDisc;
+                            System.out.print(
+                                    "Nome da Disciplina que deseja adicionar à coleção de disciplinas lecionadas pelo docente: ");
+                            Disciplina discAdd = new Disciplina();
+                            nomediscAdd = Ler.umaString();
+                            avaliacao = novoProfessor.devolveposDisciplina(nomediscAdd, novoProfessor.getDiscLec());
+                            if (avaliacao == -1) {
+                                discAdd.setNomDisc(nomediscAdd);
+                                System.out.print("Introduza o código da Disciplina: ");
+                                codigoDisc = Ler.umInt();
+                                discAdd.setNumDisc(codigoDisc);
+                                novoProfessor.getDiscLec().add(discAdd);
+                            } else {
+                                System.out.println(
+                                        "Disciplina introduzida já pertence ao conjunto de disciplinas lecionadas pelo docente.");
+                            }
+                            pedeTecla();
+                            break;
                     }
                     limpaTela();
 
@@ -1139,7 +1141,7 @@ public class Programa implements Serializable {
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Professores
-                                for(int i = 0; i < profsDaEscola.size(); i++){
+                                for (int i = 0; i < profsDaEscola.size(); i++) {
                                     listaumProf((Professor) profsDaEscola.get(i));
                                 }
                                 pedeTecla();
@@ -1154,27 +1156,48 @@ public class Programa implements Serializable {
                                 // Consultar informações de determinado professor
                                 String nomeProfConsultar;
                                 int posProf;
-                                profsDaEscola = identAluno(escolaInformatica.getPessoasEscola());
+                                profsDaEscola = identProf(escolaInformatica.getPessoasEscola());
                                 System.out.print(
                                         "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\nEscreva o nome do professor que pretende consultar -->  ");
                                 nomeProfConsultar = Ler.umaString();
                                 posProf = escolaInformatica.devolvePosProf(nomeProfConsultar, profsDaEscola);
                                 if (posProf == -1)
-                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                    System.out.println("Lamentamos, mas este professor não existe!\n");
                                 else {
                                     System.out.println();
-                                    listaumProf((Professor)profsDaEscola.get(posProf));
+                                    listaumProf((Professor) profsDaEscola.get(posProf));
                                 }
                                 pedeTecla();
                                 break;
                             case 4:
                                 // Modificar dados sobre uma determinado professor
-
+                                System.out.print(
+                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\nEscreva o nome do professor que pretende modificar -->  ");
+                                String nomeProfModificar = Ler.umaString();
+                                posProf = escolaInformatica.devolvePosProf(nomeProfModificar,
+                                        escolaInformatica.getPessoasEscola());
+                                if (posProf == -1) {
+                                    System.out.println("Lamentamos, mas este professor não existe!\n");
+                                    pedeTecla();
+                                } else {
+                                    modificarProf(escolaInformatica, posProf);
+                                    EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                }
                                 pedeTecla();
                                 break;
                             case 5:
-                                // Remover professor
-
+                                System.out.print(
+                                        "5. REMOVER PROFESSOR\n\nEscreva o nome do professor que pretende remover -->  ");
+                                String nomeProfRemover = Ler.umaString();
+                                posProf = escolaInformatica.devolvePosProf(nomeProfRemover,
+                                        escolaInformatica.getPessoasEscola());
+                                if (posProf == -1) {
+                                    System.out.println("Lamentamos, mas este professor não existe!\n");
+                                } else {
+                                    escolaInformatica.getPessoasEscola().remove(posProf);
+                                    System.out.println("Professor " + nomeProfRemover + " removido com sucesso.\n");
+                                    EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                }
                                 pedeTecla();
                                 break;
                             case 6:

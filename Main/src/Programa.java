@@ -794,6 +794,13 @@ public class Programa implements Serializable {
         System.out.println();
     }
 
+    public static Frequencia criarfrequencia(){
+        System.out.println("1. CRIAR FREQUÊNCIA\n");
+        Frequencia novaFrequencia = new Frequencia();
+
+        return novaFrequencia;
+    }
+
     
     
     

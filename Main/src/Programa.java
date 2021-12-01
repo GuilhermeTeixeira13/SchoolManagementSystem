@@ -98,27 +98,22 @@ public class Programa implements Serializable {
     public static void listaAlunosOutput(ArrayList<Aluno> alunos) {
         for (int i = 0; i < alunos.size(); i++) {
             Aluno a = alunos.get(i);
-            System.out.println("Nome: " + a.getNome());
-            System.out.println("Contactos:");
-            System.out.println("  Email: " + a.getContactos().getE_mail());
-            System.out.println("  Telefones: " + a.getContactos().getTelefones());
-            System.out.println("Local de Origem: " + a.getLocalDeOrigem());
-            System.out.println("Data de Nascimento: " + a.getDataNascimento());
-            System.out.println("Média de Entrada: " + a.getMediaEntrada());
-            System.out.println("-----------------------------------------------------");
+            listaumAluno(a);
         }
         System.out.println();
     }
 
     public static void listaumAluno(Aluno a) {
-            System.out.println("Nome: " + a.getNome());
-            System.out.println("Contactos:");
-            System.out.println("  Email: " + a.getContactos().getE_mail());
-            System.out.println("  Telefones: " + a.getContactos().getTelefones());
-            System.out.println("Local de Origem: " + a.getLocalDeOrigem());
-            System.out.println("Data de Nascimento: " + a.getDataNascimento());
-            System.out.println("Média de Entrada: " + a.getMediaEntrada());
-            System.out.println("-----------------------------------------------------");
+        System.out.println("Nome: " + a.getNome());
+        System.out.println("Número: " + a.getNumAluno());
+        System.out.println("Contactos:");
+        System.out.println("  Email: " + a.getContactos().getE_mail());
+        System.out.println("  Telefones: " + a.getContactos().getTelefones());
+        System.out.println("Local de Origem: " + a.getLocalDeOrigem());
+        System.out.println("Data de Nascimento: " + a.getDataNascimento());
+        System.out.println("Média de Entrada: " + a.getMediaEntrada());
+        System.out.println("Curso: "+ a.getCurso().getNomeCurso());
+        System.out.println("-----------------------------------------------------");
         System.out.println();
     }
 
@@ -164,7 +159,7 @@ public class Programa implements Serializable {
         return pessoaDir;
     }
 
-    public static void listarPessoasEscola(ArrayList<Pessoa> pessoasEscola) {
+    public static void listarPessoasEscola(ArrayList<Pessoa> pessoasEscola, EscolaInformatica escolaInformatica) {
         ArrayList<Pessoa> listapessoas = new ArrayList<>();
         int opcaolistpessoas;
         System.out.print(" LISTAR PESSOAS\n\n");
@@ -193,8 +188,9 @@ public class Programa implements Serializable {
                 break;
             case 3:
                 limpaTela();
-                listapessoas = identAluno(pessoasEscola);
-                listaPessoasOutput(listapessoas);
+                ArrayList<Pessoa> alunosDaEscola = identAluno(escolaInformatica.getPessoasEscola());
+                for(int i = 0; i<alunosDaEscola.size(); i++)
+                    listaumAluno((Aluno)alunosDaEscola.get(i));
                 pedeTecla();
                 break;
         }
@@ -355,8 +351,7 @@ public class Programa implements Serializable {
         System.out.print("\nMédia do Último Colocado: ");
         mediaUltimoColocado = Ler.umInt();
 
-        Curso novoCurso = new Curso(nomeCurso, codCurso, duracaoCurso, mediaUltimoColocado, provasIngresso,
-                dataInicioCurso, dataFimCurso);
+        Curso novoCurso = new Curso(nomeCurso, codCurso, duracaoCurso, mediaUltimoColocado, provasIngresso, dataInicioCurso, dataFimCurso);
         return novoCurso;
     }
 
@@ -841,7 +836,7 @@ public class Programa implements Serializable {
                             case 3:
                                 // Listar Pessoas
 
-                                listarPessoasEscola(escolaInformatica.getPessoasEscola());
+                                listarPessoasEscola(escolaInformatica.getPessoasEscola(), escolaInformatica);
                                 break;
                             case 4:
                                 // Mudar informações acerca da escola
@@ -880,7 +875,6 @@ public class Programa implements Serializable {
                                 escolaInformatica.addCurso(criarCurso(escolaInformatica));
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println("\n-->  Curso criado com sucesso!!\n");
-
                                 pedeTecla();
                                 break;
                             case 3:
@@ -1172,6 +1166,35 @@ public class Programa implements Serializable {
                                 break;
                             case 7:
                                 // Inscrever aluno em curso
+                                System.out.print(
+                                    "7. INSCREVER ALUNO EM CURSO\n\nEscreva o nome do aluno que pretende inscrever -->  ");
+                                String nomeAlunoInscrever = Ler.umaString();
+                                System.out.println();
+                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoInscrever, escolaInformatica.getPessoasEscola());
+                                if (posAluno == -1){
+                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                }
+                                else{
+                                    Aluno alunoinscrever = (Aluno) escolaInformatica.getPessoasEscola().get(posAluno);
+
+                                    if(alunoinscrever.getCurso().getNomeCurso() == ""){
+                                        escolaInformatica.listaCursos();
+                                        System.out.print("Dos cursos disponíveis, escolha aquele em que se quer inscrever o aluno "+ nomeAlunoInscrever +": ");
+                                        String CursoInscrever = Ler.umaString();
+                                        int posCurso = escolaInformatica.devolvePosCurso(CursoInscrever);
+                                        if (posCurso == -1){
+                                            System.out.println("Lamentamos, mas este Curso não existe!\n");
+                                        }
+                                        else{
+                                            
+                                            alunoinscrever.setCurso(escolaInformatica.getCursosEscola().get(posCurso));
+                                            System.out.println("Aluno " + nomeAlunoInscrever + " inscrito com sucesso no curso de "+ escolaInformatica.getCursosEscola().get(posCurso).getNomeCurso() +".\n");
+                                            EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                        }
+                                    }
+                                    else
+                                        System.out.println("O Aluno " + nomeAlunoInscrever + " já se encontra inscrito num curso! ("+ alunoinscrever.getCurso().getNomeCurso() +")\n");
+                                }   
 
                                 pedeTecla();
                                 break;

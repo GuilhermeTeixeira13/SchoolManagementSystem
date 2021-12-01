@@ -1,7 +1,6 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class NotasDisciplina implements Serializable{
+public class NotasDisciplina implements java.io.Serializable {
     // Atributos
     private ArrayList<Resultado> notas;
     private String disciplina;

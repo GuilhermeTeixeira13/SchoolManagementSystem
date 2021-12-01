@@ -798,7 +798,8 @@ public class Programa implements Serializable {
         System.out.println("1. CRIAR FREQUÊNCIA\n");
         Frequencia novaFrequencia = new Frequencia();
         int verificaExistenciaFreq = -1;
-        int idFreq;
+        int idFreq, NTotal;
+        String dific;
     
         
 
@@ -821,6 +822,25 @@ public class Programa implements Serializable {
         /*to-do
         verificar se a disciplina existe
         */
+
+        System.out.print("\nProfessor Responsável: ");
+        /*to-do
+        verificar se o dprofessor existe
+        */
+
+        System.out.print("\nNumero Total de Perguntas: ");
+        NTotal = Ler.umInt();
+        novaFrequencia.setNumPergTotal(NTotal);
+
+        /*to-do
+        lista de perguntas
+        */
+
+        System.out.print("\nDificuldade: ");
+        dific = Ler.umaString();
+        novaFrequencia.setdificuldadec(dific);
+
+
 
         return novaFrequencia;
     }

@@ -1,8 +1,4 @@
 import java.util.ArrayList;
-
-import javax.crypto.Cipher;
-import javax.sound.sampled.SourceDataLine;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
@@ -25,42 +21,6 @@ public class Programa implements Serializable {
         Ler.umaString();
     }
 
-    public static void EscreveCursosNoFicheiro(String filepath, ArrayList<Curso> serObj) {
-
-        try {
-            FileOutputStream fileOut = new FileOutputStream(filepath);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(serObj);
-            objectOut.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public static void EscrevePessoasNoFicheiro(String filepath, ArrayList<Pessoa> serObj) {
-
-        try {
-            FileOutputStream fileOut = new FileOutputStream(filepath);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(serObj);
-            objectOut.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public static void EscreveDiretorNoFicheiro(String filepath, Diretor diretor) {
-
-        try {
-            FileOutputStream fileOut = new FileOutputStream(filepath);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(diretor);
-            objectOut.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public static void EscreveEscolaNoFicheiro(String filepath, EscolaInformatica escolaInformaticas) {
 
         try {
@@ -70,26 +30,6 @@ public class Programa implements Serializable {
             objectOut.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    public static Diretor LeDiretorNoFicheiro(String filepath) {
-        try {
-            File file = new File(filepath);
-            FileInputStream is = new FileInputStream(file);
-            Diretor obj = new Diretor();
-            if (file.length() != 0) {
-                ObjectInputStream oIS = new ObjectInputStream(is);
-                obj = (Diretor) oIS.readObject();
-                oIS.close();
-            }
-            return obj;
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            return null;
-        } catch (ClassNotFoundException e) {
-            System.out.println("Classe não existente - " + e.getMessage());
-            return null;
         }
     }
 
@@ -109,43 +49,6 @@ public class Programa implements Serializable {
             return null;
         } catch (ClassNotFoundException e) {
             System.out.println("Classe não existente - " + e.getMessage());
-            return null;
-        }
-    }
-
-    public static ArrayList<Pessoa> LePessoaNoFicheiro(String filepath) {
-        try {
-            File file = new File(filepath);
-            FileInputStream is = new FileInputStream(file);
-            ArrayList<Pessoa> obj = new ArrayList<>();
-            if (file.length() != 0) {
-                ObjectInputStream oIS = new ObjectInputStream(is);
-                obj = (ArrayList<Pessoa>) oIS.readObject();
-                oIS.close();
-            }
-            return obj;
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            return null;
-        } catch (ClassNotFoundException e) {
-            System.out.println("Classe não existente - " + e.getMessage());
-            return null;
-        }
-    }
-
-    public static ArrayList<Curso> LeCursosNoFicheiro(String filepath) {
-        try {
-            File file = new File(filepath);
-            FileInputStream fileIn = new FileInputStream(filepath);
-            ArrayList<Curso> obj = new ArrayList<Curso>();
-            if (file.length() != 0) {
-                ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-                obj = (ArrayList<Curso>) objectIn.readObject();
-                objectIn.close();
-            }
-            return obj;
-        } catch (Exception ex) {
-            ex.printStackTrace();
             return null;
         }
     }
@@ -619,15 +522,14 @@ public class Programa implements Serializable {
         return modEscola;
     }
 
-    public static Diretor modDiretor(Diretor diretorfich) {
-        Diretor dirMod = LeDiretorNoFicheiro("diretorEscola.txt");
-        Contactos dirModContact = new Contactos();
+    public static Diretor modDiretor(EscolaInformatica escolaInformatica) {
+        Diretor dirMod = escolaInformatica.getDiretorEscola();
+
         ArrayList<Telefone> dirModTelefone = new ArrayList<>();
         int opcaomoddiretor, dirModAnosServico;
-        String dirModEmail, dirModLocalOrigem, dirModNome, dirModFormacaoNova;
-        String tipoContacto;
+        String dirModEmail, dirModLocalOrigem, dirModNome, dirModFormacaoNova, tipoContacto, opcaoContactoMenu;
         Long numeroContacto;
-        String opcaoContactoMenu;
+
         System.out.println(" MODIFICAR DIRETOR\n");
         System.out.println(
                 "1. Alterar email\n2. Alterar telefones\n3. Alterar data de nascimento\n4. Alterar local de origem\n5. Alterar nome\n6. Alterar anos de serviço\n7. Alterar formação académica\n\n0. Voltar Atrás");
@@ -637,20 +539,17 @@ public class Programa implements Serializable {
             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
             opcaomoddiretor = Ler.umInt();
         }
+        limpaTela();
         switch (opcaomoddiretor) {
             case 1:
-                limpaTela();
                 System.out.print("\nEmail do Diretor: ");
                 dirModEmail = Ler.umaString();
-                dirModContact = dirMod.getContactos();
-                dirModContact.setE_mail(dirModEmail);
-                dirMod.setContactos(dirModContact);
+                dirMod.getContactos().setE_mail(dirModEmail);;
                 pedeTecla();
                 break;
             case 2:
                 Contactos modDiretorContactos = new Contactos();
                 modDiretorContactos = dirMod.getContactos();
-                limpaTela();
                 System.out.println("Telefones");
                 do {
                     System.out.print("\nTipo: ");
@@ -672,41 +571,37 @@ public class Programa implements Serializable {
                 pedeTecla();
                 break;
             case 3:
-                limpaTela();
                 System.out.print("Data de Nascimento do Diretor: ");
                 LocalDate dataNascimentoDiretorMod = pedeData();
                 dirMod.setDataDeNascimento(dataNascimentoDiretorMod);
                 pedeTecla();
                 break;
             case 4:
-                limpaTela();
                 System.out.print("Alterar Local de Origem: ");
                 dirModLocalOrigem = Ler.umaString();
                 dirMod.setLocalDeOrigem(dirModLocalOrigem);
                 pedeTecla();
                 break;
             case 5:
-                limpaTela();
                 System.out.print("Alterar Nome: ");
                 dirModNome = Ler.umaString();
                 dirMod.setNome(dirModNome);
                 pedeTecla();
                 break;
             case 6:
-                limpaTela();
                 System.out.print("Anos de Serviço: ");
                 dirModAnosServico = Ler.umInt();
                 dirMod.setAnosDeServico(dirModAnosServico);
                 pedeTecla();
                 break;
             case 7:
-                limpaTela();
                 System.out.print("Alterar Formação Académica: ");
                 dirModFormacaoNova = Ler.umaString();
                 dirMod.setFormacaoAcademica(dirModFormacaoNova);
                 pedeTecla();
                 break;
         }
+        limpaTela();
         return dirMod;
     }
 
@@ -715,14 +610,6 @@ public class Programa implements Serializable {
         limpaTela();
         System.out.print(
                 "ESCOLA PROFISSIONAL DE INFORMÁTICA\n\n1. Gerir Escola\n2. Gerir Cursos\n3. Gerir Disciplinas\n4. Gerir Professores\n5. Gerir Alunos\n6. Gerir Frequências\n\n0. Sair\n\nESCOLHA A SUA OPÇÃO -> ");
-
-        Contactos contactosEscola = new Contactos();
-        ArrayList<Disciplina> disciplinasEscola = new ArrayList<Disciplina>();
-        String localizaçãoEscola = "Covilhã";
-
-        /*EscolaInformatica escolaInformatica = new EscolaInformatica("Escola de Informática", 8,
-                LeCursosNoFicheiro("cursoTexto.txt"), LePessoaNoFicheiro("pessoasEscola.txt"), disciplinasEscola,
-                LeDiretorNoFicheiro("diretorEscola.txt"), contactosEscola, localizaçãoEscola);*/
 
         EscolaInformatica escolaInformatica = LeEscolaNoFicheiro("escolaInformática.txt");
 
@@ -746,48 +633,41 @@ public class Programa implements Serializable {
                         limpaTela();
                         switch (opcaoUtilizador) {
                             case 1:
-                                // Criar novo diretor e eliminar automaticamente o antigo
+                                // Criar novo diretor (Removendo automaticamento o anterior)
+
                                 Diretor diretorCriado = criarDiretor();
                                 // Diretor antigo removido da lista de pessoas da escola.
                                 removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
                                 // Diretor criado adicionado à lista de pessoas da escola
                                 escolaInformatica.getPessoasEscola().add(diretorCriado);
-                                // Definir lista de pessoas atualizada
+                                // Definir diretor criado como diretor da escola
                                 escolaInformatica.setDiretorEscola(diretorCriado);
-                                EscrevePessoasNoFicheiro("pessoasEscola.txt", escolaInformatica.getPessoasEscola());
-                                EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
                                 pedeTecla();
                                 break;
                             case 2:
-                                Diretor dirfich, dirMod;
-                                dirfich = LeDiretorNoFicheiro("diretorEscola.txt");
-                                dirMod = modDiretor(dirfich);
-                                Programa.removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
-                                escolaInformatica.getPessoasEscola().add(dirMod);
-                                escolaInformatica.setPessoasEscola(escolaInformatica.getPessoasEscola());
-                                escolaInformatica.setDiretorEscola(dirMod);
-                                EscrevePessoasNoFicheiro("pessoasEscola.txt", escolaInformatica.getPessoasEscola());
-                                EscreveDiretorNoFicheiro("diretorEscola.txt", escolaInformatica.getDiretorEscola());
+                                // Modificar dados acerca do atual diretor
+
+                                removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
+                                escolaInformatica.getPessoasEscola().add(modDiretor(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                escolaInformatica.setDiretorEscola(modDiretor(LeEscolaNoFicheiro("escolaInformática.txt")));
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
                                 break;
                             case 3:
-                                ArrayList<Pessoa> pessoasEscola = LePessoaNoFicheiro("pessoasEscola.txt");
-                                listarPessoasEscola(pessoasEscola);
+                                // Listar Pessoas
+
+                                listarPessoasEscola(escolaInformatica.getPessoasEscola());
                                 break;
                             case 4:
-                                EscolaInformatica escolaMod;
-                                escolaMod = LeEscolaNoFicheiro("escolaInformática.txt");
-                                escolaMod = modificarEscola(LeEscolaNoFicheiro("escolaInformática.txt"));
-                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaMod);
+                                // Mudar informações acerca da escola
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", modificarEscola(LeEscolaNoFicheiro("escolaInformática.txt")));
                                 break;
                             case 5:
-                                limpaTela();
-                                EscolaInformatica escolaFich = LeEscolaNoFicheiro("escolaInformática.txt");
-                                String escolaInfoDetalhes = mostrarEscola(escolaFich);
-                                System.out.print(escolaInfoDetalhes);
+                                // Listar informações sobre a escola
+
+                                System.out.print(mostrarEscola(LeEscolaNoFicheiro("escolaInformática.txt")));
                                 pedeTecla();
                                 break;
                         }
@@ -808,7 +688,6 @@ public class Programa implements Serializable {
                             case 1:
                                 // Listar Cursos
                                 System.out.println("1. LISTAR CURSOS\n");
-                                escolaInformatica.setCursosEscola(LeCursosNoFicheiro("cursoTexto.txt"));
                                 escolaInformatica.listaCursos();
                                 pedeTecla();
                                 break;
@@ -816,10 +695,9 @@ public class Programa implements Serializable {
                                 // Criar curso
                                 System.out.println("2. CRIAR CURSO\n");
                                 escolaInformatica.addCurso(criarCurso(escolaInformatica));
-                                EscreveCursosNoFicheiro("cursoTexto.txt", escolaInformatica.getCursosEscola());
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println("\n-->  Curso criado com sucesso!!\n");
-                                System.out.println(escolaInformatica.getCursosEscola());
+
                                 pedeTecla();
                                 break;
                             case 3:
@@ -834,7 +712,7 @@ public class Programa implements Serializable {
                                     System.out.println("Lamentamos, mas este curso não existe!\n");
                                 else {
                                     System.out.println(
-                                            escolaInformatica.getCursosEscola().get(posCurso).toString() + "\n");
+                                    escolaInformatica.getCursosEscola().get(posCurso).toString() + "\n");
                                 }
                                 pedeTecla();
                                 break;
@@ -851,7 +729,6 @@ public class Programa implements Serializable {
                                     System.out.println("Lamentamos, mas este curso não existe!\n");
                                 else {
                                     modificarCurso(escolaInformatica, 0);
-                                    EscreveCursosNoFicheiro("cursoTexto.txt", escolaInformatica.getCursosEscola());
                                     EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
                                 break;
@@ -870,35 +747,25 @@ public class Programa implements Serializable {
                                 boolean sucesso = false;
                                 switch (opcaoCursos) {
                                     case 1:
-                                        System.out.print(
-                                                "1. Remover pelo nome\n\nEscreva o nome do curso que pretende remover -->  ");
+                                        System.out.print("1. Remover pelo nome\n\nEscreva o nome do curso que pretende remover -->  ");
                                         nomeCursoRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeCursoEquals(nomeCursoRemover);
                                         if (sucesso == true) {
-                                            EscreveCursosNoFicheiro("cursoTexto.txt",
-                                                    escolaInformatica.getCursosEscola());
                                             EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                             System.out.println("Curso " + nomeCursoRemover + " removido com sucesso.");
                                         } else
-                                            System.out.println(
-                                                    "Não existe nenhum curso com o nome " + nomeCursoRemover + ".");
-
+                                            System.out.println("Não existe nenhum curso com o nome " + nomeCursoRemover + ".");
                                         System.out.println();
                                         break;
                                     case 2:
-                                        System.out.print(
-                                                "2. Remover por palavra contida no nome\n\nEscreva o nome do curso que pretende remover -->  ");
+                                        System.out.print("2. Remover por palavra contida no nome\n\nEscreva o nome do curso que pretende remover -->  ");
                                         nomeCursoRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeCursoContains(nomeCursoRemover);
                                         if (sucesso == true) {
-                                            EscreveCursosNoFicheiro("cursoTexto.txt",
-                                                    escolaInformatica.getCursosEscola());
                                             EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-                                            System.out.println("Cursos que contêm a palavra " + nomeCursoRemover
-                                                    + " removidos com sucesso.");
+                                            System.out.println("Cursos que contêm a palavra " + nomeCursoRemover+ " removidos com sucesso.");
                                         } else
-                                            System.out.println("Não existe nenhum curso que contenha a palavra "
-                                                    + nomeCursoRemover + ".");
+                                            System.out.println("Não existe nenhum curso que contenha a palavra "+ nomeCursoRemover + ".");
                                         System.out.println();
                                         break;
                                 }

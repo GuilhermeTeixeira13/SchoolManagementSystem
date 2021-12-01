@@ -123,6 +123,18 @@ public class Professor extends Pessoa {
         return copia;
     }
 
+    public int devolveposDisciplina(String nomedisc, ArrayList<Disciplina> disciplinas){
+        int pos = -1;
+        for(int i = 0; i < disciplinas.size(); i++){
+            if(this.getDiscLec().get(i).equals(nomedisc)){
+                pos = i;
+            }
+        }
+        return pos;
+
+    }
+
+
     public static void main(String[] args) {
         // Testes
     }

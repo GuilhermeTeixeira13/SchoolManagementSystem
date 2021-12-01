@@ -143,6 +143,10 @@ public class EscolaInformatica implements Serializable{
         this.CursosEscola.add(c);
     }
 
+    public void changeAluno(int posicao, Aluno a){
+        this.getPessoasEscola().set(posicao, a);
+    }
+
     public boolean removeCursoContains(String nomeCursoRemover){
         boolean conseguiuRemover = false;
         for(int i = 0; i < this.getCursosEscola().size(); i++){
@@ -171,6 +175,17 @@ public class EscolaInformatica implements Serializable{
             if(this.getCursosEscola().get(i).getNomeCurso().equals(nomeCurso))
                 pos = i;
         }
+        return pos;
+    }
+
+    public int devolvePosAluno(String nomeAluno, ArrayList<Pessoa> Alunos){
+        int pos=-1;
+
+        for(int i = 0; i < Alunos.size(); i++){
+            if(this.getPessoasEscola().get(i).getNome().equals(nomeAluno))
+                pos = i;
+        }
+
         return pos;
     }
 

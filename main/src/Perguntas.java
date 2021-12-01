@@ -1,6 +1,4 @@
-import java.io.Serializable;
-
-public class Perguntas implements Serializable{
+public class Perguntas implements java.io.Serializable {
     int numpergunta;
     float cotaçao;
     String pergunta;

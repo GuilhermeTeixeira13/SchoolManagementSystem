@@ -1,8 +1,7 @@
-import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public class Diretor extends Pessoa {
+public class Diretor extends Pessoa implements java.io.Serializable {
     //Atributos
     private int anosDeServico ;
     private String formacaoAcademica;

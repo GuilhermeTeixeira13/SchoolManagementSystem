@@ -133,10 +133,25 @@ public class EscolaInformatica implements Serializable{
     }
 
     public void listaCursos(){
-        System.out.println("Cursos da "+ this.getNomeEscola()+":\n");
+        if(this.getCursosEscola().isEmpty())
+            System.out.println("De momento, não estão registados quaisquer cursos.\n");
+        else{
+            System.out.println("Cursos da "+ this.getNomeEscola()+":\n");
         for(int i = 0; i < this.getCursosEscola().size(); i++)
             System.out.println(". Cód:" + this.getCursosEscola().get(i).getCodCurso() + " - " + this.getCursosEscola().get(i).getNomeCurso());
+         System.out.println();
+        }
+    }
+
+    public void listaDisciplinas(){
+        if(this.getDisciplinaEscola().isEmpty())
+            System.out.println("De momento, não estão registadas quaisquer disciplinas.\n");
+        else{
+            System.out.println("Disciplinas da "+ this.getNomeEscola()+":\n");
+            for(int i = 0; i < this.getDisciplinaEscola().size(); i++)
+                System.out.println(". Cód:" + this.getDisciplinaEscola().get(i).getNumDisc() + " - " + this.getDisciplinaEscola().get(i).getNomDisc());
             System.out.println();
+        }
     }
 
 

@@ -269,7 +269,7 @@ public class Programa implements Serializable {
         String nomeProfC, opcaoContactoMenu, tipoContactoC, emailC, localdeOrigemC, nomeDisciplinaC;
         LocalDate datadenascimentoC;
         Long numeroContactoC;
-        int numProfC, ratingProfC, codDisciplinaC;
+        int numProfC, ratingProfC, codDisciplinaC, escolhaDisc;
         Contactos contactosC = new Contactos();
         ArrayList<Telefone> telefonesC = new ArrayList<>();
         ArrayList<Pessoa> Profs = identProf(escolaInformatica.getPessoasEscola());
@@ -288,18 +288,12 @@ public class Programa implements Serializable {
             verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProfC, Profs);
         } while (verificaExistenciaProf != -1);
 
-        System.out.print("Número: ");
+        System.out.print("\nNúmero: ");
         numProfC = Ler.umInt();
         professorC.setNumProf(numProfC);
-        System.out.print(
-            "\n------------------------------------------------------------------------------");
+        System.out.println("\n------------------------------------------------------------------------------");
 
-        System.out.print(" Contactos ");
-
-        System.out.print(
-            "\n------------------------------------------------------------------------------");
-
-        System.out.print("\nTelefones");
+        System.out.println("Telefones");
         do {
             System.out.print("\nTipo: ");
             tipoContactoC = Ler.umaString();
@@ -316,42 +310,55 @@ public class Programa implements Serializable {
             opcaoContactoMenu = Ler.umaString();
         } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
         contactosC.setTelefone(telefonesC);
-        System.out.print("Email: ");
+        System.out.println("\n------------------------------------------------------------------------------");
+        System.out.print("\nEmail: ");
         emailC = Ler.umaString();
         contactosC.setE_mail(emailC);
         professorC.setContactos(contactosC);
 
-        System.out.print("Local de Origem: ");
+        System.out.print("\nLocal de Origem: ");
         localdeOrigemC = Ler.umaString();
         professorC.setLocalDeOrigem(localdeOrigemC);
 
-        System.out.println("Data de Nascimento: ");
+        System.out.print("\nData de Nascimento: ");
         datadenascimentoC = pedeData();
         professorC.setDataNascimento(datadenascimentoC);
 
-
-        System.out.print("Rating: ");
+        System.out.print("\nRating: ");
         ratingProfC = Ler.umInt();
         professorC.setRating(ratingProfC);
 
-        System.out.print(
-                "\n------------------------------------------------------------------------------");
-        System.out.print("\n Disciplinas");
-        do {
-            System.out.print("\nCódigo: ");
-            codDisciplinaC = Ler.umInt();
+        System.out.println("\n------------------------------------------------------------------------------");
+        System.out.println("Disciplinas do Curso: \n");
+        if (escolaInformatica.getDisciplinaEscola().isEmpty() == false) {
+            do {
+                int i = 0;
+                ArrayList<Integer> adicionados = new ArrayList<Integer>();
+                System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
+                for (i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
+                    if (!adicionados.contains(i))
+                        System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
+                }
+                System.out.println("Disciplina para adicionar ao curso --> ");
+                escolhaDisc = Ler.umInt();
+                while (i < 0 || i > escolaInformatica.getDisciplinaEscola().size() - 1 || adicionados.contains(i)) {
+                    System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
+                    escolhaDisc = Ler.umInt();
+                }
+                adicionados.add(escolhaDisc);
+                disciplinasC.add(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
+                System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
+                opcaoContactoMenu = Ler.umaString();
+                while (!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N")
+                        && !opcaoContactoMenu.equals("S") && !opcaoContactoMenu.equals("s")) {
+                    System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
+                    opcaoContactoMenu = Ler.umaString();
+                }
+            } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));}
+        else{
+            System.out.println("Ainda não há disciplinas criadas.");
+        }
 
-            System.out.print("Nome: ");
-            nomeDisciplinaC = Ler.umaString();
-
-            Disciplina disciplinaC = new Disciplina(codDisciplinaC, nomeDisciplinaC);
-
-            disciplinasC.add(disciplinaC);
-
-            System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
-
-            opcaoContactoMenu = Ler.umaString();
-        } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
         professorC.setDiscLec(disciplinasC);
         return professorC;
 

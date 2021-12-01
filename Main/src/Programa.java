@@ -273,7 +273,7 @@ public class Programa implements Serializable {
         Contactos contactosC = new Contactos();
         ArrayList<Telefone> telefonesC = new ArrayList<>();
         ArrayList<Pessoa> Profs = identProf(escolaInformatica.getPessoasEscola());
-        ArrayList<Disciplina> disciplinasC = new ArrayList<>();
+        ArrayList<Disciplina> disciplinasP = new ArrayList<>();
         Professor professorC = new Professor();
 
         System.out.println("2. CRIAR PROFESSOR\n");
@@ -346,7 +346,7 @@ public class Programa implements Serializable {
                     escolhaDisc = Ler.umInt();
                 }
                 adicionados.add(escolhaDisc);
-                disciplinasC.add(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
+                disciplinasP.add(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
                 System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
                 opcaoContactoMenu = Ler.umaString();
                 while (!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N")
@@ -359,7 +359,7 @@ public class Programa implements Serializable {
             System.out.println("Ainda não há disciplinas criadas.");
         }
 
-        professorC.setDiscLec(disciplinasC);
+        professorC.setDiscLec(disciplinasP);
         return professorC;
 
     }

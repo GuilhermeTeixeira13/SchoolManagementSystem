@@ -797,6 +797,30 @@ public class Programa implements Serializable {
     public static Frequencia criarfrequencia(){
         System.out.println("1. CRIAR FREQUÊNCIA\n");
         Frequencia novaFrequencia = new Frequencia();
+        int verificaExistenciaFreq = -1;
+        int idFreq;
+    
+        
+
+        do {
+            if (verificaExistenciaFreq == -1){
+                System.out.print("ID da Frequência: ");
+            }
+            else{
+                System.out.print("Esse ID já existe! Por favor, escolha outro: ");
+                idFreq = Ler.umInt();
+            }
+            //verificaExistenciaFreq = 
+        } while (verificaExistenciaFreq != -1);
+
+        System.out.print("\nData da frequência: ");
+        LocalDate dataFrequencia = pedeData();
+        novaFrequencia.setdatafreq(dataFrequencia);
+
+        System.out.print("\nDisciplina da frequência: ");
+        /*to-do
+        verificar se a disciplina existe
+        */
 
         return novaFrequencia;
     }

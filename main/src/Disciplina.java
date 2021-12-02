@@ -1,7 +1,6 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Disciplina implements Serializable{
+public class Disciplina implements java.io.Serializable {
     private int numdisc;
     private String nomedisc;
     private ArrayList<Aluno> listalunos;

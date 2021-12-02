@@ -1,13 +1,11 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-
 public class Aluno extends Pessoa {
     //Atributos
     private static int ultimo=0;
     private int numAluno;
     private ArrayList<NotasDisciplina> notasDisciplinas;
-    private ArrayList<Disciplina> disciplinasInscrito;
     private Curso cursoInscrito;
     private double mediaEntrada;
 
@@ -16,7 +14,6 @@ public class Aluno extends Pessoa {
         super();
         ultimo ++;
         this.numAluno = ultimo;
-        this.disciplinasInscrito = new ArrayList<Disciplina>();
         this.notasDisciplinas = new ArrayList<NotasDisciplina>();
         this.cursoInscrito = new Curso();
         this.mediaEntrada = 0;
@@ -26,7 +23,6 @@ public class Aluno extends Pessoa {
         super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getDataNascimento());
         ultimo ++;
         this.numAluno = ultimo;
-        this.disciplinasInscrito = new ArrayList<Disciplina>();
         this.notasDisciplinas = new ArrayList<NotasDisciplina>();
         this.cursoInscrito = new Curso();
         this.mediaEntrada = mediaEntrada;
@@ -35,7 +31,6 @@ public class Aluno extends Pessoa {
     public Aluno(Aluno a){
         super(a.getNome(), a.getContactos(), a.getLocalDeOrigem(), a.getDataNascimento());
         this.numAluno = a.numAluno;
-        this.disciplinasInscrito = (ArrayList<Disciplina>) a.disciplinasInscrito.clone();
         this.notasDisciplinas = (ArrayList<NotasDisciplina>) a.notasDisciplinas.clone();
         this.cursoInscrito = a.cursoInscrito;
         this.mediaEntrada = a.mediaEntrada;
@@ -47,6 +42,10 @@ public class Aluno extends Pessoa {
     }
     public String getNome(){
         return super.getNome();
+    }
+
+    public int getNumAluno(){
+        return this.numAluno;
     }
 
     public void setContactos(Contactos contactos){
@@ -91,18 +90,11 @@ public class Aluno extends Pessoa {
        return this.notasDisciplinas;
     }
 
-    public void setDisciplinasInscrito(ArrayList<Disciplina> disciplinasInscrito){
-        this.disciplinasInscrito = (ArrayList<Disciplina>) disciplinasInscrito.clone();
-    }
-    public ArrayList<Disciplina> getDisciplinasInscrito(){
-       return this.disciplinasInscrito;
-    }
-
     // toString
     public String toString(){
         String s;
         s = super.toString();
-        s = s + " / Média de entrada: " + this.mediaEntrada + " / Nº.Aluno: "+numAluno+"\n" + "Média das Disciplinas: " + notasDisciplinas + "\nDisciplinas do Aluno: " + disciplinasInscrito + "\nCurso: " +cursoInscrito;
+        s = s + " / Média de entrada: " + this.mediaEntrada + " / Nº.Aluno: "+numAluno+"\n" + "Média das Disciplinas: " + notasDisciplinas + "\nDisciplinas do Aluno: " + cursoInscrito.getDisciplinasCurso() + "\nCurso: " +cursoInscrito;
         return s;
     }
 
@@ -112,7 +104,7 @@ public class Aluno extends Pessoa {
         if(obj != null && this.getClass() == obj.getClass()){
             Aluno e = (Aluno) obj;
             ig = super.equals(e);
-            ig = ig && (this.notasDisciplinas.equals(e.notasDisciplinas)) && (this.mediaEntrada == e.mediaEntrada) && (this.numAluno == e.numAluno) && (this.disciplinasInscrito.equals(e.disciplinasInscrito) && this.cursoInscrito.equals(cursoInscrito));
+            ig = ig && (this.notasDisciplinas.equals(e.notasDisciplinas)) && (this.mediaEntrada == e.mediaEntrada) && (this.numAluno == e.numAluno) && this.cursoInscrito.equals(cursoInscrito);
         }
         else
             ig = false;

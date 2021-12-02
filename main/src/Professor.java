@@ -133,6 +133,16 @@ public class Professor extends Pessoa {
 
     }
 
+    public void listaDisc(){
+        if(this.getDiscLec().isEmpty()){
+            System.out.println("Este professor ainda não leciona nenhuma disciplina.");
+        }
+        else{
+            for(int i=0; i<this.getDiscLec().size(); i++){
+                System.out.println(i+". "+this.getDiscLec().get(i).getNomDisc());
+            }
+        }
+    }
 
     public static void main(String[] args) {
         // Testes

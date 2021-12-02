@@ -126,7 +126,7 @@ public class Programa implements Serializable {
         System.out.println("Data de Nascimento: " + p.getDataNascimento());
         System.out.println("Número: " + p.getNumProf());
         System.out.println("Rating: " + p.getRating());
-        System.out.println("Disciplinas: " + p.getDiscLec());
+        p.listaDisc();
         System.out.println("-----------------------------------------------------");
         System.out.println();
     }
@@ -357,7 +357,7 @@ public class Programa implements Serializable {
         professorC.setRating(ratingProfC);
 
         System.out.println("\n------------------------------------------------------------------------------");
-        System.out.println("Disciplinas do Curso: \n");
+        System.out.println("Disciplinas do Professor: \n");
         if (escolaInformatica.getDisciplinaEscola().isEmpty() == false) {
             do {
                 int i = 0;
@@ -367,10 +367,10 @@ public class Programa implements Serializable {
                     if (!adicionados.contains(i))
                         System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
                 }
-                System.out.println("Disciplina para adicionar ao curso --> ");
+                System.out.println("Disciplina para adicionar ao professor --> ");
                 escolhaDisc = Ler.umInt();
                 while (i < 0 || i > escolaInformatica.getDisciplinaEscola().size() - 1 || adicionados.contains(i)) {
-                    System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
+                    System.out.println("Disciplina para adicionar ao professor (DIGITE ALGO VÁLIDO)--> ");
                     escolhaDisc = Ler.umInt();
                 }
                 adicionados.add(escolhaDisc);
@@ -920,6 +920,133 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
     }
 
+    public static void modificarProfessor(EscolaInformatica escolaInformatica,int posicao) {
+        int opcaoUtilizador;
+        Professor novoProfessor = (Professor) escolaInformatica.getPessoasEscola().get(posicao);
+        do {
+            int verificaExistenciaAluno = -1, numProf, ratingProf, escolhaDisc;
+            String nomePessoa, tipoContacto, localDeOrigem, email;
+            String opcaoContactoMenu;
+            long numeroContacto;
+            ArrayList<Telefone> telefones = new ArrayList<Telefone>();
+            Contactos contactosAluno = new Contactos();
+            ArrayList<Disciplina> disciplinasP = new ArrayList<>();
+
+            System.out.print("\nO que pretende modificar no professor "+ novoProfessor.getNome() +"?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Número de Professor\n 7. Rating\n 8. Disciplinas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
+            opcaoUtilizador = Ler.umInt();
+
+            while (opcaoUtilizador > 8  || opcaoUtilizador < 0) {
+                System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                opcaoUtilizador = Ler.umInt();
+            }
+            limpaTela();
+            switch (opcaoUtilizador) {
+                case 1:
+                    do {
+                        if (verificaExistenciaAluno == -1)
+                            System.out.print("Nome do Professor: ");
+                        else
+                            System.out.print("Esse nome já existe! Por favor, escolha outro: ");
+                            nomePessoa = Ler.umaString();
+                        verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa, escolaInformatica.getPessoasEscola());
+                    } while (verificaExistenciaAluno != -1);   
+                    novoProfessor.setNome(nomePessoa);
+                    pedeTecla();
+                    break;
+                case 2:
+                    System.out.print("\nLocal de Origem do aluno: ");
+                    localDeOrigem = Ler.umaString();
+                    novoProfessor.setLocalDeOrigem(localDeOrigem);
+                    pedeTecla();
+                    break;
+                case 3:
+                    System.out.print("\nData de nascimento - ");
+                    LocalDate dataNascimentoAluno = pedeData();
+                    novoProfessor.setDataNascimento(dataNascimentoAluno);
+                    pedeTecla();
+                    break;
+                case 4:
+                    System.out.println("Telefones");
+                    do {
+                        System.out.print("\nTipo: ");
+                        tipoContacto = Ler.umaString();
+            
+                        System.out.print("Número: ");
+                        numeroContacto = Ler.umLong();
+            
+                        Telefone telefone = new Telefone(tipoContacto, numeroContacto);
+            
+                        telefones.add(telefone);
+            
+                        System.out.print("Pretende inserir mais telefones? [S/N] -> ");
+            
+                        opcaoContactoMenu = Ler.umaString();
+                    } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
+                    contactosAluno.setTelefone(telefones);
+                    novoProfessor.setContactos(contactosAluno);
+                    pedeTecla();
+                    break;
+                case 5:
+                    System.out.print("\nEmail do Aluno: ");
+                    email = Ler.umaString();
+                    contactosAluno.setE_mail(email);
+                    novoProfessor.setContactos(contactosAluno);
+                    pedeTecla();
+                    break;
+                case 6:
+                    System.out.print("\nNúmero de Professor: ");
+                    numProf = Ler.umInt();
+                    novoProfessor.setNumProf(numProf);;
+                    System.out.println();
+                    pedeTecla();
+                    break;
+                case 7:
+                    System.out.print("\nRating: ");
+                    ratingProf = Ler.umInt();
+                    novoProfessor.setRating(ratingProf);;
+                    System.out.println();
+                    pedeTecla();
+                    break;
+                case 8:
+                    System.out.println("Disciplinas do Professor: \n");
+                    if (escolaInformatica.getDisciplinaEscola().isEmpty() == false) {
+                        do {
+                            int i = 0;
+                            ArrayList<Integer> adicionados = new ArrayList<Integer>();
+                            System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
+                            for (i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
+                                if (!adicionados.contains(i))
+                                    System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
+                            }
+                            System.out.println("Disciplina para adicionar ao curso --> ");
+                            escolhaDisc = Ler.umInt();
+                            while (i < 0 || i > escolaInformatica.getDisciplinaEscola().size() - 1 || adicionados.contains(i)) {
+                                System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
+                                escolhaDisc = Ler.umInt();
+                            }
+                            adicionados.add(escolhaDisc);
+                            disciplinasP.add(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
+                            System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
+                            opcaoContactoMenu = Ler.umaString();
+                            while (!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N")
+                                    && !opcaoContactoMenu.equals("S") && !opcaoContactoMenu.equals("s")) {
+                                System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
+                                opcaoContactoMenu = Ler.umaString();
+                            }
+                        } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));}
+                    else{
+                        System.out.println("Ainda não há disciplinas criadas.\n");
+                    }
+                    novoProfessor.setDiscLec(disciplinasP);
+                    pedeTecla();
+                    break;
+            }
+            limpaTela();
+            if(opcaoUtilizador!=0)
+                escolaInformatica.changeProf(posicao, novoProfessor);
+        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 8);
+    }
+
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
@@ -1220,10 +1347,9 @@ public class Programa implements Serializable {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                     pedeTecla();
                                 } else {
-                                    modificarProf(escolaInformatica, posProf);
+                                    modificarProfessor(escolaInformatica, posProf);
                                     EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
-                                pedeTecla();
                                 break;
                             case 5:
                                 System.out.print(

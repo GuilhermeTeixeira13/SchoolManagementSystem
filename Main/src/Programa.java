@@ -811,7 +811,7 @@ public class Programa implements Serializable {
                 System.out.print("Esse ID já existe! Por favor, escolha outro: ");
                 idFreq = Ler.umInt();
             }
-            //verificaExistenciaFreq = 
+            //verificaExistenciaFreq =
         } while (verificaExistenciaFreq != -1);
 
         System.out.print("\nData da frequência: ");

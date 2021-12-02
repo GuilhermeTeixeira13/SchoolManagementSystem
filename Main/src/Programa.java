@@ -799,8 +799,8 @@ public class Programa implements Serializable {
         Frequencia novaFrequencia = new Frequencia();
         int verificaExistenciaFreq = -1;
         int idFreq, NTotal;
-        String dific;
-    
+        String dific, disciplina = "";
+        EscolaInformatica escolaInformatica = LeEscolaNoFicheiro("escolaInformática.txt");
         
 
         do {
@@ -819,9 +819,19 @@ public class Programa implements Serializable {
         novaFrequencia.setdatafreq(dataFrequencia);
 
         System.out.print("\nDisciplina da frequência: ");
-        /*to-do
-        verificar se a disciplina existe
-        */
+        ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
+        String nomediscp;
+        int posdisc;
+        System.out.print("Introduza o nome da disciplina: ");
+        nomediscp = Ler.umaString(); 
+        posdisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
+        if(posdisc == -1){
+            System.out.println("Lamento, mas esta disciplina não existe!\n");
+
+        }
+        else {
+            novaFrequencia.setDisc(disciplina);
+        }
 
         System.out.print("\nProfessor Responsável: ");
         /*to-do

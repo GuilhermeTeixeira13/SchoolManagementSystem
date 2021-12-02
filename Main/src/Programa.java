@@ -798,7 +798,7 @@ public class Programa implements Serializable {
         System.out.println("1. CRIAR FREQUÊNCIA\n");
         Frequencia novaFrequencia = new Frequencia();
         int verificaExistenciaFreq = -1;
-        int idFreq, NTotal;
+        int idFreq = 0, NTotal;
         String dific, disciplina = "";
         EscolaInformatica escolaInformatica = LeEscolaNoFicheiro("escolaInformática.txt");
         
@@ -813,6 +813,7 @@ public class Programa implements Serializable {
             }
             //verificaExistenciaFreq =
         } while (verificaExistenciaFreq != -1);
+        novaFrequencia.setid(idFreq);
 
         System.out.print("\nData da frequência: ");
         LocalDate dataFrequencia = pedeData();
@@ -829,7 +830,6 @@ public class Programa implements Serializable {
             posdisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
             if(posdisc == -1){
                 System.out.println("Lamento, mas esta disciplina não existe!\n");
-
             }
             else {
                 novaFrequencia.setDisc(disciplina);

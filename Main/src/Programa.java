@@ -821,27 +821,32 @@ public class Programa implements Serializable {
         System.out.print("\nDisciplina da frequência: ");
         ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
         String nomediscp;
-        int posdisc;
-        System.out.print("Introduza o nome da disciplina: ");
-        nomediscp = Ler.umaString(); 
-        posdisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
-        if(posdisc == -1){
-            System.out.println("Lamento, mas esta disciplina não existe!\n");
+        int posdisc = -2;
+        
+        do{
+            System.out.print("Introduza o nome da disciplina: ");
+            nomediscp = Ler.umaString(); 
+            posdisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
+            if(posdisc == -1){
+                System.out.println("Lamento, mas esta disciplina não existe!\n");
 
-        }
-        else {
-            novaFrequencia.setDisc(disciplina);
-        }
+            }
+            else {
+                novaFrequencia.setDisc(disciplina);
+                posdisc = -2;
+            }
+        } while (posdisc != -2);  
 
         System.out.print("\nProfessor Responsável: ");
         /*to-do
-        verificar se o dprofessor existe
+        verificar se o professor existe
         */
 
         System.out.print("\nNumero Total de Perguntas: ");
         NTotal = Ler.umInt();
         novaFrequencia.setNumPergTotal(NTotal);
 
+        System.out.print("\nLista de perguntas: ");
         /*to-do
         lista de perguntas
         */

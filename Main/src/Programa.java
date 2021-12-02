@@ -266,10 +266,10 @@ public class Programa implements Serializable {
     }
 
     public static Professor criaProfessor(EscolaInformatica escolaInformatica) {
-        String nomeProfC, opcaoContactoMenu, tipoContactoC, emailC, localdeOrigemC, nomeDisciplinaC;
+        String nomeProfC, opcaoContactoMenu, tipoContactoC, emailC, localdeOrigemC;
         LocalDate datadenascimentoC;
         Long numeroContactoC;
-        int numProfC, ratingProfC, codDisciplinaC, escolhaDisc;
+        int numProfC, ratingProfC, escolhaDisc;
         Contactos contactosC = new Contactos();
         ArrayList<Telefone> telefonesC = new ArrayList<>();
         ArrayList<Pessoa> Profs = identProf(escolaInformatica.getPessoasEscola());
@@ -287,6 +287,7 @@ public class Programa implements Serializable {
             nomeProfC = Ler.umaString();
             verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProfC, Profs);
         } while (verificaExistenciaProf != -1);
+        professorC.setNome(nomeProfC);
 
         System.out.print("\nNúmero: ");
         numProfC = Ler.umInt();
@@ -360,8 +361,9 @@ public class Programa implements Serializable {
         }
 
         professorC.setDiscLec(disciplinasP);
-        return professorC;
 
+        System.out.println(professorC);
+        return professorC;
     }
 
     public static Curso criarCurso(EscolaInformatica escolaInformatica) {

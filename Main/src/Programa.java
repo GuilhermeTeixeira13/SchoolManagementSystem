@@ -794,13 +794,12 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
     }
 
-    public static Frequencia criarfrequencia(){
+    public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica){
         System.out.println("1. CRIAR FREQUÊNCIA\n");
         Frequencia novaFrequencia = new Frequencia();
         int verificaExistenciaFreq = -1;
         int idFreq = 0, NTotal;
         String dific, disciplina = "";
-        EscolaInformatica escolaInformatica = LeEscolaNoFicheiro("escolaInformática.txt");
         
 
         do {

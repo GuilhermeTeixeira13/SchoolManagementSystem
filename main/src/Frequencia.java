@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import javax.sound.sampled.SourceDataLine;
-
 import java.time.LocalDate;
 
 public class Frequencia implements java.io.Serializable {

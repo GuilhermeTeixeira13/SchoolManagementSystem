@@ -133,11 +133,27 @@ public class EscolaInformatica implements Serializable{
     }
 
     public void listaCursos(){
-        System.out.println("Cursos da "+ this.getNomeEscola()+":\n");
+        if(this.getCursosEscola().isEmpty())
+            System.out.println("De momento, não estão registados quaisquer cursos.\n");
+        else{
+            System.out.println("Cursos da "+ this.getNomeEscola()+":\n");
         for(int i = 0; i < this.getCursosEscola().size(); i++)
             System.out.println(". Cód:" + this.getCursosEscola().get(i).getCodCurso() + " - " + this.getCursosEscola().get(i).getNomeCurso());
-            System.out.println();
+         System.out.println();
+        }
     }
+
+    public void listaDisciplinas(){
+        if(this.getDisciplinaEscola().isEmpty())
+            System.out.println("De momento, não estão registadas quaisquer disciplinas.\n");
+        else{
+            System.out.println("Disciplinas da "+ this.getNomeEscola()+":\n");
+            for(int i = 0; i < this.getDisciplinaEscola().size(); i++)
+                System.out.println(". Cód:" + this.getDisciplinaEscola().get(i).getNumDisc() + " - " + this.getDisciplinaEscola().get(i).getNomDisc());
+            System.out.println();
+        }
+    }
+
 
     public void addCurso(Curso c){
         this.CursosEscola.add(c);
@@ -168,6 +184,11 @@ public class EscolaInformatica implements Serializable{
         }
         return conseguiuRemover;
     }
+
+    public void changeProf(int posicao, Professor p){
+        this.getPessoasEscola().set(posicao, p);
+    }
+    
 
     public int devolvePosCurso(String nomeCurso){
         int pos=-1;
@@ -209,6 +230,18 @@ public class EscolaInformatica implements Serializable{
                     pos = i;
             }
         }
+
+        return pos;
+    }
+
+    public int devolvePosProf(String nomeProf, ArrayList<Pessoa> Alunos){
+        int pos=-1;
+
+        for(int i = 0; i < Alunos.size(); i++){
+            if(this.getPessoasEscola().get(i).getNome().equals(nomeProf))
+                pos = i;
+        }
+
         return pos;
     }
 

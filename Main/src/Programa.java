@@ -998,21 +998,6 @@ public class Programa implements Serializable {
         return novaFrequencia;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public static void modificarProfessor(EscolaInformatica escolaInformatica,int posicao) {
         int opcaoUtilizador;
         Professor novoProfessor = (Professor) escolaInformatica.getPessoasEscola().get(posicao);
@@ -1140,6 +1125,14 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 8);
     }
 
+
+
+
+
+
+
+
+    
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();

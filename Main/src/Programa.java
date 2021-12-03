@@ -1332,17 +1332,13 @@ public class Programa implements Serializable {
                                 System.out.print("Introduza o nome da disciplina: ");
                                 nomediscp = Ler.umaString(); 
                                 posdisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
-                                    if(posdisc == -1){
-                                        System.out.println("Lamento, mas esta disciplina não existe!\n");
-
-                                    }
-                                    else {
-                                        ArrayList<Frequencia> listaFreqDisc = disciplinas.get(posdisc).getListFreq();
-                                        for(int i = 0; i < listaFreqDisc.size(); i++){
-                                            listaumaFreq(listaFreqDisc.get(i));
-                                        }
-                                
-                                    }
+                                if(posdisc == -1)
+                                    System.out.println("Lamento, mas esta disciplina não existe!\n");   
+                                else {
+                                    ArrayList<Frequencia> listaFreqDisc = disciplinas.get(posdisc).getListFreq();
+                                    for(int i = 0; i < listaFreqDisc.size(); i++)
+                                        listaumaFreq(listaFreqDisc.get(i));
+                                }
                                 pedeTecla();
                                 break;
                             case 2:

@@ -938,6 +938,7 @@ public class Programa implements Serializable {
         int idFreq = 0, NTotalPerguntas;
         String dific;
         ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
+        ArrayList<Pessoa> Professores = identProf(escolaInformatica.getPessoasEscola());
         String nomediscp, nomeProf;
         int verificaExistenciaDisc = -1; 
 
@@ -970,13 +971,13 @@ public class Programa implements Serializable {
 
         System.out.print("\nProfessor Responsável: ");
         nomeProf = Ler.umaString(); 
-        verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProf, escolaInformatica.getPessoasEscola());
+        verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProf, Professores);
         while(verificaExistenciaProf == -1){
             System.out.print("Lamento, mas este professor não existe! Escolha outro: ");
             nomeProf = Ler.umaString(); 
-        verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProf, escolaInformatica.getPessoasEscola());
+        verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProf, Professores);
         }
-        novaFrequencia.setProfessorResponsavel((Professor)escolaInformatica.getPessoasEscola().get(verificaExistenciaProf));
+        novaFrequencia.setProfessorResponsavel((Professor)Professores.get(verificaExistenciaProf));
 
         System.out.print("\nNumero Total de Perguntas: ");
         NTotalPerguntas = Ler.umInt();

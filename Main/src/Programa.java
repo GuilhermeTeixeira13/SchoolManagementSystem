@@ -734,7 +734,7 @@ public class Programa implements Serializable {
                             System.out.print("Nome do Aluno: ");
                         else
                             System.out.print("Esse nome já existe! Por favor, escolha outro: ");
-                            nomePessoa = Ler.umaString();
+                        nomePessoa = Ler.umaString();
                         verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa, escolaInformatica.getPessoasEscola());
                     } while (verificaExistenciaAluno != -1);   
                     novoAluno.setNome(nomePessoa);
@@ -800,17 +800,29 @@ public class Programa implements Serializable {
         int verificaExistenciaFreq = -1;
         int idFreq = 0, NTotal;
         String dific, disciplina = "";
-        
+        ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
+        String nomediscp;
+        int verificaExistenciaDisc = -1; 
+
+        System.out.print("\nDisciplina disponíveis na escola: ");
+        System.out.println(escolaInformatica.getDisciplinaEscola());
+
+        System.out.print("\nDisciplina para a qual pretende criar uma frequência: ");
+        nomediscp = Ler.umaString(); 
+        verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
+        while(verificaExistenciaDisc == -1){
+            System.out.print("Lamento, mas esta disciplina não existe! Escolha outra: ");
+            nomediscp = Ler.umaString(); 
+            verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
+        }
 
         do {
-            if (verificaExistenciaFreq == -1){
-                System.out.print("ID da Frequência: ");
-            }
-            else{
+            if (verificaExistenciaFreq == -1)
+                System.out.print("ID da Frequência: ");  
+            else
                 System.out.print("Esse ID já existe! Por favor, escolha outro: ");
-                idFreq = Ler.umInt();
-            }
-            //verificaExistenciaFreq =
+            idFreq = Ler.umInt();
+            verificaExistenciaFreq = escolaInformatica.devolvePosDisciplinaDaFreq(idFreq, escolaInformatica.getDisciplinaEscola());
         } while (verificaExistenciaFreq != -1);
         novaFrequencia.setid(idFreq);
 
@@ -818,28 +830,8 @@ public class Programa implements Serializable {
         LocalDate dataFrequencia = pedeData();
         novaFrequencia.setdatafreq(dataFrequencia);
 
-        System.out.print("\nDisciplina da frequência: ");
-        ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
-        String nomediscp;
-        int posdisc = -2;
-        
-        do{
-            System.out.print("Introduza o nome da disciplina: ");
-            nomediscp = Ler.umaString(); 
-            posdisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
-            if(posdisc == -1){
-                System.out.println("Lamento, mas esta disciplina não existe!\n");
-            }
-            else {
-                novaFrequencia.setDisc(disciplina);
-                posdisc = -2;
-            }
-        } while (posdisc != -2);  
-
         System.out.print("\nProfessor Responsável: ");
-        /*to-do
-        verificar se o professor existe
-        */
+        
 
         System.out.print("\nNumero Total de Perguntas: ");
         NTotal = Ler.umInt();

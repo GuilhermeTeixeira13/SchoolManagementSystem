@@ -200,6 +200,18 @@ public class EscolaInformatica implements Serializable{
         return pos;
     }
 
+    public int devolvePosDisciplinaDaFreq(int idFreq, ArrayList<Disciplina> disciplinas){
+        int pos = -1;
+
+        for(int i = 0; i < disciplinas.size(); i++){
+            for(int j = 0; j < disciplinas.get(i).getListFreq().size(); j++){
+                if(disciplinas.get(i).getListFreq().get(j).getid() == idFreq)
+                    pos = i;
+            }
+        }
+        return pos;
+    }
+
     public static void main(String[] args) {
         // Testes
     }

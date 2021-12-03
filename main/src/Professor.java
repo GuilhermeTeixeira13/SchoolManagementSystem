@@ -144,6 +144,12 @@ public class Professor extends Pessoa {
         }
     }
 
+    public int contDiscProf(){
+        int totalDisc;
+        totalDisc = this.getDiscLec().size();
+        return totalDisc;
+    }
+
     public static void main(String[] args) {
         // Testes
     }

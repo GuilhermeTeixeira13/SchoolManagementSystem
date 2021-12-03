@@ -540,7 +540,6 @@ public class Programa implements Serializable {
                     System.out.print("\nCódigo do Curso: ");
                     codCurso = Ler.umaString();
                     escolaInformatica.getCursosEscola().get(posicao).setCodCurso(codCurso);
-                    ;
                     pedeTecla();
                     break;
                 case 3:
@@ -935,7 +934,7 @@ public class Programa implements Serializable {
             limpaTela();
             if (opcaoUtilizador != 0)
                 escolaInformatica.changeAluno(posicao, novoAluno);
-        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
+        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 6);
     }
 
     public static void modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
@@ -1549,6 +1548,7 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 10:
+                                System.out.println("Aqui");
                                 ArrayList<Professor> professoresEscolaIdade = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 ArrayList<Professor> profMaisNovos = professorMaisNovo(professoresEscolaIdade);
                                 ArrayList<Professor> profMaisVelhos = professorMaisVelho(professoresEscolaIdade);

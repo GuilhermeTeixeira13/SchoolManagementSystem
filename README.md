@@ -1,20 +1,98 @@
-# TP-POO
-Trabalho Prático de Programação Orientada a Objetos - Engenharia Informática - Universidade da Beira Interior 2020/2021
- 
-Deixo aqui algumas instruções para a instalação do material necessário...Caso concordem, tentem fazer isso tudo e caso n consigam fazer algo podem pedir ajuda, que eu ajudo com o que souber...
- 
-1 - Instalar VSCODE, instalar as extensões "Language Support for Java(TM) by Red Hat" e "Extension Pack for Java"  
-2 - Criar conta GitHub, fazer download do Github Desktop e logar-se (E enviar o vosso nome da conta para o grupo de whats, para eu vos poder adicionar como colaboradores).  
-3 - Instalar o Git (https://git-scm.com/) tal como mostra neste vídeo (https://www.youtube.com/watch?v=gMh6lrXibWY&list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA&index=5), a partir do 24min (Nas partes que não são iguais ao video, deixar tudo default).  
-4 - Clonar --> Acessar o repositório (https://github.com/GuilhermeTeixeira13/TP-POO), clicar em "Code"(Botão a verde) e depois em "Open on GitHub Desktop" e escolherem uma pasta para guardar o projeto.  
-6 - "Open in VSCODE" para verem o projeto.  
-7 - IMPORTANTE(NÃO ESQUECER) --> Sempre que quiserem implementar algo novo, criam uma branch nova em "Current Branch" e mudam-se para a nova branch (ramo). Automaticamente o VSCODE vai mudar de branch também. Podem clicar logo em "Publish branch"(No GitHb Desktop), para os outros elementos do grupo terem acesso a ela também.  
-8 - Desenvolvem o que tiverem a desenvolver, no VSCODE. Vão dando commits(No GitHub Desktop) conforme vão realizando tarefas, dizendo o que fizeram.  
-9 - Quando virem que desenvolveram o que é suposto, fazem "Fetch Origin" (para dar update ao codigo consoante o que está no repositório online) e depois fazem "Pull Request" (Estão a pedir para que a vossa branch se funda com a main).  
-10 - Não precisam de fazer mais nada, depois eu checko as vossas branches e se tudo tiver OK eu fundo-as com a main.  
+# CLASSES
 
-Videos que podem ajudar a perceber melhor este sistema:  
-https://www.youtube.com/watch?v=xAOBQtSVI_k&list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA&index=13
-https://www.youtube.com/watch?v=OlArEishhQg&list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA&index=8  
+**Escola Profissional de Informática (Gui 26-11)** -> Nome da Escola, Número da Escola, Composto por vários cursos(ArrayList de Cursos), Localização, Diretor da Escola, Contactos da Escola, Composto por várias pessoas(ArrayList de pessoas), Composto por várias disciplinas(ArrayList de Disciplinas)
 
-Caso não consigam mesmo assim, posso ajudar por discord, etc...
+**Curso (Gui 26-11)** -> Código de Curso; Composto por várias disciplinas(ArrayList de Disciplinas),Provas de Ingresso, Nome, Duração em horas, Média do Último Colocado, data de início, data de fim, alunos(ArrayList de Alunos).
+
+***
+
+**Disciplina (João 26-11)** -> Número da disciplina, Nome, Alunos Inscritos (ArrayList de Aluno), Professores que lecionam(ArrayList de Professores), Frequencias(ArrayList de Frequencias)
+
+**ProvasDeIngresso (João 26-11)** -> Provas de Ingresso(ArrayList de Strings), e/ou(String)
+***
+**Pessoa (Gui 26-11)** ->  Nome, Contactos, Local de Origem, email, data de nascimento(para a partir daí calcular a idade)
+
+**Aluno EXTENDS Pessoa (Gui 26-11)** -> Número de aluno, NotasDisciplinas(ArrayList de NotasDisciplina), Média de Entrada, Disciplinas a que está inscrito (ArrayList de Disciplinas), Curso em que está
+
+**Professor EXTENDS Pessoa (João 26-11)** -> Número de Professor, Rating, Disciplinas que Leciona(ArrayList de Disciplinas)
+
+**Diretor EXTENDS Pessoa (Gui 26-11)** -> Anos de serviço, Formação Académica
+***
+**NotasDisciplina (Tiago 26-11)** -> disciplina, notas(ArrayList de Resultados) 
+
+**Resultado (Cláudio 26-11)** -> Frequência, nota 
+
+**Contactos (Tiago 26-11)** -> ArrayList de Telefone, email
+
+**Telefone (Tiago 26-11)** -> Número, tipo
+
+**Frequência (Cláudio 26-11)** -> ID, Disciplina, Data da Frequência, Professor que a fez, Nº de Perguntas, Perguntas(ArrayList de Perguntas), Nível de dificuldade
+
+**Perguntas (Cláudio 26-11)** -> Número, Cotação, Texto
+
+***
+# OBJETICOS NA MAIN
+
+**Escola Profissional de Informática: (João 10-12)** 
+1. :exclamation:Criar Diretor (Removendo o antigo automaticamente); ((A implementar na classe Escola) ✔️
+2. :exclamation:Modificar dados sobre o diretor (A implementar na classe Escola); ✔️
+3. :exclamation:Listar Pessoas ✔️ Melhorar inputs
+4. :exclamation:Mudar informações acerca da escola (Nome, Número, Contactos, Localização) ✔️
+5. :exclamation:Mostrar informações da escola ✔️ Melhorar inputs
+
+**Cursos: (Gui 10-12)**
+1. :exclamation:Listar cursos (A implementar na classe Escola)
+2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ Verificar se dá p adicionar disciplinas corretamente
+3. :exclamation:Consultar informações de determinado curso (A implementar na classe Escola)✔️
+4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️
+5. :exclamation:Remover curso (A implementar na classe Escola) ✔️
+6. Mostrar curso mais frequentado (A implementar na classe Escola) 
+7. Inserir e Remover disciplinas de determinado curso (A implementar na classe Escola)
+8. Inserir e Remover alunos de determinado curso (A implementar na classe Escola)
+
+**Disciplinas: (Cláudio 10-12)**
+1. :exclamation:Listar disciplinas (A implementar na classe Escola)
+2. :exclamation:Criar disciplina (A implementar na classe Escola)
+3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola)
+4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola)
+5. :exclamation:Remover disciplina (A implementar na classe Escola)
+6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola)
+7. Mostrar professores que lecionam determinada disciplina (A implementar na classe Escola)
+8. Mostrar alunos inscritos em determinada disciplina (A implementar na classe Escola)
+
+**Frequências: (Tiago 10-12)**
+1. :exclamation:Listar Frequências de determinada disciplina (A implementar na classe Frequência)
+2. :exclamation:Criar Frequência (A implementar na classe Frequência)
+3. :exclamation:Mostrar determinada frequência, dado o ID da mesma (A implementar na classe Frequência)
+4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência)
+5. :exclamation:Remover Frequência (A implementar na classe Frequência)
+6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência)
+7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência)
+8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência)
+9. Mostrar frequências de determinado curso (A implementar na classe Frequência)
+9. Mostrar frequências de determinada disciplina (A implementar na classe Frequência)
+
+**Professores: (João 10-12)**
+1. :exclamation:Listar professores (A implementar na classe Professor)
+2. :exclamation:Criar professor (A implementar na classe Professor)
+3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor)
+4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor)
+5. :exclamation:Remover professor (A implementar na classe Professor)
+6. Mostrar quais disciplinas lecionou determinado professor (A implementar na classe Professor)
+7. Mostrar professor que lecionou mais disciplinas (A implementar na classe Professor)
+8. Mostrar professores deslocados (A implementar na classe Professor)
+9. Mostrar qual é o professore com melhor rating (A implementar na classe Professor)
+10. Mostrar professor mais velho e mais novo (A implementar na classe Professor, depois de elaborar função q calcule a idade)
+
+**Alunos: (Gui 10-12)**
+1. :exclamation:Listar alunos (A implementar na classe Aluno) ✔️ (Verificar outputs)
+2. :exclamation:Criar aluno (A implementar na classe Aluno) ✔️
+3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ (Verificar outputs)
+4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️
+5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️
+6. Atribuir notas(A implementar na classe Aluno)
+7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso)
+8. Mostrar alunos não deslocados (A implementar na classe Aluno)
+9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade)
+10. Mostrar aluno com melhor e pior média, de determinado curso (A implementar na classe Aluno, depois de fazer função que calcule a média nas NotasDisciplina)
+11. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno)

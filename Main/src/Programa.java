@@ -1070,24 +1070,17 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 8);
     }
 
-    public static ArrayList<Integer> profcommaisdiscpLecionadas(EscolaInformatica escolaInformatica) {
-        ArrayList<Integer> devolucaoFuncao = new ArrayList<>();
+    public static ArrayList<Professor> profcommaisdiscpLecionadas(ArrayList<Professor> profsEscola) {
+        ArrayList<Professor> profsComMaisDiscpLec = new ArrayList<>();
         int nmaximodiscp;
-        ArrayList<Pessoa> profsEscolaPessoa = identProf(escolaInformatica.getPessoasEscola());
-
         ArrayList<Integer> armazenaNumDiscp = new ArrayList<>();
 
-        ArrayList<Professor> profsEscola = convPessoaProf(profsEscolaPessoa);
+        
 
         for (int i = 0; i < profsEscola.size(); i++) {
             armazenaNumDiscp.add(profsEscola.get(i).contDiscProf());
         }
 
-        // Caso nenhum professor lecione uma disiciplina
-        int verifica0 = Collections.binarySearch(armazenaNumDiscp, 0);
-        if (verifica0 < 0) {
-            devolucaoFuncao.add(-1);
-        }
         nmaximodiscp = Collections.max(armazenaNumDiscp);
 
         // A função irá devolver a posição do prof que lecione mais disciplinas, caso o
@@ -1095,10 +1088,10 @@ public class Programa implements Serializable {
         // disciplinas lecionadas.
         for (int i = 0; i < profsEscola.size(); i++) {
             if (profsEscola.get(i).contDiscProf() == nmaximodiscp) {
-                devolucaoFuncao.add(i);
+                profsComMaisDiscpLec.add(profsEscola.get(i));
             }
         }
-        return devolucaoFuncao;
+        return profsComMaisDiscpLec;
     }
 
     public static ArrayList<Professor> professoresDeslocadosFuncao(EscolaInformatica escolaInformatica , ArrayList<Professor> professoresEscola){
@@ -1509,19 +1502,19 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 7:
-                                ArrayList<Integer> resultados = profcommaisdiscpLecionadas(escolaInformatica);
+                                ArrayList<Professor> professorMaisDiscLec = convPessoaProf(escolaInformatica.getPessoasEscola())
+                                ArrayList<Professor> ArrayResultadosProf = profcommaisdiscpLecionadas(professorMaisDiscLec);
                                 ArrayList<Professor> professoresEscolaDisc = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
-                                for(int i = 0; i < resultados.size(); i++){
-                                    if(resultados.get(i) == -1){
-                                    System.out.println("Os professores ainda não lecionaram nenhuma disciplina!");
+                                if(ArrayResultadosProf.size() == 1){
+                                    System.out.println("Professor com mais discipinas lecionadas " + "----> " + ArrayResultadosProf.get(0).contDiscProf());
+                                    listaumProf(ArrayResultadosProf.get(0));
+                                }
+                                else{
+                                    System.out.println("EMPATE RATING COM " + professoresEscolaDisc.get(0).contDiscProf() + " DISCIPLINAS LECIONADAS!");
+                                    for(int i = 0; i < ArrayResultadosProf.size(); i++){
+                                        listaumProf(ArrayResultadosProf.get(i));
                                     }
-                                    else{
-                                        if(resultados.get(i) == professoresEscolaDisc.get(i).contDiscProf()){
-                                            listaumProf(professoresEscolaDisc.get(i));
-                                            System.out.println("----------");
-                                        }
-                                    }
-                                } 
+                                }
                                 pedeTecla();
                                 break;
                             case 8:
@@ -1536,11 +1529,11 @@ public class Programa implements Serializable {
                                 ArrayList<Professor> professoresEscolaRating = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 ArrayList<Professor> profscomMelhorRating = professorComMelhorRating(professoresEscolaRating);
                                 if(profscomMelhorRating.size() == 1){
-                                    System.out.println("Professor com melhor Rating: ");
+                                    System.out.println("Professor com melhor Rating " + "----> " + profscomMelhorRating.get(0).getRating());
                                     listaumProf(profscomMelhorRating.get(0));
                                 }
                                 else{
-                                    System.out.println("EMPATE RATING -> ENTRE: ");
+                                    System.out.println("EMPATE NA POSIÇÃO " + professoresEscolaDisc.get(0).getRating() + " DO RATING!");
                                     for(int i = 0; i < profscomMelhorRating.size(); i++){
                                         listaumProf(profscomMelhorRating.get(i));
                                     }
@@ -1548,27 +1541,26 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 10:
-                                System.out.println("Aqui");
                                 ArrayList<Professor> professoresEscolaIdade = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 ArrayList<Professor> profMaisNovos = professorMaisNovo(professoresEscolaIdade);
                                 ArrayList<Professor> profMaisVelhos = professorMaisVelho(professoresEscolaIdade);
                                 if(profMaisNovos.size() == 1){
-                                    System.out.println("Professor mais novo: ");
+                                    System.out.println("Professor com " + "----> " + profscomMelhorRating.get(0).calculaIdade() + " é o mais novo!");
                                     listaumProf(profMaisNovos.get(0));
                                 }
                                 else{
-                                    System.out.println("EMPATE nos MAIS NOVOS -> ENTRE: ");
+                                    System.out.println("EMPATE NOS MAIS NOVOS, IDADE: " + professoresEscolaDisc.get(0).getRating());
                                     for(int i = 0; i < profMaisNovos.size(); i++){
                                         listaumProf(profMaisNovos.get(i));
                                     }
                                 }
                                 System.out.println("------------------------------------------------");
                                 if(profMaisVelhos.size() == 1){
-                                    System.out.println("Professor mais velho: ");
+                                    System.out.println("Professor com " + "----> " + profscomMelhorRating.get(0).calculaIdade() + " é o mais velho!");
                                     listaumProf(profMaisVelhos.get(0));
                                 }
                                 else{
-                                    System.out.println("EMPATE nos MAIS VELHOS -> ENTRE: ");
+                                    System.out.println("EMPATE NOS MAIS VELHOS, IDADE: " + professoresEscolaDisc.get(0).getRating());
                                     for(int i = 0; i < profMaisVelhos.size(); i++){
                                         listaumProf(profMaisVelhos.get(i));
                                     }

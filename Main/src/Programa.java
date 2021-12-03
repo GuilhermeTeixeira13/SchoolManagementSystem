@@ -934,15 +934,15 @@ public class Programa implements Serializable {
     public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica){
         System.out.println("1. CRIAR FREQUÊNCIA\n");
         Frequencia novaFrequencia = new Frequencia();
-        int verificaExistenciaFreq = -1;
-        int idFreq = 0, NTotal;
-        String dific, disciplina = "";
+        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1;
+        int idFreq = 0, NTotalPerguntas;
+        String dific;
         ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
-        String nomediscp;
+        String nomediscp, nomeProf;
         int verificaExistenciaDisc = -1; 
 
         System.out.print("\nDisciplina disponíveis na escola: ");
-        System.out.println(escolaInformatica.getDisciplinaEscola());
+        escolaInformatica.listaDisciplinas();
 
         System.out.print("\nDisciplina para a qual pretende criar uma frequência: ");
         nomediscp = Ler.umaString(); 
@@ -968,11 +968,23 @@ public class Programa implements Serializable {
         novaFrequencia.setdatafreq(dataFrequencia);
 
         System.out.print("\nProfessor Responsável: ");
-        
+        nomeProf = Ler.umaString(); 
+        verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProf, escolaInformatica.getPessoasEscola());
+        while(verificaExistenciaProf == -1){
+            System.out.print("Lamento, mas este professor não existe! Escolha outro: ");
+            nomeProf = Ler.umaString(); 
+        verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProf, escolaInformatica.getPessoasEscola());
+        }
+        novaFrequencia.setProfessorResponsavel((Professor)escolaInformatica.getPessoasEscola().get(verificaExistenciaProf));
 
         System.out.print("\nNumero Total de Perguntas: ");
-        NTotal = Ler.umInt();
-        novaFrequencia.setNumPergTotal(NTotal);
+        NTotalPerguntas = Ler.umInt();
+        novaFrequencia.setNumPergTotal(NTotalPerguntas);
+        while(NTotalPerguntas <= 0){
+            System.out.print("Insira um número de perguntas válido: ");
+            NTotalPerguntas = Ler.umInt();
+        }
+        novaFrequencia.setNumPergTotal(NTotalPerguntas);
 
         System.out.print("\nLista de perguntas: ");
         /*to-do
@@ -982,8 +994,6 @@ public class Programa implements Serializable {
         System.out.print("\nDificuldade: ");
         dific = Ler.umaString();
         novaFrequencia.setdificuldadec(dific);
-
-
 
         return novaFrequencia;
     }

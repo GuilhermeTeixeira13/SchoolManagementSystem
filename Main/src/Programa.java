@@ -952,6 +952,7 @@ public class Programa implements Serializable {
             nomediscp = Ler.umaString(); 
             verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
         }
+        novaFrequencia.setDisc(nomediscp);
 
         do {
             if (verificaExistenciaFreq == -1)
@@ -988,7 +989,7 @@ public class Programa implements Serializable {
 
         System.out.print("\nLista de perguntas: ");
         /*to-do
-        lista de perguntas
+            Construir NTotalPerguntas perguntas da frequência, contendo o numPergunta, cotação e a pergunta (Classe perguntas)
         */
 
         System.out.print("\nDificuldade: ");
@@ -1132,7 +1133,7 @@ public class Programa implements Serializable {
 
 
 
-    
+
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();

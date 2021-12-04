@@ -1255,7 +1255,7 @@ public class Programa implements Serializable {
                         System.out.print(
                                 " GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Inserir e Remover disciplinas de determinado curso\n7. Inserir e Remover alunos de determinado curso\n8. Mostrar curso mais frequentado\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 6 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 5 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -1375,7 +1375,7 @@ public class Programa implements Serializable {
                         System.out.print(
                                 "GERIR DISCIPLINAS\n\n1. Listar disciplinas\n2. Criar disciplina\n3. Consultar informações de determinada disciplina\n4. Modificar dados sobre uma disciplina\n5. Remover disciplina\n6. Mostrar professor que lecionou mais disciplinas\n7. Mostrar professores deslocados\n8. Mostrar qual é o professore com melhor rating\n9. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 9 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 8 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -1428,14 +1428,17 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR PROFESSORES\n\n1. Listar professores\n2. Criar professor\n3. Consultar informações de determinado professor\n4. Modificar dados sobre um determinado professor\n5. Remover professor\n6. Mostrar quais disciplinas lecionou determinado professor\n7. Mostrar professor que lecionou mais disciplinas\n8. Mostrar professores deslocados\n9. Mostrar qual é o professor com melhor rating\n10. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR PROFESSORES\n\n1. Listar professores\n2. Criar professor\n3. Consultar informações de determinado professor\n4. Modificar dados sobre um determinado professor\n5. Remover professor\n6. Mostrar professor que lecionou mais disciplinas\n7. Mostrar professores deslocados\n8. Mostrar qual é o professor com melhor rating\n9. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 10 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 9 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
                         limpaTela();
                         ArrayList<Pessoa> profsDaEscola = identProf(escolaInformatica.getPessoasEscola());
+                        ArrayList<Professor> professoresEscolaDisc = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
+                        ArrayList<Professor> professoresEscolaRating = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
+                        ArrayList<Professor> profscomMelhorRating = professorComMelhorRating(professoresEscolaRating);
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Professores
@@ -1472,8 +1475,7 @@ public class Programa implements Serializable {
                                 System.out.print(
                                         "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\nEscreva o nome do professor que pretende modificar -->  ");
                                 String nomeProfModificar = Ler.umaString();
-                                posProf = escolaInformatica.devolvePosProf(nomeProfModificar,
-                                        escolaInformatica.getPessoasEscola());
+                                posProf = escolaInformatica.devolvePosProf(nomeProfModificar, escolaInformatica.getPessoasEscola());
                                 if (posProf == -1) {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                     pedeTecla();
@@ -1483,7 +1485,7 @@ public class Programa implements Serializable {
                                 }
                                 break;
                             case 5:
-                                // Remover diretor
+                                // Remover professor
                                 System.out.print(
                                         "5. REMOVER PROFESSOR\n\nEscreva o nome do professor que pretende remover -->  ");
                                 String nomeProfRemover = Ler.umaString();
@@ -1499,70 +1501,73 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 6:
+                                // Mostrar professores com mais disciplinas lecionadas
                                 ArrayList<Professor> professorMaisDiscLec = convPessoaProf(escolaInformatica.getPessoasEscola());
                                 ArrayList<Professor> ArrayResultadosProf = profcommaisdiscpLecionadas(professorMaisDiscLec);
-                                ArrayList<Professor> professoresEscolaDisc = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 if(ArrayResultadosProf.size() == 1){
-                                    System.out.println("Professor com mais discipinas lecionadas " + "----> " + ArrayResultadosProf.get(0).contDiscProf());
-                                    listaumProf(ArrayResultadosProf.get(0));
+                                    System.out.println("PROFESSORES COM MAIS DISCIPLINAS LECIONADAS (" + ArrayResultadosProf.get(0).contDiscProf() + "):\n");
+                                    System.out.println(" . "+ArrayResultadosProf.get(0).getNome());  
                                 }
                                 else{
-                                    System.out.println("EMPATE RATING COM " + professoresEscolaDisc.get(0).contDiscProf() + " DISCIPLINAS LECIONADAS!");
-                                    for(int i = 0; i < ArrayResultadosProf.size(); i++){
-                                        listaumProf(ArrayResultadosProf.get(i));
-                                    }
+                                    System.out.println("EMPATE! " + professoresEscolaDisc.get(0).contDiscProf() + " DISCIPLINAS LECIONADAS ENTRE OS SEGUINTES PROFESSORES:\n");
+                                    for(int i = 0; i < ArrayResultadosProf.size(); i++)
+                                        System.out.println(" . "+ArrayResultadosProf.get(i).getNome());            
                                 }
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 7:
+                                // Mostrar professores deslocados
                                 ArrayList<Professor> professoresEscolaDeslocacoes = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 ArrayList<Professor> professoresDeslocados = professoresDeslocadosFuncao(escolaInformatica, professoresEscolaDeslocacoes);
-                                for(int i = 0; i < professoresDeslocados.size(); i++){
-                                    listaumProf(professoresDeslocados.get(i));
-                                }
+                                System.out.println("PROFESSORES DESLOCADOS\n");
+                                for(int i = 0; i < professoresDeslocados.size(); i++)
+                                    System.out.println(" . "+ professoresDeslocados.get(i).getNome()+" ("+ professoresDeslocados.get(i).getLocalDeOrigem() +")");  
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 8:
-                                ArrayList<Professor> professoresEscolaRating = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
-                                ArrayList<Professor> profscomMelhorRating = professorComMelhorRating(professoresEscolaRating);
+                                // Mostrar professores com melhor rating
                                 if(profscomMelhorRating.size() == 1){
-                                    System.out.println("Professor com melhor Rating " + "----> " + profscomMelhorRating.get(0).getRating());
-                                    listaumProf(profscomMelhorRating.get(0));
+                                    System.out.println("PROFESSOR COM MELHOR RATING (" + profscomMelhorRating.get(0).getRating() + "):\n");
+                                    System.out.println(" . "+ profscomMelhorRating.get(0).getNome());
                                 }
                                 else{
-                                    System.out.println("EMPATE NA POSIÇÃO " + professoresEscolaDisc.get(0).getRating() + " DO RATING!");
-                                    for(int i = 0; i < profscomMelhorRating.size(); i++){
-                                        listaumProf(profscomMelhorRating.get(i));
-                                    }
+                                    System.out.println("EMPATE NO MELHOR RATING (" + professoresEscolaDisc.get(0).getRating() + ") ENTRE OS SEGUINTES PROFESSORES:\n");
+                                    for(int i = 0; i < profscomMelhorRating.size(); i++)
+                                        System.out.println(" . "+ profscomMelhorRating.get(i).getNome());
+                                    System.out.println();
                                 }
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 9:
+                                // Mostrar professores mais velhos e mais novos
                                 ArrayList<Professor> professoresEscolaIdade = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 ArrayList<Professor> profMaisNovos = professorMaisNovo(professoresEscolaIdade);
                                 ArrayList<Professor> profMaisVelhos = professorMaisVelho(professoresEscolaIdade);
                                 if(profMaisNovos.size() == 1){
-                                    System.out.println("Professor com " + "----> " + profscomMelhorRating.get(0).calculaIdade() + " é o mais novo!");
-                                    listaumProf(profMaisNovos.get(0));
+                                    System.out.println("PROFESSOR MAIS NOVO (" + profscomMelhorRating.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ profscomMelhorRating.get(0).getNome());
                                 }
                                 else{
-                                    System.out.println("EMPATE NOS MAIS NOVOS, IDADE: " + professoresEscolaDisc.get(0).getRating());
+                                    System.out.println("EMPATE NOS PROFESSORES MAIS NOVOS (" + profMaisNovos.get(0).calculaIdade()+" ANOS):\n");
                                     for(int i = 0; i < profMaisNovos.size(); i++){
-                                        listaumProf(profMaisNovos.get(i));
+                                        System.out.println(" . "+ profMaisNovos.get(0).getNome());
                                     }
                                 }
-                                System.out.println("------------------------------------------------");
+                                System.out.println("\n------------------------------------------------");
                                 if(profMaisVelhos.size() == 1){
-                                    System.out.println("Professor com " + "----> " + profscomMelhorRating.get(0).calculaIdade() + " é o mais velho!");
-                                    listaumProf(profMaisVelhos.get(0));
+                                    System.out.println("PROFESSOR MAIS VELHO (" + profMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ profMaisVelhos.get(0).getNome());
                                 }
                                 else{
-                                    System.out.println("EMPATE NOS MAIS VELHOS, IDADE: " + professoresEscolaDisc.get(0).getRating());
+                                    System.out.println("EMPATE NOS PROFESSORES MAIS VELHOS (" + profMaisVelhos.get(0).calculaIdade()+" ANOS):\n");
                                     for(int i = 0; i < profMaisVelhos.size(); i++){
-                                        listaumProf(profMaisVelhos.get(i));
+                                        System.out.println(" . "+ profMaisVelhos.get(i).getNome());
                                     }
                                 }
-
+                                System.out.println();
                                 pedeTecla();
                                 break;
                         }

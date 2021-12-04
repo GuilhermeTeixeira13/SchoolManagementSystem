@@ -1373,9 +1373,9 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR DISCIPLINAS\n\n1. Listar disciplinas\n2. Criar disciplina\n3. Consultar informações de determinada disciplina\n4. Modificar dados sobre uma disciplina\n5. Remover disciplina\n6. Mostrar qual a disciplina com a frequência mais longa\n7. Mostrar professores que lecionam determinada disciplina\n8. Mostrar alunos inscritos em determinada disciplina\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR DISCIPLINAS\n\n1. Listar disciplinas\n2. Criar disciplina\n3. Consultar informações de determinada disciplina\n4. Modificar dados sobre uma disciplina\n5. Remover disciplina\n6. Mostrar professor que lecionou mais disciplinas\n7. Mostrar professores deslocados\n8. Mostrar qual é o professore com melhor rating\n9. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 8 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 9 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -1483,6 +1483,7 @@ public class Programa implements Serializable {
                                 }
                                 break;
                             case 5:
+                                // Remover diretor
                                 System.out.print(
                                         "5. REMOVER PROFESSOR\n\nEscreva o nome do professor que pretende remover -->  ");
                                 String nomeProfRemover = Ler.umaString();
@@ -1498,11 +1499,7 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 6:
-                                // Mostrar quais disciplinas leciona determinado professor
-                                pedeTecla();
-                                break;
-                            case 7:
-                                ArrayList<Professor> professorMaisDiscLec = convPessoaProf(escolaInformatica.getPessoasEscola())
+                                ArrayList<Professor> professorMaisDiscLec = convPessoaProf(escolaInformatica.getPessoasEscola());
                                 ArrayList<Professor> ArrayResultadosProf = profcommaisdiscpLecionadas(professorMaisDiscLec);
                                 ArrayList<Professor> professoresEscolaDisc = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 if(ArrayResultadosProf.size() == 1){
@@ -1517,7 +1514,7 @@ public class Programa implements Serializable {
                                 }
                                 pedeTecla();
                                 break;
-                            case 8:
+                            case 7:
                                 ArrayList<Professor> professoresEscolaDeslocacoes = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 ArrayList<Professor> professoresDeslocados = professoresDeslocadosFuncao(escolaInformatica, professoresEscolaDeslocacoes);
                                 for(int i = 0; i < professoresDeslocados.size(); i++){
@@ -1525,7 +1522,7 @@ public class Programa implements Serializable {
                                 }
                                 pedeTecla();
                                 break;
-                            case 9:
+                            case 8:
                                 ArrayList<Professor> professoresEscolaRating = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 ArrayList<Professor> profscomMelhorRating = professorComMelhorRating(professoresEscolaRating);
                                 if(profscomMelhorRating.size() == 1){
@@ -1540,7 +1537,7 @@ public class Programa implements Serializable {
                                 }
                                 pedeTecla();
                                 break;
-                            case 10:
+                            case 9:
                                 ArrayList<Professor> professoresEscolaIdade = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
                                 ArrayList<Professor> profMaisNovos = professorMaisNovo(professoresEscolaIdade);
                                 ArrayList<Professor> profMaisVelhos = professorMaisVelho(professoresEscolaIdade);
@@ -1569,7 +1566,7 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                         }
-                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 10);
+                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 9);
                     break;
                 case 5:
                     do {

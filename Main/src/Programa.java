@@ -1666,6 +1666,10 @@ public class Programa implements Serializable {
                                 break;
                             case 2:
                                 // Criar Frequência
+                                System.out.println("2. CRIAR FREQUÊNCIA\n");
+                                escolaInformatica.
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                System.out.println("\n-->  Curso criado com sucesso!!\n");
 
                                 pedeTecla();
                                 break;

@@ -931,7 +931,7 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
     }
 
-    public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica){
+    public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica, Perguntas perguntas){
         System.out.println("1. CRIAR FREQUÊNCIA\n");
         Frequencia novaFrequencia = new Frequencia();
         int verificaExistenciaFreq = -1, verificaExistenciaProf = -1;
@@ -941,6 +941,10 @@ public class Programa implements Serializable {
         ArrayList<Pessoa> Professores = identProf(escolaInformatica.getPessoasEscola());
         String nomediscp, nomeProf;
         int verificaExistenciaDisc = -1; 
+        int escolha = 1;
+        int numpergunta, cotacao;
+        String pergunta;
+        
 
         System.out.print("\nDisciplina disponíveis na escola: ");
         escolaInformatica.listaDisciplinas();
@@ -989,9 +993,20 @@ public class Programa implements Serializable {
         novaFrequencia.setNumPergTotal(NTotalPerguntas);
 
         System.out.print("\nLista de perguntas: ");
-        /*to-do
-            Construir NTotalPerguntas perguntas da frequência, contendo o numPergunta, cotação e a pergunta (Classe perguntas)
-        */
+        do{
+            if(escolha != 0){
+                System.out.print("\nDigite o número da pergunta: ");
+                numpergunta = Ler.umInt();
+                perguntas.setnumpergunta(numpergunta);
+                System.out.print("\nDigite a cotação: ");
+                cotacao = Ler.umInt();
+                perguntas.setcotaçao(cotacao);
+                System.out.print("\nDigite a pergunta: ");
+                pergunta = Ler.umaString();
+                perguntas.setpergunta(pergunta);
+            }
+
+        } while(escolha != 0);
 
         System.out.print("\nDificuldade: ");
         dific = Ler.umaString();

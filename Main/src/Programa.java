@@ -1259,10 +1259,12 @@ public class Programa implements Serializable {
                                 // Modificar dados acerca do atual diretor
 
                                 removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
+                                Diretor dirModificado = modDiretor(escolaInformatica);
                                 escolaInformatica.getPessoasEscola()
-                                        .add(modDiretor(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                        .add(dirModificado);
                                 escolaInformatica
-                                        .setDiretorEscola(modDiretor(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                        .setDiretorEscola(dirModificado);
+
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
                                 break;

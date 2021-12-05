@@ -90,7 +90,7 @@
 5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️
 6. Atribuir notas(A implementar na classe Aluno)
 7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) :warning:
-8. Mostrar alunos não deslocados (A implementar na classe Aluno)
+8. Mostrar alunos deslocados (A implementar na classe Aluno) ✔️
 9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade)
 10. Mostrar aluno com melhor e pior média, de determinado curso (A implementar na classe Aluno, depois de fazer função que calcule a média nas NotasDisciplina)
 11. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno)

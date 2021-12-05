@@ -216,18 +216,18 @@ public class EscolaInformatica implements Serializable{
         int pos=-1;
 
         for(int i = 0; i < Alunos.size(); i++){
-            if(this.getPessoasEscola().get(i).getNome().equals(nomeAluno))
+            if(Alunos.get(i).getNome().equals(nomeAluno))
                 pos = i;
         }
 
         return pos;
     }
 
-    public int devolvePosProf(String nomeProf, ArrayList<Pessoa> Alunos){
+    public int devolvePosProf(String nomeProf, ArrayList<Pessoa> Professores){
         int pos=-1;
 
-        for(int i = 0; i < Alunos.size(); i++){
-            if(this.getPessoasEscola().get(i).getNome().equals(nomeProf))
+        for(int i = 0; i < Professores.size(); i++){
+            if(Professores.get(i).getNome().equals(nomeProf))
                 pos = i;
         }
 

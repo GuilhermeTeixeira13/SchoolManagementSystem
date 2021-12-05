@@ -96,6 +96,15 @@ public class Programa implements Serializable {
         return professores;
     }
 
+    public static ArrayList<Aluno> convPessoaAluno(ArrayList<Pessoa> AlunosEscolaPessoa){
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        for(int i = 0; i < AlunosEscolaPessoa.size(); i++){
+            Aluno a = (Aluno) AlunosEscolaPessoa.get(i);
+            alunos.add(a);
+        }
+        return alunos;
+    }
+
     public static void listaPessoasOutput(ArrayList<Pessoa> pessoas) {
         for (int i = 0; i < pessoas.size(); i++) {
             Pessoa pessoa = pessoas.get(i);
@@ -1071,8 +1080,6 @@ public class Programa implements Serializable {
         int nmaximodiscp;
         ArrayList<Integer> armazenaNumDiscp = new ArrayList<>();
 
-        
-
         for (int i = 0; i < profsEscola.size(); i++) {
             armazenaNumDiscp.add(profsEscola.get(i).contDiscProf());
         }
@@ -1090,12 +1097,13 @@ public class Programa implements Serializable {
         return profsComMaisDiscpLec;
     }
 
-    public static ArrayList<Professor> professoresDeslocadosFuncao(EscolaInformatica escolaInformatica , ArrayList<Professor> professoresEscola){
+    public static ArrayList<Pessoa> pessoasDeslocadas(EscolaInformatica escolaInformatica){
+        ArrayList<Pessoa> pessoasEscola = escolaInformatica.getPessoasEscola();
         String localizacaoEscola = escolaInformatica.getLocalizacao();
-        ArrayList<Professor> deslocados = new ArrayList<>();
-        for(int i = 0; i < professoresEscola.size(); i++){
-            if(!professoresEscola.get(i).getLocalDeOrigem().equals(localizacaoEscola)){
-                deslocados.add(professoresEscola.get(i));
+        ArrayList<Pessoa> deslocados = new ArrayList<>();
+        for(int i = 0; i < pessoasEscola.size(); i++){
+            if(!pessoasEscola.get(i).getLocalDeOrigem().equals(localizacaoEscola)){
+                deslocados.add(pessoasEscola.get(i));
             }
         }
         return deslocados;
@@ -1117,37 +1125,37 @@ public class Programa implements Serializable {
         return profMelhorRating;
     }
 
-    public static ArrayList<Professor> professorMaisVelho(ArrayList<Professor> professoresEscola){
-        ArrayList<Professor> professoresMaisVelhos = new ArrayList<>();
+    public static ArrayList<Pessoa> pessoasMaisVelhas(ArrayList<Pessoa> pessoas){
+        ArrayList<Pessoa> pessoasMaisVelhas = new ArrayList<>();
         int idademaisVelho;
         ArrayList<Integer> idades = new ArrayList<>();
-        for(int i = 0; i < professoresEscola.size(); i++){
-            idades.add(professoresEscola.get(i).calculaIdade());
+        for(int i = 0; i < pessoas.size(); i++){
+            idades.add(pessoas.get(i).calculaIdade());
         }
         idademaisVelho = Collections.max(idades);
-        for(int i = 0; i < professoresEscola.size(); i++){
-            if(professoresEscola.get(i).calculaIdade() == idademaisVelho){
-                professoresMaisVelhos.add(professoresEscola.get(i));
+        for(int i = 0; i < pessoas.size(); i++){
+            if(pessoas.get(i).calculaIdade() == idademaisVelho){
+                pessoasMaisVelhas.add(pessoas.get(i));
             }
         }
-        return professoresMaisVelhos;
+        return pessoasMaisVelhas;
 
     }
 
-    public static ArrayList<Professor> professorMaisNovo(ArrayList<Professor> professoresEscola){
-        ArrayList<Professor> professoresMaisNovos = new ArrayList<>();
+    public static ArrayList<Pessoa> pessoasMaisNovas(ArrayList<Pessoa> pessoas){
+        ArrayList<Pessoa> pessoasMaisNovas = new ArrayList<>();
         int idademaisNovo;
         ArrayList<Integer> idades = new ArrayList<>();
-        for(int i = 0; i < professoresEscola.size(); i++){
-            idades.add(professoresEscola.get(i).calculaIdade());
+        for(int i = 0; i < pessoas.size(); i++){
+            idades.add(pessoas.get(i).calculaIdade());
         }
         idademaisNovo = Collections.min(idades);
-        for(int i = 0; i < professoresEscola.size(); i++){
-            if(professoresEscola.get(i).calculaIdade() == idademaisNovo){
-                professoresMaisNovos.add(professoresEscola.get(i));
+        for(int i = 0; i < pessoas.size(); i++){
+            if(pessoas.get(i).calculaIdade() == idademaisNovo){
+                pessoasMaisNovas.add(pessoas.get(i));
             }
         }
-        return professoresMaisNovos;
+        return pessoasMaisNovas;
 
     }
 
@@ -1159,8 +1167,7 @@ public class Programa implements Serializable {
             if(numAlunos>maior){
                 maior = escolaInformatica.getCursosEscola().get(i).getAlunosCurso().size();
                 cursoMaisFrequentado = escolaInformatica.getCursosEscola().get(i);
-            }
-                
+            }             
         }
         return cursoMaisFrequentado;
     }
@@ -1252,10 +1259,12 @@ public class Programa implements Serializable {
                                 // Modificar dados acerca do atual diretor
 
                                 removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
+                                Diretor dirModificado = modDiretor(escolaInformatica);
                                 escolaInformatica.getPessoasEscola()
-                                        .add(modDiretor(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                        .add(dirModificado);
                                 escolaInformatica
-                                        .setDiretorEscola(modDiretor(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                        .setDiretorEscola(dirModificado);
+
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
                                 break;
@@ -1547,11 +1556,11 @@ public class Programa implements Serializable {
                                 break;
                             case 7:
                                 // Mostrar professores deslocados
-                                ArrayList<Professor> professoresEscolaDeslocacoes = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
-                                ArrayList<Professor> professoresDeslocados = professoresDeslocadosFuncao(escolaInformatica, professoresEscolaDeslocacoes);
+                                ArrayList<Pessoa> pessoasDeslocadas = pessoasDeslocadas(escolaInformatica);
+                                ArrayList<Professor> professoresEscolaDeslocados = convPessoaProf(identProf(pessoasDeslocadas));
                                 System.out.println("PROFESSORES DESLOCADOS\n");
-                                for(int i = 0; i < professoresDeslocados.size(); i++)
-                                    System.out.println(" . "+ professoresDeslocados.get(i).getNome()+" ("+ professoresDeslocados.get(i).getLocalDeOrigem() +")");  
+                                for(int i = 0; i < professoresEscolaDeslocados.size(); i++)
+                                    System.out.println(" . "+ professoresEscolaDeslocados.get(i).getNome()+" ("+ professoresEscolaDeslocados.get(i).getLocalDeOrigem() +")");  
                                 System.out.println();
                                 pedeTecla();
                                 break;
@@ -1575,19 +1584,19 @@ public class Programa implements Serializable {
                                 break;
                             case 9:
                                 // Mostrar professores mais velhos e mais novos
-                                ArrayList<Professor> professoresEscolaIdade = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
-                                ArrayList<Professor> profMaisNovos = professorMaisNovo(professoresEscolaIdade);
-                                ArrayList<Professor> profMaisVelhos = professorMaisVelho(professoresEscolaIdade);
-                                professoresEscolaRating = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
-                                profscomMelhorRating = professorComMelhorRating(professoresEscolaRating);
+                                ArrayList<Pessoa> professores = identProf(escolaInformatica.getPessoasEscola());
+                                ArrayList<Professor> profMaisVelhos = convPessoaProf(identProf(pessoasMaisVelhas(professores)));
+                                ArrayList<Professor> profMaisNovos = convPessoaProf(identProf(pessoasMaisNovas(professores)));
+
                                 if(profMaisNovos.size() == 1){
-                                    System.out.println("PROFESSOR MAIS NOVO (" + profscomMelhorRating.get(0).calculaIdade() + " ANOS):\n");
-                                    System.out.println(" . "+ profscomMelhorRating.get(0).getNome());
+                                    System.out.println("PROFESSOR MAIS NOVO (" + profMaisNovos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ profMaisNovos.get(0).getNome());
                                 }
                                 else{
                                     System.out.println("EMPATE NOS PROFESSORES MAIS NOVOS (" + profMaisNovos.get(0).calculaIdade()+" ANOS):\n");
                                     for(int i = 0; i < profMaisNovos.size(); i++){
-                                        System.out.println(" . "+ profMaisNovos.get(0).getNome());
+                                        if(profMaisNovos.get(i).calculaIdade() == profMaisNovos.get(0).calculaIdade())
+                                            System.out.println(" . "+ profMaisNovos.get(i).getNome());
                                     }
                                 }
                                 System.out.println("\n------------------------------------------------");
@@ -1598,7 +1607,8 @@ public class Programa implements Serializable {
                                 else{
                                     System.out.println("EMPATE NOS PROFESSORES MAIS VELHOS (" + profMaisVelhos.get(0).calculaIdade()+" ANOS):\n");
                                     for(int i = 0; i < profMaisVelhos.size(); i++){
-                                        System.out.println(" . "+ profMaisVelhos.get(i).getNome());
+                                        if(profMaisVelhos.get(i).calculaIdade() == profMaisVelhos.get(0).calculaIdade())
+                                            System.out.println(" . "+ profMaisVelhos.get(i).getNome());
                                     }
                                 }
                                 System.out.println();
@@ -1718,12 +1728,44 @@ public class Programa implements Serializable {
                                 break;
                             case 8:
                                 // Mostrar alunos não deslocados
-
+                                ArrayList<Pessoa> pessoasDeslocadas = pessoasDeslocadas(escolaInformatica);
+                                ArrayList<Aluno> alunosEscolaDeslocados = convPessoaAluno(identAluno(pessoasDeslocadas));
+                                System.out.println("ALUNOS DESLOCADOS\n");
+                                for(int i = 0; i < alunosEscolaDeslocados.size(); i++)
+                                    System.out.println(" . "+ alunosEscolaDeslocados.get(i).getNome()+" ("+ alunosEscolaDeslocados.get(i).getLocalDeOrigem() +")");  
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 9:
                                 // Mostrar aluno mais velho e mais novo
+                                ArrayList<Pessoa> alunos = identAluno(escolaInformatica.getPessoasEscola());
+                                ArrayList<Aluno> alunoMaisVelhos = convPessoaAluno(identAluno(pessoasMaisVelhas(alunos)));
+                                ArrayList<Aluno> alunoMaisNovos = convPessoaAluno(identAluno(pessoasMaisNovas(alunos)));
 
+                                if(alunoMaisNovos.size() == 1){
+                                    System.out.println("ALUNO MAIS NOVO (" + alunoMaisNovos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ alunoMaisNovos.get(0).getNome());
+                                }
+                                else{
+                                    System.out.println("EMPATE NOS ALUNOS MAIS NOVOS (" + alunoMaisNovos.get(0).calculaIdade()+" ANOS):\n");
+                                    for(int i = 0; i < alunoMaisNovos.size(); i++){
+                                        if(alunoMaisNovos.get(i).calculaIdade() == alunoMaisNovos.get(0).calculaIdade())
+                                            System.out.println(" . "+ alunoMaisNovos.get(i).getNome());
+                                    }
+                                }
+                                System.out.println("\n------------------------------------------------");
+                                if(alunoMaisVelhos.size() == 1){
+                                    System.out.println("ALUNO MAIS VELHO (" + alunoMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ alunoMaisVelhos.get(0).getNome());
+                                }
+                                else{
+                                    System.out.println("EMPATE NOS ALUNOS MAIS VELHOS (" + alunoMaisVelhos.get(0).calculaIdade()+" ANOS):\n");
+                                    for(int i = 0; i < alunoMaisVelhos.size(); i++){
+                                        if(alunoMaisVelhos.get(i).calculaIdade() == alunoMaisVelhos.get(0).calculaIdade())
+                                            System.out.println(" . "+ alunoMaisVelhos.get(i).getNome());
+                                    }
+                                }
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 10:

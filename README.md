@@ -48,7 +48,6 @@
 5. :exclamation:Remover curso (A implementar na classe Escola) ✔️
 6. Mostrar curso mais frequentado (A implementar na classe Escola) 
 7. Inserir e Remover disciplinas de determinado curso (A implementar na classe Escola)
-8. Inserir e Remover alunos de determinado curso (A implementar na classe Escola)
 
 **Disciplinas: (Cláudio 10-12)**
 1. :exclamation:Listar disciplinas (A implementar na classe Escola)

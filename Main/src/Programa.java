@@ -1765,7 +1765,6 @@ public class Programa implements Serializable {
                                 }
                                 System.out.println();
                                 pedeTecla();
-                                pedeTecla();
                                 break;
                             case 10:
                                 // Mostrar aluno com melhor e pior média, de determinado curso

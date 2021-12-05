@@ -1004,6 +1004,9 @@ public class Programa implements Serializable {
                 System.out.print("\nDigite a pergunta: ");
                 pergunta = Ler.umaString();
                 perguntas.setpergunta(pergunta);
+                System.out.print("\nPretende criar outra pergunta?");
+                System.out.print("\nSe sim pressiona qualquer número, se não pressione 0: ");
+                escolha = Ler.umInt();
             }
 
         } while(escolha != 0);

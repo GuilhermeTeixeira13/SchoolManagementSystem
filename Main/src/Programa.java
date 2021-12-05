@@ -96,6 +96,15 @@ public class Programa implements Serializable {
         return professores;
     }
 
+    public static ArrayList<Aluno> convPessoaAluno(ArrayList<Pessoa> AlunosEscolaPessoa){
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        for(int i = 0; i < AlunosEscolaPessoa.size(); i++){
+            Aluno a = (Aluno) AlunosEscolaPessoa.get(i);
+            alunos.add(a);
+        }
+        return alunos;
+    }
+
     public static void listaPessoasOutput(ArrayList<Pessoa> pessoas) {
         for (int i = 0; i < pessoas.size(); i++) {
             Pessoa pessoa = pessoas.get(i);
@@ -1071,8 +1080,6 @@ public class Programa implements Serializable {
         int nmaximodiscp;
         ArrayList<Integer> armazenaNumDiscp = new ArrayList<>();
 
-        
-
         for (int i = 0; i < profsEscola.size(); i++) {
             armazenaNumDiscp.add(profsEscola.get(i).contDiscProf());
         }
@@ -1090,12 +1097,13 @@ public class Programa implements Serializable {
         return profsComMaisDiscpLec;
     }
 
-    public static ArrayList<Professor> professoresDeslocadosFuncao(EscolaInformatica escolaInformatica , ArrayList<Professor> professoresEscola){
+    public static ArrayList<Pessoa> pessoasDeslocadas(EscolaInformatica escolaInformatica){
+        ArrayList<Pessoa> pessoasEscola = escolaInformatica.getPessoasEscola();
         String localizacaoEscola = escolaInformatica.getLocalizacao();
-        ArrayList<Professor> deslocados = new ArrayList<>();
-        for(int i = 0; i < professoresEscola.size(); i++){
-            if(!professoresEscola.get(i).getLocalDeOrigem().equals(localizacaoEscola)){
-                deslocados.add(professoresEscola.get(i));
+        ArrayList<Pessoa> deslocados = new ArrayList<>();
+        for(int i = 0; i < pessoasEscola.size(); i++){
+            if(!pessoasEscola.get(i).getLocalDeOrigem().equals(localizacaoEscola)){
+                deslocados.add(pessoasEscola.get(i));
             }
         }
         return deslocados;
@@ -1159,8 +1167,7 @@ public class Programa implements Serializable {
             if(numAlunos>maior){
                 maior = escolaInformatica.getCursosEscola().get(i).getAlunosCurso().size();
                 cursoMaisFrequentado = escolaInformatica.getCursosEscola().get(i);
-            }
-                
+            }             
         }
         return cursoMaisFrequentado;
     }
@@ -1547,11 +1554,11 @@ public class Programa implements Serializable {
                                 break;
                             case 7:
                                 // Mostrar professores deslocados
-                                ArrayList<Professor> professoresEscolaDeslocacoes = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
-                                ArrayList<Professor> professoresDeslocados = professoresDeslocadosFuncao(escolaInformatica, professoresEscolaDeslocacoes);
+                                ArrayList<Pessoa> pessoasDeslocadas = pessoasDeslocadas(escolaInformatica);
+                                ArrayList<Professor> professoresEscolaDeslocados = convPessoaProf(identProf(pessoasDeslocadas));
                                 System.out.println("PROFESSORES DESLOCADOS\n");
-                                for(int i = 0; i < professoresDeslocados.size(); i++)
-                                    System.out.println(" . "+ professoresDeslocados.get(i).getNome()+" ("+ professoresDeslocados.get(i).getLocalDeOrigem() +")");  
+                                for(int i = 0; i < professoresEscolaDeslocados.size(); i++)
+                                    System.out.println(" . "+ professoresEscolaDeslocados.get(i).getNome()+" ("+ professoresEscolaDeslocados.get(i).getLocalDeOrigem() +")");  
                                 System.out.println();
                                 pedeTecla();
                                 break;
@@ -1718,7 +1725,12 @@ public class Programa implements Serializable {
                                 break;
                             case 8:
                                 // Mostrar alunos não deslocados
-
+                                ArrayList<Pessoa> pessoasDeslocadas = pessoasDeslocadas(escolaInformatica);
+                                ArrayList<Aluno> alunosEscolaDeslocados = convPessoaAluno(identAluno(pessoasDeslocadas));
+                                System.out.println("ALUNOS DESLOCADOS\n");
+                                for(int i = 0; i < alunosEscolaDeslocados.size(); i++)
+                                    System.out.println(" . "+ alunosEscolaDeslocados.get(i).getNome()+" ("+ alunosEscolaDeslocados.get(i).getLocalDeOrigem() +")");  
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 9:

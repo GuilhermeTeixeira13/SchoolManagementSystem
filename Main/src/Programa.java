@@ -494,7 +494,7 @@ public class Programa implements Serializable {
         duracaoCurso = Ler.umInt();
 
         System.out.print("\nMédia do Último Colocado: ");
-        mediaUltimoColocado = Ler.umInt();
+        mediaUltimoColocado = Ler.umFloat();
 
         Curso novoCurso = new Curso(nomeCurso, codCurso, duracaoCurso, mediaUltimoColocado, provasIngresso,
                 dataInicioCurso, dataFimCurso);
@@ -931,7 +931,7 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 6);
     }
 
-    public static void modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
+    public static Professor modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
         int opcaoUtilizador;
         Professor novoProfessor = (Professor) escolaInformatica.getPessoasEscola().get(posicao);
         do {
@@ -1062,6 +1062,8 @@ public class Programa implements Serializable {
             if (opcaoUtilizador != 0)
                 escolaInformatica.changeProf(posicao, novoProfessor);
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 8);
+
+        return novoProfessor;
     }
 
     public static ArrayList<Professor> profcommaisdiscpLecionadas(ArrayList<Professor> profsEscola) {
@@ -1169,7 +1171,6 @@ public class Programa implements Serializable {
             System.out.println("Lamentamos, mas este Curso não existe!\n");
         }
         else{
-                
             alunoinscrever.setCurso(escolaInformatica.getCursosEscola().get(posCurso));
             escolaInformatica.getCursosEscola().get(posCurso).getAlunosCurso().add(alunoinscrever);
 
@@ -1386,6 +1387,16 @@ public class Programa implements Serializable {
                                 break;
                             case 8:
                                 // Inserir e Remover alunos de determinado curso
+                                System.out.print(
+                                        "8. Inserir e Remover alunos de determinado curso\n\nEscreva o nome do curso que pretende consultar -->  ");
+                                nomeCursoConsultar = Ler.umaString();
+                                posCurso = escolaInformatica.devolvePosCurso(nomeCursoConsultar);
+                                if (posCurso == -1)
+                                    System.out.println("Lamentamos, mas este curso não existe!\n");
+                                else {
+                                    System.out.println(
+                                            escolaInformatica.getCursosEscola().get(posCurso).getAlunosCurso() + "\n");
+                                }
 
                                 pedeTecla();
                                 break;
@@ -1472,7 +1483,9 @@ public class Programa implements Serializable {
                                 break;
                             case 2:
                                 // Criar Professor
-                                escolaInformatica.getPessoasEscola().add(criaProfessor(escolaInformatica));
+                                Professor novoProf = criaProfessor(escolaInformatica);
+                                escolaInformatica.insereProfNasSuasDisciplinas(novoProf);
+                                escolaInformatica.getPessoasEscola().add(novoProf);
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 pedeTecla();
                                 break;
@@ -1495,6 +1508,7 @@ public class Programa implements Serializable {
                                 break;
                             case 4:
                                 // Modificar dados sobre uma determinado professor
+                                Professor professorModificado;
                                 System.out.print(
                                         "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\nEscreva o nome do professor que pretende modificar -->  ");
                                 String nomeProfModificar = Ler.umaString();
@@ -1503,7 +1517,8 @@ public class Programa implements Serializable {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                     pedeTecla();
                                 } else {
-                                    modificarProfessor(escolaInformatica, posProf);
+                                    professorModificado = modificarProfessor(escolaInformatica, posProf);
+                                    escolaInformatica.insereProfNasSuasDisciplinas(professorModificado);
                                     EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
                                 break;

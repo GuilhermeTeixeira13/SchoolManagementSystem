@@ -234,6 +234,12 @@ public class EscolaInformatica implements Serializable{
         return pos;
     }
 
+    public void insereProfNasSuasDisciplinas(Professor prof){
+        for(int i = 0; i<prof.getDiscLec().size(); i++){
+            prof.getDiscLec().get(i).getListProf().add(prof);
+        }
+    }
+
     public static void main(String[] args) {
         // Testes
     }

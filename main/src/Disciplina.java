@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class Disciplina implements java.io.Serializable {
-    private int numdisc;
-    private String nomedisc;
+    private String nomedisc,numdisc;
     private ArrayList<Aluno> listalunos;
     private ArrayList<Professor> listprof;
     private ArrayList<Frequencia> listfreq;
@@ -15,7 +14,7 @@ public class Disciplina implements java.io.Serializable {
         this.listfreq = new ArrayList<Frequencia>();
     }
 
-    public Disciplina(int numdisc, String nomedisc) {
+    public Disciplina(String numdisc, String nomedisc) {
         this.numdisc = numdisc;
         this.nomedisc = nomedisc;
         this.listalunos = new ArrayList<Aluno>();
@@ -24,11 +23,11 @@ public class Disciplina implements java.io.Serializable {
 
     }
 
-    public int getNumDisc() {
+    public String getNumDisc() {
         return this.numdisc;
     }
 
-    public void setNumDisc(int numdisc) {
+    public void setNumDisc(String numdisc) {
         this.numdisc = numdisc;
     }
 

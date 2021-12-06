@@ -171,6 +171,9 @@ public class EscolaInformatica implements Serializable{
     public void addCurso(Curso c){
         this.CursosEscola.add(c);
     }
+    public void adddisciplina(Disciplina d){
+        this.DisciplinasEscola.add(d);
+    }
 
     public void changeAluno(int posicao, Aluno a){
         this.getPessoasEscola().set(posicao, a);
@@ -231,6 +234,14 @@ public class EscolaInformatica implements Serializable{
                 pos = i;
         }
 
+        return pos;
+    }
+    public int devolvePosDisc(String nomedisc){
+        int pos=-1;
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomedisc))
+                pos = i;
+        }
         return pos;
     }
 

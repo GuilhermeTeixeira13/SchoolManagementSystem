@@ -932,20 +932,12 @@ public class Programa implements Serializable {
     }
 
     public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica, Disciplina disciplina){
-        System.out.println("1. CRIAR FREQUÊNCIA\n");
         Frequencia novaFrequencia = new Frequencia();
         ArrayList<Perguntas> perguntas = new ArrayList<Perguntas>();
         Perguntas questao = new Perguntas();
-        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1;
-        int idFreq = 0, NTotalPerguntas;
-        String dific;
-        ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
+        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas, numpergunta, cotacao;
+        String dific, pergunta, nomeProf;
         ArrayList<Pessoa> Professores = identProf(escolaInformatica.getPessoasEscola());
-        String nomediscp, nomeProf;
-        int verificaExistenciaDisc = -1; 
-        int escolha = 1;
-        int numpergunta, cotacao;
-        String pergunta;
         
         novaFrequencia.setDisc(disciplina);
 
@@ -983,7 +975,8 @@ public class Programa implements Serializable {
         novaFrequencia.setNumPergTotal(NTotalPerguntas);
 
         System.out.print("\nLista de perguntas: ");
-        do{
+        
+        for(int i = 0  ; i < NTotalPerguntas; i++){
             System.out.print("\nDigite o número da pergunta: ");
             numpergunta = Ler.umInt();
             questao.setnumpergunta(numpergunta);
@@ -995,10 +988,7 @@ public class Programa implements Serializable {
             questao.setpergunta(pergunta);
 
             perguntas.add(questao);
-            System.out.print("\nPretende criar outra pergunta?");
-            System.out.print("\nSe sim pressiona qualquer número, se não pressione 0: ");
-            escolha = Ler.umInt();
-        } while(escolha != 0);
+        }
         novaFrequencia.setlistperg(perguntas);
 
         System.out.print("\nDificuldade: ");

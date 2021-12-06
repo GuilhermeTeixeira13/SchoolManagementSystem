@@ -36,19 +36,18 @@
 **Escola Profissional de Informática: (João 10-12)** 
 1. :exclamation:Criar Diretor (Removendo o antigo automaticamente); ((A implementar na classe Escola) ✔️
 2. :exclamation:Modificar dados sobre o diretor (A implementar na classe Escola); ✔️
-3. :exclamation:Listar Pessoas ✔️ Melhorar inputs
+3. :exclamation:Listar Pessoas ✔️ Melhorar inputs :warning:
 4. :exclamation:Mudar informações acerca da escola (Nome, Número, Contactos, Localização) ✔️
-5. :exclamation:Mostrar informações da escola ✔️ Melhorar inputs
+5. :exclamation:Mostrar informações da escola ✔️ Melhorar inputs :warning:
 
 **Cursos: (Gui 10-12)**
-1. :exclamation:Listar cursos (A implementar na classe Escola)
-2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ Verificar se dá p adicionar disciplinas corretamente
+1. :exclamation:Listar cursos (A implementar na classe Escola) ✔️
+2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ Verificar se dá p adicionar disciplinas corretamente :warning:
 3. :exclamation:Consultar informações de determinado curso (A implementar na classe Escola)✔️
 4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️
 5. :exclamation:Remover curso (A implementar na classe Escola) ✔️
-6. Mostrar curso mais frequentado (A implementar na classe Escola) 
+6. Mostrar curso mais frequentado (A implementar na classe Escola) ✔️
 7. Inserir e Remover disciplinas de determinado curso (A implementar na classe Escola)
-8. Inserir e Remover alunos de determinado curso (A implementar na classe Escola)
 
 **Disciplinas: (Cláudio 10-12)**
 1. :exclamation:Listar disciplinas (A implementar na classe Escola)
@@ -73,16 +72,15 @@
 9. Mostrar frequências de determinada disciplina (A implementar na classe Frequência)
 
 **Professores: (João 10-12)**
-1. :exclamation:Listar professores (A implementar na classe Professor)
-2. :exclamation:Criar professor (A implementar na classe Professor)
-3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor)
-4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor)
-5. :exclamation:Remover professor (A implementar na classe Professor)
-6. Mostrar quais disciplinas lecionou determinado professor (A implementar na classe Professor)
-7. Mostrar professor que lecionou mais disciplinas (A implementar na classe Professor)
-8. Mostrar professores deslocados (A implementar na classe Professor)
-9. Mostrar qual é o professore com melhor rating (A implementar na classe Professor)
-10. Mostrar professor mais velho e mais novo (A implementar na classe Professor, depois de elaborar função q calcule a idade)
+1. :exclamation:Listar professores (A implementar na classe Professor) ✔️
+2. :exclamation:Criar professor (A implementar na classe Professor) ✔️
+3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor) ✔️
+4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor) ✔️
+5. :exclamation:Remover professor (A implementar na classe Professor) ✔️
+6. Mostrar professor que lecionou mais disciplinas (A implementar na classe Professor)✔️
+7. Mostrar professores deslocados (A implementar na classe Professor) ✔️
+8. Mostrar qual é o professore com melhor rating (A implementar na classe Professor) ✔️
+9. Mostrar professor mais velho e mais novo (A implementar na classe Professor, depois de elaborar função q calcule a idade) ✔️
 
 **Alunos: (Gui 10-12)**
 1. :exclamation:Listar alunos (A implementar na classe Aluno) ✔️ (Verificar outputs)
@@ -91,8 +89,8 @@
 4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️
 5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️
 6. Atribuir notas(A implementar na classe Aluno)
-7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso)
-8. Mostrar alunos não deslocados (A implementar na classe Aluno)
-9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade)
+7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) :warning:
+8. Mostrar alunos deslocados (A implementar na classe Aluno) ✔️
+9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade) ✔️
 10. Mostrar aluno com melhor e pior média, de determinado curso (A implementar na classe Aluno, depois de fazer função que calcule a média nas NotasDisciplina)
 11. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno)

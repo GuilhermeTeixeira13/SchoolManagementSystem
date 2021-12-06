@@ -170,7 +170,7 @@ public class Curso implements java.io.Serializable {
         }
         return existe;
     }
-
+    
     public static void main(String[] args) {
         // Testes
     }

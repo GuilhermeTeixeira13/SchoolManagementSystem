@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Collections;
+
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +10,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.io.IOException;
+import java.util.Collection;
 
 public class Programa implements Serializable {
 
@@ -92,6 +97,24 @@ public class Programa implements Serializable {
         System.out.println();
     }
 
+    public static ArrayList<Professor> convPessoaProf(ArrayList<Pessoa> profsEscolaPessoa){
+        ArrayList<Professor> professores = new ArrayList<>();
+        for(int i = 0; i < profsEscolaPessoa.size(); i++){
+            Professor p = (Professor) profsEscolaPessoa.get(i);
+            professores.add(p);
+        }
+        return professores;
+    }
+
+    public static ArrayList<Aluno> convPessoaAluno(ArrayList<Pessoa> AlunosEscolaPessoa){
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        for(int i = 0; i < AlunosEscolaPessoa.size(); i++){
+            Aluno a = (Aluno) AlunosEscolaPessoa.get(i);
+            alunos.add(a);
+        }
+        return alunos;
+    }
+
     public static void listaPessoasOutput(ArrayList<Pessoa> pessoas) {
         for (int i = 0; i < pessoas.size(); i++) {
             Pessoa pessoa = pessoas.get(i);
@@ -123,7 +146,7 @@ public class Programa implements Serializable {
         System.out.println("Local de Origem: " + a.getLocalDeOrigem());
         System.out.println("Data de Nascimento: " + a.getDataNascimento());
         System.out.println("Média de Entrada: " + a.getMediaEntrada());
-        System.out.println("Curso: "+ a.getCurso().getNomeCurso());
+        System.out.println("Curso: " + a.getCurso().getNomeCurso());
         System.out.println("-----------------------------------------------------");
         System.out.println();
     }
@@ -160,11 +183,6 @@ public class Programa implements Serializable {
         System.out.println("Formação Académica: " + d.getFormacaoAcademica());
         System.out.println("-----------------------------------------------------");
         System.out.println();
-    }
-
-    public static String mostrarEscola(EscolaInformatica escolaInformatica) {
-        String infoEscola = escolaInformatica.toString();
-        return infoEscola;
     }
 
     public static void removeDiretorDaListaDePessoas(ArrayList<Pessoa> pessoasEscola) {
@@ -208,7 +226,7 @@ public class Programa implements Serializable {
         ArrayList<Pessoa> listapessoas = new ArrayList<>();
         int opcaolistpessoas;
         System.out.print(" LISTAR PESSOAS\n\n");
-        System.out.print("1. Listar Diretores\n");
+        System.out.print("1. Mostra Diretor\n");
         System.out.print("2. Listar Professores\n");
         System.out.print("3. Listar Alunos\n");
         System.out.print("\n0. Voltar Atrás\n");
@@ -228,15 +246,14 @@ public class Programa implements Serializable {
             case 2:
                 limpaTela();
                 listapessoas = identProf(pessoasEscola);
-                Diretor diretor = (Diretor) listapessoas.get(0);
-                listaumDiretor(diretor);
+                listaPessoasOutput(listapessoas);
                 pedeTecla();
                 break;
             case 3:
                 limpaTela();
                 ArrayList<Pessoa> alunosDaEscola = identAluno(escolaInformatica.getPessoasEscola());
-                for(int i = 0; i<alunosDaEscola.size(); i++)
-                    listaumAluno((Aluno)alunosDaEscola.get(i));
+                for (int i = 0; i < alunosDaEscola.size(); i++)
+                    listaumAluno((Aluno) alunosDaEscola.get(i));
                 pedeTecla();
                 break;
         }
@@ -393,8 +410,8 @@ public class Programa implements Serializable {
                     System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
                     opcaoContactoMenu = Ler.umaString();
                 }
-            } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));}
-        else{
+            } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));
+        } else {
             System.out.println("Ainda não há disciplinas criadas.");
         }
 
@@ -496,9 +513,10 @@ public class Programa implements Serializable {
         duracaoCurso = Ler.umInt();
 
         System.out.print("\nMédia do Último Colocado: ");
-        mediaUltimoColocado = Ler.umInt();
+        mediaUltimoColocado = Ler.umFloat();
 
-        Curso novoCurso = new Curso(nomeCurso, codCurso, duracaoCurso, mediaUltimoColocado, provasIngresso, dataInicioCurso, dataFimCurso);
+        Curso novoCurso = new Curso(nomeCurso, codCurso, duracaoCurso, mediaUltimoColocado, provasIngresso,
+                dataInicioCurso, dataFimCurso);
         return novoCurso;
     }
 
@@ -535,7 +553,6 @@ public class Programa implements Serializable {
                     System.out.print("\nCódigo do Curso: ");
                     codCurso = Ler.umaString();
                     escolaInformatica.getCursosEscola().get(posicao).setCodCurso(codCurso);
-                    ;
                     pedeTecla();
                     break;
                 case 3:
@@ -797,7 +814,7 @@ public class Programa implements Serializable {
                 System.out.print("Nome do Aluno: ");
             else
                 System.out.print("Esse nome já existe! Por favor, escolha outro: ");
-                nomePessoa = Ler.umaString();
+            nomePessoa = Ler.umaString();
             verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa, Alunos);
         } while (verificaExistenciaAluno != -1);
         novoAluno.setNome(nomePessoa);
@@ -844,7 +861,7 @@ public class Programa implements Serializable {
         return novoAluno;
     }
 
-    public static void modificarAluno(EscolaInformatica escolaInformatica,int posicao) {
+    public static void modificarAluno(EscolaInformatica escolaInformatica, int posicao) {
         int opcaoUtilizador;
         Aluno novoAluno = (Aluno) escolaInformatica.getPessoasEscola().get(posicao);
         do {
@@ -856,10 +873,11 @@ public class Programa implements Serializable {
             ArrayList<Telefone> telefones = new ArrayList<Telefone>();
             Contactos contactosAluno = new Contactos();
 
-            System.out.print("\nO que pretende modificar no aluno "+ novoAluno.getNome() +"?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Média de Entrada\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
+            System.out.print("\nO que pretende modificar no aluno " + novoAluno.getNome()
+                    + "?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Média de Entrada\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
             opcaoUtilizador = Ler.umInt();
 
-            while (opcaoUtilizador > 6  || opcaoUtilizador < 0) {
+            while (opcaoUtilizador > 6 || opcaoUtilizador < 0) {
                 System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                 opcaoUtilizador = Ler.umInt();
             }
@@ -872,8 +890,9 @@ public class Programa implements Serializable {
                         else
                             System.out.print("Esse nome já existe! Por favor, escolha outro: ");
                         nomePessoa = Ler.umaString();
-                        verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa, escolaInformatica.getPessoasEscola());
-                    } while (verificaExistenciaAluno != -1);   
+                        verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa,
+                                escolaInformatica.getPessoasEscola());
+                    } while (verificaExistenciaAluno != -1);
                     novoAluno.setNome(nomePessoa);
                     pedeTecla();
                     break;
@@ -894,16 +913,16 @@ public class Programa implements Serializable {
                     do {
                         System.out.print("\nTipo: ");
                         tipoContacto = Ler.umaString();
-            
+
                         System.out.print("Número: ");
                         numeroContacto = Ler.umLong();
-            
+
                         Telefone telefone = new Telefone(tipoContacto, numeroContacto);
-            
+
                         telefones.add(telefone);
-            
+
                         System.out.print("Pretende inserir mais telefones? [S/N] -> ");
-            
+
                         opcaoContactoMenu = Ler.umaString();
                     } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
                     contactosAluno.setTelefone(telefones);
@@ -926,9 +945,9 @@ public class Programa implements Serializable {
                     break;
             }
             limpaTela();
-            if(opcaoUtilizador!=0)
+            if (opcaoUtilizador != 0)
                 escolaInformatica.changeAluno(posicao, novoAluno);
-        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
+        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 6);
     }
 
     public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica, Disciplina disciplina){
@@ -998,7 +1017,7 @@ public class Programa implements Serializable {
         return novaFrequencia;
     }
 
-    public static void modificarProfessor(EscolaInformatica escolaInformatica,int posicao) {
+    public static Professor modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
         int opcaoUtilizador;
         Professor novoProfessor = (Professor) escolaInformatica.getPessoasEscola().get(posicao);
         do {
@@ -1010,10 +1029,11 @@ public class Programa implements Serializable {
             Contactos contactosAluno = new Contactos();
             ArrayList<Disciplina> disciplinasP = new ArrayList<>();
 
-            System.out.print("\nO que pretende modificar no professor "+ novoProfessor.getNome() +"?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Número de Professor\n 7. Rating\n 8. Disciplinas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
+            System.out.print("\nO que pretende modificar no professor " + novoProfessor.getNome()
+                    + "?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Número de Professor\n 7. Rating\n 8. Disciplinas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
             opcaoUtilizador = Ler.umInt();
 
-            while (opcaoUtilizador > 8  || opcaoUtilizador < 0) {
+            while (opcaoUtilizador > 8 || opcaoUtilizador < 0) {
                 System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                 opcaoUtilizador = Ler.umInt();
             }
@@ -1025,9 +1045,10 @@ public class Programa implements Serializable {
                             System.out.print("Nome do Professor: ");
                         else
                             System.out.print("Esse nome já existe! Por favor, escolha outro: ");
-                            nomePessoa = Ler.umaString();
-                        verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa, escolaInformatica.getPessoasEscola());
-                    } while (verificaExistenciaAluno != -1);   
+                        nomePessoa = Ler.umaString();
+                        verificaExistenciaAluno = escolaInformatica.devolvePosAluno(nomePessoa,
+                                escolaInformatica.getPessoasEscola());
+                    } while (verificaExistenciaAluno != -1);
                     novoProfessor.setNome(nomePessoa);
                     pedeTecla();
                     break;
@@ -1048,16 +1069,16 @@ public class Programa implements Serializable {
                     do {
                         System.out.print("\nTipo: ");
                         tipoContacto = Ler.umaString();
-            
+
                         System.out.print("Número: ");
                         numeroContacto = Ler.umLong();
-            
+
                         Telefone telefone = new Telefone(tipoContacto, numeroContacto);
-            
+
                         telefones.add(telefone);
-            
+
                         System.out.print("Pretende inserir mais telefones? [S/N] -> ");
-            
+
                         opcaoContactoMenu = Ler.umaString();
                     } while (!opcaoContactoMenu.equals("N") && !opcaoContactoMenu.equals("n"));
                     contactosAluno.setTelefone(telefones);
@@ -1074,14 +1095,16 @@ public class Programa implements Serializable {
                 case 6:
                     System.out.print("\nNúmero de Professor: ");
                     numProf = Ler.umInt();
-                    novoProfessor.setNumProf(numProf);;
+                    novoProfessor.setNumProf(numProf);
+                    ;
                     System.out.println();
                     pedeTecla();
                     break;
                 case 7:
                     System.out.print("\nRating: ");
                     ratingProf = Ler.umInt();
-                    novoProfessor.setRating(ratingProf);;
+                    novoProfessor.setRating(ratingProf);
+                    ;
                     System.out.println();
                     pedeTecla();
                     break;
@@ -1094,11 +1117,13 @@ public class Programa implements Serializable {
                             System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
                             for (i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
                                 if (!adicionados.contains(i))
-                                    System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
+                                    System.out.println(
+                                            i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
                             }
                             System.out.println("Disciplina para adicionar ao curso --> ");
                             escolhaDisc = Ler.umInt();
-                            while (i < 0 || i > escolaInformatica.getDisciplinaEscola().size() - 1 || adicionados.contains(i)) {
+                            while (i < 0 || i > escolaInformatica.getDisciplinaEscola().size() - 1
+                                    || adicionados.contains(i)) {
                                 System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
                                 escolhaDisc = Ler.umInt();
                             }
@@ -1111,8 +1136,8 @@ public class Programa implements Serializable {
                                 System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
                                 opcaoContactoMenu = Ler.umaString();
                             }
-                        } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));}
-                    else{
+                        } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));
+                    } else {
                         System.out.println("Ainda não há disciplinas criadas.\n");
                     }
                     novoProfessor.setDiscLec(disciplinasP);
@@ -1120,10 +1145,143 @@ public class Programa implements Serializable {
                     break;
             }
             limpaTela();
-            if(opcaoUtilizador!=0)
+            if (opcaoUtilizador != 0)
                 escolaInformatica.changeProf(posicao, novoProfessor);
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 8);
+
+        return novoProfessor;
     }
+
+    public static ArrayList<Professor> profcommaisdiscpLecionadas(ArrayList<Professor> profsEscola) {
+        ArrayList<Professor> profsComMaisDiscpLec = new ArrayList<>();
+        int nmaximodiscp;
+        ArrayList<Integer> armazenaNumDiscp = new ArrayList<>();
+
+        for (int i = 0; i < profsEscola.size(); i++) {
+            armazenaNumDiscp.add(profsEscola.get(i).contDiscProf());
+        }
+
+        nmaximodiscp = Collections.max(armazenaNumDiscp);
+
+        // A função irá devolver a posição do prof que lecione mais disciplinas, caso o
+        // máximo tenho mais do que uma correspondecia indica-se os professores com mais
+        // disciplinas lecionadas.
+        for (int i = 0; i < profsEscola.size(); i++) {
+            if (profsEscola.get(i).contDiscProf() == nmaximodiscp) {
+                profsComMaisDiscpLec.add(profsEscola.get(i));
+            }
+        }
+        return profsComMaisDiscpLec;
+    }
+
+    public static ArrayList<Pessoa> pessoasDeslocadas(EscolaInformatica escolaInformatica){
+        ArrayList<Pessoa> pessoasEscola = escolaInformatica.getPessoasEscola();
+        String localizacaoEscola = escolaInformatica.getLocalizacao();
+        ArrayList<Pessoa> deslocados = new ArrayList<>();
+        for(int i = 0; i < pessoasEscola.size(); i++){
+            if(!pessoasEscola.get(i).getLocalDeOrigem().equals(localizacaoEscola)){
+                deslocados.add(pessoasEscola.get(i));
+            }
+        }
+        return deslocados;
+    }
+
+    public static ArrayList<Professor> professorComMelhorRating(ArrayList<Professor> professoresEscola){
+        int melhorRating;
+        ArrayList<Professor> profMelhorRating = new ArrayList<>();
+        ArrayList<Integer> arrayRatings = new ArrayList<>();
+        for(int i = 0; i < professoresEscola.size(); i++){
+              arrayRatings.add(professoresEscola.get(i).getRating());
+        }
+        melhorRating = Collections.max(arrayRatings);
+        for(int i = 0; i < professoresEscola.size(); i++){
+            if(professoresEscola.get(i).getRating() == melhorRating){
+                profMelhorRating.add(professoresEscola.get(i));
+            }
+        }
+        return profMelhorRating;
+    }
+
+    public static ArrayList<Pessoa> pessoasMaisVelhas(ArrayList<Pessoa> pessoas){
+        ArrayList<Pessoa> pessoasMaisVelhas = new ArrayList<>();
+        int idademaisVelho;
+        ArrayList<Integer> idades = new ArrayList<>();
+        for(int i = 0; i < pessoas.size(); i++){
+            idades.add(pessoas.get(i).calculaIdade());
+        }
+        idademaisVelho = Collections.max(idades);
+        for(int i = 0; i < pessoas.size(); i++){
+            if(pessoas.get(i).calculaIdade() == idademaisVelho){
+                pessoasMaisVelhas.add(pessoas.get(i));
+            }
+        }
+        return pessoasMaisVelhas;
+
+    }
+
+    public static ArrayList<Pessoa> pessoasMaisNovas(ArrayList<Pessoa> pessoas){
+        ArrayList<Pessoa> pessoasMaisNovas = new ArrayList<>();
+        int idademaisNovo;
+        ArrayList<Integer> idades = new ArrayList<>();
+        for(int i = 0; i < pessoas.size(); i++){
+            idades.add(pessoas.get(i).calculaIdade());
+        }
+        idademaisNovo = Collections.min(idades);
+        for(int i = 0; i < pessoas.size(); i++){
+            if(pessoas.get(i).calculaIdade() == idademaisNovo){
+                pessoasMaisNovas.add(pessoas.get(i));
+            }
+        }
+        return pessoasMaisNovas;
+
+    }
+
+    public static Curso cursoMaisFrequentado(EscolaInformatica escolaInformatica){
+        Curso cursoMaisFrequentado = new Curso();
+        int numAlunos=0, maior = 0;
+        for(int i=0 ; i < escolaInformatica.getCursosEscola().size() ; i++){
+            numAlunos = escolaInformatica.getCursosEscola().get(i).getAlunosCurso().size();
+            if(numAlunos>maior){
+                maior = escolaInformatica.getCursosEscola().get(i).getAlunosCurso().size();
+                cursoMaisFrequentado = escolaInformatica.getCursosEscola().get(i);
+            }             
+        }
+        return cursoMaisFrequentado;
+    }
+
+    public static EscolaInformatica inscreverAlunoEmCurso(EscolaInformatica escolaInformatica, String nomeAlunoInscrever, Aluno alunoinscrever){    
+        escolaInformatica.listaCursos();
+        System.out.print("Dos cursos disponíveis, escolha aquele em que se quer inscrever o aluno "+ nomeAlunoInscrever +": ");
+        String CursoInscrever = Ler.umaString();
+        int posCurso = escolaInformatica.devolvePosCurso(CursoInscrever);
+        if (posCurso == -1){
+            System.out.println("Lamentamos, mas este Curso não existe!\n");
+        }
+        else{
+            if(!alunoinscrever.getCurso().getNomeCurso().equals(""))
+                escolaInformatica.getCursosEscola().get(escolaInformatica.devolvePosCurso(alunoinscrever.getCurso().getNomeCurso())).getAlunosCurso().remove(alunoinscrever);
+            alunoinscrever.setCurso(escolaInformatica.getCursosEscola().get(posCurso));
+            escolaInformatica.getCursosEscola().get(escolaInformatica.devolvePosCurso(alunoinscrever.getCurso().getNomeCurso())).getAlunosCurso().add(alunoinscrever);
+
+            System.out.println("Aluno " + nomeAlunoInscrever + " inscrito com sucesso no curso de "+ escolaInformatica.getCursosEscola().get(posCurso).getNomeCurso() +".\n");
+            EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+        }
+        return escolaInformatica;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1178,27 +1336,27 @@ public class Programa implements Serializable {
                                 // Modificar dados acerca do atual diretor
 
                                 removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
+                                Diretor dirModificado = modDiretor(escolaInformatica);
                                 escolaInformatica.getPessoasEscola()
-                                        .add(modDiretor(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                        .add(dirModificado);
                                 escolaInformatica
-                                        .setDiretorEscola(modDiretor(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                        .setDiretorEscola(dirModificado);
+
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
                                 break;
                             case 3:
                                 // Listar Pessoas
-
                                 listarPessoasEscola(escolaInformatica.getPessoasEscola(), escolaInformatica);
                                 break;
                             case 4:
                                 // Mudar informações acerca da escola
-                                EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                        modificarEscola(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                escolaInformatica = modificarEscola(escolaInformatica);
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 break;
                             case 5:
                                 // Listar informações sobre a escola
-
-                                System.out.print(mostrarEscola(LeEscolaNoFicheiro("escolaInformática.txt")));
+                                System.out.print(escolaInformatica);
                                 pedeTecla();
                                 break;
                         }
@@ -1208,9 +1366,9 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                " GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Inserir e Remover disciplinas de determinado curso\n7. Inserir e Remover alunos de determinado curso\n8. Mostrar curso mais frequentado\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                " GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Mostrar curso mais frequentado\n7. Inserir e Remover disciplinas de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 6 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 7|| opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -1308,7 +1466,8 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Mostrar curso mais frequentado
-
+                                System.out.println("O curso mais frequentado da "+escolaInformatica.getNomeEscola() +" é:\n");
+                                System.out.println(" . "+cursoMaisFrequentado(escolaInformatica).getNomeCurso() +" ("+cursoMaisFrequentado(escolaInformatica).getAlunosCurso().size()+" ALUNOS)\n");
                                 pedeTecla();
                                 break;
                             case 7:
@@ -1316,19 +1475,14 @@ public class Programa implements Serializable {
 
                                 pedeTecla();
                                 break;
-                            case 8:
-                                // Inserir e Remover alunos de determinado curso
-
-                                pedeTecla();
-                                break;
                         }
-                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 8);
+                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 7);
                     break;
                 case 3:
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR DISCIPLINAS\n\n1. Listar disciplinas\n2. Criar disciplina\n3. Consultar informações de determinada disciplina\n4. Modificar dados sobre uma disciplina\n5. Remover disciplina\n6. Mostrar qual a disciplina com a frequência mais longa\n7. Mostrar professores que lecionam determinada disciplina\n8. Mostrar alunos inscritos em determinada disciplina\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR DISCIPLINAS\n\n1. Listar disciplinas\n2. Criar disciplina\n3. Consultar informações de determinada disciplina\n4. Modificar dados sobre uma disciplina\n5. Remover disciplina\n6. Mostrar professor que lecionou mais disciplinas\n7. Mostrar professores deslocados\n8. Mostrar qual é o professore com melhor rating\n9. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 8 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -1383,16 +1537,20 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR PROFESSORES\n\n1. Listar professores\n2. Criar professor\n3. Consultar informações de determinado professor\n4. Modificar dados sobre um determinado professor\n5. Remover professor\n6. Mostrar quais disciplinas lecionou determinado professor\n7. Mostrar professor que lecionou mais disciplinas\n8. Mostrar professores deslocados\n9. Mostrar qual é o professore com melhor rating\n10. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR PROFESSORES\n\n1. Listar professores\n2. Criar professor\n3. Consultar informações de determinado professor\n4. Modificar dados sobre um determinado professor\n5. Remover professor\n6. Mostrar professor que lecionou mais disciplinas\n7. Mostrar professores deslocados\n8. Mostrar qual é o professor com melhor rating\n9. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 10 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 9 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
                         limpaTela();
-                        ArrayList<Pessoa> profsDaEscola = identProf(escolaInformatica.getPessoasEscola());
+                        ArrayList<Pessoa> profsDaEscola;
+                        ArrayList<Professor> professoresEscolaDisc;
+                        ArrayList<Professor> professoresEscolaRating;
+                        ArrayList<Professor> profscomMelhorRating;;
                         switch (opcaoUtilizador) {
                             case 1:
+                                profsDaEscola = identProf(escolaInformatica.getPessoasEscola());
                                 // Listar Professores
                                 for (int i = 0; i < profsDaEscola.size(); i++) {
                                     listaumProf((Professor) profsDaEscola.get(i));
@@ -1401,7 +1559,9 @@ public class Programa implements Serializable {
                                 break;
                             case 2:
                                 // Criar Professor
-                                escolaInformatica.getPessoasEscola().add(criaProfessor(escolaInformatica));
+                                Professor novoProf = criaProfessor(escolaInformatica);
+                                escolaInformatica.getPessoasEscola().add(novoProf);
+                                escolaInformatica.insereProfNasSuasDisciplinas(novoProf);
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 pedeTecla();
                                 break;
@@ -1424,20 +1584,22 @@ public class Programa implements Serializable {
                                 break;
                             case 4:
                                 // Modificar dados sobre uma determinado professor
+                                Professor professorModificado;
                                 System.out.print(
                                         "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\nEscreva o nome do professor que pretende modificar -->  ");
                                 String nomeProfModificar = Ler.umaString();
-                                posProf = escolaInformatica.devolvePosProf(nomeProfModificar,
-                                        escolaInformatica.getPessoasEscola());
+                                posProf = escolaInformatica.devolvePosProf(nomeProfModificar, escolaInformatica.getPessoasEscola());
                                 if (posProf == -1) {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                     pedeTecla();
                                 } else {
-                                    modificarProfessor(escolaInformatica, posProf);
+                                    professorModificado = modificarProfessor(escolaInformatica, posProf);
+                                    escolaInformatica.insereProfNasSuasDisciplinas(professorModificado);
                                     EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
                                 break;
                             case 5:
+                                // Remover professor
                                 System.out.print(
                                         "5. REMOVER PROFESSOR\n\nEscreva o nome do professor que pretende remover -->  ");
                                 String nomeProfRemover = Ler.umaString();
@@ -1453,38 +1615,90 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 6:
-                                // Mostrar quais disciplinas leciona determinado professor
-
+                                // Mostrar professores com mais disciplinas lecionadas
+                                professoresEscolaDisc = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
+                                ArrayList<Professor> professorMaisDiscLec = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
+                                ArrayList<Professor> ArrayResultadosProf = profcommaisdiscpLecionadas(professorMaisDiscLec);
+                                if(ArrayResultadosProf.size() == 1){
+                                    System.out.println("PROFESSORES COM MAIS DISCIPLINAS LECIONADAS (" + ArrayResultadosProf.get(0).contDiscProf() + "):\n");
+                                    System.out.println(" . "+ArrayResultadosProf.get(0).getNome());  
+                                }
+                                else{
+                                    System.out.println("EMPATE! " + professoresEscolaDisc.get(0).contDiscProf() + " DISCIPLINAS LECIONADAS ENTRE OS SEGUINTES PROFESSORES:\n");
+                                    for(int i = 0; i < ArrayResultadosProf.size(); i++)
+                                        System.out.println(" . "+ArrayResultadosProf.get(i).getNome());            
+                                }
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 7:
-                                // Mostrar professores que lecionou mais disciplinas
-
+                                // Mostrar professores deslocados
+                                ArrayList<Pessoa> pessoasDeslocadas = pessoasDeslocadas(escolaInformatica);
+                                ArrayList<Professor> professoresEscolaDeslocados = convPessoaProf(identProf(pessoasDeslocadas));
+                                System.out.println("PROFESSORES DESLOCADOS\n");
+                                for(int i = 0; i < professoresEscolaDeslocados.size(); i++)
+                                    System.out.println(" . "+ professoresEscolaDeslocados.get(i).getNome()+" ("+ professoresEscolaDeslocados.get(i).getLocalDeOrigem() +")");  
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 8:
-                                // Mostrar professores deslocados
-
+                                // Mostrar professores com melhor rating
+                                professoresEscolaRating = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
+                                profscomMelhorRating = professorComMelhorRating(professoresEscolaRating);
+                                professoresEscolaDisc = convPessoaProf(identProf(escolaInformatica.getPessoasEscola()));
+                                if(profscomMelhorRating.size() == 1){
+                                    System.out.println("PROFESSOR COM MELHOR RATING (" + profscomMelhorRating.get(0).getRating() + "):\n");
+                                    System.out.println(" . "+ profscomMelhorRating.get(0).getNome());
+                                }
+                                else{
+                                    System.out.println("EMPATE NO MELHOR RATING (" + professoresEscolaDisc.get(0).getRating() + ") ENTRE OS SEGUINTES PROFESSORES:\n");
+                                    for(int i = 0; i < profscomMelhorRating.size(); i++)
+                                        System.out.println(" . "+ profscomMelhorRating.get(i).getNome());
+                                    System.out.println();
+                                }
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 9:
-                                // Mostrar professor com melhor rating
+                                // Mostrar professores mais velhos e mais novos
+                                ArrayList<Pessoa> professores = identProf(escolaInformatica.getPessoasEscola());
+                                ArrayList<Professor> profMaisVelhos = convPessoaProf(identProf(pessoasMaisVelhas(professores)));
+                                ArrayList<Professor> profMaisNovos = convPessoaProf(identProf(pessoasMaisNovas(professores)));
 
-                                pedeTecla();
-                                break;
-                            case 10:
-                                // Mostrar professor mais velho e mais novo
-
+                                if(profMaisNovos.size() == 1){
+                                    System.out.println("PROFESSOR MAIS NOVO (" + profMaisNovos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ profMaisNovos.get(0).getNome());
+                                }
+                                else{
+                                    System.out.println("EMPATE NOS PROFESSORES MAIS NOVOS (" + profMaisNovos.get(0).calculaIdade()+" ANOS):\n");
+                                    for(int i = 0; i < profMaisNovos.size(); i++){
+                                        if(profMaisNovos.get(i).calculaIdade() == profMaisNovos.get(0).calculaIdade())
+                                            System.out.println(" . "+ profMaisNovos.get(i).getNome());
+                                    }
+                                }
+                                System.out.println("\n------------------------------------------------");
+                                if(profMaisVelhos.size() == 1){
+                                    System.out.println("PROFESSOR MAIS VELHO (" + profMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ profMaisVelhos.get(0).getNome());
+                                }
+                                else{
+                                    System.out.println("EMPATE NOS PROFESSORES MAIS VELHOS (" + profMaisVelhos.get(0).calculaIdade()+" ANOS):\n");
+                                    for(int i = 0; i < profMaisVelhos.size(); i++){
+                                        if(profMaisVelhos.get(i).calculaIdade() == profMaisVelhos.get(0).calculaIdade())
+                                            System.out.println(" . "+ profMaisVelhos.get(i).getNome());
+                                    }
+                                }
+                                System.out.println();
                                 pedeTecla();
                                 break;
                         }
-                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 10);
+                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 9);
                     break;
                 case 5:
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR ALUNOS\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Atribuir notas a alunos\n7. Inscrever aluno em curso\n8. Mostrar alunos não deslocados\n9. Mostrar aluno mais velho e mais novo\n10. Mostrar aluno com melhor e pior média, de determinado curso\n11. Mostrar aluno com melhor nota, numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR ALUNOS\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Atribuir notas a alunos\n7. Inscrever aluno em curso\n8. Mostrar alunos deslocados\n9. Mostrar aluno mais velho e mais novo\n10. Mostrar aluno com melhor e pior média, de determinado curso\n11. Mostrar aluno com melhor nota, numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 11 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -1572,34 +1786,63 @@ public class Programa implements Serializable {
                                     Aluno alunoinscrever = (Aluno) escolaInformatica.getPessoasEscola().get(posAluno);
 
                                     if(alunoinscrever.getCurso().getNomeCurso() == ""){
-                                        escolaInformatica.listaCursos();
-                                        System.out.print("Dos cursos disponíveis, escolha aquele em que se quer inscrever o aluno "+ nomeAlunoInscrever +": ");
-                                        String CursoInscrever = Ler.umaString();
-                                        int posCurso = escolaInformatica.devolvePosCurso(CursoInscrever);
-                                        if (posCurso == -1){
-                                            System.out.println("Lamentamos, mas este Curso não existe!\n");
-                                        }
-                                        else{
-                                            
-                                            alunoinscrever.setCurso(escolaInformatica.getCursosEscola().get(posCurso));
-                                            System.out.println("Aluno " + nomeAlunoInscrever + " inscrito com sucesso no curso de "+ escolaInformatica.getCursosEscola().get(posCurso).getNomeCurso() +".\n");
-                                            EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-                                        }
+                                        inscreverAlunoEmCurso(escolaInformatica, nomeAlunoInscrever, alunoinscrever);
                                     }
-                                    else
+                                    else{
+                                        String opcao = "";
                                         System.out.println("O Aluno " + nomeAlunoInscrever + " já se encontra inscrito num curso! ("+ alunoinscrever.getCurso().getNomeCurso() +")\n");
-                                }   
-
+                                        while (!opcao.equals("n") && !opcao.equals("N") && !opcao.equals("S") && !opcao.equals("s")) {
+                                            System.out.print("Pretende alterar o Curso? [S/N] -> ");
+                                            opcao = Ler.umaString();
+                                        }
+                                        System.out.println();
+                                        if(opcao.equals("s") || opcao.equals("S")){
+                                            inscreverAlunoEmCurso(escolaInformatica, nomeAlunoInscrever, alunoinscrever);
+                                        }
+                                    }            
+                                }  
                                 pedeTecla();
                                 break;
                             case 8:
                                 // Mostrar alunos não deslocados
-
+                                ArrayList<Pessoa> pessoasDeslocadas = pessoasDeslocadas(escolaInformatica);
+                                ArrayList<Aluno> alunosEscolaDeslocados = convPessoaAluno(identAluno(pessoasDeslocadas));
+                                System.out.println("ALUNOS DESLOCADOS\n");
+                                for(int i = 0; i < alunosEscolaDeslocados.size(); i++)
+                                    System.out.println(" . "+ alunosEscolaDeslocados.get(i).getNome()+" ("+ alunosEscolaDeslocados.get(i).getLocalDeOrigem() +")");  
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 9:
                                 // Mostrar aluno mais velho e mais novo
+                                ArrayList<Pessoa> alunos = identAluno(escolaInformatica.getPessoasEscola());
+                                ArrayList<Aluno> alunoMaisVelhos = convPessoaAluno(identAluno(pessoasMaisVelhas(alunos)));
+                                ArrayList<Aluno> alunoMaisNovos = convPessoaAluno(identAluno(pessoasMaisNovas(alunos)));
 
+                                if(alunoMaisNovos.size() == 1){
+                                    System.out.println("ALUNO MAIS NOVO (" + alunoMaisNovos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ alunoMaisNovos.get(0).getNome());
+                                }
+                                else{
+                                    System.out.println("EMPATE NOS ALUNOS MAIS NOVOS (" + alunoMaisNovos.get(0).calculaIdade()+" ANOS):\n");
+                                    for(int i = 0; i < alunoMaisNovos.size(); i++){
+                                        if(alunoMaisNovos.get(i).calculaIdade() == alunoMaisNovos.get(0).calculaIdade())
+                                            System.out.println(" . "+ alunoMaisNovos.get(i).getNome());
+                                    }
+                                }
+                                System.out.println("\n------------------------------------------------");
+                                if(alunoMaisVelhos.size() == 1){
+                                    System.out.println("ALUNO MAIS VELHO (" + alunoMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println(" . "+ alunoMaisVelhos.get(0).getNome());
+                                }
+                                else{
+                                    System.out.println("EMPATE NOS ALUNOS MAIS VELHOS (" + alunoMaisVelhos.get(0).calculaIdade()+" ANOS):\n");
+                                    for(int i = 0; i < alunoMaisVelhos.size(); i++){
+                                        if(alunoMaisVelhos.get(i).calculaIdade() == alunoMaisVelhos.get(0).calculaIdade())
+                                            System.out.println(" . "+ alunoMaisVelhos.get(i).getNome());
+                                    }
+                                }
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 10:

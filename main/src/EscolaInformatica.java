@@ -94,15 +94,28 @@ public class EscolaInformatica implements Serializable{
     public String toString(){
         String s;
         s = "Escola: "+NomeEscola+"// Cód.Escolaº: "+CodEscola+"// Diretor: "+DiretorEscola+"// Contactos: "+ContactoEscola+"// Localização: "+this.localizacao+"\n";
-        s = s + "CURSOS:\n";
-        for(int i=0; i<CursosEscola.size();i++)
-            CursosEscola.get(i).toString();
-        s = s + "\nDISCIPLINAS:\n";
-        for(int i=0; i<DisciplinasEscola.size();i++)
-            DisciplinasEscola.get(i).toString();
-        s = s + "\nPessoas:\n";
-        for(int i=0; i<PessoasEscola.size();i++)
-            PessoasEscola.get(i).toString();
+        s = s + "\nCursos da "+ this.getNomeEscola()+":\n";
+        if(this.getCursosEscola().isEmpty())
+            s = s + "De momento, não estão registados quaisquer cursos.\n";
+        else{
+        for(int i = 0; i < this.getCursosEscola().size(); i++)
+            s = s + ". Cód:" + this.getCursosEscola().get(i).getCodCurso() + " - " + this.getCursosEscola().get(i).getNomeCurso()+"\n";
+        }
+        s = s + "\nDisciplinas da "+ this.getNomeEscola()+":\n";
+        if(this.getDisciplinaEscola().isEmpty())
+            s = s + "De momento, não estão registadas quaisquer disciplinas.\n";
+        else{
+            for(int i = 0; i < this.getDisciplinaEscola().size(); i++)
+                s = s + ". Cód:" + this.getDisciplinaEscola().get(i).getNumDisc() + " - " + this.getDisciplinaEscola().get(i).getNomDisc()+ "\n";
+        }
+        s = s + "\nPessoas da "+ this.getNomeEscola()+":\n";
+        if(this.getPessoasEscola().isEmpty())
+            s = s + "De momento, não estão registadas quaisquer pessoas.\n";
+        else{
+            for(int i = 0; i < this.getPessoasEscola().size(); i++)
+               s = s + ". " + this.getPessoasEscola().get(i).getNome()+"\n";
+        }
+        s = s + "\n";
         return s;
     }
 
@@ -203,13 +216,12 @@ public class EscolaInformatica implements Serializable{
         int pos=-1;
 
         for(int i = 0; i < Alunos.size(); i++){
-            if(this.getPessoasEscola().get(i).getNome().equals(nomeAluno))
+            if(Alunos.get(i).getNome().equals(nomeAluno))
                 pos = i;
         }
 
         return pos;
     }
-
     public int devolveposDisc(String nomeDiscP){
         int pos = -1;
 
@@ -244,16 +256,22 @@ public class EscolaInformatica implements Serializable{
 
         return disciplina;
     }
-
-    public int devolvePosProf(String nomeProf, ArrayList<Pessoa> Alunos){
+    
+    public int devolvePosProf(String nomeProf, ArrayList<Pessoa> Professores){
         int pos=-1;
 
-        for(int i = 0; i < Alunos.size(); i++){
-            if(this.getPessoasEscola().get(i).getNome().equals(nomeProf))
+        for(int i = 0; i < Professores.size(); i++){
+            if(Professores.get(i).getNome().equals(nomeProf))
                 pos = i;
         }
 
         return pos;
+    }
+
+    public void insereProfNasSuasDisciplinas(Professor prof){
+        for(int i = 0; i<prof.getDiscLec().size(); i++){
+            prof.getDiscLec().get(i).getListProf().add(prof);
+        }
     }
 
     public static void main(String[] args) {

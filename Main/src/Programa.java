@@ -931,9 +931,11 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
     }
 
-    public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica, Perguntas perguntas){
+    public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica, Disciplina disciplina){
         System.out.println("1. CRIAR FREQUÊNCIA\n");
         Frequencia novaFrequencia = new Frequencia();
+        ArrayList<Perguntas> perguntas = new ArrayList<Perguntas>();
+        Perguntas questao = new Perguntas();
         int verificaExistenciaFreq = -1, verificaExistenciaProf = -1;
         int idFreq = 0, NTotalPerguntas;
         String dific;
@@ -945,19 +947,7 @@ public class Programa implements Serializable {
         int numpergunta, cotacao;
         String pergunta;
         
-
-        System.out.print("\nDisciplina disponíveis na escola: ");
-        escolaInformatica.listaDisciplinas();
-
-        System.out.print("\nDisciplina para a qual pretende criar uma frequência: ");
-        nomediscp = Ler.umaString(); 
-        verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
-        while(verificaExistenciaDisc == -1){
-            System.out.print("Lamento, mas esta disciplina não existe! Escolha outra: ");
-            nomediscp = Ler.umaString(); 
-            verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
-        }
-        novaFrequencia.setDisc(nomediscp);
+        novaFrequencia.setDisc(disciplina);
 
         do {
             if (verificaExistenciaFreq == -1)
@@ -965,7 +955,7 @@ public class Programa implements Serializable {
             else
                 System.out.print("Esse ID já existe! Por favor, escolha outro: ");
             idFreq = Ler.umInt();
-            verificaExistenciaFreq = escolaInformatica.devolvePosDisciplinaDaFreq(idFreq, escolaInformatica.getDisciplinaEscola());
+            verificaExistenciaFreq = escolaInformatica.devolvePosDisciplinaDaFreq(idFreq);
         } while (verificaExistenciaFreq != -1);
         novaFrequencia.setid(idFreq);
 
@@ -994,22 +984,22 @@ public class Programa implements Serializable {
 
         System.out.print("\nLista de perguntas: ");
         do{
-            if(escolha != 0){
-                System.out.print("\nDigite o número da pergunta: ");
-                numpergunta = Ler.umInt();
-                perguntas.setnumpergunta(numpergunta);
-                System.out.print("\nDigite a cotação: ");
-                cotacao = Ler.umInt();
-                perguntas.setcotaçao(cotacao);
-                System.out.print("\nDigite a pergunta: ");
-                pergunta = Ler.umaString();
-                perguntas.setpergunta(pergunta);
-                System.out.print("\nPretende criar outra pergunta?");
-                System.out.print("\nSe sim pressiona qualquer número, se não pressione 0: ");
-                escolha = Ler.umInt();
-            }
+            System.out.print("\nDigite o número da pergunta: ");
+            numpergunta = Ler.umInt();
+            questao.setnumpergunta(numpergunta);
+            System.out.print("\nDigite a cotação: ");
+            cotacao = Ler.umInt();
+            questao.setcotaçao(cotacao);
+            System.out.print("\nDigite a pergunta: ");
+            pergunta = Ler.umaString();
+            questao.setpergunta(pergunta);
 
+            perguntas.add(questao);
+            System.out.print("\nPretende criar outra pergunta?");
+            System.out.print("\nSe sim pressiona qualquer número, se não pressione 0: ");
+            escolha = Ler.umInt();
         } while(escolha != 0);
+        novaFrequencia.setlistperg(perguntas);
 
         System.out.print("\nDificuldade: ");
         dific = Ler.umaString();
@@ -1649,16 +1639,15 @@ public class Programa implements Serializable {
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Frequências de determinada disciplina
-                                ArrayList<Disciplina> disciplinas = escolaInformatica.getDisciplinaEscola();
                                 String nomediscp;
                                 int posdisc;
                                 System.out.print("Introduza o nome da disciplina: ");
                                 nomediscp = Ler.umaString(); 
-                                posdisc = escolaInformatica.devolveposDisc(nomediscp, disciplinas);
+                                posdisc = escolaInformatica.devolveposDisc(nomediscp);
                                 if(posdisc == -1)
                                     System.out.println("Lamento, mas esta disciplina não existe!\n");   
                                 else {
-                                    ArrayList<Frequencia> listaFreqDisc = disciplinas.get(posdisc).getListFreq();
+                                    ArrayList<Frequencia> listaFreqDisc = escolaInformatica.getDisciplinaEscola().get(posdisc).getListFreq();
                                     for(int i = 0; i < listaFreqDisc.size(); i++)
                                         listaumaFreq(listaFreqDisc.get(i));
                                 }
@@ -1666,11 +1655,34 @@ public class Programa implements Serializable {
                                 break;
                             case 2:
                                 // Criar Frequência
+                                int verificaExistenciaDisc = -1;
+                                Disciplina disciplinaDaFreq = new Disciplina();
                                 System.out.println("2. CRIAR FREQUÊNCIA\n");
-                                escolaInformatica.
-                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-                                System.out.println("\n-->  Frequência criado com sucesso!!\n");
 
+                                if(!escolaInformatica.getDisciplinaEscola().isEmpty()){
+                                    System.out.print("\nDisciplina disponíveis na escola: ");
+                                    escolaInformatica.listaDisciplinas();
+
+                                    System.out.print("\nDisciplina para a qual pretende criar uma frequência: ");
+                                    nomediscp = Ler.umaString(); 
+                                    verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp);
+                                    while(verificaExistenciaDisc == -1){
+                                        System.out.print("Lamento, mas esta disciplina não existe! Escolha outra: ");
+                                        nomediscp = Ler.umaString(); 
+                                        verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp);
+                                    }
+
+                                    disciplinaDaFreq = escolaInformatica.devolveDisciplina(nomediscp);
+
+                                    Frequencia novaFreq = criarfrequencia(escolaInformatica, disciplinaDaFreq);
+                                    escolaInformatica.getDisciplinaEscola().get(escolaInformatica.devolveposDisc(nomediscp)).getListFreq().add(novaFreq);
+                                    
+                                    EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                    System.out.println("\n-->  Frequência criada com sucesso!!\n");
+                                }
+                                else
+                                    System.out.println("Não é possível criar uma frequência pois ainda não existem disciplinas criadas nesta escola.\n");
+                                
                                 pedeTecla();
                                 break;
                             case 3:

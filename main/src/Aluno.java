@@ -48,6 +48,14 @@ public class Aluno extends Pessoa {
         return this.numAluno;
     }
 
+    public static int getUltimo(){
+        return ultimo;
+    }
+
+    public static void setUltimo(int ult){
+        ultimo = ult;
+    }
+
     public void setContactos(Contactos contactos){
         super.setContactos(contactos);
     }

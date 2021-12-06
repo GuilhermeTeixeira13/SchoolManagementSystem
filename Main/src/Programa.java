@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
-
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,9 +8,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.io.IOException;
-import java.util.Collection;
 
 public class Programa implements Serializable {
 
@@ -26,29 +22,32 @@ public class Programa implements Serializable {
         Ler.umaString();
     }
 
-    public static void EscreveEscolaNoFicheiro(String filepath, EscolaInformatica escolaInformaticas) {
+    public static void EscreveEscolaNoFicheiro(String filepath, EscolaInformatica escolaInformatica) {
 
         try {
-            FileOutputStream fileOut = new FileOutputStream(filepath);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(escolaInformaticas);
-            objectOut.close();
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(filepath));
+            // escrever o objeto livros no ficheiro 
+            os.writeInt(Aluno.getUltimo());
+            os.writeObject(escolaInformatica); 
+            os.flush(); // os dados são copiados de memória para o disco
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
     public static EscolaInformatica LeEscolaNoFicheiro(String filepath) {
+        EscolaInformatica escolaVazia = new EscolaInformatica();
         try {
             File file = new File(filepath);
-            FileInputStream is = new FileInputStream(file);
-            EscolaInformatica obj = new EscolaInformatica();
-            if (file.length() != 0) {
-                ObjectInputStream oIS = new ObjectInputStream(is);
-                obj = (EscolaInformatica) oIS.readObject();
-                oIS.close();
+            if (file.length() != 0){
+                ObjectInputStream is = new ObjectInputStream(new FileInputStream(filepath));
+                int ult= is.readInt();
+                Aluno.setUltimo(ult);
+                EscolaInformatica escolaInformatica = (EscolaInformatica)is.readObject();
+                return escolaInformatica;
             }
-            return obj;
+            else
+                return escolaVazia;
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return null;

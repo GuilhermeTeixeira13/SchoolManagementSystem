@@ -94,3 +94,6 @@
 9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade) ✔️
 10. Mostrar aluno com melhor e pior média, de determinado curso (A implementar na classe Aluno, depois de fazer função que calcule a média nas NotasDisciplina)
 11. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno)
+
+**A implementar:**
+- Variáveis estáticas para número do professor e número das perguntas

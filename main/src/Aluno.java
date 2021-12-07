@@ -53,7 +53,7 @@ public class Aluno extends Pessoa {
     }
 
     public static void setUltimo(int ult){
-        ultimo = ult;
+        Aluno.ultimo = ult;
     }
 
     public void setContactos(Contactos contactos){

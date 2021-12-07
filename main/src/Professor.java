@@ -47,7 +47,7 @@ public class Professor extends Pessoa {
     }
 
     public static void setUltimo(int ult){
-        ultimo = ult;
+        Professor.ultimo = ult;
     }
 
     public Contactos getContactos() {

@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Disciplina implements java.io.Serializable {
-    private String nomedisc,numdisc;
+    private String nomedisc, numdisc;
     private ArrayList<Aluno> listalunos;
     private ArrayList<Professor> listprof;
     private ArrayList<Frequencia> listfreq;
 
     public Disciplina() {
-        this.numdisc = 0;
+        this.numdisc = "";
         this.nomedisc = "";
         this.listalunos = new ArrayList<Aluno>();
         this.listprof = new ArrayList<Professor>();
@@ -88,28 +88,35 @@ public class Disciplina implements java.io.Serializable {
         return s;
     }
 
-
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         boolean ig = false;
-        if(obj != null && this.getClass() == obj.getClass()){
+        if (obj != null && this.getClass() == obj.getClass()) {
             Disciplina disc1 = (Disciplina) obj;
             ig = this.nomedisc.equals(disc1.nomedisc) && (this.numdisc == disc1.numdisc);
-            ig = ig && (this.listalunos.equals(disc1.listalunos)) && (this.listfreq.equals(disc1.listfreq)) && (this.listprof.equals(disc1.listprof));
-        }
-        else{
+            ig = ig && (this.listalunos.equals(disc1.listalunos)) && (this.listfreq.equals(disc1.listfreq))
+                    && (this.listprof.equals(disc1.listprof));
+        } else {
             ig = false;
         }
         return ig;
     }
 
-    public Object clone(){
-        Disciplina  copia = new Disciplina();
+    public Object clone() {
+        Disciplina copia = new Disciplina();
         copia.nomedisc = this.nomedisc;
         copia.numdisc = this.numdisc;
         copia.listalunos = (ArrayList<Aluno>) this.listalunos.clone();
         copia.listfreq = (ArrayList<Frequencia>) this.listfreq.clone();
         copia.listprof = (ArrayList<Professor>) this.listprof.clone();
         return copia;
+    }
+    public boolean verificaExistenciafreq(String nomefreq){
+        boolean existe = false;
+        for(int i=0; i<this.getListFreq().size(); i++){
+            if(this.getListFreq().get(i).equals(nomefreq))
+                existe = true;
+        }
+        return existe;
     }
 
     public static void main(String[] args) {

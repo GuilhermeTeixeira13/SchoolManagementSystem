@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 
 public class Professor extends Pessoa {
+    private static int ultimo=0;
     private int numProf;
     private int rating;
     private ArrayList<Disciplina> discLec;
@@ -9,7 +10,8 @@ public class Professor extends Pessoa {
     // Construtor sem parâmetros
     public Professor() {
         super();
-        this.numProf = 0;
+        ultimo ++;
+        this.numProf = ultimo;
         this.rating = 0;
         this.discLec = new ArrayList<Disciplina>();
     }
@@ -17,7 +19,8 @@ public class Professor extends Pessoa {
     // Construtor com parâmetros
     public Professor(int numProf, int rating, Pessoa p) {
         super(p.getNome(), p.getContactos(), p.getLocalDeOrigem(), p.getDataNascimento());
-        this.numProf = numProf;
+        ultimo ++;
+        this.numProf = ultimo;
         this.rating = rating;
         this.discLec = new ArrayList<Disciplina>();
     }
@@ -37,6 +40,14 @@ public class Professor extends Pessoa {
 
     public void setNome(String nome) {
         super.setNome(nome);
+    }
+
+    public static int getUltimo(){
+        return ultimo;
+    }
+
+    public static void setUltimo(int ult){
+        Professor.ultimo = ult;
     }
 
     public Contactos getContactos() {

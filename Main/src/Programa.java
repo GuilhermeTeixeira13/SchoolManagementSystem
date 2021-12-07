@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.IOException;
+import java.util.*;
 
 public class Programa implements Serializable {
 
@@ -28,6 +29,7 @@ public class Programa implements Serializable {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(filepath));
             // escrever o objeto livros no ficheiro 
             os.writeInt(Aluno.getUltimo());
+            os.writeInt(Professor.getUltimo());
             os.writeObject(escolaInformatica); 
             os.flush(); // os dados são copiados de memória para o disco
         } catch (IOException e) {
@@ -43,6 +45,8 @@ public class Programa implements Serializable {
                 ObjectInputStream is = new ObjectInputStream(new FileInputStream(filepath));
                 int ult= is.readInt();
                 Aluno.setUltimo(ult);
+                int ultProf= is.readInt();
+                Professor.setUltimo(ultProf);
                 EscolaInformatica escolaInformatica = (EscolaInformatica)is.readObject();
                 return escolaInformatica;
             }
@@ -313,7 +317,7 @@ public class Programa implements Serializable {
         String nomeProfC, opcaoContactoMenu, tipoContactoC, emailC, localdeOrigemC;
         LocalDate datadenascimentoC;
         Long numeroContactoC;
-        int numProfC, ratingProfC, escolhaDisc;
+        int ratingProfC, escolhaDisc;
         Contactos contactosC = new Contactos();
         ArrayList<Telefone> telefonesC = new ArrayList<>();
         ArrayList<Pessoa> Profs = identProf(escolaInformatica.getPessoasEscola());
@@ -333,9 +337,6 @@ public class Programa implements Serializable {
         } while (verificaExistenciaProf != -1);
         professorC.setNome(nomeProfC);
 
-        System.out.print("\nNúmero: ");
-        numProfC = Ler.umInt();
-        professorC.setNumProf(numProfC);
         System.out.println("\n------------------------------------------------------------------------------");
 
         System.out.println("Telefones");

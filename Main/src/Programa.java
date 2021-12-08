@@ -1264,6 +1264,30 @@ public class Programa implements Serializable {
         return escolaInformatica.getDisciplinaEscola().get(posicao);
     }
 
+    public static ArrayList<Professor> profdasdisciplinas(ArrayList<Professor> profsEscola, String nomediscprof) {
+        ArrayList<Professor> profdasdisciplinasLec = new ArrayList<>();
+        for (int i = 0; i < profsEscola.size(); i++) {
+            // if (profsEscola.get(i).getDiscLec().isEmpty()==false) {
+            if (profsEscola.get(i).getDiscLec().equals(nomediscprof))
+                profdasdisciplinasLec.add(profsEscola.get(i));
+            // }
+        }
+        return profdasdisciplinasLec;
+
+    }
+
+    public static ArrayList<Aluno> alunosdasdisciplinas(ArrayList<Aluno> alunosEscola, String nomediscalunos) {
+        ArrayList<Aluno> alunosdasdisciplinasLec = new ArrayList<>();
+        for (int i = 0; i < alunosEscola.size(); i++) {
+            // if (alunosEscola.get(i).getDiscLec().isEmpty()==false) {
+            if (alunosEscola.get(i).getNome().equals(nomediscalunos))
+                alunosdasdisciplinasLec.add(alunosEscola.get(i));
+            // }
+        }
+        return alunosdasdisciplinasLec;
+
+    }
+
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
@@ -1566,8 +1590,12 @@ public class Programa implements Serializable {
                                 break;
                             case 7:
                                 // Mostrar professores que lecionam determianda disciplina
-                                String nomeDiscprof;
+                                String nomeDiscprof = "";
                                 int opcaodiscprof;
+                                ArrayList<Professor> discescolaprof = convPessoaProf(
+                                        identProf(escolaInformatica.getPessoasEscola()));
+                                ArrayList<Professor> ArrayResultadosdiscProf = profdasdisciplinas(
+                                        discescolaprof, nomeDiscprof);
                                 System.out.print(
                                         "5. Professores de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
                                 opcaodiscprof = Ler.umInt();
@@ -1584,7 +1612,8 @@ public class Programa implements Serializable {
                                         nomeDiscprof = Ler.umaString();
                                         sucesso1 = escolaInformatica.profDiscEquals(nomeDiscprof);
                                         if (sucesso1 == true) {
-                                            System.out.println("Professores de "+nomeDiscprof+":\n"+escolaInformatica.getDisciplinaEscola().);
+                                            System.out.println("Professores de " + nomeDiscprof + ":\n"
+                                                    + ArrayResultadosdiscProf.get(0).getNome());
                                         } else
                                             System.out.println(
                                                     "Não existe nenhum disciplina com o nome " + nomeDiscprof + ".");
@@ -1596,7 +1625,8 @@ public class Programa implements Serializable {
                                         nomeDiscprof = Ler.umaString();
                                         sucesso1 = escolaInformatica.discprofContains(nomeDiscprof);
                                         if (sucesso1 == true) {
-                                            System.out.println("Professores da Disciplina que contêm a palavra "+nomeDiscprof+":\n"+ );
+                                            System.out.println("Professores da Disciplina que contêm a palavra "
+                                                    + nomeDiscprof + ":\n" + ArrayResultadosdiscProf.get(0).getNome());
                                         } else
                                             System.out.println("Não existe nenhuma disciplina que contenha a palavra "
                                                     + nomeDiscprof + ".");
@@ -1608,8 +1638,12 @@ public class Programa implements Serializable {
                             // alterar prints funçao prof contem diciplina
                             case 8:
                                 // Mostrar alunos inscritos em determinada disciplina
-                                String nomeDiscalunos;
+                                String nomeDiscalunos = "";
                                 int opcaodiscalunos;
+                                ArrayList<Aluno> discescolaalunos = convPessoaAluno(
+                                        identAluno(escolaInformatica.getPessoasEscola()));
+                                ArrayList<Aluno> arrayResultadosdiscalunos = alunosdasdisciplinas(
+                                        discescolaalunos, nomeDiscalunos);
                                 System.out.print(
                                         "5. Alunos de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
                                 opcaodiscalunos = Ler.umInt();
@@ -1619,6 +1653,7 @@ public class Programa implements Serializable {
                                 }
                                 limpaTela();
                                 boolean sucesso2 = false;
+
                                 switch (opcaodiscalunos) {
                                     case 1:
                                         System.out.print(
@@ -1626,7 +1661,8 @@ public class Programa implements Serializable {
                                         nomeDiscalunos = Ler.umaString();
                                         sucesso2 = escolaInformatica.alunosDiscEquals(nomeDiscalunos);
                                         if (sucesso2 == true) {
-                                            System.out.println("Alunos de "+nomeDiscalunos+":\n"+escolaInformatica.getDisciplinaEscola().);
+                                            System.out.println("Alunos de " + nomeDiscalunos + ":\n"
+                                                    + arrayResultadosdiscalunos.get(0).getNome());
                                         } else
                                             System.out.println(
                                                     "Não existe nenhum disciplina com o nome " + nomeDiscalunos + ".");
@@ -1635,10 +1671,12 @@ public class Programa implements Serializable {
                                     case 2:
                                         System.out.print(
                                                 "2. Pela palavra contida no nome\n\nEscreva o nome da Disciplina que pretende -->  ");
-                                        nomeDiscalunos= Ler.umaString();
+                                        nomeDiscalunos = Ler.umaString();
                                         sucesso2 = escolaInformatica.discalunosContains(nomeDiscalunos);
-                                        if (sucesso1 == true) {
-                                            System.out.println("Alunos da Disciplina que contêm a palavra "+nomeDiscalunos+":\n"+ );
+                                        if (sucesso2 == true) {
+                                            System.out.println(
+                                                    "Alunos da Disciplina que contêm a palavra " + nomeDiscalunos
+                                                            + ":\n" + arrayResultadosdiscalunos.get(0).getNome());
                                         } else
                                             System.out.println("Não existe nenhuma disciplina que contenha a palavra "
                                                     + nomeDiscalunos + ".");

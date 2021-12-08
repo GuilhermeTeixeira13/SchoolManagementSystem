@@ -260,6 +260,16 @@ public class EscolaInformatica implements Serializable{
         }
         return conseguiuRemover;
     }
+    public boolean removediscContains(String nomeDiscRemover){
+        boolean conseguiuRemover = false;
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDiscRemover)){
+                this.getDisciplinaEscola().remove(this.getDisciplinaEscola().get(i));
+                conseguiuRemover = true;
+            }
+        }
+        return conseguiuRemover;
+    }
     public boolean profDiscEquals(String nomeDiscprof){
         boolean nomevalido = false;
         for(int i=0;i<this.getDisciplinaEscola().size();i++){
@@ -278,21 +288,11 @@ public class EscolaInformatica implements Serializable{
         }
         return nomevalido;
     }
-    public boolean removediscContains(String nomeDiscRemover){
-        boolean conseguiuRemover = false;
-        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
-            if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDiscRemover)){
-                this.getDisciplinaEscola().remove(this.getDisciplinaEscola().get(i));
-                conseguiuRemover = true;
-            }
-        }
-        return conseguiuRemover;
-    }
+    
     public boolean discprofContains(String nomeDiscprof){
         boolean nomevalido = false;
         for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
             if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDiscprof)){
-                this.getDisciplinaEscola().remove(this.getDisciplinaEscola().get(i));
                 nomevalido = true;
             }
         }
@@ -302,7 +302,6 @@ public class EscolaInformatica implements Serializable{
         boolean nomevalido = false;
         for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
             if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDiscalunos)){
-                this.getDisciplinaEscola().remove(this.getDisciplinaEscola().get(i));
                 nomevalido = true;
             }
         }

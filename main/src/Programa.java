@@ -1263,7 +1263,6 @@ public class Programa implements Serializable {
     }
 
 
-
     public static Professor modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
         int opcaoUtilizador;
         Professor novoProfessor = (Professor) escolaInformatica.getPessoasEscola().get(posicao);
@@ -2201,7 +2200,19 @@ public class Programa implements Serializable {
                                 break;
                             case 5:
                                 // Remover Frequência
-
+                                int posFrequencia2 = -1;
+                                int posDisciplinaIdFreq2;
+                                posDisciplinaIdFreq2 = menuDisciplinasFreq(escolaInformatica);
+                                System.out.print(
+                                        "5. REMOVER FREQUÊNCIA\n\nEscreva o id da frequência que pretende remover -->  " + listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2));
+                                int idFrequencia = Ler.umInt();
+                                posFrequencia2 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia);
+                                while(posFrequencia2 == -1 || posDisciplinaIdFreq2 == -1){
+                                    System.out.println("Introduza um ID da Frequência VÁLIDO: ");
+                                    idFreq1 = Ler.umInt();
+                                }
+                                escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq2).getListFreq().remove(posFrequencia2);
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 pedeTecla();
                                 break;
                             case 6:

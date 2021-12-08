@@ -2203,13 +2203,14 @@ public class Programa implements Serializable {
                                 int posFrequencia2 = -1;
                                 int posDisciplinaIdFreq2;
                                 posDisciplinaIdFreq2 = menuDisciplinasFreq(escolaInformatica);
-                                System.out.print(
-                                        "5. REMOVER FREQUÊNCIA\n\nEscreva o id da frequência que pretende remover -->  " + listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2));
+                                System.out.print("5. REMOVER FREQUÊNCIA\n\n");
+                                listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2);
+                                System.out.println("Escreva o id da frequência que pretende remover -->  ");
                                 int idFrequencia = Ler.umInt();
                                 posFrequencia2 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia);
                                 while(posFrequencia2 == -1 || posDisciplinaIdFreq2 == -1){
                                     System.out.println("Introduza um ID da Frequência VÁLIDO: ");
-                                    idFreq1 = Ler.umInt();
+                                    idFrequencia = Ler.umInt();
                                 }
                                 escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq2).getListFreq().remove(posFrequencia2);
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);

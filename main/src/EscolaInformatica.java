@@ -246,6 +246,19 @@ public class EscolaInformatica implements Serializable{
         return pos;
     }
 
+    public int devolvePosFrequenciaDaListaFreq(int idFreq){
+        int pos = -1;
+
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            for(int j = 0; j < this.getDisciplinaEscola().get(i).getListFreq().size(); j++){
+                if(this.getDisciplinaEscola().get(i).getListFreq().get(j).getid() == idFreq)
+                    pos = j;
+            }
+        }
+
+        return pos;
+    }
+
     public Disciplina devolveDisciplina(String nomeDisciplina){ 
         Disciplina disciplina = new Disciplina();
 

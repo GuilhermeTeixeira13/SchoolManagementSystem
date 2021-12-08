@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.sound.sampled.SourceDataLine;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -149,6 +151,15 @@ public class Programa implements Serializable {
         System.out.println("Curso: " + a.getCurso().getNomeCurso());
         System.out.println("-----------------------------------------------------");
         System.out.println();
+    }
+
+    public static void listaPerguntas(ArrayList<Perguntas> listaPerg){
+        for(int i = 0; i < listaPerg.size(); i++){
+            System.out.println("->  Pergunta Nº  " + listaPerg.get(i).getnumpergunta());
+            System.out.println("Cotação: " + listaPerg.get(i).cotaçao);
+            System.out.println(listaPerg.get(i).getpergunta());
+            System.out.println("------------------------------------------------");
+        }
     }
 
     public static void listaumProf(Professor p) {
@@ -954,7 +965,8 @@ public class Programa implements Serializable {
         Frequencia novaFrequencia = new Frequencia();
         ArrayList<Perguntas> perguntas = new ArrayList<Perguntas>();
         Perguntas questao = new Perguntas();
-        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas, numpergunta, cotacao;
+        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas, numpergunta;
+        float cotacao;
         String dific, pergunta, nomeProf;
         ArrayList<Pessoa> Professores = identProf(escolaInformatica.getPessoasEscola());
         
@@ -1000,7 +1012,7 @@ public class Programa implements Serializable {
             numpergunta = Ler.umInt();
             questao.setnumpergunta(numpergunta);
             System.out.print("\nDigite a cotação: ");
-            cotacao = Ler.umInt();
+            cotacao = Ler.umFloat();
             questao.setcotaçao(cotacao);
             System.out.print("\nDigite a pergunta: ");
             pergunta = Ler.umaString();
@@ -1016,6 +1028,241 @@ public class Programa implements Serializable {
 
         return novaFrequencia;
     }
+
+    public static void consultarFrequencia(EscolaInformatica escolaInformatica, int idFreq, int posDisciplinaFreq, int posFrequencialistaFreq){
+        int opcaomenuconsulFreq;
+
+
+        do{
+            System.out.println("  MENU CONSULTAR DADOS FREQUÊNCIA DE " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq) + " COM O ID ->  " + idFreq + "\n");
+            System.out.println("1. Data da Frequência\n2. Professor Responsável\n3. Número Total de Perguntas\n4. Conjunto de Perguntas\n5. Dificuldade da Frequência\n6. Voltar");
+            System.out.print("Opcão -> ");
+            opcaomenuconsulFreq = Ler.umInt();
+            while(opcaomenuconsulFreq < 0 || opcaomenuconsulFreq > 6){
+                 System.out.print("Introduza uma opção válida -> ");
+                 opcaomenuconsulFreq = Ler.umInt();
+            }
+            limpaTela();
+            switch(opcaomenuconsulFreq){
+                case 1:
+                System.out.println("Data da Frequência: " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFrequencialistaFreq).getdatefreq());
+                pedeTecla();
+                break;
+                case 2:
+                System.out.println("Professor Responsável: " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFrequencialistaFreq).getProfessorResponsavel());
+                pedeTecla();
+                break;
+                case 3:
+                System.out.println("Número Total de Perguntas: " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFrequencialistaFreq).getNumPergTotal());
+                pedeTecla();
+                break;
+                case 4:
+                System.out.println(listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFrequencialistaFreq).getlistperg()));
+                pedeTecla();
+                break;
+                case 5:
+                System.out.println("Dificuldade da Frequência: " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFrequencialistaFreq).getdificuldade());
+                pedeTecla();
+                break;
+            }
+        }while(opcaomenuconsulFreq > 0 && opcaomenuconsulFreq < 6);
+    }
+
+    public static Frequencia modFrequencia(EscolaInformatica escolaInformatica, int idFreq1, int posDisciplinaIdFreq, int posFrequencia){
+        int numQuestao;
+        int opcaomodFreq;
+        int opcaomodPerg;
+        String respContinuar;
+        float novcotacao;
+        int opcaomenulistaPerg;
+        Frequencia modificarFrequencia = escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia);
+        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas, numpergunta;
+        String novocont, pergunta, nomeProf, dif;
+        ArrayList<Pessoa> Professores = identProf(escolaInformatica.getPessoasEscola());
+        limpaTela();
+        do{
+            System.out.println("MENU MODIFICAÇÕES FREQUÊNCIA DE " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq) + "\n");
+            System.out.println("1. ID da Frequência\n2. Data da Frequência\n3. Professor Responsável\n4. Número Total de Perguntas\n5. Perguntas\n6. Dificuldade\n7. Voltar");
+            System.out.print("Opção -> ");
+            opcaomodFreq = Ler.umInt();
+            while(opcaomodFreq < 1 || opcaomodFreq > 7){
+                System.out.print("Digite uma opção VÁLIDA: ");
+                opcaomodFreq = Ler.umInt();
+            }
+            switch(opcaomodFreq){
+                case 1:
+                do {
+                    if (verificaExistenciaFreq == -1)
+                        System.out.print("ID da Frequência: ");  
+                    else
+                        System.out.print("Esse ID já existe! Por favor, escolha outro: ");
+                    idFreq = Ler.umInt();
+                    verificaExistenciaFreq = escolaInformatica.devolvePosDisciplinaDaFreq(idFreq);
+                } while (verificaExistenciaFreq != -1);
+                modificarFrequencia.setid(idFreq);
+                break;
+                pedeTecla();
+                case 2:
+                System.out.print("\nData da frequência: ");
+                LocalDate dataFrequencia = pedeData();
+                modificarFrequencia.setdatafreq(dataFrequencia);
+                pedeTecla();
+                break;
+                case 3:
+                System.out.print("\nProfessor Responsável: ");
+                nomeProf = Ler.umaString(); 
+                verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProf, Professores);
+                while(verificaExistenciaProf == -1){
+                    System.out.print("Lamento, mas este professor não existe! Escolha outro: ");
+                    nomeProf = Ler.umaString(); 
+                verificaExistenciaProf = escolaInformatica.devolvePosProf(nomeProf, Professores);
+                }
+                modificarFrequencia.setProfessorResponsavel((Professor)Professores.get(verificaExistenciaProf));
+                case 4:
+                System.out.print("\nNúmero Total de Perguntas: ");
+                NTotalPerguntas = Ler.umInt();
+                novaFrequencia.setNumPergTotal(NTotalPerguntas);
+                while(NTotalPerguntas <= 0){
+                    System.out.print("Insira um número de perguntas válido: ");
+                    NTotalPerguntas = Ler.umInt();
+                }
+                modificarFrequencia.setNumPergTotal(NTotalPerguntas);
+                pedeTecla();
+                break;
+                case 5:
+                limpaTela();
+                do{
+
+                    System.out.println("->  MENU MODIFICAR LISTA PERGUNTAS\n");
+
+                    System.out.println("1. Adicionar Pergunta\n2. Remover Pergunta\n3. Modificar Pergunta\n4. Voltar");
+                    System.out.print("Opção -> ");
+                    opcaomenulistaPerg = Ler.umInt();
+                    while(opcaomenulistaPerg < 1 || opcaomenulistaPerg > 4){
+                        System.out.print("Digite uma opção válida: ");
+                        opcaomenulistaPerg = Ler.umInt();
+                    }
+                    limpaTela();
+                    switch(opcaomenulistaPerg){
+                        case 1:
+                        do{
+                            System.out.print("\nDigite o número da pergunta: ");
+                            numpergunta = Ler.umInt();
+                            System.out.print("\nDigite a cotação: ");
+                            cotacao = Ler.umInt();
+                            System.out.print("\nDigite a pergunta: ");
+                            pergunta = Ler.umaString();
+                            Pergunta questao = new Pergunta(numpergunta, cotacao, pergunta);
+                            escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().add(questao);
+                            System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]");
+                            respContinuar = Ler.umaString();
+
+                        }while(respContinuar == "S" || respContinuar == "s");
+                        pedeTecla();
+                        break;
+                        case 2:
+                        listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq());
+                        do{
+                            System.out.print("Número da Pergunta que deseja remover: ");
+                            numQuestao = Ler.umInt();
+                            for(int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().size(); i++){
+                                if(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(i).numpergunta == numQuestao){
+                                    escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().remove(i);
+                                }
+                            }
+                            System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]");
+                            respContinuar = Ler.umaString();
+                        }while(respContinuar == "S" || respContinuar == "s");
+                        pedeTecla();
+                        break;
+                        case 3:
+                        listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq());
+                        do{
+                            System.out.print("Número da Pergunta que deseja modificar: ");
+                            numQuestao = Ler.umInt();
+                            do{
+                                System.out.print("1. Modificar Número da Pergunta\n2. Modificar Cotação da Pergunta\n3. Modificar Conteúdo da Pergunta\n4. Voltar");
+                                opcaomodPerg = Ler.umInt();
+                                while(opcaomodPerg < 1 || opcaomodPerg > 4){
+                                    System.out.print("Digite uma opção válida: ");
+                                    opcaomodPerg = Ler.umInt();
+                                }
+                                switch(opcaomodPerg){
+                                    case 1:
+                                    System.out.print("Novo número da pergunta: ");
+                                    numpergunta = Ler.umInt();
+                                    for(int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().size(); i++){
+                                        if(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(i).numpergunta == numQuestao){
+                                            escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(i).setnumpergunta(numpergunta);
+                                        }
+                                    }
+                                    pedeTecla();
+                                    break;
+                                    case 2:
+                                    System.out.print("Nova cotação da pergunta: ");
+                                    novcotacao = Ler.umFloat();
+                                    for(int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().size(); i++){
+                                        if(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(i).numpergunta == numQuestao){
+                                            escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(i).setcotaçao(novcotacao);
+                                        }
+                                    }
+                                    pedeTecla();
+                                    break;
+                                    case 3:
+                                    System.out.print("Novo conteúdo da pergunta: ");
+                                    novocont = Ler.umaString();
+                                    for(int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().size(); i++){
+                                        if(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(i).numpergunta == numQuestao){
+                                            escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(i).setpergunta(novocont);
+                                        }
+                                    }
+                                    pedeTecla();
+                                    break;
+                                }
+                            }while(opcaomodPerg > 0 && opcaomodPerg < 4);
+                            System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]");
+                            respContinuar = Ler.umaString();
+                        }while(respContinuar == "S" || respContinuar == "s");
+                        
+                    }
+                }while(opcaomenulistaPerg > 0 && opcaomenulistaPerg < 4);
+                case 6:
+                System.out.print("\nDificuldade: ");
+                dif = Ler.umaString();
+                modificarFrequencia.setdificuldadec(dific);
+                pedeTecla();
+                break;
+            }
+        }while(opcaomodFreq > 1 && opcaomodFreq < 7);
+        return modificarFrequencia;
+    }
+
+    public static int menuDisciplinasFreq(EscolaInformatica escolaInformatica){
+        limpaTela();
+        int opmenudiscFreq;
+        System.out.println("Disciplinas da Escola " + escolaInformatica.getNomeEscola());
+        for(int i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++){
+             System.out.println(i + 1 + ". " + escolaInformatica.getDisciplinaEscola());
+        }
+        System.out.print("Opção -> ");
+        opmenudiscFreq = Ler.umInt();
+        while(opmenudiscFreq < 0 || opmenudiscFreq > escolaInformatica.getDisciplinaEscola().size()){
+            System.out.print("Digite uma opção VÁLIDA -> ");
+            opmenudiscFreq = Ler.umInt();
+        }
+        return opmenudiscFreq - 1;
+    }
+
+    public static ArrayList<Integer> listIdsDisciplina(EscolaInformatica escolaInformatica, int posDisciplinaFreq){
+        ArrayList<Integer> listaIds = new ArrayList<Integer>();
+        ArrayList<Frequencia> listaFreq = escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq();
+        for(int i = 0; i < listaFreq.size(); i++){
+            listaIds.add(listaFreq.get(i).getid());
+        }
+        return listaIds;
+    }
+
+
 
     public static Professor modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
         int opcaoUtilizador;
@@ -1919,13 +2166,39 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 3:
-                                // Mostrar determinada frequência, dado o ID da mesma
-
+                                int idFreq;
+                                int posDisciplinaIdFreq;
+                                int posFrequencia = -1;
+                                System.out.println("3. CONSULTAR DADOS DE UM FREQUÊNCIA, DADO O SEU ID\n");
+                                System.out.print();
+                                posDisciplinaIdFreq = menuDisciplinasFreq(escolaInformatica);
+                                System.out.print("Introduza o ID da frequência que deseja consultar: " + listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq)); 
+                                idFreq = Ler.umInt();
+                                posFrequencia = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
+                                while(posFrequencia == -1 || posDisciplinaIdFreq == -1){
+                                    System.out.println("Introduza o ID da frequência corretamente");
+                                }
+                                consultarFrequencia(escolaInformatica, idFreq, posDisciplinaIdFreq, posFrequencia);
                                 pedeTecla();
                                 break;
                             case 4:
-                                // Modificar dados sobre uma Frequência
-
+                                int idFreq1;
+                                int posDisciplinaIdFreq1;
+                                int posFrequencia1 = -1;
+                                System.out.println("4. MODIFICAR DADOS DE UM FREQUÊNCIA, DADO O SEU ID\n");
+                                System.out.print();
+                                posDisciplinaIdFreq1 = menuDisciplinasFreq(escolaInformatica);
+                                System.out.print("Introduza o ID da frequência que deseja modificar: " + listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq1)); 
+                                idFreq1 = Ler.umInt();
+                                posFrequencia1 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq1);
+                                while(posFrequencia1 == -1 || posDisciplinaIdFreq1 == -1){
+                                    System.out.println("Introduza um ID da Frequência VÁLIDO: ");
+                                    idFreq1 = Ler.umInt();
+                                }
+                                escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq1).getListFreq().remove(posFrequencia1);
+                                Frequencia modificadaFreq = modFrequencia(escolaInformatica, idFreq1, posDisciplinaIdFreq1, posFrequencia1);
+                                escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq1).getListFreq().add(modificadaFreq);
+                                EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 pedeTecla();
                                 break;
                             case 5:

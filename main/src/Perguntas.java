@@ -1,3 +1,5 @@
+package src;
+
 public class Perguntas implements java.io.Serializable {
     int numpergunta;
     float cotaçao;
@@ -9,7 +11,7 @@ public class Perguntas implements java.io.Serializable {
         this.pergunta = "";
     }
 
-    public Perguntas(int numpergunta, int cotaçao, String pergunta) {
+    public Perguntas(int numpergunta, float cotaçao, String pergunta) {
         this.numpergunta = numpergunta;
         this.cotaçao = cotaçao;
         this.pergunta = pergunta;

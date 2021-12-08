@@ -1,7 +1,8 @@
+package src;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.sound.sampled.SourceDataLine;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -14,7 +15,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.io.IOException;
-import java.util.Collection;
 
 public class Programa implements Serializable {
 
@@ -1057,7 +1057,7 @@ public class Programa implements Serializable {
                 pedeTecla();
                 break;
                 case 4:
-                System.out.println(listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFrequencialistaFreq).getlistperg()));
+                listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFrequencialistaFreq).getlistperg());
                 pedeTecla();
                 break;
                 case 5:
@@ -1100,8 +1100,8 @@ public class Programa implements Serializable {
                     verificaExistenciaFreq = escolaInformatica.devolvePosDisciplinaDaFreq(idFreq);
                 } while (verificaExistenciaFreq != -1);
                 modificarFrequencia.setid(idFreq);
-                break;
                 pedeTecla();
+                break;
                 case 2:
                 System.out.print("\nData da frequência: ");
                 LocalDate dataFrequencia = pedeData();
@@ -1121,7 +1121,7 @@ public class Programa implements Serializable {
                 case 4:
                 System.out.print("\nNúmero Total de Perguntas: ");
                 NTotalPerguntas = Ler.umInt();
-                novaFrequencia.setNumPergTotal(NTotalPerguntas);
+                modificarFrequencia.setNumPergTotal(NTotalPerguntas);
                 while(NTotalPerguntas <= 0){
                     System.out.print("Insira um número de perguntas válido: ");
                     NTotalPerguntas = Ler.umInt();
@@ -1149,11 +1149,11 @@ public class Programa implements Serializable {
                             System.out.print("\nDigite o número da pergunta: ");
                             numpergunta = Ler.umInt();
                             System.out.print("\nDigite a cotação: ");
-                            cotacao = Ler.umInt();
+                            novcotacao = Ler.umInt();
                             System.out.print("\nDigite a pergunta: ");
                             pergunta = Ler.umaString();
-                            Pergunta questao = new Pergunta(numpergunta, cotacao, pergunta);
-                            escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().add(questao);
+                            Perguntas questao = new Perguntas(numpergunta, novcotacao, pergunta);
+                            escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().add(questao);
                             System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]");
                             respContinuar = Ler.umaString();
 
@@ -1161,7 +1161,7 @@ public class Programa implements Serializable {
                         pedeTecla();
                         break;
                         case 2:
-                        listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq());
+                        listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg());
                         do{
                             System.out.print("Número da Pergunta que deseja remover: ");
                             numQuestao = Ler.umInt();
@@ -1176,7 +1176,7 @@ public class Programa implements Serializable {
                         pedeTecla();
                         break;
                         case 3:
-                        listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq());
+                        listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg());
                         do{
                             System.out.print("Número da Pergunta que deseja modificar: ");
                             numQuestao = Ler.umInt();
@@ -1229,7 +1229,7 @@ public class Programa implements Serializable {
                 case 6:
                 System.out.print("\nDificuldade: ");
                 dif = Ler.umaString();
-                modificarFrequencia.setdificuldadec(dific);
+                modificarFrequencia.setdificuldadec(dif);
                 pedeTecla();
                 break;
             }
@@ -2170,7 +2170,6 @@ public class Programa implements Serializable {
                                 int posDisciplinaIdFreq;
                                 int posFrequencia = -1;
                                 System.out.println("3. CONSULTAR DADOS DE UM FREQUÊNCIA, DADO O SEU ID\n");
-                                System.out.print();
                                 posDisciplinaIdFreq = menuDisciplinasFreq(escolaInformatica);
                                 System.out.print("Introduza o ID da frequência que deseja consultar: " + listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq)); 
                                 idFreq = Ler.umInt();
@@ -2186,7 +2185,6 @@ public class Programa implements Serializable {
                                 int posDisciplinaIdFreq1;
                                 int posFrequencia1 = -1;
                                 System.out.println("4. MODIFICAR DADOS DE UM FREQUÊNCIA, DADO O SEU ID\n");
-                                System.out.print();
                                 posDisciplinaIdFreq1 = menuDisciplinasFreq(escolaInformatica);
                                 System.out.print("Introduza o ID da frequência que deseja modificar: " + listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq1)); 
                                 idFreq1 = Ler.umInt();

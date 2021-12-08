@@ -1,4 +1,4 @@
-package src;
+
 
 public class Telefone implements java.io.Serializable {
     // Atributos

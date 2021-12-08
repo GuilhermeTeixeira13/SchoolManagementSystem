@@ -5,6 +5,6 @@
     ],
     "java.project.sourcePaths": [
         "Main/src",
-        "main"
+        "main/src"
     ]
 }

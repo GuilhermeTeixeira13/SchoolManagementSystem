@@ -1,4 +1,4 @@
-package src;
+
 
 public class Resultado implements java.io.Serializable {
     // Atributos

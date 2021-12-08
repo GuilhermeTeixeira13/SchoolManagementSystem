@@ -1,4 +1,4 @@
-package src;
+
 
 public class Perguntas implements java.io.Serializable {
     int numpergunta;

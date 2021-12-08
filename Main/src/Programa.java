@@ -1203,10 +1203,9 @@ public class Programa implements Serializable {
         return escolaInformatica;
     }
 
-    public static Disciplina criarDisciplina(EscolaInformatica escolaInformatica, Disciplina disciplina) {
-        String numdisc, nomedisc, opcaoContactoMenu;
-        int verificaExistenciadisc = -1, escolhafreq;
-        ArrayList<Frequencia> frequenciasdisc = new ArrayList<Frequencia>();
+    public static Disciplina criarDisciplina(EscolaInformatica escolaInformatica) {
+        String numdisc, nomedisc;
+        int verificaExistenciadisc = -1;
         do {
             if (verificaExistenciadisc == -1)
                 System.out.print("Nome da Disiplina: ");
@@ -1217,35 +1216,9 @@ public class Programa implements Serializable {
         } while (verificaExistenciadisc != -1);
         System.out.print("\nCódigo do Disciplina: ");
         numdisc = Ler.umaString();
-        System.out.println("\n------------------------------------------------------------------------------");
-        System.out.println("Frequencias da Disciplina: \n");
-        if (disciplina.getListFreq().isEmpty() == false) {
-            do {
-                int i = 0;
-                ArrayList<Integer> adicionados = new ArrayList<Integer>();
-                for (i = 0; i < disciplina.getListFreq().size(); i++) {
-                    if (!adicionados.contains(i))
-                        System.out.println(i + ". " + disciplina.getListFreq().get(i).getid());
-                }
-                System.out.println("Frequencia para adicionar ao curso-->");
-                escolhafreq = Ler.umInt();
-                while (i < 0 || i > disciplina.getListFreq().size() - 1 || adicionados.contains(i)) {
-                    System.out.println("disciplina para adicionar á disciplina(DIGITE ALGO VÁLIDO)--> ");
-                    escolhafreq = Ler.umInt();
-                }
-                adicionados.add(escolhafreq);
-                frequenciasdisc.add(disciplina.getListFreq().get(escolhafreq));
-                System.out.println("pretende inserir mais frequencias? [S/N] ->");
-                opcaoContactoMenu = Ler.umaString();
-                while (!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N")
-                        && !opcaoContactoMenu.equals("S") && !opcaoContactoMenu.equals("s")) {
-                    System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
-                    opcaoContactoMenu = Ler.umaString();
-                }
+        Disciplina novDisciplina = new Disciplina(nomedisc, numdisc);
+        return novDisciplina;
 
-            } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));
-        } else
-            System.out.println("Ainda não há frequencias criadas");
     }
 
     public static Disciplina modificarDisciplina(EscolaInformatica escolaInformatica, int posicao) {
@@ -1253,7 +1226,7 @@ public class Programa implements Serializable {
         do {
             System.out.print("\nO que pretende modificar na disciplina de "
                     + escolaInformatica.getDisciplinaEscola().get(posicao).getNomDisc()
-                    + "?\n\n 1. Nome\n 2. Cód.disciplina\n 3. frequencias \n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
+                    + "?\n\n 1. Nome\n 2. Cód.disciplina\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
             opcaoUtilizador = Ler.umInt();
             while (opcaoUtilizador > 3 || opcaoUtilizador < 0) {
                 System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -1282,45 +1255,6 @@ public class Programa implements Serializable {
                     numdisc = Ler.umaString();
                     escolaInformatica.getDisciplinaEscola().get(posicao).setNumDisc(numdisc);
                     pedeTecla();
-                    break;
-                case 3:
-                    int opcaofreq;
-                    System.out.println("\nFrequencias atuais, da disciplina de "
-                            + escolaInformatica.getDisciplinaEscola().get(posicao).getNomDisc() + ": ");
-                    for (int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posicao).getListFreq()
-                            .size(); i++) {
-                        System.out.println(
-                                "." + escolaInformatica.getDisciplinaEscola().get(posicao).getListFreq().get(i));
-                    }
-                    System.out.print(
-                            "\nO que pretende fazer?\n 1. Adicionar frequencia\n 2. Remover frequenvia\n 0. Voltar atrás\n\n ESCOLHA A SUA OPÇÃO --> ");
-                    opcaofreq = Ler.umInt();
-                    while (opcaofreq > 2 || opcaofreq < 0) {
-                        System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
-                        opcaofreq = Ler.umInt();
-                    }
-                    limpaTela();
-                    String freq;
-                    switch (opcaofreq) {
-                        case 1:
-                            System.out.print("1. ADICIONAR Frequencia\n\nNome da frequencia inserir: ");
-                            freq = Ler.umaString();
-                            escolaInformatica.getDisciplinaEscola().get(posicao).getListFreq().add(freq);
-                            ;
-                            pedeTecla();
-                            break;
-                        case 2:
-                            System.out.print("2. REMOVER Frequencia\n\nNome da frequencia a remover: ");
-                            freq = Ler.umaString();
-                            if (escolaInformatica.getDisciplinaEscola().get(posicao).verificaExistenciafreq(freq)) {
-                                escolaInformatica.getDisciplinaEscola().get(posicao).getListFreq().remove(freq);
-                                System.out.println("Frequencia removida com sucesso!\n");
-                            } else
-                                System.out.print(freq + " não é uma frequencia da disciplina de "
-                                        + escolaInformatica.getDisciplinaEscola().get(posicao).getListFreq());
-                            pedeTecla();
-                            break;
-                    }
                     break;
 
             }
@@ -1546,7 +1480,7 @@ public class Programa implements Serializable {
                                 System.out.print("2. Disciplinas\n");
                                 escolaInformatica.getDisciplinaEscola().add(criarDisciplina(escolaInformatica));
                                 EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-                                System.out.println("\n-->  Curso criado com sucesso!!\n");
+                                System.out.println("\n-->  disciplina criado com sucesso!!\n");
                                 pedeTecla();
                                 break;
                             case 3:
@@ -1554,11 +1488,11 @@ public class Programa implements Serializable {
                                 String NomeDiscConsultar;
                                 int posdisc;
                                 System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO CURSO\n\nEscreva o nome do curso que pretende consultar -->  ");
+                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO Disciplina\n\nEscreva o nome do curso que pretende consultar -->  ");
                                 NomeDiscConsultar = Ler.umaString();
                                 posdisc = escolaInformatica.devolvePosDisc(NomeDiscConsultar);
                                 if (posdisc == 1)
-                                    System.out.println("Lamentamos, mas este curso não existe!\n");
+                                    System.out.println("Lamentamos, mas este disciplinna não existe!\n");
                                 else {
                                     System.out.println(
                                             escolaInformatica.getDisciplinaEscola().get(posdisc).toString() + "\n");
@@ -1577,7 +1511,7 @@ public class Programa implements Serializable {
                                 if (posdiscmod == -1)
                                     System.out.println("Lamentamos, mas esta disciplina não existe!\n");
                                 else {
-                                    modificarDisciplina(escolaInformatica, 0);
+                                    modificarDisciplina(escolaInformatica, posdiscmod);
                                     EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
                                 pedeTecla();

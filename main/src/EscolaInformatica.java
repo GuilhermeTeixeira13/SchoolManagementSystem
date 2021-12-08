@@ -250,6 +250,66 @@ public class EscolaInformatica implements Serializable{
             prof.getDiscLec().get(i).getListProf().add(prof);
         }
     }
+    public boolean removeDiscEquals(String nomeDiscRemover){
+        boolean conseguiuRemover = false;
+        for(int i=0;i<this.getDisciplinaEscola().size();i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomeDiscRemover)){
+                this.getDisciplinaEscola().remove(this.getDisciplinaEscola().get(i));
+                conseguiuRemover=true;
+            }
+        }
+        return conseguiuRemover;
+    }
+    public boolean profDiscEquals(String nomeDiscprof){
+        boolean nomevalido = false;
+        for(int i=0;i<this.getDisciplinaEscola().size();i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomeDiscprof)){
+                nomevalido=true;
+            }
+        }
+        return nomevalido;
+    }
+    public boolean alunosDiscEquals(String nomeDiscalunos){
+        boolean nomevalido = false;
+        for(int i=0;i<this.getDisciplinaEscola().size();i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomeDiscalunos)){
+                nomevalido=true;
+            }
+        }
+        return nomevalido;
+    }
+    public boolean removediscContains(String nomeDiscRemover){
+        boolean conseguiuRemover = false;
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDiscRemover)){
+                this.getDisciplinaEscola().remove(this.getDisciplinaEscola().get(i));
+                conseguiuRemover = true;
+            }
+        }
+        return conseguiuRemover;
+    }
+    public boolean discprofContains(String nomeDiscprof){
+        boolean nomevalido = false;
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDiscprof)){
+                this.getDisciplinaEscola().remove(this.getDisciplinaEscola().get(i));
+                nomevalido = true;
+            }
+        }
+        return nomevalido;
+    }
+    public boolean discalunosContains(String nomeDiscalunos){
+        boolean nomevalido = false;
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDiscalunos)){
+                this.getDisciplinaEscola().remove(this.getDisciplinaEscola().get(i));
+                nomevalido = true;
+            }
+        }
+        return nomevalido;
+    }
+
+
 
     public static void main(String[] args) {
         // Testes

@@ -1262,8 +1262,6 @@ public class Programa implements Serializable {
 
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
         return escolaInformatica.getDisciplinaEscola().get(posicao);
-        // resolver problema do add
-
     }
 
     public static void main(String[] args) {
@@ -1518,7 +1516,47 @@ public class Programa implements Serializable {
                                 break;
                             case 5:
                                 // Remover disciplina
-
+                                String nomeDiscRemover;
+                                int opcaodisc;
+                                System.out.print(
+                                        "5. REMOVER Disciplina\n\n  1. Remover pelo nome\n  2. Remover por palavra contida no nome\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
+                                opcaodisc = Ler.umInt();
+                                while (opcaodisc > 2 || opcaodisc < 0) {
+                                    System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                                    opcaodisc = Ler.umInt();
+                                }
+                                limpaTela();
+                                boolean sucesso = false;
+                                switch (opcaodisc) {
+                                    case 1:
+                                        System.out.print(
+                                                "1. Remover pelo nome\n\nEscreva o nome da Disciplina que pretende remover -->  ");
+                                        nomeDiscRemover = Ler.umaString();
+                                        sucesso = escolaInformatica.removeDiscEquals(nomeDiscRemover);
+                                        if (sucesso == true) {
+                                            EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                            System.out.println(
+                                                    "Disciplina " + nomeDiscRemover + " removido com sucesso.");
+                                        } else
+                                            System.out.println(
+                                                    "Não existe nenhum disciplina com o nome " + nomeDiscRemover + ".");
+                                        System.out.println();
+                                        break;
+                                    case 2:
+                                        System.out.print(
+                                                "2. Remover por palavra contida no nome\n\nEscreva o nome da Disciplina que pretende remover -->  ");
+                                        nomeDiscRemover = Ler.umaString();
+                                        sucesso = escolaInformatica.removediscContains(nomeDiscRemover);
+                                        if (sucesso == true) {
+                                            EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                            System.out.println("Disciplina que contêm a palavra " + nomeDiscRemover
+                                                    + " removidos com sucesso.");
+                                        } else
+                                            System.out.println("Não existe nenhuma disciplina que contenha a palavra "
+                                                    + nomeDiscRemover + ".");
+                                        System.out.println();
+                                        break;
+                                }
                                 pedeTecla();
                                 break;
                             case 6:
@@ -1528,12 +1566,85 @@ public class Programa implements Serializable {
                                 break;
                             case 7:
                                 // Mostrar professores que lecionam determianda disciplina
-
+                                String nomeDiscprof;
+                                int opcaodiscprof;
+                                System.out.print(
+                                        "5. Professores de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
+                                opcaodiscprof = Ler.umInt();
+                                while (opcaodiscprof > 2 || opcaodiscprof < 0) {
+                                    System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                                    opcaodiscprof = Ler.umInt();
+                                }
+                                limpaTela();
+                                boolean sucesso1 = false;
+                                switch (opcaodiscprof) {
+                                    case 1:
+                                        System.out.print(
+                                                "1. Pelo nome da Disciplina\n\nEscreva o nome da Disciplina que pretende -->  ");
+                                        nomeDiscprof = Ler.umaString();
+                                        sucesso1 = escolaInformatica.profDiscEquals(nomeDiscprof);
+                                        if (sucesso1 == true) {
+                                            System.out.println("Professores de "+nomeDiscprof+":\n"+escolaInformatica.getDisciplinaEscola().);
+                                        } else
+                                            System.out.println(
+                                                    "Não existe nenhum disciplina com o nome " + nomeDiscprof + ".");
+                                        System.out.println();
+                                        break;
+                                    case 2:
+                                        System.out.print(
+                                                "2. Pela palavra contida no nome\n\nEscreva o nome da Disciplina que pretende -->  ");
+                                        nomeDiscprof = Ler.umaString();
+                                        sucesso1 = escolaInformatica.discprofContains(nomeDiscprof);
+                                        if (sucesso1 == true) {
+                                            System.out.println("Professores da Disciplina que contêm a palavra "+nomeDiscprof+":\n"+ );
+                                        } else
+                                            System.out.println("Não existe nenhuma disciplina que contenha a palavra "
+                                                    + nomeDiscprof + ".");
+                                        System.out.println();
+                                        break;
+                                }
                                 pedeTecla();
                                 break;
+                            // alterar prints funçao prof contem diciplina
                             case 8:
                                 // Mostrar alunos inscritos em determinada disciplina
-
+                                String nomeDiscalunos;
+                                int opcaodiscalunos;
+                                System.out.print(
+                                        "5. Alunos de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
+                                opcaodiscalunos = Ler.umInt();
+                                while (opcaodiscalunos > 2 || opcaodiscalunos < 0) {
+                                    System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
+                                    opcaodiscprof = Ler.umInt();
+                                }
+                                limpaTela();
+                                boolean sucesso2 = false;
+                                switch (opcaodiscalunos) {
+                                    case 1:
+                                        System.out.print(
+                                                "1. Pelo nome da Disciplina\n\nEscreva o nome da Disciplina que pretende -->  ");
+                                        nomeDiscalunos = Ler.umaString();
+                                        sucesso2 = escolaInformatica.alunosDiscEquals(nomeDiscalunos);
+                                        if (sucesso2 == true) {
+                                            System.out.println("Alunos de "+nomeDiscalunos+":\n"+escolaInformatica.getDisciplinaEscola().);
+                                        } else
+                                            System.out.println(
+                                                    "Não existe nenhum disciplina com o nome " + nomeDiscalunos + ".");
+                                        System.out.println();
+                                        break;
+                                    case 2:
+                                        System.out.print(
+                                                "2. Pela palavra contida no nome\n\nEscreva o nome da Disciplina que pretende -->  ");
+                                        nomeDiscalunos= Ler.umaString();
+                                        sucesso2 = escolaInformatica.discalunosContains(nomeDiscalunos);
+                                        if (sucesso1 == true) {
+                                            System.out.println("Alunos da Disciplina que contêm a palavra "+nomeDiscalunos+":\n"+ );
+                                        } else
+                                            System.out.println("Não existe nenhuma disciplina que contenha a palavra "
+                                                    + nomeDiscalunos + ".");
+                                        System.out.println();
+                                        break;
+                                }
                                 pedeTecla();
                                 break;
                         }

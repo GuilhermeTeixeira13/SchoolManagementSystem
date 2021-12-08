@@ -110,13 +110,16 @@ public class Disciplina implements java.io.Serializable {
         copia.listprof = (ArrayList<Professor>) this.listprof.clone();
         return copia;
     }
-    public boolean verificaExistenciafreq(int idfreq){
-        boolean existe = false;
-        for(int i=0; i<this.getListFreq().size(); i++){
-            if(this.getListFreq().get(i).getid()==idfreq)
-                existe = true;
+/////////////////////////////////////////////////////////
+    public void listaprofdisciplina(){
+        if(this.getListProf().isEmpty()){
+            System.out.println("Esta Disciplina ainda não tem nenhuma professor a lecionar.");
         }
-        return existe;
+        else{
+            for(int i=0; i<this.getListProf().size(); i++){
+               System.out.println(i+". "+this.getListProf().get(i).getNome());
+            }
+        }
     }
 
     public static void main(String[] args) {

@@ -1538,13 +1538,14 @@ public class Programa implements Serializable {
                                 System.out.print(
                                         "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO Disciplina\n\nEscreva o nome do curso que pretende consultar -->  ");
                                 NomeDiscConsultar = Ler.umaString();
+                                System.out.println(escolaInformatica.getDisciplinaEscola());
                                 posdisc = escolaInformatica.devolvePosDisc(NomeDiscConsultar);
-                                if (posdisc == 1)
+                                System.out.println("--"+posdisc+"----");
+                                if (posdisc == -1)
                                     System.out.println("Lamentamos, mas este disciplinna não existe!\n");
                                 else {
                                     System.out.println(
                                             escolaInformatica.getDisciplinaEscola().get(posdisc).toString() + "\n");
-
                                 }
                                 pedeTecla();
                                 break;

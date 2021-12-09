@@ -1216,9 +1216,8 @@ public class Programa implements Serializable {
         } while (verificaExistenciadisc != -1);
         System.out.print("\nCódigo do Disciplina: ");
         numdisc = Ler.umaString();
-        Disciplina novDisciplina = new Disciplina(nomedisc, numdisc);
+        Disciplina novDisciplina = new Disciplina(numdisc, nomedisc);
         return novDisciplina;
-
     }
 
     public static Disciplina modificarDisciplina(EscolaInformatica escolaInformatica, int posicao) {
@@ -1256,10 +1255,8 @@ public class Programa implements Serializable {
                     escolaInformatica.getDisciplinaEscola().get(posicao).setNumDisc(numdisc);
                     pedeTecla();
                     break;
-
             }
             limpaTela();
-
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
         return escolaInformatica.getDisciplinaEscola().get(posicao);
     }
@@ -1281,23 +1278,25 @@ public class Programa implements Serializable {
         ArrayList<Professor> profdasdisciplinasLec = new ArrayList<>();
         for (int i = 0; i < profsEscola.size(); i++) {
             for (int j = 0; j < profsEscola.get(i).getDiscLec().size(); j++) {
-            // if (profsEscola.get(i).getDiscLec().isEmpty()==false) {
-            if (profsEscola.get(i).getDiscLec().get(j).getNomDisc().contains(nomediscprof))
-                profdasdisciplinasLec.add(profsEscola.get(i));
-            // }
+                // if (profsEscola.get(i).getDiscLec().isEmpty()==false) {
+                if (profsEscola.get(i).getDiscLec().get(j).getNomDisc().contains(nomediscprof))
+                    profdasdisciplinasLec.add(profsEscola.get(i));
+                // }
             }
         }
         return profdasdisciplinasLec;
 
     }
-//esta mal necessita de alteraçoes na funçao aluno: acrescentar disciplinas a que pertencem
+    
     public static ArrayList<Aluno> alunosdasdisciplinas(ArrayList<Aluno> alunosEscola, String nomediscalunos) {
         ArrayList<Aluno> alunosdasdisciplinasLec = new ArrayList<>();
         for (int i = 0; i < alunosEscola.size(); i++) {
-            // if (alunosEscola.get(i).getDiscLec().isEmpty()==false) {
-            if (alunosEscola.get(i).getNome().equals(nomediscalunos))
-                alunosdasdisciplinasLec.add(alunosEscola.get(i));
-            // }
+            for (int j = 0; j < alunosEscola.get(i).getCurso().getDisciplinasCurso().size(); j++){
+                // if (alunosEscola.get(i).getDiscLec().isEmpty()==false) {
+                if (alunosEscola.get(i).getCurso().getDisciplinasCurso().get(j).getNomDisc().equals(nomediscalunos))
+                    alunosdasdisciplinasLec.add(alunosEscola.get(i));
+                // }
+            }
         }
         return alunosdasdisciplinasLec;
 
@@ -1305,10 +1304,12 @@ public class Programa implements Serializable {
     public static ArrayList<Aluno> alunosdasdisciplinascont(ArrayList<Aluno> alunosEscola, String nomediscalunos) {
         ArrayList<Aluno> alunosdasdisciplinasLec = new ArrayList<>();
         for (int i = 0; i < alunosEscola.size(); i++) {
-            // if (alunosEscola.get(i).getDiscLec().isEmpty()==false) {
-            if (alunosEscola.get(i).getNome().equals(nomediscalunos))
-                alunosdasdisciplinasLec.add(alunosEscola.get(i));
-            // }
+            for (int j = 0; j < alunosEscola.get(i).getCurso().getDisciplinasCurso().size(); j++){
+                // if (alunosEscola.get(i).getDiscLec().isEmpty()==false) {
+                if (alunosEscola.get(i).getCurso().getDisciplinasCurso().get(j).getNomDisc().contains(nomediscalunos))
+                    alunosdasdisciplinasLec.add(alunosEscola.get(i));
+                // }
+            }
         }
         return alunosdasdisciplinasLec;
 
@@ -1517,7 +1518,6 @@ public class Programa implements Serializable {
                         limpaTela();
                         switch (opcaoUtilizador) {
                             case 1:
-
                                 // Listar Disciplinas
                                 System.out.print("1. LISTAR Disciplinas\n");
                                 escolaInformatica.listaDisciplinas();
@@ -1536,11 +1536,9 @@ public class Programa implements Serializable {
                                 String NomeDiscConsultar;
                                 int posdisc;
                                 System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO Disciplina\n\nEscreva o nome do curso que pretende consultar -->  ");
+                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADA DISCIPLINA\n\nEscreva o nome da disciplina que pretende consultar --> ");
                                 NomeDiscConsultar = Ler.umaString();
-                                System.out.println(escolaInformatica.getDisciplinaEscola());
                                 posdisc = escolaInformatica.devolvePosDisc(NomeDiscConsultar);
-                                System.out.println("--"+posdisc+"----");
                                 if (posdisc == -1)
                                     System.out.println("Lamentamos, mas este disciplinna não existe!\n");
                                 else {
@@ -1554,7 +1552,7 @@ public class Programa implements Serializable {
                                 String nomediscmodificar;
                                 int posdiscmod;
                                 System.out.print(
-                                        "MODIFICAR DADOS SOBRE UMA DETERMINADA Disciplina\n\nEscreva o nome da disciplina que pretende modificar -->  ");
+                                        "MODIFICAR DADOS SOBRE UMA DETERMINADA DISCIPLINA\n\nEscreva o nome da disciplina que pretende modificar -->  ");
                                 nomediscmodificar = Ler.umaString();
                                 posdiscmod = escolaInformatica.devolvePosDisc(nomediscmodificar);
                                 if (posdiscmod == -1)
@@ -1563,7 +1561,6 @@ public class Programa implements Serializable {
                                     modificarDisciplina(escolaInformatica, posdiscmod);
                                     EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
-                                pedeTecla();
                                 break;
                             case 5:
                                 // Remover disciplina
@@ -1620,11 +1617,7 @@ public class Programa implements Serializable {
                                 String nomeDiscprof = "";
                                 int opcaodiscprof;
                                 ArrayList<Professor> discescolaprof = convPessoaProf(
-                                        identProf(escolaInformatica.getPessoasEscola()));
-                                ArrayList<Professor> ArrayResultadosdiscProf = profdasdisciplinas(
-                                        discescolaprof, nomeDiscprof);
-                                ArrayList<Professor> ArrayResultadosdiscProfcont = profdasdisciplinascont(
-                                        discescolaprof, nomeDiscprof);
+                                        identProf(escolaInformatica.getPessoasEscola()));   
                                 System.out.print(
                                         "5. Professores de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
                                 opcaodiscprof = Ler.umInt();
@@ -1641,8 +1634,10 @@ public class Programa implements Serializable {
                                         nomeDiscprof = Ler.umaString();
                                         sucesso1 = escolaInformatica.profDiscEquals(nomeDiscprof);
                                         if (sucesso1 == true) {
+                                            ArrayList<Professor> ArrayResultadosdiscProf = profdasdisciplinas(
+                                        discescolaprof, nomeDiscprof);
                                             System.out.println("Professores de " + nomeDiscprof + ":\n"
-                                                    + ArrayResultadosdiscProf.get(0).getNome());
+                                                    + ArrayResultadosdiscProf);
                                         } else
                                             System.out.println(
                                                     "Não existe nenhum disciplina com o nome " + nomeDiscprof + ".");
@@ -1654,8 +1649,10 @@ public class Programa implements Serializable {
                                         nomeDiscprof = Ler.umaString();
                                         sucesso1 = escolaInformatica.discprofContains(nomeDiscprof);
                                         if (sucesso1 == true) {
+                                            ArrayList<Professor> ArrayResultadosdiscProfcont = profdasdisciplinascont(
+                                        discescolaprof, nomeDiscprof);
                                             System.out.println("Professores da Disciplina que contêm a palavra "
-                                                    + nomeDiscprof + ":\n" + ArrayResultadosdiscProfcont.get(0).getNome());
+                                                    + nomeDiscprof + ":\n" + ArrayResultadosdiscProfcont);
                                         } else
                                             System.out.println("Não existe nenhuma disciplina que contenha a palavra "
                                                     + nomeDiscprof + ".");
@@ -1671,10 +1668,6 @@ public class Programa implements Serializable {
                                 int opcaodiscalunos;
                                 ArrayList<Aluno> discescolaalunos = convPessoaAluno(
                                         identAluno(escolaInformatica.getPessoasEscola()));
-                                ArrayList<Aluno> arrayResultadosdiscalunos = alunosdasdisciplinas(
-                                        discescolaalunos, nomeDiscalunos);
-                                ArrayList<Aluno> arrayResultadosdiscalunoscont = alunosdasdisciplinascont(
-                                        discescolaalunos, nomeDiscalunos);
                                 System.out.print(
                                         "5. Alunos de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
                                 opcaodiscalunos = Ler.umInt();
@@ -1692,6 +1685,8 @@ public class Programa implements Serializable {
                                         nomeDiscalunos = Ler.umaString();
                                         sucesso2 = escolaInformatica.alunosDiscEquals(nomeDiscalunos);
                                         if (sucesso2 == true) {
+                                            ArrayList<Aluno> arrayResultadosdiscalunos = alunosdasdisciplinas(
+                                        discescolaalunos, nomeDiscalunos);
                                             System.out.println("Alunos de " + nomeDiscalunos + ":\n"
                                                     + arrayResultadosdiscalunos.get(0).getNome());
                                         } else
@@ -1705,6 +1700,8 @@ public class Programa implements Serializable {
                                         nomeDiscalunos = Ler.umaString();
                                         sucesso2 = escolaInformatica.discalunosContains(nomeDiscalunos);
                                         if (sucesso2 == true) {
+                                            ArrayList<Aluno> arrayResultadosdiscalunoscont = alunosdasdisciplinascont(
+                                        discescolaalunos, nomeDiscalunos);
                                             System.out.println(
                                                     "Alunos da Disciplina que contêm a palavra " + nomeDiscalunos
                                                             + ":\n" + arrayResultadosdiscalunoscont.get(0).getNome());

@@ -239,8 +239,9 @@ public class EscolaInformatica implements Serializable{
     public int devolvePosDisc(String nomedisc){
         int pos=-1;
         for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
-            if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomedisc))
+            if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomedisc)){
                 pos = i;
+            }
         }
         return pos;
     }

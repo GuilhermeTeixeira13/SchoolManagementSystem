@@ -67,21 +67,17 @@ public class Disciplina implements java.io.Serializable {
     public String toString() {
 
         String s;
-        s = "\nDisciplina: " + nomedisc + "/ Nº.Disciplina: " + numdisc;
+        s = "\nDisciplina: " + nomedisc + "/ Nº.Disciplina: " + numdisc+"\n";
         s = s + "Lista de Alunos: (";
         for (int i = 0; i < listalunos.size(); i++) {
-            if (i != listalunos.size() - 1)
-                s = s + listalunos.get(i) + ", ";
-            else
-                s = s + listalunos.get(i) + ")\n";
+            s = s + listalunos.get(i).getNome() + ", ";
         }
+        s = s + ")\n";
         s = s + "Lista de Professores: (";
         for (int i = 0; i < listprof.size(); i++) {
-            if (i != listprof.size() - 1)
-                s = s + listprof.get(i) + ", ";
-            else
-                s = s + listprof.get(i) + ")\n";
+            s = s + listprof.get(i).getNome() + ", ";
         }
+        s = s + ")\n";
         s = s + "Lista de Frequências:\n";
         for (int i = 0; i < listfreq.size(); i++)
             s = s + listfreq.get(i) + "\n\n";

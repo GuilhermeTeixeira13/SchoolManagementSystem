@@ -1,3 +1,5 @@
+
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -222,7 +224,54 @@ public class EscolaInformatica implements Serializable{
 
         return pos;
     }
+    public int devolveposDisc(String nomeDiscP){
+        int pos = -1;
 
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomeDiscP)){
+                pos = i;
+            }
+        }
+        return pos;
+    }
+
+    public int devolvePosDisciplinaDaFreq(int idFreq){
+        int pos = -1;
+
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            for(int j = 0; j < this.getDisciplinaEscola().get(i).getListFreq().size(); j++){
+                if(this.getDisciplinaEscola().get(i).getListFreq().get(j).getid() == idFreq)
+                    pos = i;
+            }
+        }
+
+        return pos;
+    }
+
+    public int devolvePosFrequenciaDaListaFreq(int idFreq){
+        int pos = -1;
+
+        for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
+            for(int j = 0; j < this.getDisciplinaEscola().get(i).getListFreq().size(); j++){
+                if(this.getDisciplinaEscola().get(i).getListFreq().get(j).getid() == idFreq)
+                    pos = j;
+            }
+        }
+
+        return pos;
+    }
+
+    public Disciplina devolveDisciplina(String nomeDisciplina){ 
+        Disciplina disciplina = new Disciplina();
+
+        for(int i=0; i<this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc() == nomeDisciplina)
+                disciplina = this.getDisciplinaEscola().get(i);
+        }
+
+        return disciplina;
+    }
+    
     public int devolvePosProf(String nomeProf, ArrayList<Pessoa> Professores){
         int pos=-1;
 

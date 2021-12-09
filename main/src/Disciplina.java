@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 
 public class Disciplina implements java.io.Serializable {
@@ -112,6 +114,7 @@ public class Disciplina implements java.io.Serializable {
         copia.listprof = (ArrayList<Professor>) this.listprof.clone();
         return copia;
     }
+
 
     public static void main(String[] args) {
         // Testes

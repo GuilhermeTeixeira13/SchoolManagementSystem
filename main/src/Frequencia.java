@@ -1,10 +1,13 @@
+
+
 import java.util.ArrayList;
+
 import java.time.LocalDate;
 
 public class Frequencia implements java.io.Serializable {
     // Atributos
     private int id;
-    private String disc;
+    private Disciplina disc;
     private LocalDate datafreq;
     private Professor professorResp;
     private int numpergtotal;
@@ -14,7 +17,7 @@ public class Frequencia implements java.io.Serializable {
     // Contrutores
     public Frequencia() {
         this.id = 0;
-        this.disc = "";
+        this.disc = new Disciplina();
         this.datafreq = LocalDate.now();
         this.professorResp = new Professor();
         this.numpergtotal = 0;
@@ -24,7 +27,7 @@ public class Frequencia implements java.io.Serializable {
 
     public Frequencia(int id, String disc, int numpergtotal, String dificuldade, LocalDate datafreq, Professor professorResp){
         this.id = id;
-        this.disc = disc;
+        this.disc = new Disciplina();
         this.datafreq = datafreq;
         this.professorResp = professorResp;
         this.numpergtotal = numpergtotal;
@@ -41,11 +44,11 @@ public class Frequencia implements java.io.Serializable {
         this.id = id;
     }
 
-    public String getDisc() {
+    public Disciplina getDisc() {
         return this.disc;
     }
 
-    public void setDisc(String disc) {
+    public void setDisc(Disciplina disc) {
         this.disc = disc;
     }
 

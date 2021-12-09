@@ -1,3 +1,5 @@
+
+
 public class Telefone implements java.io.Serializable {
     // Atributos
     private String tipo;

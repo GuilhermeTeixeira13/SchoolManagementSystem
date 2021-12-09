@@ -97,3 +97,7 @@
 
 **A implementar:**
 - Variáveis estáticas para número do professor e número das perguntas (Falta para número das perguntas) :warning:
+- Checkar o readme no final, para ver se está tudo direitinho caso seja preciso mostrar à stora
+- Não deixar criar Frequência se não houver professores ou disciplinas criadas.
+- Não permitir que se insiram números de telefone com mais de 9 dígitos
+- Definir um limite no rating do professor

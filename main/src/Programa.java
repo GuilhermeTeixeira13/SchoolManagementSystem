@@ -1,11 +1,6 @@
-
-
 import java.util.ArrayList;
 import java.util.Collections;
-
-
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.io.IOException;
 
 public class Programa implements Serializable {

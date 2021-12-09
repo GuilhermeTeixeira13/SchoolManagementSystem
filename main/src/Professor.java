@@ -162,6 +162,7 @@ public class Professor extends Pessoa {
         totalDisc = this.getDiscLec().size();
         return totalDisc;
     }
+    
 
     public static void main(String[] args) {
         // Testes

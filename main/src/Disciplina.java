@@ -3,21 +3,20 @@
 import java.util.ArrayList;
 
 public class Disciplina implements java.io.Serializable {
-    private int numdisc;
-    private String nomedisc;
+    private String nomedisc, numdisc;
     private ArrayList<Aluno> listalunos;
     private ArrayList<Professor> listprof;
     private ArrayList<Frequencia> listfreq;
 
     public Disciplina() {
-        this.numdisc = 0;
+        this.numdisc = "";
         this.nomedisc = "";
         this.listalunos = new ArrayList<Aluno>();
         this.listprof = new ArrayList<Professor>();
         this.listfreq = new ArrayList<Frequencia>();
     }
 
-    public Disciplina(int numdisc, String nomedisc) {
+    public Disciplina(String numdisc, String nomedisc) {
         this.numdisc = numdisc;
         this.nomedisc = nomedisc;
         this.listalunos = new ArrayList<Aluno>();
@@ -26,11 +25,11 @@ public class Disciplina implements java.io.Serializable {
 
     }
 
-    public int getNumDisc() {
+    public String getNumDisc() {
         return this.numdisc;
     }
 
-    public void setNumDisc(int numdisc) {
+    public void setNumDisc(String numdisc) {
         this.numdisc = numdisc;
     }
 
@@ -70,43 +69,38 @@ public class Disciplina implements java.io.Serializable {
     public String toString() {
 
         String s;
-        s = "\nDisciplina: " + nomedisc + "/ Nº.Disciplina: " + numdisc;
+        s = "\nDisciplina: " + nomedisc + "/ Nº.Disciplina: " + numdisc+"\n";
         s = s + "Lista de Alunos: (";
         for (int i = 0; i < listalunos.size(); i++) {
-            if (i != listalunos.size() - 1)
-                s = s + listalunos.get(i) + ", ";
-            else
-                s = s + listalunos.get(i) + ")\n";
+            s = s + listalunos.get(i).getNome() + ", ";
         }
+        s = s + ")\n";
         s = s + "Lista de Professores: (";
         for (int i = 0; i < listprof.size(); i++) {
-            if (i != listprof.size() - 1)
-                s = s + listprof.get(i) + ", ";
-            else
-                s = s + listprof.get(i) + ")\n";
+            s = s + listprof.get(i).getNome() + ", ";
         }
+        s = s + ")\n";
         s = s + "Lista de Frequências:\n";
         for (int i = 0; i < listfreq.size(); i++)
             s = s + listfreq.get(i) + "\n\n";
         return s;
     }
 
-
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         boolean ig = false;
-        if(obj != null && this.getClass() == obj.getClass()){
+        if (obj != null && this.getClass() == obj.getClass()) {
             Disciplina disc1 = (Disciplina) obj;
             ig = this.nomedisc.equals(disc1.nomedisc) && (this.numdisc == disc1.numdisc);
-            ig = ig && (this.listalunos.equals(disc1.listalunos)) && (this.listfreq.equals(disc1.listfreq)) && (this.listprof.equals(disc1.listprof));
-        }
-        else{
+            ig = ig && (this.listalunos.equals(disc1.listalunos)) && (this.listfreq.equals(disc1.listfreq))
+                    && (this.listprof.equals(disc1.listprof));
+        } else {
             ig = false;
         }
         return ig;
     }
 
-    public Object clone(){
-        Disciplina  copia = new Disciplina();
+    public Object clone() {
+        Disciplina copia = new Disciplina();
         copia.nomedisc = this.nomedisc;
         copia.numdisc = this.numdisc;
         copia.listalunos = (ArrayList<Aluno>) this.listalunos.clone();
@@ -115,8 +109,8 @@ public class Disciplina implements java.io.Serializable {
         return copia;
     }
 
-
     public static void main(String[] args) {
         // Testes
     }
+    
 }

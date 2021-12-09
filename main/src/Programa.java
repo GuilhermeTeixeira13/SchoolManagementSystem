@@ -1562,6 +1562,7 @@ public class Programa implements Serializable {
                     } while (verificaExistenciadisc != -1);
 
                     escolaInformatica.getDisciplinaEscola().get(posicao).setNomDisc(nomedisc);
+                    System.out.println();
                     pedeTecla();
                     break;
                 case 2:
@@ -1569,6 +1570,7 @@ public class Programa implements Serializable {
                     System.out.print("\nCódigo da Disciplina: ");
                     numdisc = Ler.umaString();
                     escolaInformatica.getDisciplinaEscola().get(posicao).setNumDisc(numdisc);
+                    System.out.println();
                     pedeTecla();
                     break;
             }
@@ -1883,7 +1885,7 @@ public class Programa implements Serializable {
                                 String nomeDiscRemover;
                                 int opcaodisc;
                                 System.out.print(
-                                        "5. REMOVER Disciplina\n\n  1. Remover pelo nome\n  2. Remover por palavra contida no nome\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
+                                        "5. REMOVER DISCIPLINA\n\n  1. Remover pelo nome\n  2. Remover por palavra contida no nome\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
                                 opcaodisc = Ler.umInt();
                                 while (opcaodisc > 2 || opcaodisc < 0) {
                                     System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -1903,7 +1905,7 @@ public class Programa implements Serializable {
                                                     "Disciplina " + nomeDiscRemover + " removido com sucesso.");
                                         } else
                                             System.out.println(
-                                                    "Não existe nenhum disciplina com o nome " + nomeDiscRemover + ".");
+                                                    "Não existe nenhuma disciplina com o nome " + nomeDiscRemover + ".");
                                         System.out.println();
                                         break;
                                     case 2:
@@ -1914,7 +1916,7 @@ public class Programa implements Serializable {
                                         if (sucesso == true) {
                                             EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                             System.out.println("Disciplina que contêm a palavra " + nomeDiscRemover
-                                                    + " removidos com sucesso.");
+                                                    + " removida com sucesso.");
                                         } else
                                             System.out.println("Não existe nenhuma disciplina que contenha a palavra "
                                                     + nomeDiscRemover + ".");

@@ -8,9 +8,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.net.SocketTimeoutException;
-import java.rmi.StubNotFoundException;
 import java.io.IOException;
 
 public class Programa implements Serializable {

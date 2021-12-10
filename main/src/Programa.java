@@ -2498,6 +2498,19 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Mostrar a pergunta com maior cotação, de determinada frequência
+                                int posFrequencia3 = -1;
+                                int posDisciplinaIdFreq3;
+                                ArrayList<Perguntas> PerguntCot;
+                                posDisciplinaIdFreq3 = menuDisciplinasFreq(escolaInformatica);
+                                System.out.print("6. MAIOR COTAÇÃO EM PERGUNTA FREQUÊNCIA\n\n");
+                                listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq3);
+                                System.out.println("Escreva o ID da frequência que pretende ver a pergunta com maior cotação -->  ");
+                                int idFrequencia3 = Ler.umInt();
+                                posFrequencia2 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
+                                while(posFrequencia2 == -1 || posDisciplinaIdFreq3 == -1){
+                                    System.out.println("Introduza um ID da frequência VÁLIDO: ");
+                                    idFrequencia3 = Ler.umInt();
+                                }
 
                                 pedeTecla();
                                 break;

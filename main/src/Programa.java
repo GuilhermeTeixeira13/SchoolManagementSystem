@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.channels.InterruptibleChannel;
 import java.io.IOException;
 
 public class Programa implements Serializable {
@@ -268,6 +269,33 @@ public class Programa implements Serializable {
                 pedeTecla();
                 break;
         }
+    }
+
+    public static ArrayList<Perguntas> cotacaoMaior(EscolaInformatica escolaInformatica ,int idFrequencia){
+        ArrayList<Perguntas> perguntaMaior = new ArrayList<>();
+        ArrayList<Float> cotacaoMaior = new ArrayList<>();
+        int posFreq, posDisciplinaFreq;
+        ArrayList<Integer> posCotacaoMaior = new ArrayList<>();
+        posFreq = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia);
+        posDisciplinaFreq = escolaInformatica.devolvePosDisciplinaDaFreq(idFrequencia);
+        for(int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFreq).getlistperg().size(); i++){
+            cotacaoMaior.add(escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFreq).getlistperg().get(i).getcotaçao());
+
+        }
+        for(int i = 0; i < cotacaoMaior.size(); i++){
+            if(cotacaoMaior.get(i) == Collections.max(cotacaoMaior)){
+                posCotacaoMaior.add(i);
+            }
+        }
+        if(posCotacaoMaior.size() == 1){
+            perguntaMaior.add(escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFreq).getlistperg().get(posCotacaoMaior.get(0)));
+        }
+        if(posCotacaoMaior.size() > 1){
+            for(int i = 0; i < posCotacaoMaior.get(i); i++){
+               perguntaMaior.add(escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFreq).getlistperg().get(posCotacaoMaior.get(i)));
+            }
+        }
+        return perguntaMaior;
     }
 
     public static Diretor criarDiretor() {
@@ -2498,6 +2526,32 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Mostrar a pergunta com maior cotação, de determinada frequência
+                                ArrayList<Perguntas> cotacaoMaiorPerguntaLista = new ArrayList<>();
+                                int posFrequencia3 = -1;
+                                int posDisciplinaIdFreq3;
+                                posDisciplinaIdFreq3 = menuDisciplinasFreq(escolaInformatica);
+                                System.out.print("6. CONSULTAR PERGUNTA COM MAIOR COTAÇÃO\n\n");
+                                listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq3);
+                                System.out.println("Escreva o ID da frequência da qual pretende consultar a pergunta com maior cotação -->  ");
+                                int idFrequencia3 = Ler.umInt();
+                                posFrequencia3 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
+                                while(posFrequencia3 == -1 || posDisciplinaIdFreq3 == -1){
+                                    System.out.println("Introduza um ID da frequência VÁLIDO: ");
+                                    idFrequencia3 = Ler.umInt();
+                                }
+                                cotacaoMaiorPerguntaLista = cotacaoMaior(escolaInformatica ,idFrequencia3);
+                                if(cotacaoMaiorPerguntaLista.size() == 0){
+                                    System.out.println("Ainda não existem perguntas com cotação!");
+                                }
+                                if(cotacaoMaiorPerguntaLista.size() == 1){
+                                    System.out.println("Pergunta com maior cotação (" + cotacaoMaiorPerguntaLista.get(0).getcotaçao() + ") ->  " + cotacaoMaiorPerguntaLista.get(0));
+                                }
+                                if(cotacaoMaiorPerguntaLista.size() > 1){
+                                    System.out.println("  EMPATE NAS PERGUNTAS COM MAIOR COTAÇÃO (" + cotacaoMaiorPerguntaLista.get(0).getcotaçao() + ") :");
+                                    for(int i = 0; i < cotacaoMaiorPerguntaLista.size(); i++){
+                                        System.out.println("->  " + cotacaoMaiorPerguntaLista.get(i));
+                                    }
+                                }
 
                                 pedeTecla();
                                 break;

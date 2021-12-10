@@ -2388,7 +2388,7 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequências de determinado curso\n10. Mostrar frequências de determinada disciplina\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequências de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 10 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -2508,6 +2508,19 @@ public class Programa implements Serializable {
                                 break;
                             case 8:
                                 // Mostrar frequências elaboradas por determinado professor
+                                System.out.print("8. Mostrar frequências elaboradas por um professor");
+                                System.out.print("\nEscolha o número professor: ");
+                                String nomeProf = Ler.umaString();
+                                int posProf;
+                                posProf = escolaInformatica.devolvePosProf(nomeProf, escolaInformatica.getPessoasEscola());
+                                if (posProf == -1) {
+                                    System.out.println("Lamentamos, mas este professor não existe!\n");
+                                }
+                                else {
+                                    ArrayList<Frequencia> listaFreqProf = escolaInformatica.getDisciplinaEscola().get(posProf).getListFreq();
+                                    for(int i = 0; i < listaFreqProf.size(); i++)
+                                        listaumaFreq(listaFreqProf.get(i));
+                                }
 
                                 pedeTecla();
                                 break;
@@ -2516,11 +2529,7 @@ public class Programa implements Serializable {
 
                                 pedeTecla();
                                 break;
-                            case 10:
-                                // Mostrar frequências de determinada disciplina
-
-                                pedeTecla();
-                                break;
+                            
                         }
                     } while (opcaoUtilizador > 0 && opcaoUtilizador <= 10);
                     break;

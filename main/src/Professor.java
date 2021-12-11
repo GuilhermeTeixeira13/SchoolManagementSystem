@@ -151,8 +151,9 @@ public class Professor extends Pessoa {
             System.out.println("Este professor ainda não leciona nenhuma disciplina.");
         }
         else{
+            System.out.println("Disciplinas lecionadas: ");
             for(int i=0; i<this.getDiscLec().size(); i++){
-                System.out.println(i+". "+this.getDiscLec().get(i).getNomDisc());
+                System.out.println(" "+i+". "+this.getDiscLec().get(i).getNomDisc());
             }
         }
     }

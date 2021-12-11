@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.nio.channels.InterruptibleChannel;
 import java.io.IOException;
 
 public class Programa implements Serializable {
@@ -421,24 +420,28 @@ public class Programa implements Serializable {
         professorC.setRating(ratingProfC);
 
         System.out.println("\n------------------------------------------------------------------------------");
-        System.out.println("Disciplinas do Professor: \n");
+        System.out.println("Disciplinas para adicionar ao Professor: ");
+        ArrayList<Integer> adicionados = new ArrayList<Integer>();
+        int cont=0;
         if (escolaInformatica.getDisciplinaEscola().isEmpty() == false) {
             do {
                 int i = 0;
-                ArrayList<Integer> adicionados = new ArrayList<Integer>();
-                System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
+                System.out.println("\nDisciplinas Disponíveis (Escolha uma a uma pelo número): ");
                 for (i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
                     if (!adicionados.contains(i))
-                        System.out.println(i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
+                        System.out.println(
+                                i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
                 }
-                System.out.println("Disciplina para adicionar ao professor --> ");
+                System.out.print("\nDisciplina para adicionar ao professor --> ");
                 escolhaDisc = Ler.umInt();
-                while (i < 0 || i > escolaInformatica.getDisciplinaEscola().size() - 1 || adicionados.contains(i)) {
+                while (escolhaDisc < 0 || escolhaDisc > escolaInformatica.getDisciplinaEscola().size() - 1
+                        || adicionados.contains(escolhaDisc)) {
                     System.out.println("Disciplina para adicionar ao professor (DIGITE ALGO VÁLIDO)--> ");
                     escolhaDisc = Ler.umInt();
                 }
                 adicionados.add(escolhaDisc);
                 disciplinasP.add(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
+                cont++;
                 System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
                 opcaoContactoMenu = Ler.umaString();
                 while (!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N")
@@ -446,11 +449,13 @@ public class Programa implements Serializable {
                     System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
                     opcaoContactoMenu = Ler.umaString();
                 }
-            } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));
+            } while ((opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S")) && cont < escolaInformatica.getDisciplinaEscola().size());
         } else {
-            System.out.println("Ainda não há disciplinas criadas.");
+            System.out.println("\nSem disciplinas disponíveis.\n");
         }
-
+        if(cont == escolaInformatica.getDisciplinaEscola().size()){
+            System.out.println("Não é possível adicionar mais disciplinas.");
+        }
         professorC.setDiscLec(disciplinasP);
 
         System.out.println(professorC);
@@ -1299,7 +1304,7 @@ public class Programa implements Serializable {
             long numeroContacto;
             ArrayList<Telefone> telefones = new ArrayList<Telefone>();
             Contactos contactosAluno = new Contactos();
-            ArrayList<Disciplina> disciplinasP = new ArrayList<>();
+            ArrayList<Disciplina> disciplinasP = novoProfessor.getDiscLec();
 
             System.out.print("\nO que pretende modificar no professor " + novoProfessor.getNome()
                     + "?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Número de Professor\n 7. Rating\n 8. Disciplinas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
@@ -1381,26 +1386,36 @@ public class Programa implements Serializable {
                     pedeTecla();
                     break;
                 case 8:
-                    System.out.println("Disciplinas do Professor: \n");
-                    if (escolaInformatica.getDisciplinaEscola().isEmpty() == false) {
+                    System.out.println("Disciplinas para adicionar ao Professor: ");
+                    ArrayList<Integer> adicionados = new ArrayList<Integer>();
+                    ArrayList<Disciplina> disciplinasDisponiveis = new ArrayList<Disciplina>();
+
+                    for (int j = 0; j < escolaInformatica.getDisciplinaEscola().size(); j++){
+                        if(!novoProfessor.getDiscLec().contains(escolaInformatica.getDisciplinaEscola().get(j))){
+                            disciplinasDisponiveis.add(escolaInformatica.getDisciplinaEscola().get(j));
+                        }
+                    }
+
+                    int cont=0;
+                    if (disciplinasDisponiveis.isEmpty() == false) {
                         do {
                             int i = 0;
-                            ArrayList<Integer> adicionados = new ArrayList<Integer>();
-                            System.out.println("Disciplinas Disponíveis (Escolha uma a uma pelo número): ");
-                            for (i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
+                            System.out.println("\nDisciplinas Disponíveis (Escolha uma a uma pelo número): ");
+                            for (i = 0; i < disciplinasDisponiveis.size(); i++) {
                                 if (!adicionados.contains(i))
                                     System.out.println(
-                                            i + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
+                                            i + ". " + disciplinasDisponiveis.get(i).getNomDisc());
                             }
-                            System.out.println("Disciplina para adicionar ao curso --> ");
+                            System.out.print("\nDisciplina para adicionar ao professor --> ");
                             escolhaDisc = Ler.umInt();
-                            while (i < 0 || i > escolaInformatica.getDisciplinaEscola().size() - 1
-                                    || adicionados.contains(i)) {
-                                System.out.println("Disciplina para adicionar ao curso (DIGITE ALGO VÁLIDO)--> ");
+                            while (escolhaDisc < 0 || escolhaDisc > disciplinasDisponiveis.size() - 1
+                                    || adicionados.contains(escolhaDisc)) {
+                                System.out.println("Disciplina para adicionar ao professor (DIGITE ALGO VÁLIDO)--> ");
                                 escolhaDisc = Ler.umInt();
                             }
                             adicionados.add(escolhaDisc);
-                            disciplinasP.add(escolaInformatica.getDisciplinaEscola().get(escolhaDisc));
+                            disciplinasP.add(disciplinasDisponiveis.get(escolhaDisc));
+                            cont++;
                             System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
                             opcaoContactoMenu = Ler.umaString();
                             while (!opcaoContactoMenu.equals("n") && !opcaoContactoMenu.equals("N")
@@ -1408,9 +1423,12 @@ public class Programa implements Serializable {
                                 System.out.print("Pretende inserir mais disciplinas? [S/N] -> ");
                                 opcaoContactoMenu = Ler.umaString();
                             }
-                        } while (opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S"));
+                        } while ((opcaoContactoMenu.equals("s") || opcaoContactoMenu.equals("S")) && cont < disciplinasDisponiveis.size());
                     } else {
-                        System.out.println("Ainda não há disciplinas criadas.\n");
+                        System.out.println("\nSem disciplinas disponíveis.\n");
+                    }
+                    if(cont == escolaInformatica.getDisciplinaEscola().size()){
+                        System.out.println("Não é possível adicionar mais disciplinas.");
                     }
                     novoProfessor.setDiscLec(disciplinasP);
                     pedeTecla();

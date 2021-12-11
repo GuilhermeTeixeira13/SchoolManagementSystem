@@ -47,7 +47,7 @@
 4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️
 5. :exclamation:Remover curso (A implementar na classe Escola) ✔️
 6. Mostrar curso mais frequentado (A implementar na classe Escola) ✔️
-7. Inserir e Remover disciplinas de determinado curso (A implementar na classe Escola)
+7. Inserir e Remover disciplinas de determinado curso (A implementar na classe Escola) :clock11:
 
 **Disciplinas: (Cláudio 10-12)**
 1. :exclamation:Listar disciplinas (A implementar na classe Escola) :warning: Melhorar outputs
@@ -55,7 +55,7 @@
 3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) :warning: Melhorar outputs
 4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola) ✔️
 5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️
-6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola)
+6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola) :clock11:
 7. Mostrar professores que lecionam determinada disciplina (A implementar na classe Escola) :warning: Testar
 8. Mostrar alunos inscritos em determinada disciplina (A implementar na classe Escola) :warning: Testar
 
@@ -66,10 +66,10 @@
 4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência) :warning: Testar
 5. :exclamation:Remover Frequência (A implementar na classe Frequência) :warning: Testar
 6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência) :warning: Testar
-7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência)
-8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência)
-9. Mostrar frequências de determinado curso (A implementar na classe Frequência)
-9. Mostrar frequências de determinada disciplina (A implementar na classe Frequência)
+7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) :clock11:
+8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) :clock11:
+9. Mostrar frequências de determinado curso (A implementar na classe Frequência) :clock11:
+9. Mostrar frequências de determinada disciplina (A implementar na classe Frequência) :clock11:
 
 **Professores: (João 10-12)**
 1. :exclamation:Listar professores (A implementar na classe Professor) ✔️
@@ -88,12 +88,12 @@
 3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ (Verificar outputs)
 4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️
 5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️
-6. Atribuir notas(A implementar na classe Aluno)
+6. Atribuir notas(A implementar na classe Aluno) :clock11:
 7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) :warning:
 8. Mostrar alunos deslocados (A implementar na classe Aluno) ✔️
 9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade) ✔️
-10. Mostrar aluno com melhor e pior média, de determinado curso (A implementar na classe Aluno, depois de fazer função que calcule a média nas NotasDisciplina)
-11. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno)
+10. Mostrar aluno com melhor e pior média, de determinado curso (A implementar na classe Aluno, depois de fazer função que calcule a média nas NotasDisciplina) :clock11:
+11. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) :clock11:
 
 **A implementar:**
 - Variáveis estáticas para número do professor e número das perguntas (Falta para número das perguntas) :warning:

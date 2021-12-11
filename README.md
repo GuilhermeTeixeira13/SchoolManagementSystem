@@ -65,7 +65,7 @@
 3. :exclamation:Mostrar determinada frequência, dado o ID da mesma (A implementar na classe Frequência) :warning: Testar
 4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência) :warning: Testar
 5. :exclamation:Remover Frequência (A implementar na classe Frequência) :warning: Testar
-6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência)
+6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência) :warning: Testar
 7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência)
 8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência)
 9. Mostrar frequências de determinado curso (A implementar na classe Frequência)

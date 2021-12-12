@@ -1,28 +1,15 @@
-
-
 public class Perguntas implements java.io.Serializable {
-    int numpergunta;
-    float cotaçao;
-    String pergunta;
+    private float cotaçao;
+    private String pergunta;
 
     public Perguntas() {
-        this.numpergunta = 0;
         this.cotaçao = 0;
         this.pergunta = "";
     }
 
     public Perguntas(int numpergunta, float cotaçao, String pergunta) {
-        this.numpergunta = numpergunta;
         this.cotaçao = cotaçao;
         this.pergunta = pergunta;
-    }
-
-    public int getnumpergunta() {
-        return this.numpergunta;
-    }
-
-    public void setnumpergunta(int numpergunta) {
-        this.numpergunta = numpergunta;
     }
 
     public float getcotaçao() {
@@ -43,7 +30,7 @@ public class Perguntas implements java.io.Serializable {
 
     public String toString() {
         String s;
-        s = "Número da pergunta: " + numpergunta + "// Pergunta: " + pergunta + "// Cotação:" + cotaçao;
+        s = "Pergunta: " + pergunta + "// Cotação:" + cotaçao;
         return s;
     }
 
@@ -51,7 +38,7 @@ public class Perguntas implements java.io.Serializable {
         boolean ig=false;
         if(obj != null && this.getClass()==obj.getClass()){
             Perguntas e = (Perguntas) obj;
-            ig= (this.cotaçao==e.cotaçao)&&(this.numpergunta==e.numpergunta)&&(this.pergunta.equals(e.pergunta));
+            ig= (this.cotaçao==e.cotaçao)&&(this.pergunta.equals(e.pergunta));
         }else
             ig=false;
         return ig;
@@ -59,7 +46,6 @@ public class Perguntas implements java.io.Serializable {
 
     public Object clone(){
         Perguntas copia=new Perguntas();
-        copia.numpergunta= this.numpergunta;
         copia.pergunta=this.pergunta;
         copia.cotaçao=this.cotaçao;
         return copia;

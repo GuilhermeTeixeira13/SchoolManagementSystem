@@ -1200,7 +1200,7 @@ public class Programa implements Serializable {
                                         pergunta = Ler.umaString();
                                         Perguntas questao = new Perguntas(novcotacao, pergunta);
                                         escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().add(questao);
-                                        System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]");
+                                        System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]:");
                                         respContinuar = Ler.umaString();
                                     }while((respContinuar == "S" || respContinuar == "s") && (escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().size() == escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getNumPergTotal()));
                                 }   
@@ -1213,7 +1213,7 @@ public class Programa implements Serializable {
                                     numQuestao = Ler.umInt();
                                     for(int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().size(); i++)                                 
                                         escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().remove(i-1);
-                                    System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]");
+                                    System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]: ");
                                     respContinuar = Ler.umaString();
                                 }while(respContinuar == "S" || respContinuar == "s");
                                 pedeTecla();
@@ -1224,28 +1224,13 @@ public class Programa implements Serializable {
                                     listaPerguntas(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg());
                                     System.out.print("Número da Pergunta que deseja modificar: ");
                                     numQuestao = Ler.umInt();
-                                   
-                                    System.out.print("\n 1. Modificar Cotação da Pergunta\n 2. Modificar Conteúdo da Pergunta\n 0. Voltar\n Opção -> ");
-                                    opcaomodPerg = Ler.umInt();
-                                    while(opcaomodPerg < 0 || opcaomodPerg > 3){
-                                        System.out.print("Digite uma opção válida: ");
-                                        opcaomodPerg = Ler.umInt();
-                                    }
-                                    switch(opcaomodPerg){
-                                        case 1:
-                                            System.out.print("\nNova cotação da pergunta: ");
-                                            novcotacao = Ler.umFloat();
-                                            escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(numQuestao-1).setcotaçao(novcotacao);    
-                                            pedeTecla();
-                                            break;
-                                        case 2:
-                                            System.out.println(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(numQuestao-1));
-                                            System.out.print("\nNovo conteúdo da pergunta: ");
-                                            novocont = Ler.umaString();
-                                            escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().get(numQuestao-1).setpergunta(novocont);
-                                            pedeTecla();
-                                            break;
-                                    }
+
+                                    System.out.print("\nDigite a cotação: ");
+                                    novcotacao = Ler.umInt();
+                                    System.out.print("\nDigite a pergunta: ");
+                                    pergunta = Ler.umaString();
+                                    Perguntas questao = new Perguntas(novcotacao, pergunta);
+                                    escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFrequencia).getlistperg().set(numQuestao-1, questao);
                                     
                                     System.out.print("\nDeseja continuar? Se sim, digite [S] senão digite [N]: ");
                                     respContinuar = Ler.umaString();
@@ -2631,7 +2616,7 @@ public class Programa implements Serializable {
                                 int posDisciplinaIdFreq3;
                                 System.out.print("6. CONSULTAR PERGUNTA COM MAIOR COTAÇÃO\n\n");
                                 posDisciplinaIdFreq3 = menuDisciplinasFreq(escolaInformatica);
-                                System.out.print("Escreva o ID da frequência da qual pretende consultar a pergunta com maior cotação "+listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq3)+"-->  ");
+                                System.out.print("\nEscreva o ID da frequência da qual pretende consultar a pergunta com maior cotação "+listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq3)+"-->  ");
                                 int idFrequencia3 = Ler.umInt();
                                 posFrequencia3 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
                                 while(posFrequencia3 == -1 || posDisciplinaIdFreq3 == -1){
@@ -2640,18 +2625,18 @@ public class Programa implements Serializable {
                                 }
                                 cotacaoMaiorPerguntaLista = cotacaoMaior(escolaInformatica ,idFrequencia3);
                                 if(cotacaoMaiorPerguntaLista.size() == 0){
-                                    System.out.println("Ainda não existem perguntas com cotação!");
+                                    System.out.println("\nAinda não existem perguntas com cotação!");
                                 }
                                 if(cotacaoMaiorPerguntaLista.size() == 1){
-                                    System.out.println("Pergunta com maior cotação (" + cotacaoMaiorPerguntaLista.get(0).getcotaçao() + ") ->  " + cotacaoMaiorPerguntaLista.get(0));
+                                    System.out.println("\nPergunta com maior cotação (" + cotacaoMaiorPerguntaLista.get(0).getcotaçao() + ") ->  " + cotacaoMaiorPerguntaLista.get(0));
                                 }
                                 if(cotacaoMaiorPerguntaLista.size() > 1){
-                                    System.out.println("  EMPATE NAS PERGUNTAS COM MAIOR COTAÇÃO (" + cotacaoMaiorPerguntaLista.get(0).getcotaçao() + ") :");
+                                    System.out.println("\n  EMPATE NAS PERGUNTAS COM MAIOR COTAÇÃO (" + cotacaoMaiorPerguntaLista.get(0).getcotaçao() + ") :");
                                     for(int i = 0; i < cotacaoMaiorPerguntaLista.size(); i++){
                                         System.out.println("->  " + cotacaoMaiorPerguntaLista.get(i));
                                     }
                                 }
-
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 7:

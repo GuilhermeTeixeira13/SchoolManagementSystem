@@ -30,7 +30,7 @@ public class Perguntas implements java.io.Serializable {
 
     public String toString() {
         String s;
-        s = "Pergunta: " + pergunta + "// Cotação:" + cotaçao;
+        s = "Pergunta: " + pergunta + " // Cotação:" + cotaçao;
         return s;
     }
 

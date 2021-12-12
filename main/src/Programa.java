@@ -2498,18 +2498,31 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Mostrar a pergunta com maior cotação, de determinada frequência
+                                ArrayList<Perguntas> cotacaoMaiorPerguntaLista = new ArrayList<>();
                                 int posFrequencia3 = -1;
                                 int posDisciplinaIdFreq3;
-                                ArrayList<Perguntas> PerguntCot;
                                 posDisciplinaIdFreq3 = menuDisciplinasFreq(escolaInformatica);
-                                System.out.print("6. MAIOR COTAÇÃO EM PERGUNTA FREQUÊNCIA\n\n");
+                                System.out.print("6. CONSULTAR PERGUNTA COM MAIOR COTAÇÃO\n\n");
                                 listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq3);
-                                System.out.println("Escreva o ID da frequência que pretende ver a pergunta com maior cotação -->  ");
+                                System.out.println("Escreva o ID da frequência da qual pretende consultar a pergunta com maior cotação -->  ");
                                 int idFrequencia3 = Ler.umInt();
-                                posFrequencia2 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
-                                while(posFrequencia2 == -1 || posDisciplinaIdFreq3 == -1){
+                                posFrequencia3 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
+                                while(posFrequencia3 == -1 || posDisciplinaIdFreq3 == -1){
                                     System.out.println("Introduza um ID da frequência VÁLIDO: ");
                                     idFrequencia3 = Ler.umInt();
+                                }
+                                cotacaoMaiorPerguntaLista = cotacaoMaior(escolaInformatica ,idFrequencia3);
+                                if(cotacaoMaiorPerguntaLista.size() == 0){
+                                    System.out.println("Ainda não existem perguntas com cotação!");
+                                }
+                                if(cotacaoMaiorPerguntaLista.size() == 1){
+                                    System.out.println("Pergunta com maior cotação (" + cotacaoMaiorPerguntaLista.get(0).getcotaçao() + ") ->  " + cotacaoMaiorPerguntaLista.get(0));
+                                }
+                                if(cotacaoMaiorPerguntaLista.size() > 1){
+                                    System.out.println("  EMPATE NAS PERGUNTAS COM MAIOR COTAÇÃO (" + cotacaoMaiorPerguntaLista.get(0).getcotaçao() + ") :");
+                                    for(int i = 0; i < cotacaoMaiorPerguntaLista.size(); i++){
+                                        System.out.println("->  " + cotacaoMaiorPerguntaLista.get(i));
+                                    }
                                 }
 
                                 pedeTecla();

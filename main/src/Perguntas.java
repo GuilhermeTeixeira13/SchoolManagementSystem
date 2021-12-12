@@ -7,7 +7,7 @@ public class Perguntas implements java.io.Serializable {
         this.pergunta = "";
     }
 
-    public Perguntas(int numpergunta, float cotaçao, String pergunta) {
+    public Perguntas(float cotaçao, String pergunta) {
         this.cotaçao = cotaçao;
         this.pergunta = pergunta;
     }

@@ -2646,7 +2646,19 @@ public class Programa implements Serializable {
                                 break;
                             case 8:
                                 // Mostrar frequências elaboradas por determinado professor
-
+                                System.out.print("8. Mostrar frequências elaboradas por um professor");
+                                System.out.print("\nEscolha o nome do professor: ");
+                                String nomeProf = Ler.umaString();
+                                int posProf;
+                                posProf = escolaInformatica.devolvePosProf(nomeProf, escolaInformatica.getPessoasEscola());
+                                if (posProf == -1) {
+                                    System.out.println("Lamentamos, mas este professor não existe!\n");
+                                }
+                                else {
+                                    ArrayList<Frequencia> listaFreqProf = escolaInformatica.getDisciplinaEscola().get(posProf).getListFreq();
+                                    for(int i = 0; i < listaFreqProf.size(); i++)
+                                        listaumaFreq(listaFreqProf.get(i));
+                                }
                                 pedeTecla();
                                 break;
                             case 9:

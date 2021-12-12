@@ -1264,8 +1264,7 @@ public class Programa implements Serializable {
     }
 
     public static int menuDisciplinasFreq(EscolaInformatica escolaInformatica){
-        limpaTela();
-        int opmenudiscFreq;
+        int opmenudiscFreq=0;
         System.out.println("Disciplinas da " + escolaInformatica.getNomeEscola());
         for(int i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++){
              System.out.println(i + 1 + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
@@ -2505,6 +2504,7 @@ public class Programa implements Serializable {
                                 // Listar Frequências de determinada disciplina
                                 String nomediscp;
                                 int posdisc;
+                                System.out.println("1. LISTAR FREQUÊNCIAS DE DETERMINADA DISCIPLINA\n");
                                 System.out.print("Introduza o nome da disciplina: ");
                                 nomediscp = Ler.umaString(); 
                                 posdisc = escolaInformatica.devolveposDisc(nomediscp);
@@ -2575,7 +2575,6 @@ public class Programa implements Serializable {
                                 int idFreq1;
                                 int posicaoDisc, posFrequencianaDisc;
                                 System.out.println("4. MODIFICAR DADOS DE UM FREQUÊNCIA, DADO O SEU ID\n");
-                                limpaTela();
                                 String disciplina;
                                 System.out.println("Disciplinas da " + escolaInformatica.getNomeEscola());
                                 for(int i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++){
@@ -2610,10 +2609,9 @@ public class Programa implements Serializable {
                                 // Remover Frequência
                                 int posFrequencia2 = -1;
                                 int posDisciplinaIdFreq2;
-                                posDisciplinaIdFreq2 = menuDisciplinasFreq(escolaInformatica);
                                 System.out.print("5. REMOVER FREQUÊNCIA\n\n");
-                                listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2);
-                                System.out.println("Escreva o ID da frequência que pretende remover -->  ");
+                                posDisciplinaIdFreq2 = menuDisciplinasFreq(escolaInformatica);
+                                System.out.print("Escreva o ID da frequência que pretende remover "+listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2)+"-->  ");
                                 int idFrequencia = Ler.umInt();
                                 posFrequencia2 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia);
                                 while(posFrequencia2 == -1 || posDisciplinaIdFreq2 == -1){
@@ -2629,10 +2627,9 @@ public class Programa implements Serializable {
                                 ArrayList<Perguntas> cotacaoMaiorPerguntaLista = new ArrayList<>();
                                 int posFrequencia3 = -1;
                                 int posDisciplinaIdFreq3;
-                                posDisciplinaIdFreq3 = menuDisciplinasFreq(escolaInformatica);
                                 System.out.print("6. CONSULTAR PERGUNTA COM MAIOR COTAÇÃO\n\n");
-                                listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq3);
-                                System.out.println("Escreva o ID da frequência da qual pretende consultar a pergunta com maior cotação -->  ");
+                                posDisciplinaIdFreq3 = menuDisciplinasFreq(escolaInformatica);
+                                System.out.print("Escreva o ID da frequência da qual pretende consultar a pergunta com maior cotação "+listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq3)+"-->  ");
                                 int idFrequencia3 = Ler.umInt();
                                 posFrequencia3 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
                                 while(posFrequencia3 == -1 || posDisciplinaIdFreq3 == -1){

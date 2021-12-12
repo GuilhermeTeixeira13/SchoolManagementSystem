@@ -36,9 +36,9 @@
 **Escola Profissional de Informática: (João 10-12)** 
 1. :exclamation:Criar Diretor (Removendo o antigo automaticamente); ((A implementar na classe Escola) ✔️
 2. :exclamation:Modificar dados sobre o diretor (A implementar na classe Escola); ✔️
-3. :exclamation:Listar Pessoas ✔️ Melhorar inputs :warning:
+3. :exclamation:Listar Pessoas ✔️ Melhorar outputs :warning:
 4. :exclamation:Mudar informações acerca da escola (Nome, Número, Contactos, Localização) ✔️
-5. :exclamation:Mostrar informações da escola ✔️ Melhorar inputs :warning:
+5. :exclamation:Mostrar informações da escola ✔️ Melhorar outputs :warning:
 
 **Cursos: (Gui 10-12)**
 1. :exclamation:Listar cursos (A implementar na classe Escola) ✔️
@@ -51,11 +51,11 @@
 8. Remover disciplina de determinado curso (A implementar na classe Escola) ✔️
 
 **Disciplinas: (Cláudio 10-12)**
-1. :exclamation:Listar disciplinas (A implementar na classe Escola) :warning: Melhorar outputs
-2. :exclamation:Criar disciplina (A implementar na classe Escola) :warning: Melhorar outputs
-3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) :warning: Melhorar outputs
-4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola) ✔️
-5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️
+1. :exclamation:Listar disciplinas (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
+2. :exclamation:Criar disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
+3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
+4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
+5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
 6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola) :clock11:
 7. Mostrar professores que lecionam determinada disciplina (A implementar na classe Escola) :warning: Testar
 8. Mostrar alunos inscritos em determinada disciplina (A implementar na classe Escola) :warning: Testar
@@ -64,11 +64,11 @@
 1. :exclamation:Listar Frequências de determinada disciplina (A implementar na classe Frequência) ✔️
 2. :exclamation:Criar Frequência (A implementar na classe Frequência) ✔️
 3. :exclamation:Mostrar determinada frequência, dado o ID da mesma (A implementar na classe Frequência) ✔️
-4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência) ✔️
+4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência) ✔️ Testar todas as funcionalidades e melhorar outputs :warning:
 5. :exclamation:Remover Frequência (A implementar na classe Frequência) ✔️
 6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência) ✔️
 7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) :clock11:
-8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️
+8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️ Melhorar outputs :warning:
 9. Mostrar frequências de determinado curso (A implementar na classe Frequência) :clock11:
 9. Mostrar frequências de determinada disciplina (A implementar na classe Frequência) :clock11:
 
@@ -97,8 +97,6 @@
 11. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) :clock11:
 
 **A implementar:**
-- Variáveis estáticas para número do professor e número das perguntas (Falta para número das perguntas) :warning:
 - Checkar o readme no final, para ver se está tudo direitinho caso seja preciso mostrar à stora :warning:
-- Não deixar criar Frequência se não houver professores ou disciplinas criadas. :warning:
 - Não permitir que se insiram números de telefone com mais de 9 dígitos :warning:
 - Definir um limite no rating do professor :warning:

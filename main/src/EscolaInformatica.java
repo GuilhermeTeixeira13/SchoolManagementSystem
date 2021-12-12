@@ -300,6 +300,25 @@ public class EscolaInformatica implements Serializable{
             prof.getDiscLec().get(i).getListProf().add(prof);
         }
     }
+
+    public void removeProfNasSuasDisciplinas(Professor prof){
+        for(int i = 0; i<prof.getDiscLec().size(); i++){
+            prof.getDiscLec().get(i).getListProf().remove(prof);
+        }
+    }
+
+    public void insereAlunoNasSuasDisciplinas(Aluno a){
+        for(int i = 0; i<a.getCurso().getDisciplinasCurso().size(); i++){
+            a.getCurso().getDisciplinasCurso().get(i).getListAlunos().add(a);
+        }
+    }
+
+    public void removeAlunoNasSuasDisciplinas(Aluno a){
+        for(int i = 0; i<a.getCurso().getDisciplinasCurso().size(); i++){
+            a.getCurso().getDisciplinasCurso().get(i).getListAlunos().remove(a);
+        }
+    }
+
     public boolean removeDiscEquals(String nomeDiscRemover){
         boolean conseguiuRemover = false;
         for(int i=0;i<this.getDisciplinaEscola().size();i++){

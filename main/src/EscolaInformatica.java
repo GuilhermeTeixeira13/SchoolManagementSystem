@@ -377,6 +377,21 @@ public class EscolaInformatica implements Serializable{
         return nomevalido;
     }
 
+    public boolean verificaSeDisciplinaPertenceCurso(int posCurso, String nomeDisc){
+        boolean existe = false;
+        for(int i=0; i<this.getCursosEscola().get(posCurso).getDisciplinasCurso().size(); i++){
+            if(this.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i).getNomDisc().equals(nomeDisc))
+                existe = true;
+        }
+        return existe;
+    }
+
+    public void atualizaCurso(int posCurso){
+        for(int i = 0; i<this.getCursosEscola().get(posCurso).getAlunosCurso().size(); i++){
+            removeAlunoNasSuasDisciplinas(this.getCursosEscola().get(posCurso).getAlunosCurso().get(i));
+            insereAlunoNasSuasDisciplinas(this.getCursosEscola().get(posCurso).getAlunosCurso().get(i));
+        }    
+    }
 
 
     public static void main(String[] args) {

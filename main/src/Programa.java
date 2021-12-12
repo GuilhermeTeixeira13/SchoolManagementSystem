@@ -1757,9 +1757,9 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                " GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Mostrar curso mais frequentado\n7. Inserir e Remover disciplinas de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                " GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Mostrar curso mais frequentado\n7. Inserir disciplinas de determinado curso\n8. Remover disciplinas de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 7 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 8 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -1865,12 +1865,68 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 7:
-                                // Inserir e Remover disciplinas de determinado curso
+                                // Inserir disciplinas de determinado curso
+                                String nomeCursoAddDisc;
+                                int posCursoAddDisc;
 
+                                System.out.print(
+                                        "7. INSERIR DISCIPLINAS NUM DETERMINADO CURSO\n\nEscreva o nome do curso em que pretende adicionar disciplinas -->  ");
+                                        nomeCursoAddDisc = Ler.umaString();
+                                posCursoAddDisc = escolaInformatica.devolvePosCurso(nomeCursoAddDisc);
+                                if (posCursoAddDisc == -1)
+                                    System.out.println("Lamentamos, mas este curso não existe!\n");
+                                else {
+                                    String NomeDiscAdd;
+                                    int posdisc;
+                                    boolean existeNoCurso = false;
+                                    System.out.print(
+                                            "Escreva o nome da disciplina que pretende adicionar ao curso "+nomeCursoAddDisc+" --> ");
+                                    NomeDiscAdd = Ler.umaString();
+                                    posdisc = escolaInformatica.devolvePosDisc(NomeDiscAdd);
+                                    existeNoCurso = escolaInformatica.verificaSeDisciplinaPertenceCurso(posCursoAddDisc, NomeDiscAdd);
+                                    if (existeNoCurso == true)
+                                        System.out.println("Lamentamos, mas esta disciplina já existe neste curso!\n");
+                                    else {
+                                        escolaInformatica.getCursosEscola().get(posCursoAddDisc).getDisciplinasCurso().add(escolaInformatica.getDisciplinaEscola().get(posdisc));
+                                        escolaInformatica.atualizaCurso(posCursoAddDisc);
+                                        System.out.println("Disciplina adicionada a "+nomeCursoAddDisc+" com sucesso!\n");
+                                        EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                    }
+                                }
+                                pedeTecla();
+                                break;
+                            case 8:
+                                String nomeCursoRemDisc;
+                                int posCursoRemDisc;
+
+                                System.out.print(
+                                        "8. REMOVER DISCIPLINAS NUM DETERMINADO CURSO\n\nEscreva o nome do curso em que pretende remover disciplinas -->  ");
+                                        nomeCursoRemDisc = Ler.umaString();
+                                posCursoRemDisc = escolaInformatica.devolvePosCurso(nomeCursoRemDisc);
+                                if (posCursoRemDisc == -1)
+                                    System.out.println("Lamentamos, mas este curso não existe!\n");
+                                else {
+                                    String NomeDiscRem;
+                                    int posdisc;
+                                    boolean existeNoCurso = false;
+                                    System.out.print(
+                                            "Escreva o nome da disciplina que pretende remover do curso "+nomeCursoRemDisc+" --> ");
+                                    NomeDiscRem = Ler.umaString();
+                                    posdisc = escolaInformatica.devolvePosDisc(NomeDiscRem);
+                                    existeNoCurso = escolaInformatica.verificaSeDisciplinaPertenceCurso(posCursoRemDisc, NomeDiscRem);
+                                    if (existeNoCurso == false)
+                                        System.out.println("Lamentamos, mas esta disciplina não existe neste curso!\n");
+                                    else {
+                                        escolaInformatica.getCursosEscola().get(posCursoRemDisc).getDisciplinasCurso().remove(escolaInformatica.getDisciplinaEscola().get(posdisc));
+                                        escolaInformatica.atualizaCurso(posCursoRemDisc);
+                                        System.out.println("Disciplina removida de "+nomeCursoRemDisc+" com sucesso!\n");
+                                        EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                    }
+                                }
                                 pedeTecla();
                                 break;
                         }
-                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 7);
+                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 8);
                     break;
                 case 3:
                     do {

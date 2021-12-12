@@ -72,17 +72,28 @@ public class Disciplina implements java.io.Serializable {
         s = "\nDisciplina: " + nomedisc + "/ Nº.Disciplina: " + numdisc+"\n";
         s = s + "Lista de Alunos: (";
         for (int i = 0; i < listalunos.size(); i++) {
-            s = s + listalunos.get(i).getNome() + ", ";
+            if(i!=listalunos.size()-1)
+                s = s + listalunos.get(i).getNome() + ", ";
+            else
+                s = s + listalunos.get(i).getNome();
         }
         s = s + ")\n";
         s = s + "Lista de Professores: (";
         for (int i = 0; i < listprof.size(); i++) {
-            s = s + listprof.get(i).getNome() + ", ";
+            if(i!=listprof.size()-1)
+                s = s + listprof.get(i).getNome() + ", ";
+            else
+                s = s + listprof.get(i).getNome();
         }
         s = s + ")\n";
-        s = s + "Lista de Frequências:\n";
-        for (int i = 0; i < listfreq.size(); i++)
-            s = s + listfreq.get(i) + "\n\n";
+        s = s + "Lista de Frequências: (";
+        for (int i = 0; i < listfreq.size(); i++){
+            if(i!=listfreq.size()-1)
+                s = s + listfreq.get(i).getid() + ", ";
+            else
+                s = s + listfreq.get(i).getid();
+        }
+        s = s + ")\n";
         return s;
     }
 

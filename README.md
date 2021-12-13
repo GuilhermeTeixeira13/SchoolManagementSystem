@@ -70,7 +70,6 @@
 7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) :clock11:
 8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️ Melhorar outputs :warning:
 9. Mostrar frequências de determinado curso (A implementar na classe Frequência) :clock11:
-9. Mostrar frequências de determinada disciplina (A implementar na classe Frequência) :clock11:
 
 **Professores: (João 10-12)**
 1. :exclamation:Listar professores (A implementar na classe Professor) ✔️

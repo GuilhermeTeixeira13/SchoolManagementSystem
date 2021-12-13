@@ -98,4 +98,6 @@
 **A implementar:**
 - Checkar o readme no final, para ver se está tudo direitinho caso seja preciso mostrar à stora :warning:
 - Não permitir que se insiram números de telefone com mais de 9 dígitos :warning:
+- Não permitir que se insiram email sem @ e sem . :warning:
 - Definir um limite no rating do professor :warning:
+- Variáveis estáticas para atribuir ID a Curso, Disciplina

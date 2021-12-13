@@ -1016,7 +1016,6 @@ public class Programa implements Serializable {
         int posDisciplinaIdFreq = escolaInformatica.devolvePosDisc(disciplina.getNomDisc());
         escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().add(novaFrequencia);
 
-        ArrayList<Perguntas> perguntas = new ArrayList<Perguntas>();
         int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas;
         float cotacao;
         String dific, pergunta, nomeProf;
@@ -1063,7 +1062,6 @@ public class Programa implements Serializable {
 
         System.out.println("\n------------------------------------------------");
         int posFreq = escolaInformatica.devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, disciplina.getNomDisc());
-        System.out.println("posDisciplinaDaFreq="+posDisciplinaIdFreq+"posFreq="+posFreq);
         for (int i = 0; i < NTotalPerguntas; i++) {
             System.out.print("\nDigite a cotação: ");
             cotacao = Ler.umInt();
@@ -1073,7 +1071,7 @@ public class Programa implements Serializable {
             escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFreq)
                     .getlistperg().add(questao);
         }
-        novaFrequencia.setlistperg(perguntas);
+
         System.out.println("\n------------------------------------------------");
         System.out.print("\nDificuldade: ");
         dific = Ler.umaString();

@@ -93,6 +93,7 @@ public class Programa implements Serializable {
     public static void listaumaFreq(Frequencia f) {
         System.out.println("ID: " + f.getid());
         System.out.println("Data da Frequência: " + f.getdatefreq());
+        System.out.println("Disciplina: "+f.getDisc().getNomDisc());
         System.out.println("Professor Responsável: " + f.getProfessorResponsavel().getNome());
         System.out.println("Número de perguntas: " + f.getNumPergTotal());
         System.out.println("Dificuldade: " + f.getdificuldade());
@@ -1010,8 +1011,11 @@ public class Programa implements Serializable {
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 6);
     }
 
-    public static Frequencia criarfrequencia(EscolaInformatica escolaInformatica, Disciplina disciplina) {
+    public static void criarfrequencia(EscolaInformatica escolaInformatica, Disciplina disciplina) {
         Frequencia novaFrequencia = new Frequencia();
+        int posDisciplinaIdFreq = escolaInformatica.devolvePosDisc(disciplina.getNomDisc());
+        escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().add(novaFrequencia);
+
         ArrayList<Perguntas> perguntas = new ArrayList<Perguntas>();
         int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas;
         float cotacao;
@@ -1058,9 +1062,8 @@ public class Programa implements Serializable {
         novaFrequencia.setNumPergTotal(NTotalPerguntas);
 
         System.out.println("\n------------------------------------------------");
-        // Erro aqui
-        int posDisciplinaIdFreq = escolaInformatica.devolvePosDisc(disciplina.getNomDisc());
         int posFreq = escolaInformatica.devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, disciplina.getNomDisc());
+        System.out.println("posDisciplinaDaFreq="+posDisciplinaIdFreq+"posFreq="+posFreq);
         for (int i = 0; i < NTotalPerguntas; i++) {
             System.out.print("\nDigite a cotação: ");
             cotacao = Ler.umInt();
@@ -1075,8 +1078,6 @@ public class Programa implements Serializable {
         System.out.print("\nDificuldade: ");
         dific = Ler.umaString();
         novaFrequencia.setdificuldadec(dific);
-
-        return novaFrequencia;
     }
 
     public static void consultarFrequencia(EscolaInformatica escolaInformatica, int idFreq, int posDisciplinaFreq,
@@ -2534,9 +2535,9 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequências de determinado curso\n10. Mostrar frequências de determinada disciplina\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequências de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
-                        while (opcaoUtilizador > 10 || opcaoUtilizador < 0) {
+                        while (opcaoUtilizador > 9 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                             opcaoUtilizador = Ler.umInt();
                         }
@@ -2587,10 +2588,7 @@ public class Programa implements Serializable {
 
                                         disciplinaDaFreq = escolaInformatica.devolveDisciplina(nomediscp);
 
-                                        Frequencia novaFreq = criarfrequencia(escolaInformatica, disciplinaDaFreq);
-                                        escolaInformatica.getDisciplinaEscola()
-                                                .get(escolaInformatica.devolveposDisc(nomediscp)).getListFreq()
-                                                .add(novaFreq);
+                                        criarfrequencia(escolaInformatica, disciplinaDaFreq);
 
                                         EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                         System.out.println("\n-->  Frequência criada com sucesso!!\n");
@@ -2747,13 +2745,8 @@ public class Programa implements Serializable {
 
                                 pedeTecla();
                                 break;
-                            case 10:
-                                // Mostrar frequências de determinada disciplina
-
-                                pedeTecla();
-                                break;
                         }
-                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 10);
+                    } while (opcaoUtilizador > 0 && opcaoUtilizador <= 9);
                     break;
             }
             limpaTela();

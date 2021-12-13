@@ -283,7 +283,7 @@ public class EscolaInformatica implements Serializable{
         Disciplina disciplina = new Disciplina();
 
         for(int i=0; i<this.getDisciplinaEscola().size(); i++){
-            if(this.getDisciplinaEscola().get(i).getNomDisc() == nomeDisciplina)
+            if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomeDisciplina))
                 disciplina = this.getDisciplinaEscola().get(i);
         }
 

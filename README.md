@@ -70,7 +70,6 @@
 7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) :clock11:
 8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️ Melhorar outputs :warning:
 9. Mostrar frequências de determinado curso (A implementar na classe Frequência) :clock11:
-9. Mostrar frequências de determinada disciplina (A implementar na classe Frequência) :clock11:
 
 **Professores: (João 10-12)**
 1. :exclamation:Listar professores (A implementar na classe Professor) ✔️
@@ -99,4 +98,7 @@
 **A implementar:**
 - Checkar o readme no final, para ver se está tudo direitinho caso seja preciso mostrar à stora :warning:
 - Não permitir que se insiram números de telefone com mais de 9 dígitos :warning:
+- Não permitir que se insiram email sem @ e sem . :warning:
 - Definir um limite no rating do professor :warning:
+- Variáveis estáticas para atribuir ID a Curso, Disciplina :warning:
+- Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc :warning:

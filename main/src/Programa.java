@@ -2717,7 +2717,7 @@ public class Programa implements Serializable {
                                 break;
                             case 7:
                                 // Mostrar frequências por nível de dificuldade
-                                System.out.print("7. Frequências por nível de dificuldade");
+                                /*System.out.print("7. Frequências por nível de dificuldade");
                                 System.out.print("\nEscolha uma dificuldade (1, 2 ou 3)");
                                 int dific = Ler.umInt();
                                 if(dific < 1 || dific > 3){
@@ -2726,7 +2726,7 @@ public class Programa implements Serializable {
                                 else{
                                     ArrayList<Frequencia> listaFreqDific;
                                 }
-                            
+                            */
 
                                 pedeTecla();
                                 break;

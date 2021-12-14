@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-//import javax.lang.model.util.ElementScanner14;
+import javax.sound.midi.SysexMessage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -1016,9 +1016,9 @@ public class Programa implements Serializable {
         int posDisciplinaIdFreq = escolaInformatica.devolvePosDisc(disciplina.getNomDisc());
         escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().add(novaFrequencia);
 
-        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas;
+        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas, dific;
         float cotacao;
-        String dific, pergunta, nomeProf;
+        String pergunta, nomeProf;
         ArrayList<Pessoa> Professores = identProf(escolaInformatica.getPessoasEscola());
 
         novaFrequencia.setDisc(disciplina);
@@ -1074,7 +1074,7 @@ public class Programa implements Serializable {
 
         System.out.println("\n------------------------------------------------");
         System.out.print("\nDificuldade: ");
-        dific = Ler.umaString();
+        dific = Ler.umInt();
         novaFrequencia.setdificuldadec(dific);
     }
 
@@ -1137,8 +1137,8 @@ public class Programa implements Serializable {
         Frequencia modificarFrequencia = escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq()
                 .get(posFrequencia);
         modificarFrequencia.setDisc(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq));
-        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas;
-        String novocont, pergunta, nomeProf, dif;
+        int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas, dif;
+        String novocont, pergunta, nomeProf;
         ArrayList<Pessoa> Professores = identProf(escolaInformatica.getPessoasEscola());
         do {
             limpaTela();
@@ -1278,7 +1278,7 @@ public class Programa implements Serializable {
                     break;
                 case 6:
                     System.out.print("\nDificuldade: ");
-                    dif = Ler.umaString();
+                    dif = Ler.umInt();
                     modificarFrequencia.setdificuldadec(dif);
                     pedeTecla();
                     break;
@@ -2717,6 +2717,16 @@ public class Programa implements Serializable {
                                 break;
                             case 7:
                                 // Mostrar frequências por nível de dificuldade
+                                System.out.print("7. Frequências por nível de dificuldade");
+                                System.out.print("\nEscolha uma dificuldade (1, 2 ou 3)");
+                                int dific = Ler.umInt();
+                                if(dific < 1 || dific > 3){
+                                    System.out.print("Lamentamos, mas esta dificuldade não existe!\n");
+                                }
+                                else{
+                                    ArrayList<Frequencia> listaFreqDific;
+                                }
+                            
 
                                 pedeTecla();
                                 break;
@@ -2740,7 +2750,20 @@ public class Programa implements Serializable {
                                 break;
                             case 9:
                                 // Mostrar frequências de determinado curso
-
+                                System.out.print("9. Mostrar frequências de um curso");
+                                System.out.print("\nEscolha o código do curso: ");
+                                String nomecurso = Ler.umaString();
+                                int posCurso;
+                                posCurso = escolaInformatica.devolvePosCurso(nomecurso);
+                                if(posCurso == -1){
+                                    System.out.println("Lamentamos, mas este curso não existe!\n");
+                                }
+                                else {
+                                    ArrayList<Frequencia> listaFreqCurso = escolaInformatica.getDisciplinaEscola().
+                                    get(posCurso).getListFreq();
+                                    for (int i = 0; i < listaFreqCurso.size(); i++)
+                                        listaumaFreq(listaFreqCurso.get(i));
+                                }
                                 pedeTecla();
                                 break;
                         }

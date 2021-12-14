@@ -12,7 +12,7 @@ public class Frequencia implements java.io.Serializable {
     private Professor professorResp;
     private int numpergtotal;
     private ArrayList<Perguntas> listperg;
-    private String dificuldade;
+    private int dificuldade;
 
     // Contrutores
     public Frequencia() {
@@ -22,10 +22,10 @@ public class Frequencia implements java.io.Serializable {
         this.professorResp = new Professor();
         this.numpergtotal = 0;
         this.listperg = new ArrayList<Perguntas>();
-        this.dificuldade = "";
+        this.dificuldade = 0;
     }
 
-    public Frequencia(int id, String disc, int numpergtotal, String dificuldade, LocalDate datafreq, Professor professorResp){
+    public Frequencia(int id, String disc, int numpergtotal, int dificuldade, LocalDate datafreq, Professor professorResp){
         this.id = id;
         this.disc = new Disciplina();
         this.datafreq = datafreq;
@@ -84,11 +84,11 @@ public class Frequencia implements java.io.Serializable {
         this.listperg = (ArrayList<Perguntas>) listperg.clone();
     }
 
-    public String getdificuldade() {
+    public int getdificuldade() {
         return this.dificuldade;
     }
 
-    public void setdificuldadec(String dificuldade) {
+    public void setdificuldadec(int dificuldade) {
         this.dificuldade = dificuldade;
     }
 
@@ -115,7 +115,7 @@ public class Frequencia implements java.io.Serializable {
             ig = ((this.id == e.id) && (this.disc.equals(e.disc))
                     && (this.datafreq.equals(e.datafreq)) && (this.professorResp.equals(e.professorResp))
                     && (this.numpergtotal == e.numpergtotal) && (this.listperg.equals(e.listperg))
-                    && (this.dificuldade.equals(e.dificuldade)));
+                    && (this.dificuldade == e.dificuldade));
         } else {
             ig = false;
         }

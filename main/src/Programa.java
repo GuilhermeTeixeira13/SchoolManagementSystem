@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.lang.model.util.ElementScanner14;
+
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -93,7 +93,7 @@ public class Programa implements Serializable {
     public static void listaumaFreq(Frequencia f) {
         System.out.println("ID: " + f.getid());
         System.out.println("Data da Frequência: " + f.getdatefreq());
-        System.out.println("Disciplina: "+f.getDisc().getNomDisc());
+        System.out.println("Disciplina: " + f.getDisc().getNomDisc());
         System.out.println("Professor Responsável: " + f.getProfessorResponsavel().getNome());
         System.out.println("Número de perguntas: " + f.getNumPergTotal());
         System.out.println("Dificuldade: " + f.getdificuldade());
@@ -1706,6 +1706,19 @@ public class Programa implements Serializable {
 
     }
 
+    public static Disciplina discfrequenciamaislonga(EscolaInformatica escolaInformatica) {
+        Disciplina discfrequenciamaislonga = new Disciplina();
+        int maislonga = 0, numperg;
+        for (int i = 0; i < escolaInformatica.getDisciplinaEscola().get(i).getListFreq().size(); i++) {
+            numperg = escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(i).getNumPergTotal();
+            if (numperg > maislonga) {
+                maislonga = escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(i).getNumPergTotal();
+                discfrequenciamaislonga = escolaInformatica.getDisciplinaEscola().get(i);
+            }
+        }
+        return discfrequenciamaislonga;
+    }
+
     //
     public static void main(String[] args) {
         int opcaoUtilizador;
@@ -2066,6 +2079,13 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Mostrar a disciplina com a frequência mais longa
+                                System.out.println(
+                                        "A Disciplina com a frequencia mais longa da "
+                                                + escolaInformatica.getNomeEscola() + " é:\n");
+                                System.out.println(" . " + discfrequenciamaislonga(escolaInformatica).getNomDisc()
+                                        + " (Frequncia com id -"
+                                        + discfrequenciamaislonga(escolaInformatica).getListFreq().get(0).getid()
+                                        + ")\n");
 
                                 pedeTecla();
                                 break;
@@ -2118,7 +2138,6 @@ public class Programa implements Serializable {
                                 }
                                 pedeTecla();
                                 break;
-                            // alterar prints funçao prof contem diciplina
                             case 8:
                                 // Mostrar alunos inscritos em determinada disciplina
                                 String nomeDiscalunos = "";

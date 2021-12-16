@@ -1428,12 +1428,12 @@ public class Programa implements Serializable {
         }
         for(int i = 0; i < freqTotalCurso.size(); i++){
             for(int j = 0; j < posFreqComMaiorPerg.size(); j++){
-                if(i == j){
+                if(i == posFreqComMaiorPerg.get(j)){
                     freqComMaiorPerg.add(freqTotalCurso.get(i));
                 }
             }
         }
-        return freqTotalCurso;
+        return freqComMaiorPerg;
     }
     public static Professor modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
         int opcaoUtilizador;

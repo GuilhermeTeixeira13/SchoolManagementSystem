@@ -139,6 +139,17 @@ public class Aluno extends Pessoa {
         return copia;
     }
 
+    public void listaDiscDoAluno(){
+        if(this.getCurso().getDisciplinasCurso().isEmpty())
+            System.out.println("De momento, o aluno não se encontra inscrito em nenhuma disciplina.\n");
+        else{
+            System.out.println("Disciplinas do aluno "+ this.getNome()+":\n");
+            for(int i = 0; i < this.getCurso().getDisciplinasCurso().size(); i++)
+                System.out.println(". Cód:" + this.getCurso().getDisciplinasCurso().get(i).getNumDisc() + " - " + this.getCurso().getDisciplinasCurso().get(i).getNomDisc());
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
 
     }

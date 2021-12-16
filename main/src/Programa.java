@@ -1,9 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.ExecutorService;
-
-
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
@@ -33,6 +29,7 @@ public class Programa implements Serializable {
             // escrever o objeto livros no ficheiro
             os.writeInt(Aluno.getUltimo());
             os.writeInt(Professor.getUltimo());
+            os.writeInt(Disciplina.getUltimo());
             os.writeObject(escolaInformatica);
             os.flush(); // os dados são copiados de memória para o disco
         } catch (IOException e) {
@@ -50,6 +47,8 @@ public class Programa implements Serializable {
                 Aluno.setUltimo(ult);
                 int ultProf = is.readInt();
                 Professor.setUltimo(ultProf);
+                int ultDisc = is.readInt();
+                Disciplina.setUltimo(ultDisc);
                 EscolaInformatica escolaInformatica = (EscolaInformatica) is.readObject();
                 return escolaInformatica;
             } else
@@ -1087,9 +1086,9 @@ public class Programa implements Serializable {
         System.out.println("\n------------------------------------------------");
         int posFreq = escolaInformatica.devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, disciplina.getNomDisc());
         for (int i = 0; i < NTotalPerguntas; i++) {
-            System.out.print("\nPergunta "+(i+1)+": ");
+            System.out.print("\nPergunta " + (i + 1) + ": ");
             pergunta = Ler.umaString();
-            System.out.print("\nCotação da pergunta "+(i+1)+": ");
+            System.out.print("\nCotação da pergunta " + (i + 1) + ": ");
             cotacao = Ler.umInt();
             Perguntas questao = new Perguntas(cotacao, pergunta);
             escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFreq)
@@ -1281,11 +1280,11 @@ public class Programa implements Serializable {
                                     System.out.print("Número da Pergunta que deseja modificar: ");
                                     numQuestao = Ler.umInt();
 
-                                    System.out.print("\nPergunta "+numQuestao+": ");
+                                    System.out.print("\nPergunta " + numQuestao + ": ");
                                     pergunta = Ler.umaString();
-                                    System.out.print("\nCotação da pergunta "+numQuestao+": ");
+                                    System.out.print("\nCotação da pergunta " + numQuestao + ": ");
                                     novcotacao = Ler.umInt();
-                                    
+
                                     Perguntas questao = new Perguntas(novcotacao, pergunta);
                                     escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq()
                                             .get(posFrequencia).getlistperg().set(numQuestao - 1, questao);
@@ -1664,7 +1663,7 @@ public class Programa implements Serializable {
     }
 
     public static Disciplina criarDisciplina(EscolaInformatica escolaInformatica) {
-        String numdisc, nomedisc;
+        String nomedisc;
         int verificaExistenciadisc = -1;
         do {
             if (verificaExistenciadisc == -1)
@@ -1674,52 +1673,27 @@ public class Programa implements Serializable {
             nomedisc = Ler.umaString();
             verificaExistenciadisc = escolaInformatica.devolvePosDisc(nomedisc);
         } while (verificaExistenciadisc != -1);
-        System.out.print("\nCódigo do Disciplina: ");
-        numdisc = Ler.umaString();
-        Disciplina novDisciplina = new Disciplina(numdisc, nomedisc);
+        Disciplina novDisciplina = new Disciplina(nomedisc);
         return novDisciplina;
     }
 
     public static Disciplina modificarDisciplina(EscolaInformatica escolaInformatica, int posicao) {
-        int opcaoUtilizador;
-        do {
-            System.out.print("\nO que pretende modificar na disciplina de "
-                    + escolaInformatica.getDisciplinaEscola().get(posicao).getNomDisc()
-                    + "?\n\n 1. Nome\n 2. Cód.disciplina\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
-            opcaoUtilizador = Ler.umInt();
-            while (opcaoUtilizador > 3 || opcaoUtilizador < 0) {
-                System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
-                opcaoUtilizador = Ler.umInt();
-            }
-            limpaTela();
-            switch (opcaoUtilizador) {
-                case 1:
-                    int verificaExistenciadisc = -1;
-                    String nomedisc;
-                    do {
-                        if (verificaExistenciadisc == -1)
-                            System.out.print("Nome da Disciplina: ");
-                        else
-                            System.out.print("Esse nome já existe! Por favor, escolha outro: ");
-                        nomedisc = Ler.umaString();
-                        verificaExistenciadisc = escolaInformatica.devolvePosDisc(nomedisc);
-                    } while (verificaExistenciadisc != -1);
 
-                    escolaInformatica.getDisciplinaEscola().get(posicao).setNomDisc(nomedisc);
-                    System.out.println();
-                    pedeTecla();
-                    break;
-                case 2:
-                    String numdisc;
-                    System.out.print("\nCódigo da Disciplina: ");
-                    numdisc = Ler.umaString();
-                    escolaInformatica.getDisciplinaEscola().get(posicao).setNumDisc(numdisc);
-                    System.out.println();
-                    pedeTecla();
-                    break;
-            }
-            limpaTela();
-        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
+        int verificaExistenciadisc = -1;
+        String nomedisc;
+
+        do {
+            if (verificaExistenciadisc == -1)
+                System.out.print("Nome da Disciplina: ");
+            else
+                System.out.print("Esse nome já existe! Por favor, escolha outro: ");
+            nomedisc = Ler.umaString();
+            verificaExistenciadisc = escolaInformatica.devolvePosDisc(nomedisc);
+        } while (verificaExistenciadisc != -1);
+
+        escolaInformatica.getDisciplinaEscola().get(posicao).setNomDisc(nomedisc);
+
+        limpaTela();
         return escolaInformatica.getDisciplinaEscola().get(posicao);
     }
 
@@ -1781,12 +1755,12 @@ public class Programa implements Serializable {
 
     public static Disciplina discfrequenciamaislonga(EscolaInformatica escolaInformatica) {
         Disciplina discfrequenciamaislonga = new Disciplina();
-        int maiorNumPerg = 0, numperg=0;
+        int maiorNumPerg = 0, numperg = 0;
 
         for (int i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
-            for (int j = 0; j < escolaInformatica.getDisciplinaEscola().get(i).getListFreq().size(); j++){
+            for (int j = 0; j < escolaInformatica.getDisciplinaEscola().get(i).getListFreq().size(); j++) {
                 numperg = escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(j).getNumPergTotal();
-                if(numperg > maiorNumPerg){
+                if (numperg > maiorNumPerg) {
                     maiorNumPerg = numperg;
                     discfrequenciamaislonga = escolaInformatica.getDisciplinaEscola().get(i);
                 }
@@ -1796,7 +1770,35 @@ public class Programa implements Serializable {
         return discfrequenciamaislonga;
     }
 
-    //
+    public static void atribuiNotas(EscolaInformatica escolaInformatica, int numAluno) {
+        // Verificar que numAluno existe (na main)
+        ArrayList<Aluno> alunosEscola = convPessoaAluno(identAluno(escolaInformatica.getPessoasEscola()));
+        Aluno alunoSelecionado = new Aluno();
+        int idDisc;
+
+        for (int i = 0; i < alunosEscola.size(); i++) {
+            if (alunosEscola.get(i).getNumAluno() == numAluno)
+                alunoSelecionado = alunosEscola.get(i);
+        }
+
+        if(alunoSelecionado.getCurso().getNomeCurso().equals("")){
+            if(!alunoSelecionado.getCurso().getDisciplinasCurso().isEmpty()){
+                System.out.println("Disciplinas do aluno:\n");
+                alunoSelecionado.listaDiscDoAluno();
+                System.out.print("Escolha o ID da Disciplina para a qual pretende atribuir notas: ");
+                idDisc = Ler.umInt();
+                alunoSelecionado.getCurso().verificaIdDisc(idDisc);
+                while(alunoSelecionado.getCurso().verificaIdDisc(idDisc) == false){
+                    System.out.print("ID NÃO EXISTENTE, ESCOLHA OUTRO: ");
+                    idDisc = Ler.umInt();
+                    alunoSelecionado.getCurso().verificaIdDisc(idDisc);
+                }
+
+                // Escolher frequência da disciplina e atribuir notas
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int opcaoUtilizador;
         limpaTela();
@@ -2156,11 +2158,13 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Mostrar a disciplina com a frequência mais longa
-                                if(discfrequenciamaislonga(escolaInformatica).getNomDisc().equals(""))
+                                if (discfrequenciamaislonga(escolaInformatica).getNomDisc().equals(""))
                                     System.out.println("Ainda não existem frequências criadas!");
                                 else
-                                    System.out.println("A Disciplina com a frequencia mais longa da "+ escolaInformatica.getNomeEscola() + " é:\n . " + discfrequenciamaislonga(escolaInformatica).getNomDisc() + "\n");
-                    
+                                    System.out.println("A Disciplina com a frequencia mais longa da "
+                                            + escolaInformatica.getNomeEscola() + " é:\n . "
+                                            + discfrequenciamaislonga(escolaInformatica).getNomDisc() + "\n");
+
                                 pedeTecla();
                                 break;
                             case 7:

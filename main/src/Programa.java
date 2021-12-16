@@ -1285,11 +1285,7 @@ public class Programa implements Serializable {
                                     pergunta = Ler.umaString();
                                     System.out.print("\nCotação da pergunta "+numQuestao+": ");
                                     novcotacao = Ler.umInt();
-
-                                    System.out.print("\nDigite a cotação: ");
-                                    novcotacao = Ler.umInt();
-                                    System.out.print("\nDigite a pergunta: ");
-                                    pergunta = Ler.umaString();
+                                    
                                     Perguntas questao = new Perguntas(novcotacao, pergunta);
                                     escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq()
                                             .get(posFrequencia).getlistperg().set(numQuestao - 1, questao);

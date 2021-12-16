@@ -1087,9 +1087,9 @@ public class Programa implements Serializable {
         System.out.println("\n------------------------------------------------");
         int posFreq = escolaInformatica.devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, disciplina.getNomDisc());
         for (int i = 0; i < NTotalPerguntas; i++) {
-            System.out.print("\nDigite a pergunta: ");
+            System.out.print("\nPergunta "+(i+1)+": ");
             pergunta = Ler.umaString();
-            System.out.print("\nDigite a cotação: ");
+            System.out.print("\nCotação da pergunta "+(i+1)+": ");
             cotacao = Ler.umInt();
             Perguntas questao = new Perguntas(cotacao, pergunta);
             escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFreq)
@@ -1280,6 +1280,11 @@ public class Programa implements Serializable {
                                             .getListFreq().get(posFrequencia).getlistperg());
                                     System.out.print("Número da Pergunta que deseja modificar: ");
                                     numQuestao = Ler.umInt();
+
+                                    System.out.print("\nPergunta "+numQuestao+": ");
+                                    pergunta = Ler.umaString();
+                                    System.out.print("\nCotação da pergunta "+numQuestao+": ");
+                                    novcotacao = Ler.umInt();
 
                                     System.out.print("\nDigite a cotação: ");
                                     novcotacao = Ler.umInt();

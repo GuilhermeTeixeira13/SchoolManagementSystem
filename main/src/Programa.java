@@ -1413,7 +1413,7 @@ public class Programa implements Serializable {
         ArrayList<Integer> posFreqComMaiorPerg = new ArrayList<>();
         ArrayList<Integer> resultados = new ArrayList<>();
         for(int i = 0; i < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().size(); i++){
-            for(int j = 0; i < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i).getListFreq().size(); j++){
+            for(int j = 0; j < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i).getListFreq().size(); j++){
                 freqTotalCurso.add(escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i).getListFreq().get(j));
             }
         }

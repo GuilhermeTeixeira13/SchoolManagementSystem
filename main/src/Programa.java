@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ExecutorService;
 
-import javax.lang.model.util.ElementScanner14;
+
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -1778,6 +1778,23 @@ public class Programa implements Serializable {
 
     }
 
+    public static Disciplina discfrequenciamaislonga(EscolaInformatica escolaInformatica) {
+        Disciplina discfrequenciamaislonga = new Disciplina();
+        int maiorNumPerg = 0, numperg=0;
+
+        for (int i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
+            for (int j = 0; j < escolaInformatica.getDisciplinaEscola().get(i).getListFreq().size(); j++){
+                numperg = escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(j).getNumPergTotal();
+                if(numperg > maiorNumPerg){
+                    maiorNumPerg = numperg;
+                    discfrequenciamaislonga = escolaInformatica.getDisciplinaEscola().get(i);
+                }
+            }
+        }
+
+        return discfrequenciamaislonga;
+    }
+
     //
     public static void main(String[] args) {
         int opcaoUtilizador;
@@ -2138,6 +2155,10 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Mostrar a disciplina com a frequência mais longa
+                                System.out.println(
+                                        "A Disciplina com a frequencia mais longa da "
+                                                + escolaInformatica.getNomeEscola() + " é:\n");
+                                System.out.println(" . " + discfrequenciamaislonga(escolaInformatica).getNomDisc() + "\n");
 
                                 pedeTecla();
                                 break;
@@ -2190,7 +2211,6 @@ public class Programa implements Serializable {
                                 }
                                 pedeTecla();
                                 break;
-                            // alterar prints funçao prof contem diciplina
                             case 8:
                                 // Mostrar alunos inscritos em determinada disciplina
                                 String nomeDiscalunos = "";

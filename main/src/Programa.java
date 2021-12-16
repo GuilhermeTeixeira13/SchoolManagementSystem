@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.ExecutorService;
 
 import javax.lang.model.util.ElementScanner14;
 
@@ -93,7 +94,7 @@ public class Programa implements Serializable {
     public static void listaumaFreq(Frequencia f) {
         System.out.println("ID: " + f.getid());
         System.out.println("Data da Frequência: " + f.getdatefreq());
-        System.out.println("Disciplina: "+f.getDisc().getNomDisc());
+        System.out.println("Disciplina: " + f.getDisc().getNomDisc());
         System.out.println("Professor Responsável: " + f.getProfessorResponsavel().getNome());
         System.out.println("Número de perguntas: " + f.getNumPergTotal());
         System.out.println("Dificuldade: " + f.getdificuldade());
@@ -1010,8 +1011,30 @@ public class Programa implements Serializable {
                 escolaInformatica.changeAluno(posicao, novoAluno);
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 6);
     }
+    public static String menuEscolhaNivel() {
+        int nivelescolhido;
+        String dificescolhida = "";
+        System.out.println("Dificuldade:\n1 - Fácil\n2 - Média\n3 - Difícil");
+        System.out.print("Opção escolhida -> ");
+        nivelescolhido = Ler.umInt();
+        while (nivelescolhido < 0 || nivelescolhido > 4) {
+            System.out.print("Digite a opção corretamente -> ");
+            nivelescolhido = Ler.umInt();
+        }
+        if(nivelescolhido == 1){
+            dificescolhida = "Fácil";
+        }
+        if(nivelescolhido == 2){
+            dificescolhida = "Média";
+        }
+        if(nivelescolhido == 3){
+            dificescolhida = "Difícil";
+        }
+        return dificescolhida;
+    }
 
     public static void criarfrequencia(EscolaInformatica escolaInformatica, Disciplina disciplina) {
+        
         Frequencia novaFrequencia = new Frequencia();
         int posDisciplinaIdFreq = escolaInformatica.devolvePosDisc(disciplina.getNomDisc());
         escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().add(novaFrequencia);
@@ -1063,18 +1086,15 @@ public class Programa implements Serializable {
         System.out.println("\n------------------------------------------------");
         int posFreq = escolaInformatica.devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, disciplina.getNomDisc());
         for (int i = 0; i < NTotalPerguntas; i++) {
-            System.out.print("\nDigite a cotação: ");
-            cotacao = Ler.umInt();
             System.out.print("\nDigite a pergunta: ");
             pergunta = Ler.umaString();
+            System.out.print("\nDigite a cotação: ");
+            cotacao = Ler.umInt();
             Perguntas questao = new Perguntas(cotacao, pergunta);
             escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(posFreq)
                     .getlistperg().add(questao);
         }
-
-        System.out.println("\n------------------------------------------------");
-        System.out.print("\nDificuldade: ");
-        dific = Ler.umaString();
+        dific = menuEscolhaNivel();
         novaFrequencia.setdificuldadec(dific);
     }
 
@@ -1127,10 +1147,9 @@ public class Programa implements Serializable {
     }
 
     public static Frequencia modFrequencia(EscolaInformatica escolaInformatica, int idFreq1, int posDisciplinaIdFreq,
-            int posFrequencia) {
+        int posFrequencia) {
         int numQuestao;
         int opcaomodFreq;
-        int opcaomodPerg;
         String respContinuar;
         float novcotacao;
         int opcaomenulistaPerg;
@@ -1138,7 +1157,7 @@ public class Programa implements Serializable {
                 .get(posFrequencia);
         modificarFrequencia.setDisc(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq));
         int verificaExistenciaFreq = -1, verificaExistenciaProf = -1, idFreq = 0, NTotalPerguntas;
-        String novocont, pergunta, nomeProf, dif;
+        String pergunta, nomeProf, dif;
         ArrayList<Pessoa> Professores = identProf(escolaInformatica.getPessoasEscola());
         do {
             limpaTela();
@@ -1277,8 +1296,7 @@ public class Programa implements Serializable {
                     } while (opcaomenulistaPerg > 0 && opcaomenulistaPerg < 4);
                     break;
                 case 6:
-                    System.out.print("\nDificuldade: ");
-                    dif = Ler.umaString();
+                    dif = menuEscolhaNivel();
                     modificarFrequencia.setdificuldadec(dif);
                     pedeTecla();
                     break;
@@ -1306,6 +1324,59 @@ public class Programa implements Serializable {
             }
         }
         return opmenudiscFreq - 1;
+    }
+
+    public static int menuEscolhaNivelAdequadaDisciplina(EscolaInformatica escolaInformatica, int posDisciplinaFreq) {
+        int nivelescolhido;
+        System.out.println("Deseja consultar as frequências da disciplina "
+                + escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getNomDisc()
+                + " com dificuldade:\n1 - Fácil\n2 - Média\n3 - Difícil");
+        System.out.print("Opção escolhida -> ");
+        nivelescolhido = Ler.umInt();
+        while (nivelescolhido < 0 || nivelescolhido > 4) {
+            System.out.print("Digite a opção corretamente -> ");
+            nivelescolhido = Ler.umInt();
+        }
+        return nivelescolhido;
+    }
+
+    public static ArrayList<Frequencia> freqnivelFacil(EscolaInformatica escolaInformatica, int posDisciplinaIdFreq) {
+        ArrayList<Frequencia> freqnivelFacil = new ArrayList<>();
+        for (int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq()
+                .size(); i++) {
+            if (escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(i).getdificuldade()
+                    .contains("Fácil")) {
+                freqnivelFacil
+                        .add(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(i));
+            }
+        }
+        return freqnivelFacil;
+    }
+
+    public static ArrayList<Frequencia> freqnivelMédio(EscolaInformatica escolaInformatica, int posDisciplinaIdFreq) {
+        ArrayList<Frequencia> freqnivelMedio = new ArrayList<>();
+        for (int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq()
+                .size(); i++) {
+            if (escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(i).getdificuldade()
+                    .contains("Médio")) {
+                freqnivelMedio
+                        .add(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(i));
+            }
+        }
+        return freqnivelMedio;
+    }
+
+    public static ArrayList<Frequencia> freqnivelDificil(EscolaInformatica escolaInformatica, int posDisciplinaIdFreq) {
+        ArrayList<Frequencia> freqnivelDificil = new ArrayList<>();
+        for (int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq()
+                .size(); i++) {
+            if (escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(i).getdificuldade()
+                    .contains("Difícil")) {
+                freqnivelDificil
+                        .add(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(i));
+            }
+        }
+        return freqnivelDificil;
     }
 
     public static ArrayList<Integer> listIdsDisciplina(EscolaInformatica escolaInformatica, int posDisciplinaFreq) {
@@ -2574,7 +2645,7 @@ public class Programa implements Serializable {
                                         System.out.print("\nDisciplina disponíveis na escola: ");
                                         escolaInformatica.listaDisciplinas();
 
-                                        System.out.print("\nDisciplina para a qual pretende criar uma frequência: ");
+                                        System.out.print("\nDisciplina para a qual pretende criar uma frequência [Nome]: ");
                                         nomediscp = Ler.umaString();
                                         verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp);
                                         while (verificaExistenciaDisc == -1) {
@@ -2717,7 +2788,56 @@ public class Programa implements Serializable {
                                 break;
                             case 7:
                                 // Mostrar frequências por nível de dificuldade
-
+                                // Niveis Facil - 1 Medio - 2 Dificil - 3
+                                int posDisciplinaEscolhida;
+                                int nivelescolhido;
+                                String condicaostop = "";
+                                posDisciplinaEscolhida = menuDisciplinasFreq(escolaInformatica);
+                                limpaTela();
+                                do {
+                                    nivelescolhido = menuEscolhaNivelAdequadaDisciplina(escolaInformatica, posDisciplinaEscolhida);
+                                    switch (nivelescolhido) {
+                                        case 1:
+                                            limpaTela();
+                                            System.out.println("Frequências de " + escolaInformatica
+                                                    .getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc());
+                                            for (int i = 0; i < freqnivelFacil(escolaInformatica,
+                                                    posDisciplinaEscolhida).size(); i++) {
+                                                listaumaFreq(freqnivelFacil(escolaInformatica, posDisciplinaEscolhida)
+                                                        .get(i));
+                                            }
+                                            System.out.println(
+                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]!");
+                                            condicaostop = Ler.umaString();
+                                            break;
+                                        case 2:
+                                            limpaTela();
+                                            System.out.println("Frequências de " + escolaInformatica
+                                                    .getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc());
+                                            for (int i = 0; i < freqnivelMédio(escolaInformatica,
+                                                    posDisciplinaEscolhida).size(); i++) {
+                                                listaumaFreq(freqnivelMédio(escolaInformatica, posDisciplinaEscolhida)
+                                                        .get(i));
+                                            }
+                                            System.out.println(
+                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]!");
+                                            condicaostop = Ler.umaString();
+                                            break;
+                                        case 3:
+                                            limpaTela();
+                                            System.out.println("Frequências de " + escolaInformatica
+                                                    .getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc());
+                                            for (int i = 0; i < freqnivelDificil(escolaInformatica,
+                                                    posDisciplinaEscolhida).size(); i++) {
+                                                listaumaFreq(freqnivelDificil(escolaInformatica, posDisciplinaEscolhida)
+                                                        .get(i));
+                                            }
+                                            System.out.println(
+                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]!");
+                                            condicaostop = Ler.umaString();
+                                            break;
+                                    }
+                                } while (!condicaostop.equals("N") || condicaostop.equals("n"));
                                 pedeTecla();
                                 break;
                             case 8:

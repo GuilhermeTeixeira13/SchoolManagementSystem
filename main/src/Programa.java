@@ -1708,14 +1708,18 @@ public class Programa implements Serializable {
 
     public static Disciplina discfrequenciamaislonga(EscolaInformatica escolaInformatica) {
         Disciplina discfrequenciamaislonga = new Disciplina();
-        int maislonga = 0, numperg;
-        for (int i = 0; i < escolaInformatica.getDisciplinaEscola().get(i).getListFreq().size(); i++) {
-            numperg = escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(i).getNumPergTotal();
-            if (numperg > maislonga) {
-                maislonga = escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(i).getNumPergTotal();
-                discfrequenciamaislonga = escolaInformatica.getDisciplinaEscola().get(i);
+        int maiorNumPerg = 0, numperg=0;
+
+        for (int i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
+            for (int j = 0; j < escolaInformatica.getDisciplinaEscola().get(i).getListFreq().size(); j++){
+                numperg = escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(j).getNumPergTotal();
+                if(numperg > maiorNumPerg){
+                    maiorNumPerg = numperg;
+                    discfrequenciamaislonga = escolaInformatica.getDisciplinaEscola().get(i);
+                }
             }
         }
+
         return discfrequenciamaislonga;
     }
 
@@ -2082,10 +2086,7 @@ public class Programa implements Serializable {
                                 System.out.println(
                                         "A Disciplina com a frequencia mais longa da "
                                                 + escolaInformatica.getNomeEscola() + " é:\n");
-                                System.out.println(" . " + discfrequenciamaislonga(escolaInformatica).getNomDisc()
-                                        + " (Frequncia com id -"
-                                        + discfrequenciamaislonga(escolaInformatica).getListFreq().get(0).getid()
-                                        + ")\n");
+                                System.out.println(" . " + discfrequenciamaislonga(escolaInformatica).getNomDisc() + "\n");
 
                                 pedeTecla();
                                 break;

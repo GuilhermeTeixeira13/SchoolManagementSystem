@@ -2043,8 +2043,8 @@ public class Programa implements Serializable {
                                     posdisc = escolaInformatica.devolvePosDisc(NomeDiscAdd);
                                     existeNoCurso = escolaInformatica.verificaSeDisciplinaPertenceCurso(posCursoAddDisc,
                                             NomeDiscAdd);
-                                    if (existeNoCurso == true)
-                                        System.out.println("Lamentamos, mas esta disciplina já existe neste curso!\n");
+                                    if (existeNoCurso == true || posdisc == -1)
+                                        System.out.println("Lamentamos, ocorreu um erro ao adicionar essa disciplina ao curso!\n");
                                     else {
                                         escolaInformatica.getCursosEscola().get(posCursoAddDisc).getDisciplinasCurso()
                                                 .add(escolaInformatica.getDisciplinaEscola().get(posdisc));
@@ -2566,7 +2566,16 @@ public class Programa implements Serializable {
                                 // Atribuir notas a alunos
                                 System.out.print(
                                         "6. ATRIBUIR NOTAS A ALUNOS\n\nID do aluno -->  ");
-                                String nomeAlunoInscrever = Ler.umaString();
+                                int numAlunoAtribuirNotas = Ler.umInt();
+                                
+                                posAluno = escolaInformatica.devolvePosAlunoDadoID(numAlunoAtribuirNotas, convPessoaAluno(alunosDaEscola));
+                                if (posAluno == -1) {
+                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                    pedeTecla();
+                                } else {
+                                    atribuiNotas(escolaInformatica, numAlunoAtribuirNotas);
+                                    EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                }
                                 pedeTecla();
                                 break;
                             case 7:

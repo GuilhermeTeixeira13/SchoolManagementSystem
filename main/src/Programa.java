@@ -2155,11 +2155,11 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Mostrar a disciplina com a frequência mais longa
-                                System.out.println(
-                                        "A Disciplina com a frequencia mais longa da "
-                                                + escolaInformatica.getNomeEscola() + " é:\n");
-                                System.out.println(" . " + discfrequenciamaislonga(escolaInformatica).getNomDisc() + "\n");
-
+                                if(discfrequenciamaislonga(escolaInformatica).getNomDisc().equals(""))
+                                    System.out.println("Ainda não existem frequências criadas!");
+                                else
+                                    System.out.println("A Disciplina com a frequencia mais longa da "+ escolaInformatica.getNomeEscola() + " é:\n . " + discfrequenciamaislonga(escolaInformatica).getNomDisc() + "\n");
+                    
                                 pedeTecla();
                                 break;
                             case 7:

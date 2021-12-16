@@ -1011,6 +1011,7 @@ public class Programa implements Serializable {
                 escolaInformatica.changeAluno(posicao, novoAluno);
         } while (opcaoUtilizador > 0 && opcaoUtilizador <= 6);
     }
+
     public static String menuEscolhaNivel() {
         int nivelescolhido;
         String dificescolhida = "";
@@ -1021,20 +1022,20 @@ public class Programa implements Serializable {
             System.out.print("Digite a opção corretamente -> ");
             nivelescolhido = Ler.umInt();
         }
-        if(nivelescolhido == 1){
+        if (nivelescolhido == 1) {
             dificescolhida = "Fácil";
         }
-        if(nivelescolhido == 2){
+        if (nivelescolhido == 2) {
             dificescolhida = "Média";
         }
-        if(nivelescolhido == 3){
+        if (nivelescolhido == 3) {
             dificescolhida = "Difícil";
         }
         return dificescolhida;
     }
 
     public static void criarfrequencia(EscolaInformatica escolaInformatica, Disciplina disciplina) {
-        
+
         Frequencia novaFrequencia = new Frequencia();
         int posDisciplinaIdFreq = escolaInformatica.devolvePosDisc(disciplina.getNomDisc());
         escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().add(novaFrequencia);
@@ -1147,7 +1148,7 @@ public class Programa implements Serializable {
     }
 
     public static Frequencia modFrequencia(EscolaInformatica escolaInformatica, int idFreq1, int posDisciplinaIdFreq,
-        int posFrequencia) {
+            int posFrequencia) {
         int numQuestao;
         int opcaomodFreq;
         String respContinuar;
@@ -2615,19 +2616,13 @@ public class Programa implements Serializable {
                             case 1:
                                 // Listar Frequências de determinada disciplina
                                 String nomediscp;
-                                int posdisc;
+                                int posDisc;
                                 System.out.println("1. LISTAR FREQUÊNCIAS DE DETERMINADA DISCIPLINA\n");
-                                System.out.print("Introduza o nome da disciplina: ");
-                                nomediscp = Ler.umaString();
-                                posdisc = escolaInformatica.devolveposDisc(nomediscp);
-                                if (posdisc == -1)
-                                    System.out.println("Lamento, mas esta disciplina não existe!\n");
-                                else {
-                                    ArrayList<Frequencia> listaFreqDisc = escolaInformatica.getDisciplinaEscola()
-                                            .get(posdisc).getListFreq();
-                                    for (int i = 0; i < listaFreqDisc.size(); i++)
-                                        listaumaFreq(listaFreqDisc.get(i));
-                                }
+                                posDisc = menuDisciplinasFreq(escolaInformatica);
+                                ArrayList<Frequencia> listaFreqDisc = escolaInformatica.getDisciplinaEscola()
+                                        .get(posDisc).getListFreq();
+                                for (int i = 0; i < listaFreqDisc.size(); i++)
+                                    listaumaFreq(listaFreqDisc.get(i));
                                 pedeTecla();
                                 break;
                             case 2:
@@ -2645,7 +2640,8 @@ public class Programa implements Serializable {
                                         System.out.print("\nDisciplina disponíveis na escola: ");
                                         escolaInformatica.listaDisciplinas();
 
-                                        System.out.print("\nDisciplina para a qual pretende criar uma frequência [Nome]: ");
+                                        System.out.print(
+                                                "\nDisciplina para a qual pretende criar uma frequência [Nome]: ");
                                         nomediscp = Ler.umaString();
                                         verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp);
                                         while (verificaExistenciaDisc == -1) {
@@ -2795,7 +2791,8 @@ public class Programa implements Serializable {
                                 posDisciplinaEscolhida = menuDisciplinasFreq(escolaInformatica);
                                 limpaTela();
                                 do {
-                                    nivelescolhido = menuEscolhaNivelAdequadaDisciplina(escolaInformatica, posDisciplinaEscolhida);
+                                    nivelescolhido = menuEscolhaNivelAdequadaDisciplina(escolaInformatica,
+                                            posDisciplinaEscolhida);
                                     switch (nivelescolhido) {
                                         case 1:
                                             limpaTela();

@@ -289,6 +289,28 @@ public class EscolaInformatica implements Serializable{
 
         return disciplina;
     }
+
+    public Disciplina devolveDisciplinaDadoID(int ID){ 
+        Disciplina disciplina = new Disciplina();
+
+        for(int i=0; i<this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNumDisc() == ID)
+                disciplina = this.getDisciplinaEscola().get(i);
+        }
+
+        return disciplina;
+    }
+
+    public int devolvePosDisciplinaDadoID(int ID){ 
+        int j=0;
+
+        for(int i=0; i<this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNumDisc() == ID)
+                j = i;
+        }
+
+        return j;
+    }
     
     public int devolvePosProf(String nomeProf, ArrayList<Pessoa> Professores){
         int pos=-1;

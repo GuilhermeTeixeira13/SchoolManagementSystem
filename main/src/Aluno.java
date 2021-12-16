@@ -102,11 +102,11 @@ public class Aluno extends Pessoa {
         return this.mediaEntrada;
     }
 
-    public void setMediaDisciplinas(ArrayList<NotasDisciplina> notasDisciplinas) {
+    public void setNotasDisciplinas(ArrayList<NotasDisciplina> notasDisciplinas) {
         this.notasDisciplinas = (ArrayList<NotasDisciplina>) notasDisciplinas.clone();
     }
 
-    public ArrayList<NotasDisciplina> getMediaDisciplinas() {
+    public ArrayList<NotasDisciplina> getNotasDisciplinas() {
         return this.notasDisciplinas;
     }
 

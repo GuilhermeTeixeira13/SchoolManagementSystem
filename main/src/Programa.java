@@ -1654,6 +1654,7 @@ public class Programa implements Serializable {
             escolaInformatica.getCursosEscola()
                     .get(escolaInformatica.devolvePosCurso(alunoinscrever.getCurso().getNomeCurso())).getAlunosCurso()
                     .add(alunoinscrever);
+            
 
             System.out.println("Aluno " + nomeAlunoInscrever + " inscrito com sucesso no curso de "
                     + escolaInformatica.getCursosEscola().get(posCurso).getNomeCurso() + ".\n");
@@ -1771,10 +1772,10 @@ public class Programa implements Serializable {
     }
 
     public static void atribuiNotas(EscolaInformatica escolaInformatica, int numAluno) {
-        // Verificar que numAluno existe (na main)
         ArrayList<Aluno> alunosEscola = convPessoaAluno(identAluno(escolaInformatica.getPessoasEscola()));
         Aluno alunoSelecionado = new Aluno();
-        int idDisc;
+        int idDisc, idFreq;
+        float nota;
 
         for (int i = 0; i < alunosEscola.size(); i++) {
             if (alunosEscola.get(i).getNumAluno() == numAluno)
@@ -1794,8 +1795,47 @@ public class Programa implements Serializable {
                     alunoSelecionado.getCurso().verificaIdDisc(idDisc);
                 }
 
-                // Escolher frequência da disciplina e atribuir notas
+                if(!alunoSelecionado.getCurso().getDisciplinasCurso().get(escolaInformatica.devolvePosDisciplinaDadoID(idDisc)).getListFreq().isEmpty()){
+                    System.out.println("Frequências da disciplina:\n");
+                    listIdsDisciplina(escolaInformatica, escolaInformatica.devolvePosDisc(escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc()));
+                    System.out.print("Escolha o ID da Frequência para a qual pretende atribuir notas: ");
+                    idFreq = Ler.umInt();
+                    escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
+                    while(escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq) == -1){
+                        System.out.print("ID NÃO EXISTENTE, ESCOLHA OUTRO: ");
+                        idFreq = Ler.umInt();
+                        escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
+                    }
+
+                    System.out.print("Nota na frequência com o ID "+idFreq+" da Disciplina de "+escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc()+": ");
+                    nota = Ler.umFloat();
+                    Resultado notaNaFreq = new Resultado(idFreq, nota);
+
+                    boolean notaModificada = false;
+                    for(int i = 0; i < alunoSelecionado.getNotasDisciplinas().size(); i++){
+                        if(alunoSelecionado.getNotasDisciplinas().get(i).getDisciplina().equals(escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc())){
+                            for(int j = 0; j < alunoSelecionado.getNotasDisciplinas().get(i).getNotas().size(); j++){
+                                if(alunoSelecionado.getNotasDisciplinas().get(i).getNotas().get(j).getid() == idFreq){
+                                    alunoSelecionado.getNotasDisciplinas().get(i).getNotas().get(j).setcotaçao(nota);
+                                    notaModificada = true;
+                                }
+                            }
+                            if(notaModificada == false)
+                                alunoSelecionado.getNotasDisciplinas().get(i).getNotas().add(notaNaFreq); 
+                        }
+                    }
+                    System.out.println("Notas adicionadas com sucesso!");
+                }
+                else{
+                    System.out.println("Esta disciplina ainda não contém frequências!!");
+                }
             }
+            else{
+                System.out.println("Este curso ainda não contem disciplinas!!");
+            }
+        }
+        else{
+            System.out.println("Este aluno ainda não se encontra inscrito em nenhum curso!!");
         }
     }
 
@@ -2524,7 +2564,9 @@ public class Programa implements Serializable {
                                 break;
                             case 6:
                                 // Atribuir notas a alunos
-
+                                System.out.print(
+                                        "6. ATRIBUIR NOTAS A ALUNOS\n\nID do aluno -->  ");
+                                String nomeAlunoInscrever = Ler.umaString();
                                 pedeTecla();
                                 break;
                             case 7:
@@ -2559,6 +2601,11 @@ public class Programa implements Serializable {
                                             inscreverAlunoEmCurso(escolaInformatica, nomeAlunoInscrever,
                                                     alunoinscrever);
                                             escolaInformatica.insereAlunoNasSuasDisciplinas(alunoinscrever);
+                                            for(int i = 0; i < alunoinscrever.getCurso().getDisciplinasCurso().size(); i++){
+                                                ArrayList<Resultado> resultados = new ArrayList<Resultado>();
+                                                NotasDisciplina notasDisciplina = new NotasDisciplina(alunoinscrever.getCurso().getDisciplinasCurso().get(i).getNomDisc(), resultados);
+                                                alunoinscrever.getNotasDisciplinas().add(notasDisciplina);
+                                            }
                                         }
                                     }
                                 }

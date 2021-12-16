@@ -13,9 +13,9 @@ public class NotasDisciplina implements java.io.Serializable {
         this.notas = new ArrayList<Resultado>();
     }
 
-    public NotasDisciplina(String disciplina){
+    public NotasDisciplina(String disciplina, ArrayList<Resultado> resultado){
         this.disciplina = disciplina;
-        this.notas = new ArrayList<Resultado>();
+        this.notas = (ArrayList<Resultado>)resultado.clone();
     }
 
     // Getters e Setters

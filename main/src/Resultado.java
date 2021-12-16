@@ -3,7 +3,7 @@
 public class Resultado implements java.io.Serializable {
     // Atributos
     private int idFreq;
-    private int cotaçao;
+    private float cotaçao;
 
     // Contrutores
     public Resultado() {
@@ -11,7 +11,7 @@ public class Resultado implements java.io.Serializable {
         this.cotaçao = 0;
     }
 
-    public Resultado(int idFreq, int cotaçao) {
+    public Resultado(int idFreq, float cotaçao) {
         this.idFreq = 0;
         this.cotaçao = 0;
     }
@@ -25,11 +25,11 @@ public class Resultado implements java.io.Serializable {
         this.idFreq = idFreq;
     }
 
-    public int getcotaçao() {
+    public float getcotaçao() {
         return this.cotaçao;
     }
 
-    public void setcotaçao(int cotaçao) {
+    public void setcotaçao(float cotaçao) {
         this.cotaçao = cotaçao;
     }
 

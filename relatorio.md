@@ -19,6 +19,26 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 **Disciplina (Elaborado por: João Baltazar)** -> Número da disciplina(static int), Nome(string), Alunos Inscritos(ArrayList de Aluno), Professores que lecionam a disciplina(ArrayList de Professores), Frequências(ArrayList de Frequências)
   
 **ProvasDeIngresso (João)** -> Provas de Ingresso(ArrayList de Strings)
+  
+**Pessoa (Gui 26-11)** ->  Nome, Contactos, Local de Origem, email, data de nascimento(para a partir daí calcular a idade)
+
+**Aluno EXTENDS Pessoa (Gui 26-11)** -> Número de aluno, NotasDisciplinas(ArrayList de NotasDisciplina), Média de Entrada, Disciplinas a que está inscrito (ArrayList de Disciplinas), Curso em que está
+
+**Professor EXTENDS Pessoa (João 26-11)** -> Número de Professor, Rating, Disciplinas que Leciona(ArrayList de Disciplinas)
+
+**Diretor EXTENDS Pessoa (Gui 26-11)** -> Anos de serviço, Formação Académica
+***
+**NotasDisciplina (Tiago 26-11)** -> disciplina, notas(ArrayList de Resultados) 
+
+**Resultado (Cláudio 26-11)** -> Frequência, nota 
+
+**Contactos (Tiago 26-11)** -> ArrayList de Telefone, email
+
+**Telefone (Tiago 26-11)** -> Número, tipo
+
+**Frequência (Cláudio 26-11)** -> ID, Disciplina, Data da Frequência, Professor que a fez, Nº de Perguntas, Perguntas(ArrayList de Perguntas), Nível de dificuldade
+
+**Perguntas (Cláudio 26-11)** -> Número, Cotação, Texto
 
 ## **Aspetos a melhorar** (Joao)
 

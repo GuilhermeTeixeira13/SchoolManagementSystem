@@ -106,8 +106,9 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 9. Mostrar aluno mais velho e mais novo 
 10. Mostrar aluno com melhor nota numa determinada frequência 
 
-## **Aspetos a melhorar** (Joao)
+### Conteúdos lecionados que foram usados no trabalho
 
+## **Aspetos a melhorar** (Joao)
 
 ## **Conclusão** (Joao)
 

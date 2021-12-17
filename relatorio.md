@@ -40,6 +40,8 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 
 **Perguntas (Elaborado por: Cláudio Redondo)** -> Cotação(float), Texto(String)
 
+### Funcões
+
 ## **Aspetos a melhorar** (Joao)
 
 

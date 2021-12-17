@@ -1,8 +1,8 @@
 # CLASSES
 
-**Escola Profissional de Informática (Gui 26-11)** -> Nome da Escola, Número da Escola, Composto por vários cursos(ArrayList de Cursos), Localização, Diretor da Escola, Contactos da Escola, Composto por várias pessoas(ArrayList de pessoas), Composto por várias disciplinas(ArrayList de Disciplinas)
+**Escola Profissional de Informática (Gui 26-11)** -> Nome da Escola, Número da Escola, Composto por vários cursos(ArrayList de Cursos), Localização, Diretor da Escola, Contactos da Escola, Composta por várias pessoas(ArrayList de pessoas), Composta por várias disciplinas(ArrayList de Disciplinas)
 
-**Curso (Gui 26-11)** -> Código de Curso; Composto por várias disciplinas(ArrayList de Disciplinas),Provas de Ingresso, Nome, Duração em horas, Média do Último Colocado, data de início, data de fim, alunos(ArrayList de Alunos).
+**Curso (Gui 26-11)** -> Código de Curso; Composto por várias disciplinas(ArrayList de Disciplinas), Provas de Ingresso, Nome, Duração em horas, Média do Último Colocado, Data de início, Data de fim, Alunos(ArrayList de Alunos).
 
 ***
 
@@ -67,9 +67,9 @@
 4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência) ✔️ Testar todas as funcionalidades e melhorar outputs :warning:
 5. :exclamation:Remover Frequência (A implementar na classe Frequência) ✔️
 6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência) ✔️
-7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) :clock11:
+7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) ✔️
 8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️ Melhorar outputs :warning:
-9. Mostrar frequências de determinado curso (A implementar na classe Frequência) :clock11:
+9. Mostrar frequências de determinado curso (A implementar na classe Frequência) ✔️
 
 **Professores: (João 10-12)**
 1. :exclamation:Listar professores (A implementar na classe Professor) ✔️
@@ -88,12 +88,11 @@
 3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ (Verificar outputs)
 4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️
 5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️
-6. Atribuir notas(A implementar na classe Aluno) :clock11:
-7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) :warning:
+6. Atribuir notas(A implementar na classe Aluno) ✔️
+7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) ✔️
 8. Mostrar alunos deslocados (A implementar na classe Aluno) ✔️
 9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade) ✔️
-10. Mostrar aluno com melhor e pior média, de determinado curso (A implementar na classe Aluno, depois de fazer função que calcule a média nas NotasDisciplina) :clock11:
-11. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) :clock11:
+10. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) ✔️
 
 **A implementar:**
 - Checkar o readme no final, para ver se está tudo direitinho caso seja preciso mostrar à stora :warning:
@@ -102,3 +101,19 @@
 - Definir um limite no rating do professor :warning:
 - Variáveis estáticas para atribuir ID a Curso, Disciplina :warning:
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc :warning:
+- Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados
+- Adicionar comentários (só o essencial)
+
+***
+# Relatório  
+
+**Capa** 
+
+**Introdução** 
+- Descrever suscintamente em que consiste o trabalho e quem o elaborou
+
+**Desenvolvimento**
+- Falar das classes que temos e da forma como elas se interligam
+- Descrever as funções que temos no readme mais a fundo, por exemplo, dizer que quando um aluno é inscrito num curso, é automaticamente inscrito nas disciplinas desse curso
+
+

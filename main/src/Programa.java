@@ -72,6 +72,17 @@ public class Programa implements Serializable {
         return correto;
     }
 
+    public static boolean verificacaoTelemovel(long numero) {
+        String numeroConvString;
+        numeroConvString = String.valueOf(numero);
+        String pattern = "\\d{9}|(?:\\d{3}-){2}\\d{3}";
+        if (numeroConvString.matches(pattern)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static LocalDate pedeData() {
         LocalDate data = LocalDate.now();
         Boolean exc = false;
@@ -236,6 +247,7 @@ public class Programa implements Serializable {
         return pessoaDir;
     }
 
+
     public static void listarPessoasEscola(ArrayList<Pessoa> pessoasEscola, EscolaInformatica escolaInformatica) {
         ArrayList<Pessoa> listapessoas = new ArrayList<>();
         int opcaolistpessoas;
@@ -309,7 +321,7 @@ public class Programa implements Serializable {
     public static Diretor criarDiretor() {
         System.out.println("1. CRIAR DIRETOR\n");
         Diretor novodiretor = new Diretor();
-
+        boolean verifTel;
         String nomePessoa, tipoContacto, localDeOrigem, email;
         String opcaoContactoMenu;
         long numeroContacto;
@@ -335,8 +347,14 @@ public class Programa implements Serializable {
             System.out.print("\nTipo: ");
             tipoContacto = Ler.umaString();
 
-            System.out.print("Número: ");
+            System.out.print("Número (9 digítos todos juntos): ");
             numeroContacto = Ler.umLong();
+            verifTel = verificacaoTelemovel(numeroContacto);
+            while (verifTel == false) {
+                System.out.print("\nIntroduza um número de telemóvel válido: ");
+                numeroContacto = Ler.umLong();
+                verifTel = verificacaoTelemovel(numeroContacto);
+            }
 
             Telefone telefone = new Telefone(tipoContacto, numeroContacto);
 
@@ -398,8 +416,14 @@ public class Programa implements Serializable {
             System.out.print("\nTipo: ");
             tipoContactoC = Ler.umaString();
 
-            System.out.print("Número: ");
+            System.out.print("Número (9 digítos todos juntos): ");
             numeroContactoC = Ler.umLong();
+            boolean verifTel = verificacaoTelemovel(numeroContactoC);
+            while (verifTel == false) {
+                System.out.print("\nIntroduza um número de telemóvel válido: ");
+                numeroContactoC = Ler.umLong();
+                verifTel = verificacaoTelemovel(numeroContactoC);
+            }
 
             Telefone telefone = new Telefone(tipoContactoC, numeroContactoC);
 
@@ -738,8 +762,14 @@ public class Programa implements Serializable {
                     System.out.print("\nTipo: ");
                     tipoContacto = Ler.umaString();
 
-                    System.out.print("Número: ");
+                    System.out.print("Número (9 digítos todos juntos): ");
                     numeroContacto = Ler.umLong();
+                    boolean verifTel = verificacaoTelemovel(numeroContacto);
+                    while (verifTel == false) {
+                        System.out.print("\nIntroduza um número de telemóvel válido: ");
+                        numeroContacto = Ler.umLong();
+                        verifTel = verificacaoTelemovel(numeroContacto);
+                    }
 
                     Telefone telefone = new Telefone(tipoContacto, numeroContacto);
                     telefoneModEscola.add(telefone);
@@ -808,8 +838,14 @@ public class Programa implements Serializable {
                     System.out.print("\nTipo: ");
                     tipoContacto = Ler.umaString();
 
-                    System.out.print("Número: ");
+                    System.out.print("Número (9 digítos todos juntos): ");
                     numeroContacto = Ler.umLong();
+                    boolean verifTel = verificacaoTelemovel(numeroContacto);
+                    while (verifTel == false) {
+                        System.out.print("\nIntroduza um número de telemóvel válido: ");
+                        numeroContacto = Ler.umLong();
+                        verifTel = verificacaoTelemovel(numeroContacto);
+                    }
 
                     Telefone telefone = new Telefone(tipoContacto, numeroContacto);
 
@@ -896,8 +932,14 @@ public class Programa implements Serializable {
             System.out.print("\nTipo: ");
             tipoContacto = Ler.umaString();
 
-            System.out.print("Número: ");
+            System.out.print("Número (9 digítos todos juntos): ");
             numeroContacto = Ler.umLong();
+            boolean verifTel = verificacaoTelemovel(numeroContacto);
+            while (verifTel == false) {
+                System.out.print("\nIntroduza um número de telemóvel válido: ");
+                numeroContacto = Ler.umLong();
+                verifTel = verificacaoTelemovel(numeroContacto);
+            }
 
             Telefone telefone = new Telefone(tipoContacto, numeroContacto);
 
@@ -976,8 +1018,14 @@ public class Programa implements Serializable {
                         System.out.print("\nTipo: ");
                         tipoContacto = Ler.umaString();
 
-                        System.out.print("Número: ");
+                        System.out.print("Número (9 digítos todos juntos): ");
                         numeroContacto = Ler.umLong();
+                        boolean verifTel = verificacaoTelemovel(numeroContacto);
+                        while (verifTel == false) {
+                            System.out.print("\nIntroduza um número de telemóvel válido: ");
+                            numeroContacto = Ler.umLong();
+                            verifTel = verificacaoTelemovel(numeroContacto);
+                        }
 
                         Telefone telefone = new Telefone(tipoContacto, numeroContacto);
 
@@ -1328,7 +1376,7 @@ public class Programa implements Serializable {
         return opmenudiscFreq - 1;
     }
 
-    public static int menuCurso(EscolaInformatica escolaInformatica){
+    public static int menuCurso(EscolaInformatica escolaInformatica) {
         int opcaoCurso;
         System.out.println("Cursos da " + escolaInformatica.getNomeEscola());
         for (int i = 0; i < escolaInformatica.getCursosEscola().size(); i++) {
@@ -1336,12 +1384,12 @@ public class Programa implements Serializable {
         }
         System.out.print("\nNúmero do Curso que pretende escolher: -> ");
         opcaoCurso = Ler.umInt();
-        while(opcaoCurso < 0 || opcaoCurso > escolaInformatica.getCursosEscola().size()){
+        while (opcaoCurso < 0 || opcaoCurso > escolaInformatica.getCursosEscola().size()) {
             System.out.print("Digite uma opção VÁLIDA -> ");
             opcaoCurso = Ler.umInt();
         }
         return opcaoCurso - 1;
-        
+
     }
 
     public static int menuEscolhaNivelAdequadaDisciplina(EscolaInformatica escolaInformatica, int posDisciplinaFreq) {
@@ -1406,35 +1454,38 @@ public class Programa implements Serializable {
         return listaIds;
     }
 
-    public static ArrayList<Frequencia> freqcommaisPerguntasCurso(EscolaInformatica escolaInformatica, int posCurso){
+    public static ArrayList<Frequencia> freqcommaisPerguntasCurso(EscolaInformatica escolaInformatica, int posCurso) {
         ArrayList<Frequencia> freqComMaiorPerg = new ArrayList<>();
         ArrayList<Frequencia> freqTotalCurso = new ArrayList<>();
         int maiornperguntas;
         ArrayList<Integer> posFreqComMaiorPerg = new ArrayList<>();
         ArrayList<Integer> resultados = new ArrayList<>();
-        for(int i = 0; i < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().size(); i++){
-            for(int j = 0; j < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i).getListFreq().size(); j++){
-                freqTotalCurso.add(escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i).getListFreq().get(j));
+        for (int i = 0; i < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().size(); i++) {
+            for (int j = 0; j < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i)
+                    .getListFreq().size(); j++) {
+                freqTotalCurso.add(escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i)
+                        .getListFreq().get(j));
             }
         }
-        for(int i = 0; i < freqTotalCurso.size(); i++){
+        for (int i = 0; i < freqTotalCurso.size(); i++) {
             resultados.add(freqTotalCurso.get(i).getNumPergTotal());
         }
         maiornperguntas = Collections.max(resultados);
-        for(int i = 0; i < resultados.size(); i++){
-            if(resultados.get(i) == maiornperguntas){
+        for (int i = 0; i < resultados.size(); i++) {
+            if (resultados.get(i) == maiornperguntas) {
                 posFreqComMaiorPerg.add(i);
             }
         }
-        for(int i = 0; i < freqTotalCurso.size(); i++){
-            for(int j = 0; j < posFreqComMaiorPerg.size(); j++){
-                if(i == posFreqComMaiorPerg.get(j)){
+        for (int i = 0; i < freqTotalCurso.size(); i++) {
+            for (int j = 0; j < posFreqComMaiorPerg.size(); j++) {
+                if (i == posFreqComMaiorPerg.get(j)) {
                     freqComMaiorPerg.add(freqTotalCurso.get(i));
                 }
             }
         }
         return freqComMaiorPerg;
     }
+
     public static Professor modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
         int opcaoUtilizador;
         Professor novoProfessor = (Professor) escolaInformatica.getPessoasEscola().get(posicao);
@@ -1488,8 +1539,14 @@ public class Programa implements Serializable {
                         System.out.print("\nTipo: ");
                         tipoContacto = Ler.umaString();
 
-                        System.out.print("Número: ");
+                        System.out.print("Número (9 digítos todos juntos): ");
                         numeroContacto = Ler.umLong();
+                        boolean verifTel = verificacaoTelemovel(numeroContacto);
+                        while (verifTel == false) {
+                            System.out.print("\nIntroduza um número de telemóvel válido: ");
+                            numeroContacto = Ler.umLong();
+                            verifTel = verificacaoTelemovel(numeroContacto);
+                        }
 
                         Telefone telefone = new Telefone(tipoContacto, numeroContacto);
 
@@ -1596,9 +1653,6 @@ public class Programa implements Serializable {
 
         nmaximodiscp = Collections.max(armazenaNumDiscp);
 
-        // A função irá devolver a posição do prof que lecione mais disciplinas, caso o
-        // máximo tenho mais do que uma correspondecia indica-se os professores com mais
-        // disciplinas lecionadas.
         for (int i = 0; i < profsEscola.size(); i++) {
             if (profsEscola.get(i).contDiscProf() == nmaximodiscp) {
                 profsComMaisDiscpLec.add(profsEscola.get(i));
@@ -3044,19 +3098,23 @@ public class Programa implements Serializable {
                                 break;
                             case 9:
                                 int posCursoSel;
-                                System.out.println("9. Mostrar frequência com maior Nº perguntas de um curso\n");;
+                                System.out.println("9. Mostrar frequência com maior Nº perguntas de um curso\n");
+                                ;
                                 posCursoSel = menuCurso(escolaInformatica);
-                                ArrayList<Frequencia> freqComMaisPerg = freqcommaisPerguntasCurso(escolaInformatica, posCursoSel);
-                                if(freqComMaisPerg.size() == 0){
+                                ArrayList<Frequencia> freqComMaisPerg = freqcommaisPerguntasCurso(escolaInformatica,
+                                        posCursoSel);
+                                if (freqComMaisPerg.size() == 0) {
                                     System.out.println("Nenhuma disciplina do curso tem frequências!");
                                 }
-                                if(freqComMaisPerg.size() == 1){
-                                    System.out.println("Frequência com maior Nº Perguntas (" + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
+                                if (freqComMaisPerg.size() == 1) {
+                                    System.out.println("Frequência com maior Nº Perguntas ("
+                                            + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
                                     listaumaFreq(freqComMaisPerg.get(0));
                                 }
-                                if(freqComMaisPerg.size() > 1){
-                                    System.out.println("EMPATE NO Nº TOTAL DE PERGUNTAS (" + freqComMaisPerg.get(0).getNumPergTotal() +") :");
-                                    for(int i = 0; i < freqComMaisPerg.size(); i++){
+                                if (freqComMaisPerg.size() > 1) {
+                                    System.out.println("EMPATE NO Nº TOTAL DE PERGUNTAS ("
+                                            + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
+                                    for (int i = 0; i < freqComMaisPerg.size(); i++) {
                                         listaumaFreq(freqComMaisPerg.get(i));
                                     }
                                 }

@@ -14,31 +14,31 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 ### Classes Escolhidas + Ligações
 **Escola Profissional de Informática (Elaborado por: Guilherme Teixeira)** -> Nome da Escola(String), Número da Escola(int), Cursos(ArrayList de Curso), Localização(String), Diretor da Escola(Diretor), Contactos da Escola(Contactos), Pessoas(ArrayList de Pessoa, podendo estas ser Alunos, Professores, Diretor), Disciplinas(ArrayList de Disciplinas)  
   
-**Curso (Elaborado por: Guilherme Teixeira)** -> Código de Curso(static int), Composto por várias disciplinas(ArrayList de Disciplina), Provas de Ingresso(ArrayList de String), Nome(String), Duração em horas(int), Média do Último Colocado(float), Data de início(Date), Data de fim(Date), Alunos inscritos no curso(ArrayList de Aluno).
+**Curso (Elaborado por: Guilherme Teixeira)** -> Código de Curso(static int), Composto por várias disciplinas(ArrayList de Disciplina), Provas de Ingresso(ArrayList de String), Nome(String), Duração em horas(int), Média do Último Colocado(float), Data de início(LocalDate), Data de fim(LocalDate), Alunos inscritos no curso(ArrayList de Aluno).
   
 **Disciplina (Elaborado por: João Baltazar)** -> Número da disciplina(static int), Nome(string), Alunos Inscritos(ArrayList de Aluno), Professores que lecionam a disciplina(ArrayList de Professores), Frequências(ArrayList de Frequências)
   
-**ProvasDeIngresso (João)** -> Provas de Ingresso(ArrayList de Strings)
+**ProvasDeIngresso (Elaborado por: João Baltazar)** -> Provas de Ingresso(ArrayList de Strings)
   
-**Pessoa (Gui 26-11)** ->  Nome, Contactos, Local de Origem, email, data de nascimento(para a partir daí calcular a idade)
+**Pessoa (Elaborado por: Guilherme Teixeira)** ->  Nome(String), Contactos(Contactos), Local de Origem(String), Email(String), Data de nascimento(LocalDate)
 
-**Aluno EXTENDS Pessoa (Gui 26-11)** -> Número de aluno, NotasDisciplinas(ArrayList de NotasDisciplina), Média de Entrada, Disciplinas a que está inscrito (ArrayList de Disciplinas), Curso em que está
+**Aluno EXTENDS Pessoa (Elaborado por: Guilherme Teixeira)** -> Número de aluno(static int), NotasDisciplinas(ArrayList de NotasDisciplina), Média de Entrada(float), Disciplinas a que está inscrito (ArrayList de Disciplinas), Curso em que está (Curso)
 
-**Professor EXTENDS Pessoa (João 26-11)** -> Número de Professor, Rating, Disciplinas que Leciona(ArrayList de Disciplinas)
+**Professor EXTENDS Pessoa (Elaborado por: João Baltazar)** -> Número de Professor(static int), Rating(int), Disciplinas que Leciona(ArrayList de Disciplinas)
 
-**Diretor EXTENDS Pessoa (Gui 26-11)** -> Anos de serviço, Formação Académica
+**Diretor EXTENDS Pessoa (Elaborado por: Guilherme Teixeira)** -> Anos de serviço(int), Formação Académica(String)
 
-**NotasDisciplina (Tiago 26-11)** -> disciplina, notas(ArrayList de Resultados) 
+**NotasDisciplina (Elaborado por: Tiago Ribeiro)** -> Disciplina(string), Notas(ArrayList de Resultado) 
 
-**Resultado (Cláudio 26-11)** -> Frequência, nota 
+**Resultado (Elaborado por: Cláudio)** -> IDFrequência(int), Cotação(float) 
 
-**Contactos (Tiago 26-11)** -> ArrayList de Telefone, email
+**Contactos (Elaborado por: Tiago Ribeiro)** -> Telefones(ArrayList de Telefone), Email(String)
 
-**Telefone (Tiago 26-11)** -> Número, tipo
+**Telefone (Elaborado por: Tiago Ribeiro)** -> Número(long), Tipo(String)
 
-**Frequência (Cláudio 26-11)** -> ID, Disciplina, Data da Frequência, Professor que a fez, Nº de Perguntas, Perguntas(ArrayList de Perguntas), Nível de dificuldade
+**Frequência (Elaborado por: Cláudio)** -> ID(Static int), Disciplina(Disciplina), Data da Frequência(LocalDate), Professor que a fez(Professor), Nº de Perguntas(int), Perguntas(ArrayList de Perguntas), Nível de dificuldade(String)
 
-**Perguntas (Cláudio 26-11)** -> Número, Cotação, Texto
+**Perguntas (Elaborado por: Cláudio)** -> Cotação(float), Texto(String)
 
 ## **Aspetos a melhorar** (Joao)
 

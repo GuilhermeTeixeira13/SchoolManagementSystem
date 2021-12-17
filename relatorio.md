@@ -27,7 +27,7 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 **Professor EXTENDS Pessoa (João 26-11)** -> Número de Professor, Rating, Disciplinas que Leciona(ArrayList de Disciplinas)
 
 **Diretor EXTENDS Pessoa (Gui 26-11)** -> Anos de serviço, Formação Académica
-***
+
 **NotasDisciplina (Tiago 26-11)** -> disciplina, notas(ArrayList de Resultados) 
 
 **Resultado (Cláudio 26-11)** -> Frequência, nota 

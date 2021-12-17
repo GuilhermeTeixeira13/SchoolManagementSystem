@@ -53,7 +53,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 5. :exclamation:Mostrar informações da escola
 
 **Cursos: (Elaborado por: Guilherme Teixeira)**
-1. :exclamation:Listar cursos - 
+1. :exclamation:Listar cursos - Mostra-nos, de uma forma limpa, o nome e ID dos cursos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar Curso".
 2. :exclamation:Criar curso 
 3. :exclamation:Consultar informações de determinado curso 
 4. :exclamation:Modificar dados sobre um curso 

@@ -52,7 +52,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 4. :exclamation:Mudar informações acerca da escola 
 5. :exclamation:Mostrar informações da escola
 
-**Cursos: (Elaborado por: Guilherme Teixeira)**
+**GERIR CURSOS: (Elaborado por: Guilherme Teixeira)**
 1. :exclamation:Listar cursos - Mostra-nos, de uma forma limpa, o nome e ID dos cursos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar Curso".
 2. :exclamation:Criar curso 
 3. :exclamation:Consultar informações de determinado curso 
@@ -62,7 +62,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 7. Inserir disciplina de determinado curso 
 8. Remover disciplina de determinado curso 
 
-**Disciplinas: (Elaborado por: Cláudio Redondo)**
+**GERIR DISCIPLINAS: (Elaborado por: Cláudio Redondo)**
 1. :exclamation:Listar disciplinas
 2. :exclamation:Criar disciplina 
 3. :exclamation:Consultar informações de determinada disciplina 
@@ -72,7 +72,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 7. Mostrar professores que lecionam determinada disciplina
 8. Mostrar alunos inscritos em determinada disciplina 
 
-**Frequências: (Elaborado por: Tiago Ribeiro)**
+**GERIR FREQUÊNCIAS: (Elaborado por: Tiago Ribeiro)**
 1. :exclamation:Listar Frequências de determinada disciplina 
 2. :exclamation:Criar Frequência 
 3. :exclamation:Mostrar determinada frequência, dado o ID da mesma 
@@ -83,7 +83,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 8. Mostrar frequências elaboradas por determinado professor
 9. Mostrar frequências de determinado curso 
 
-**Professores: (Elaborado por: João Baltazar)**
+**GERIR PROFESSORES: (Elaborado por: João Baltazar)**
 1. :exclamation:Listar professores 
 2. :exclamation:Criar professor 
 3. :exclamation:Consultar informações de determinado professor 
@@ -94,7 +94,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 8. Mostrar qual é o professore com melhor rating 
 9. Mostrar professor mais velho e mais novo
 
-**Alunos: (Elaborado por: Guilherme Teixeira)**
+**GERIR ALUNOS: (Elaborado por: Guilherme Teixeira)**
 1. :exclamation:Listar alunos 
 2. :exclamation:Criar aluno 
 3. :exclamation:Consultar informações de determinado aluno 

@@ -103,6 +103,7 @@
 - Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados (TODOS) :warning:
 - Adicionar comentários (só o essencial) (TODOS) :warning:
 - ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO (Gui) :warning:
+- Mudar as funções que estão na main para outra classe (Gui) :warning:
 
 ***
 # Relatório  

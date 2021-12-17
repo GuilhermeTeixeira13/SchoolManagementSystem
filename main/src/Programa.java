@@ -82,6 +82,37 @@ public class Programa implements Serializable {
             return false;
         }
     }
+    
+    // Verifica se o email tem o @ e o . Verifica se o ponto está escrito depois do @
+    public static boolean verificacaoEmail(String email){
+        boolean verifEmail = false;
+        char[] emailA = new char[email.length()];
+        emailA = email.toCharArray();
+        int posArroba = -1;
+        int posPonto = -1;
+        if(email.contains("@")){
+            if(email.contains(".")){
+                for(int i = 0; i < emailA.length; i++){
+                    if(emailA[i] == '@'){
+                        posArroba = i;
+                    }
+                    if(emailA[i] == '.'){
+                        posPonto = i;
+                    }
+                }
+                if(posPonto > posArroba){
+                    verifEmail = true;
+                }
+            }
+            else{
+                verifEmail = false;
+            }
+        }
+        else{
+            verifEmail = false;
+        }
+        return verifEmail;
+    }
 
     public static LocalDate pedeData() {
         LocalDate data = LocalDate.now();
@@ -369,6 +400,12 @@ public class Programa implements Serializable {
                 "------------------------------------------------------------------------------");
         System.out.print("\nEmail do Diretor: ");
         email = Ler.umaString();
+        boolean verifEmail = verificacaoEmail(email);
+        while(verifEmail == false){
+            System.out.print("\nDigite o email corretamente!! ->  ");
+            email = Ler.umaString();
+            verifEmail = verificacaoEmail(email);
+        }
         contactosdir.setE_mail(email);
         novodiretor.setContactos(contactosdir);
 

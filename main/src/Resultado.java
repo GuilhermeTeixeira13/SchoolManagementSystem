@@ -12,8 +12,8 @@ public class Resultado implements java.io.Serializable {
     }
 
     public Resultado(int idFreq, float cotaçao) {
-        this.idFreq = 0;
-        this.cotaçao = 0;
+        this.idFreq = idFreq;
+        this.cotaçao = cotaçao;
     }
 
     // Getters e Setters

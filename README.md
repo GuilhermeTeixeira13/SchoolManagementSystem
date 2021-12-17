@@ -8,9 +8,9 @@
 
 **Disciplina (João 26-11)** -> Número da disciplina, Nome, Alunos Inscritos (ArrayList de Aluno), Professores que lecionam(ArrayList de Professores), Frequencias(ArrayList de Frequencias)
 
-**ProvasDeIngresso (João 26-11)** -> Provas de Ingresso(ArrayList de Strings), e/ou(String)
+**ProvasDeIngresso (João 26-11)** -> Provas de Ingresso(ArrayList de Strings)
 ***
-**Pessoa (Gui 26-11)** ->  Nome, Contactos, Local de Origem, email, data de nascimento(para a partir daí calcular a idade)
+**Pessoa (Gui 26-11)** ->  Nome(String), Contactos(Contactos), Local de Origem(String), Email(string), Data de nascimento(Date)
 
 **Aluno EXTENDS Pessoa (Gui 26-11)** -> Número de aluno, NotasDisciplinas(ArrayList de NotasDisciplina), Média de Entrada, Disciplinas a que está inscrito (ArrayList de Disciplinas), Curso em que está
 
@@ -114,6 +114,7 @@
 
 **Introdução** (Tiago)
 - Descrever suscintamente em que consiste o trabalho e quem o elaborou
+- Descrever como foi organizado o trabalho (o que se fez primeiro, github etc)
 
 **Desenvolvimento**
 - Falar da forma como podemos interagir com o programa (menus, menus dentro de menus etc) (Gui)

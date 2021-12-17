@@ -121,5 +121,5 @@
 - Falar de que podíamos ter posto mais exceções para ajudar nas verificações e do pq de n o termos feito
 
 **Conclusão**
-
+- Concluir resumindo os aspetos positivos e negativos do trabalho, e o que este nos proporcionou
 

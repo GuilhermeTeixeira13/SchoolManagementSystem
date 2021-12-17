@@ -11,6 +11,9 @@
 ### Interação Utilizador - Programa
 O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acessibilidade e simplicidade necessária durante a execução do mesmo. É comporto por um menu principal, em que é possível escolher-se a qual dos seis grandes temas (Escola, Cursos, Disciplinas, Professores, Alunos e Frequências) se pretende aceder aceder. Depois, dentro desses temas foram inseridos (conforme necessário) mais menus/subtemas, de forma a facilitar o utilizador no momento de escolha. As opções são escolhidas por números, não sendo possível escolher uma opção inexistente. Caso se pretenda voltar atrás, a tecla a ser primida é o '0'.
 ***
+### Estrutura/Corpo do Programa
+No ficheiro Programa.java está localizada classe main que possibilita a execução do programa. Usando switches e do whiles foi feita a interação entre os diversos menus e o utilizador, interação essa abordada no seguinte passo.
+***
 ### Classes Escolhidas
 **Escola Profissional de Informática (Elaborado por: Guilherme Teixeira)** -> Nome da Escola(String), Número da Escola(int), Cursos(ArrayList de Curso), Localização(String), Diretor da Escola(Diretor), Contactos da Escola(Contactos), Pessoas(ArrayList de Pessoa, podendo estas ser Alunos, Professores, Diretor), Disciplinas(ArrayList de Disciplinas)  
   
@@ -43,14 +46,14 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 ### Funcões
 
 **GERIR ESCOLA: (Elaborado por: João Baltazar)** 
-1. :exclamation:Criar Diretor - Função que, depois de pedir os dados que formam o diretor (Pessoa+Diretor), cria um novo, removendo automaticamente o que se encontrava no seu lugar, ou seja, não necessitamos de estar a remover um diretor para depois podermos criar outro. Esse processo é-nos facilitado já que só existe um diretor na escola.
+1. :exclamation:Criar Diretor - Funcionalidade que, depois de pedir os dados que formam o diretor (Pessoa+Diretor), cria um novo, removendo automaticamente o que se encontrava no seu lugar, ou seja, não necessitamos de estar a remover um diretor para depois podermos criar outro. Esse processo é-nos facilitado já que só existe um diretor na escola.
 2. :exclamation:Modificar dados sobre o diretor
 3. :exclamation:Listar Pessoas 
 4. :exclamation:Mudar informações acerca da escola 
 5. :exclamation:Mostrar informações da escola
 
 **Cursos: (Elaborado por: Guilherme Teixeira)**
-1. :exclamation:Listar cursos 
+1. :exclamation:Listar cursos - 
 2. :exclamation:Criar curso 
 3. :exclamation:Consultar informações de determinado curso 
 4. :exclamation:Modificar dados sobre um curso 

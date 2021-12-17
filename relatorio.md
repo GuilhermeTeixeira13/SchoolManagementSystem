@@ -42,32 +42,32 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 ***
 ### Funcões
 
-**Escola Profissional de Informática: (João 10-12)** 
-1. :exclamation:Criar Diretor (Removendo o antigo automaticamente); ((A implementar na classe Escola) ✔️
-2. :exclamation:Modificar dados sobre o diretor (A implementar na classe Escola); ✔️
-3. :exclamation:Listar Pessoas ✔️ Melhorar outputs :warning:
-4. :exclamation:Mudar informações acerca da escola (Nome, Número, Contactos, Localização) ✔️
-5. :exclamation:Mostrar informações da escola ✔️ Melhorar outputs :warning:
+**GERIR ESCOLA: (Elaborado por: João Baltazar)** 
+1. :exclamation:Criar Diretor - Função que, depois de pedir os dados que formam o diretor (Pessoa+Diretor), cria um novo, removendo automaticamente o que se encontrava no seu lugar, ou seja, não necessitamos de estar a remover um diretor para depois podermos criar outro. Esse processo é-nos facilitado já que só existe um diretor na escola.
+2. :exclamation:Modificar dados sobre o diretor
+3. :exclamation:Listar Pessoas 
+4. :exclamation:Mudar informações acerca da escola 
+5. :exclamation:Mostrar informações da escola
 
 **Cursos: (Gui 10-12)**
-1. :exclamation:Listar cursos (A implementar na classe Escola) ✔️
-2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ Verificar se dá p adicionar disciplinas corretamente ✔️
-3. :exclamation:Consultar informações de determinado curso (A implementar na classe Escola)✔️
-4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️
-5. :exclamation:Remover curso (A implementar na classe Escola) ✔️
-6. Mostrar curso mais frequentado (A implementar na classe Escola) ✔️
-7. Inserir disciplina de determinado curso (A implementar na classe Escola) ✔️
-8. Remover disciplina de determinado curso (A implementar na classe Escola) ✔️
+1. :exclamation:Listar cursos 
+2. :exclamation:Criar curso 
+3. :exclamation:Consultar informações de determinado curso 
+4. :exclamation:Modificar dados sobre um curso 
+5. :exclamation:Remover curso 
+6. Mostrar curso mais frequentado 
+7. Inserir disciplina de determinado curso 
+8. Remover disciplina de determinado curso 
 
 **Disciplinas: (Cláudio 10-12)**
-1. :exclamation:Listar disciplinas (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-2. :exclamation:Criar disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola) ✔️
-7. Mostrar professores que lecionam determinada disciplina (A implementar na classe Escola) :warning: Testar
-8. Mostrar alunos inscritos em determinada disciplina (A implementar na classe Escola) :warning: Testar
+1. :exclamation:Listar disciplinas
+2. :exclamation:Criar disciplina 
+3. :exclamation:Consultar informações de determinada disciplina 
+4. :exclamation:Modificar dados sobre uma disciplina 
+5. :exclamation:Remover disciplina (A implementar na classe Escola) 
+6. Mostrar qual a disciplina com a frequência mais longa 
+7. Mostrar professores que lecionam determinada disciplina
+8. Mostrar alunos inscritos em determinada disciplina 
 
 **Frequências: (Tiago 10-12)**
 1. :exclamation:Listar Frequências de determinada disciplina (A implementar na classe Frequência) ✔️

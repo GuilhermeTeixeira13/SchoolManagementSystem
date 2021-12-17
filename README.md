@@ -95,9 +95,8 @@
 10. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) ✔️
 
 **A implementar:**
-- Checkar o readme no final, para ver se está tudo direitinho caso seja preciso mostrar à stora :warning:
-- Não permitir que se insiram números de telefone com mais de 9 dígitos :warning:
-- Não permitir que se insiram email sem @ e sem . :warning:
+- Não permitir que se insiram números de telefone com mais de 9 dígitos ✔️
+- Não permitir que se insiram email sem @ e sem . ✔️
 - Definir um limite no rating do professor :warning:
 - Variáveis estáticas para atribuir ID a Curso, Disciplina :warning:
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc :warning:

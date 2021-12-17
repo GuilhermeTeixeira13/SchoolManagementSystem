@@ -102,11 +102,11 @@ public class Aluno extends Pessoa {
         return this.mediaEntrada;
     }
 
-    public void setMediaDisciplinas(ArrayList<NotasDisciplina> notasDisciplinas) {
+    public void setNotasDisciplinas(ArrayList<NotasDisciplina> notasDisciplinas) {
         this.notasDisciplinas = (ArrayList<NotasDisciplina>) notasDisciplinas.clone();
     }
 
-    public ArrayList<NotasDisciplina> getMediaDisciplinas() {
+    public ArrayList<NotasDisciplina> getNotasDisciplinas() {
         return this.notasDisciplinas;
     }
 
@@ -137,6 +137,17 @@ public class Aluno extends Pessoa {
     public Object clone() {
         Aluno copia = new Aluno(this);
         return copia;
+    }
+
+    public void listaDiscDoAluno(){
+        if(this.getCurso().getDisciplinasCurso().isEmpty())
+            System.out.println("De momento, o aluno não se encontra inscrito em nenhuma disciplina.\n");
+        else{
+            System.out.println("Disciplinas do aluno "+ this.getNome()+":\n");
+            for(int i = 0; i < this.getCurso().getDisciplinasCurso().size(); i++)
+                System.out.println(". Cód:" + this.getCurso().getDisciplinasCurso().get(i).getNumDisc() + " - " + this.getCurso().getDisciplinasCurso().get(i).getNomDisc());
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {

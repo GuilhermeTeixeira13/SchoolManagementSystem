@@ -172,6 +172,16 @@ public class Curso implements java.io.Serializable {
         }
         return existe;
     }
+
+    public boolean verificaIdDisc(int ID){
+        boolean existe = false;
+        for(int i=0; i<this.getDisciplinasCurso().size(); i++){
+            if(this.getDisciplinasCurso().get(i).getNumDisc() == ID)
+                existe = true;
+        }
+        return existe;
+    }
+    
     
     public static void main(String[] args) {
         // Testes

@@ -227,6 +227,18 @@ public class EscolaInformatica implements Serializable{
 
         return pos;
     }
+
+    public int devolvePosAlunoDadoID(int ID, ArrayList<Aluno> Alunos){
+        int pos=-1;
+
+        for(int i = 0; i < Alunos.size(); i++){
+            if(Alunos.get(i).getNumAluno() == ID)
+                pos = i;
+        }
+
+        return pos;
+    }
+
     public int devolveposDisc(String nomeDiscP){
         int pos = -1;
 
@@ -288,6 +300,50 @@ public class EscolaInformatica implements Serializable{
         }
 
         return disciplina;
+    }
+
+    public Disciplina devolveDisciplinaDadoID(int ID){ 
+        Disciplina disciplina = new Disciplina();
+
+        for(int i=0; i<this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNumDisc() == ID)
+                disciplina = this.getDisciplinaEscola().get(i);
+        }
+
+        return disciplina;
+    }
+
+    public Disciplina devolveDisciplinaDeUmCursoDadoID(int ID, Curso curso){ 
+        Disciplina disciplina = new Disciplina();
+
+        for(int i=0; i<curso.getDisciplinasCurso().size(); i++){
+            if(curso.getDisciplinasCurso().get(i).getNumDisc() == ID)
+                disciplina = curso.getDisciplinasCurso().get(i);
+        }
+
+        return disciplina;
+    }
+
+    public int devolvePosDisciplinaDadoID(int ID){ 
+        int j=-1;
+
+        for(int i=0; i<this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNumDisc() == ID)
+                j = i;
+        }
+
+        return j;
+    }
+
+    public int devolvePosDisciplinaDeUmCurso(int ID, Curso curso){ 
+        int j=-1;
+
+        for(int i=0; i<curso.getDisciplinasCurso().size(); i++){
+            if(curso.getDisciplinasCurso().get(i).getNumDisc() == ID)
+                j = i;
+        }
+
+        return j;
     }
     
     public int devolvePosProf(String nomeProf, ArrayList<Pessoa> Professores){

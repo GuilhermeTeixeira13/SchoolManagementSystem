@@ -3,21 +3,25 @@
 import java.util.ArrayList;
 
 public class Disciplina implements java.io.Serializable {
-    private String nomedisc, numdisc;
+    private String nomedisc;
+    private static int ultimo = 0;
+    private int numdisc;
     private ArrayList<Aluno> listalunos;
     private ArrayList<Professor> listprof;
     private ArrayList<Frequencia> listfreq;
 
     public Disciplina() {
-        this.numdisc = "";
+        ultimo++;
+        this.numdisc = ultimo;
         this.nomedisc = "";
         this.listalunos = new ArrayList<Aluno>();
         this.listprof = new ArrayList<Professor>();
         this.listfreq = new ArrayList<Frequencia>();
     }
 
-    public Disciplina(String numdisc, String nomedisc) {
-        this.numdisc = numdisc;
+    public Disciplina(String nomedisc) {
+        ultimo++;
+        this.numdisc = ultimo;
         this.nomedisc = nomedisc;
         this.listalunos = new ArrayList<Aluno>();
         this.listprof = new ArrayList<Professor>();
@@ -25,12 +29,16 @@ public class Disciplina implements java.io.Serializable {
 
     }
 
-    public String getNumDisc() {
+    public int getNumDisc() {
         return this.numdisc;
     }
 
-    public void setNumDisc(String numdisc) {
-        this.numdisc = numdisc;
+    public static int getUltimo(){
+        return ultimo;
+    }
+
+    public static void setUltimo(int ult){
+        Disciplina.ultimo = ult;
     }
 
     public String getNomDisc() {

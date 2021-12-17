@@ -1,8 +1,8 @@
 # CLASSES
 
-**Escola Profissional de Informática (Gui 26-11)** -> Nome da Escola, Número da Escola, Composto por vários cursos(ArrayList de Cursos), Localização, Diretor da Escola, Contactos da Escola, Composto por várias pessoas(ArrayList de pessoas), Composto por várias disciplinas(ArrayList de Disciplinas)
+**Escola Profissional de Informática (Gui 26-11)** -> Nome da Escola, Número da Escola, Composto por vários cursos(ArrayList de Cursos), Localização, Diretor da Escola, Contactos da Escola, Composta por várias pessoas(ArrayList de pessoas), Composta por várias disciplinas(ArrayList de Disciplinas)
 
-**Curso (Gui 26-11)** -> Código de Curso; Composto por várias disciplinas(ArrayList de Disciplinas),Provas de Ingresso, Nome, Duração em horas, Média do Último Colocado, data de início, data de fim, alunos(ArrayList de Alunos).
+**Curso (Gui 26-11)** -> Código de Curso; Composto por várias disciplinas(ArrayList de Disciplinas), Provas de Ingresso, Nome, Duração em horas, Média do Último Colocado, Data de início, Data de fim, Alunos(ArrayList de Alunos).
 
 ***
 
@@ -101,3 +101,8 @@
 - Definir um limite no rating do professor :warning:
 - Variáveis estáticas para atribuir ID a Curso, Disciplina :warning:
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc :warning:
+
+***
+# Relatório  
+
+

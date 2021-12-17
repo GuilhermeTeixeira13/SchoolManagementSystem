@@ -83,13 +83,13 @@ public class Programa implements Serializable {
         }
     }
 
-    // Verifica se o email tem o @ e o .  -> Verifica se o ponto está escrito depois do @
     public static boolean verificacaoEmail(String email) {
         boolean verifEmail = false;
         char[] emailA = new char[email.length()];
         emailA = email.toCharArray();
         int posArroba = -1;
         int posPonto = -1;
+        // Verifica se o email tem o @ e o .
         if (email.contains("@")) {
             if (email.contains(".")) {
                 for (int i = 0; i < emailA.length; i++) {
@@ -100,6 +100,7 @@ public class Programa implements Serializable {
                         posPonto = i;
                     }
                 }
+                // Verifica se o ponto está escrito depois do @
                 if (posPonto > posArroba) {
                     verifEmail = true;
                 }
@@ -320,10 +321,7 @@ public class Programa implements Serializable {
                 break;
         }
     }
-    // Guarda-se o valor de todas as cotações de uma frequência numa ArrayList.
-    // Procura-se o valor da maior cotação através do Collections.max
-    // Ao procurar a posição da ArrayList cotaçãoMaior onde o número maior está, acede-se também à posição da pergunta na lista de pergunta pois  a cada pergunta corresponde uma cotação. Ou seja, a terceira pergunta, presente na posição 2 da lista de perguntas, tem a sua cotação guardada na posição dois da cotacaoMaior. 
-    // Ao encontrar a/as pergunta/as com maior cotação, devolve um array com estas perguntas armazenadas.
+  
     public static ArrayList<Perguntas> cotacaoMaior(EscolaInformatica escolaInformatica, int idFrequencia) {
         ArrayList<Perguntas> perguntaMaior = new ArrayList<>();
         ArrayList<Float> cotacaoMaior = new ArrayList<>();
@@ -332,13 +330,16 @@ public class Programa implements Serializable {
         ArrayList<Integer> posCotacaoMaior = new ArrayList<>();
         posFreq = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia);
         posDisciplinaFreq = escolaInformatica.devolvePosDisciplinaDaFreq(idFrequencia);
+        // Guarda-se o valor de todas as cotações de uma frequência numa ArrayList.
         for (int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFreq)
                 .getlistperg().size(); i++) {
             cotacaoMaior.add(escolaInformatica.getDisciplinaEscola().get(posDisciplinaFreq).getListFreq().get(posFreq)
                     .getlistperg().get(i).getcotaçao());
 
         }
+        // Procura-se o valor da maior cotação através do Collections.max
         maiorValor = Collections.max(cotacaoMaior);
+        // Ao procurar a posição da ArrayList cotaçãoMaior onde o número maior está, acede-se também à posição da pergunta na lista de pergunta pois  a cada pergunta corresponde uma cotação. Ou seja, a terceira pergunta, presente na posição 2 da lista de perguntas, tem a sua cotação guardada na posição dois da cotacaoMaior. 
         for (int i = 0; i < cotacaoMaior.size(); i++) {
             if (cotacaoMaior.get(i) == maiorValor) {
                 posCotacaoMaior.add(i);
@@ -354,6 +355,7 @@ public class Programa implements Serializable {
                         .get(posFreq).getlistperg().get(posCotacaoMaior.get(i)));
             }
         }
+        // Ao encontrar a/as pergunta/as com maior cotação, devolve um array com estas perguntas armazenadas.
         return perguntaMaior;
     }
 

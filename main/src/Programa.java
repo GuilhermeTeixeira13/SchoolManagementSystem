@@ -83,8 +83,7 @@ public class Programa implements Serializable {
         }
     }
 
-    // Verifica se o email tem o @ e o . Verifica se o ponto está escrito depois do
-    // @
+    // Verifica se o email tem o @ e o .  -> Verifica se o ponto está escrito depois do @
     public static boolean verificacaoEmail(String email) {
         boolean verifEmail = false;
         char[] emailA = new char[email.length()];
@@ -111,6 +110,14 @@ public class Programa implements Serializable {
             verifEmail = false;
         }
         return verifEmail;
+    }
+
+    public static boolean verifRating(int rating) {
+        if (rating > 0 && rating <= 100) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static LocalDate pedeData() {
@@ -313,7 +320,10 @@ public class Programa implements Serializable {
                 break;
         }
     }
-
+    // Guarda-se o valor de todas as cotações de uma frequência numa ArrayList.
+    // Procura-se o valor da maior cotação através do Collections.max
+    // Ao procurar a posição da ArrayList cotaçãoMaior onde o número maior está, acede-se também à posição da pergunta na lista de pergunta pois  a cada pergunta corresponde uma cotação. Ou seja, a terceira pergunta, presente na posição 2 da lista de perguntas, tem a sua cotação guardada na posição dois da cotacaoMaior. 
+    // Ao encontrar a/as pergunta/as com maior cotação, devolve um array com estas perguntas armazenadas.
     public static ArrayList<Perguntas> cotacaoMaior(EscolaInformatica escolaInformatica, int idFrequencia) {
         ArrayList<Perguntas> perguntaMaior = new ArrayList<>();
         ArrayList<Float> cotacaoMaior = new ArrayList<>();
@@ -489,8 +499,14 @@ public class Programa implements Serializable {
         datadenascimentoC = pedeData();
         professorC.setDataNascimento(datadenascimentoC);
 
-        System.out.print("\nRating: ");
+        System.out.print("\nRating [1 - 100]: ");
         ratingProfC = Ler.umInt();
+        boolean verifRating = verifRating(ratingProfC);
+        while (verifRating == false) {
+            System.out.print("\nIntroduza o Rating corretamente! Rating [1 - 100] -> ");
+            ratingProfC = Ler.umInt();
+            verifRating = verifRating(ratingProfC);
+        }
         professorC.setRating(ratingProfC);
 
         System.out.println("\n------------------------------------------------------------------------------");
@@ -1641,11 +1657,15 @@ public class Programa implements Serializable {
                     pedeTecla();
                     break;
                 case 7:
-                    System.out.print("\nRating: ");
-                    ratingProf = Ler.umInt();
+                    System.out.print("\nRating [1 - 100]: ");
+                    ratingProf= Ler.umInt();
+                    boolean verifRating = verifRating(ratingProf);
+                    while (verifRating == false) {
+                        System.out.print("\nIntroduza o Rating corretamente! Rating [1 - 100] -> ");
+                        ratingProf = Ler.umInt();
+                        verifRating = verifRating(ratingProf);
+                    }
                     novoProfessor.setRating(ratingProf);
-                    ;
-                    System.out.println();
                     pedeTecla();
                     break;
                 case 8:

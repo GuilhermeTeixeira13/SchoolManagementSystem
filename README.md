@@ -108,6 +108,7 @@
 # Relatório  
 
 **Capa** 
+- Nome da Disciplina, Professora, Universidade, Ano, Nossos nomes e números
 
 **Introdução** 
 - Descrever suscintamente em que consiste o trabalho e quem o elaborou

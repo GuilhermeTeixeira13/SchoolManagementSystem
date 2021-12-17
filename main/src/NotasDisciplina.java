@@ -39,9 +39,10 @@ public class NotasDisciplina implements java.io.Serializable {
     public String toString() {
         String s;
         s = "\nDisciplina: " + disciplina;
-        s = s + "Notas:\n";
+        s = s + " - Notas: (";
         for (int i = 0; i < notas.size(); i++)
-            s = s + notas.get(i) + "\n\n";
+            s = s + notas.get(i);
+        s = s + ")";
         return s;
     }
 

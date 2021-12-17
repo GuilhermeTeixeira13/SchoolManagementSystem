@@ -325,7 +325,7 @@ public class EscolaInformatica implements Serializable{
     }
 
     public int devolvePosDisciplinaDadoID(int ID){ 
-        int j=0;
+        int j=-1;
 
         for(int i=0; i<this.getDisciplinaEscola().size(); i++){
             if(this.getDisciplinaEscola().get(i).getNumDisc() == ID)
@@ -336,7 +336,7 @@ public class EscolaInformatica implements Serializable{
     }
 
     public int devolvePosDisciplinaDeUmCurso(int ID, Curso curso){ 
-        int j=0;
+        int j=-1;
 
         for(int i=0; i<curso.getDisciplinasCurso().size(); i++){
             if(curso.getDisciplinasCurso().get(i).getNumDisc() == ID)

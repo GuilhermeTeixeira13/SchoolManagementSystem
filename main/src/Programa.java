@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.io.IOException;
 
 public class Programa implements Serializable {
@@ -1328,6 +1329,22 @@ public class Programa implements Serializable {
         return opmenudiscFreq - 1;
     }
 
+    public static int menuCurso(EscolaInformatica escolaInformatica){
+        int opcaoCurso;
+        System.out.println("Cursos da " + escolaInformatica.getNomeEscola());
+        for (int i = 0; i < escolaInformatica.getCursosEscola().size(); i++) {
+            System.out.println(i + 1 + ". " + escolaInformatica.getCursosEscola().get(i).getNomeCurso());
+        }
+        System.out.print("\nNúmero do Curso que pretende escolher: -> ");
+        opcaoCurso = Ler.umInt();
+        while(opcaoCurso < 0 || opcaoCurso > escolaInformatica.getCursosEscola().size()){
+            System.out.print("Digite uma opção VÁLIDA -> ");
+            opcaoCurso = Ler.umInt();
+        }
+        return opcaoCurso - 1;
+        
+    }
+
     public static int menuEscolhaNivelAdequadaDisciplina(EscolaInformatica escolaInformatica, int posDisciplinaFreq) {
         int nivelescolhido;
         System.out.println("Deseja consultar as frequências da disciplina "
@@ -1390,6 +1407,35 @@ public class Programa implements Serializable {
         return listaIds;
     }
 
+    public static ArrayList<Frequencia> freqcommaisPerguntasCurso(EscolaInformatica escolaInformatica, int posCurso){
+        ArrayList<Frequencia> freqComMaiorPerg = new ArrayList<>();
+        ArrayList<Frequencia> freqTotalCurso = new ArrayList<>();
+        int maiornperguntas;
+        ArrayList<Integer> posFreqComMaiorPerg = new ArrayList<>();
+        ArrayList<Integer> resultados = new ArrayList<>();
+        for(int i = 0; i < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().size(); i++){
+            for(int j = 0; j < escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i).getListFreq().size(); j++){
+                freqTotalCurso.add(escolaInformatica.getCursosEscola().get(posCurso).getDisciplinasCurso().get(i).getListFreq().get(j));
+            }
+        }
+        for(int i = 0; i < freqTotalCurso.size(); i++){
+            resultados.add(freqTotalCurso.get(i).getNumPergTotal());
+        }
+        maiornperguntas = Collections.max(resultados);
+        for(int i = 0; i < resultados.size(); i++){
+            if(resultados.get(i) == maiornperguntas){
+                posFreqComMaiorPerg.add(i);
+            }
+        }
+        for(int i = 0; i < freqTotalCurso.size(); i++){
+            for(int j = 0; j < posFreqComMaiorPerg.size(); j++){
+                if(i == posFreqComMaiorPerg.get(j)){
+                    freqComMaiorPerg.add(freqTotalCurso.get(i));
+                }
+            }
+        }
+        return freqComMaiorPerg;
+    }
     public static Professor modificarProfessor(EscolaInformatica escolaInformatica, int posicao) {
         int opcaoUtilizador;
         Professor novoProfessor = (Professor) escolaInformatica.getPessoasEscola().get(posicao);
@@ -2626,7 +2672,7 @@ public class Programa implements Serializable {
                     do {
                         limpaTela();
                         System.out.print(
-                                "GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequências de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                                "GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequência com maior Nº perguntas de um curso \n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 9 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -2860,7 +2906,7 @@ public class Programa implements Serializable {
                                 break;
                             case 8:
                                 // Mostrar frequências elaboradas por determinado professor
-                                System.out.print("8. Mostrar frequências elaboradas por um professor");
+                                System.out.println("8. Mostrar frequências elaboradas por um professor\n");
                                 System.out.print("\nEscolha o nome do professor: ");
                                 String nomeProf = Ler.umaString();
                                 int posProf;
@@ -2877,8 +2923,23 @@ public class Programa implements Serializable {
                                 pedeTecla();
                                 break;
                             case 9:
-                                // Mostrar frequências de determinado curso
-
+                                int posCursoSel;
+                                System.out.println("9. Mostrar frequência com maior Nº perguntas de um curso\n");;
+                                posCursoSel = menuCurso(escolaInformatica);
+                                ArrayList<Frequencia> freqComMaisPerg = freqcommaisPerguntasCurso(escolaInformatica, posCursoSel);
+                                if(freqComMaisPerg.size() == 0){
+                                    System.out.println("Nenhuma disciplina do curso tem frequências!");
+                                }
+                                if(freqComMaisPerg.size() == 1){
+                                    System.out.println("Frequência com maior Nº Perguntas (" + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
+                                    listaumaFreq(freqComMaisPerg.get(0));
+                                }
+                                if(freqComMaisPerg.size() > 1){
+                                    System.out.println("EMPATE NO Nº TOTAL DE PERGUNTAS (" + freqComMaisPerg.get(0).getNumPergTotal() +") :");
+                                    for(int i = 0; i < freqComMaisPerg.size(); i++){
+                                        listaumaFreq(freqComMaisPerg.get(i));
+                                    }
+                                }
                                 pedeTecla();
                                 break;
                         }

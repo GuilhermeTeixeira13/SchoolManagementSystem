@@ -102,8 +102,18 @@
 - Variáveis estáticas para atribuir ID a Curso, Disciplina :warning:
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc :warning:
 - Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados
+- Adicionar comentários (só o essencial)
 
 ***
 # Relatório  
+
+**Capa** 
+
+**Introdução** 
+- Descrever suscintamente em que consiste o trabalho e quem o elaborou
+
+**Desenvolvimento**
+- Falar das classes que temos e da forma como elas se interligam
+- Descrever as funções que temos no readme mais a fundo, por exemplo, dizer que quando um aluno é inscrito num curso, é automaticamente inscrito nas disciplinas desse curso
 
 

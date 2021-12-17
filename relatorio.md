@@ -8,13 +8,13 @@
 ### ORGANIZAÇÃO E PLANO DE ESTRUTURAÇÃO DO TRABALHO
 
 ## **Desenvolvimento**
-### Interação Utilizador - Programa
+### Interação Utilizador - Programa (Gui)
 O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acessibilidade e simplicidade necessária durante a execução do mesmo. É comporto por um menu principal, em que é possível escolher-se a qual dos seis grandes temas (Escola, Cursos, Disciplinas, Professores, Alunos e Frequências) se pretende aceder aceder. Depois, dentro desses temas foram inseridos (conforme necessário) mais menus/subtemas, de forma a facilitar o utilizador no momento de escolha. As opções são escolhidas por números, não sendo possível escolher uma opção inexistente. Caso se pretenda voltar atrás, a tecla a ser primida é o '0'.
 ***
-### Estrutura/Corpo do Programa
+### Estrutura/Corpo do Programa (Gui)
 No ficheiro Programa.java está localizada classe main que possibilita a execução do programa. Usando switches e do whiles foi feita a interação entre os diversos menus e o utilizador, interação essa abordada no seguinte passo.
 ***
-### Classes Escolhidas
+### Classes Escolhidas (Gui)
 **Escola Profissional de Informática (Elaborado por: Guilherme Teixeira)** -> Nome da Escola(String), Número da Escola(int), Cursos(ArrayList de Curso), Localização(String), Diretor da Escola(Diretor), Contactos da Escola(Contactos), Pessoas(ArrayList de Pessoa, podendo estas ser Alunos, Professores, Diretor), Disciplinas(ArrayList de Disciplinas)  
   
 **Curso (Elaborado por: Guilherme Teixeira)** -> Código de Curso(static int), Composto por várias disciplinas(ArrayList de Disciplina), Provas de Ingresso(ArrayList de String), Nome(String), Duração em horas(int), Média do Último Colocado(float), Data de início(LocalDate), Data de fim(LocalDate), Alunos inscritos no curso(ArrayList de Aluno).
@@ -43,7 +43,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 
 **Perguntas (Elaborado por: Cláudio Redondo)** -> Cotação(float), Texto(String)
 ***
-### Funcões
+### Funcões (Cada um completa as que fez)
 
 **GERIR ESCOLA: (Elaborado por: João Baltazar)** 
 1. :exclamation:Criar Diretor - Funcionalidade que, depois de pedir os dados que formam o diretor (Pessoa+Diretor), cria um novo, removendo automaticamente o que se encontrava no seu lugar, ou seja, não necessitamos de estar a remover um diretor para depois podermos criar outro. Esse processo é-nos facilitado já que só existe um diretor na escola.
@@ -108,7 +108,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 
 ### Conteúdos lecionados que foram usados no trabalho
 
-## **Aspetos a melhorar** (Joao)
+## **Aspetos a melhorar** (João)
 
-## **Conclusão** (Joao)
+## **Conclusão** (João)
 

@@ -73,6 +73,17 @@ public class Programa implements Serializable {
         return correto;
     }
 
+    public static boolean verificacaoTelemovel(long numero) {
+        String numeroConvString;
+        numeroConvString = String.valueOf(numero);
+        String pattern = "\\d{9}|(?:\\d{3}-){2}\\d{3}";
+        if (numeroConvString.matches(pattern)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static LocalDate pedeData() {
         LocalDate data = LocalDate.now();
         Boolean exc = false;
@@ -237,16 +248,6 @@ public class Programa implements Serializable {
         return pessoaDir;
     }
 
-    public static boolean verificacaoTelemovel(long numero) {
-        String numeroConvString;
-        numeroConvString = String.valueOf(numero);
-        String pattern = "\\d{9}|(?:\\d{3}-){2}\\d{3}";
-        if (numeroConvString.matches(pattern)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public static void listarPessoasEscola(ArrayList<Pessoa> pessoasEscola, EscolaInformatica escolaInformatica) {
         ArrayList<Pessoa> listapessoas = new ArrayList<>();
@@ -1652,7 +1653,7 @@ public class Programa implements Serializable {
         }
 
         nmaximodiscp = Collections.max(armazenaNumDiscp);
-        
+
         for (int i = 0; i < profsEscola.size(); i++) {
             if (profsEscola.get(i).contDiscProf() == nmaximodiscp) {
                 profsComMaisDiscpLec.add(profsEscola.get(i));

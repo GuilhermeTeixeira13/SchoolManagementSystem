@@ -1223,10 +1223,10 @@ public class Programa implements Serializable {
                         System.out.println("->  MENU MODIFICAR LISTA PERGUNTAS\n");
 
                         System.out.println(
-                                "1. Adicionar Pergunta\n2. Remover Pergunta\n3. Modificar Pergunta\n4. Voltar");
+                                "1. Adicionar Pergunta\n2. Remover Pergunta\n3. Modificar Pergunta\n0. Voltar");
                         System.out.print("Opção -> ");
                         opcaomenulistaPerg = Ler.umInt();
-                        while (opcaomenulistaPerg < 1 || opcaomenulistaPerg > 4) {
+                        while (opcaomenulistaPerg < 0 || opcaomenulistaPerg > 3) {
                             System.out.print("Digite uma opção válida: ");
                             opcaomenulistaPerg = Ler.umInt();
                         }
@@ -1295,7 +1295,7 @@ public class Programa implements Serializable {
                                 } while (respContinuar.equals("S") || respContinuar.equals("s"));
                                 break;
                         }
-                    } while (opcaomenulistaPerg > 0 && opcaomenulistaPerg < 4);
+                    } while (opcaomenulistaPerg > 0 && opcaomenulistaPerg <= 3);
                     break;
                 case 6:
                     dif = menuEscolhaNivel();

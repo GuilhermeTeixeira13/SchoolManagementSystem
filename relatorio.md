@@ -13,6 +13,7 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 
 ### Classes Escolhidas + Ligações
 **Escola Profissional de Informática** (Classe principal que descreve a Escola e o que esta contém) -> Nome da Escola(String), Número da Escola(int), Cursos(ArrayList de Curso), Localização(String), Diretor da Escola(Diretor), Contactos da Escola(Contactos), Pessoas(ArrayList de Pessoa, podendo estas ser Alunos, Professores, Diretor), Disciplinas(ArrayList de Disciplinas)  
+**Curso** -> Código de Curso; Composto por várias disciplinas(ArrayList de Disciplinas), Provas de Ingresso, Nome, Duração em horas, Média do Último Colocado, Data de início, Data de fim, Alunos(ArrayList de Alunos).
 
 ## **Aspetos a melhorar** (Joao)
 

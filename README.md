@@ -88,7 +88,7 @@
 3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ (Verificar outputs)
 4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️
 5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️
-6. Atribuir notas(A implementar na classe Aluno) :clock11:
+6. Atribuir notas(A implementar na classe Aluno) ✔️
 7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) ✔️
 8. Mostrar alunos deslocados (A implementar na classe Aluno) ✔️
 9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade) ✔️

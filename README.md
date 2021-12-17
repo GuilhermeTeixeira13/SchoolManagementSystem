@@ -103,6 +103,7 @@
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc :warning:
 - Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados
 - Adicionar comentários (só o essencial)
+- ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO
 
 ***
 # Relatório  

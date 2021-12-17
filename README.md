@@ -104,7 +104,7 @@
 - Verificar onde falta listar disciplinas ect antes de se pedir o ID de alguma (TODOS)
 - Adicionar comentários (só o essencial) (TODOS) :warning:
 - ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO (Gui) :warning:
-- Mudar as funções que estão na main para outra classe (Gui) :warning:
+- Mudar as funções que estão na main para outra classe (Gui) ✔️
 
 ***
 # Relatório  

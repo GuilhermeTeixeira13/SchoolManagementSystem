@@ -67,9 +67,9 @@
 4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência) ✔️ Testar todas as funcionalidades e melhorar outputs :warning:
 5. :exclamation:Remover Frequência (A implementar na classe Frequência) ✔️
 6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência) ✔️
-7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) :clock11:
+7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) ✔️
 8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️ Melhorar outputs :warning:
-9. Mostrar frequências de determinado curso (A implementar na classe Frequência) :clock11:
+9. Mostrar frequências de determinado curso (A implementar na classe Frequência) ✔️
 
 **Professores: (João 10-12)**
 1. :exclamation:Listar professores (A implementar na classe Professor) ✔️

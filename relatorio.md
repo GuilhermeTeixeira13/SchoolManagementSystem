@@ -5,7 +5,7 @@
 
 
 ## **Introdução** (Tiago)
-
+### ORGANIZAÇÃO E PLANO DE ESTRUTURAÇÃO DO TRABALHO
 
 ## **Desenvolvimento**
 ### Interação Utilizador - Programa

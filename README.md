@@ -101,6 +101,7 @@
 - Definir um limite no rating do professor :warning:
 - Variáveis estáticas para atribuir ID a Curso, Disciplina :warning:
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc :warning:
+- Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados
 
 ***
 # Relatório  

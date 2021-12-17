@@ -30,15 +30,15 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 
 **NotasDisciplina (Elaborado por: Tiago Ribeiro)** -> Disciplina(string), Notas(ArrayList de Resultado) 
 
-**Resultado (Elaborado por: Cláudio)** -> IDFrequência(int), Cotação(float) 
+**Resultado (Elaborado por: Cláudio Redondo)** -> IDFrequência(int), Cotação(float) 
 
 **Contactos (Elaborado por: Tiago Ribeiro)** -> Telefones(ArrayList de Telefone), Email(String)
 
 **Telefone (Elaborado por: Tiago Ribeiro)** -> Número(long), Tipo(String)
 
-**Frequência (Elaborado por: Cláudio)** -> ID(Static int), Disciplina(Disciplina), Data da Frequência(LocalDate), Professor que a fez(Professor), Nº de Perguntas(int), Perguntas(ArrayList de Perguntas), Nível de dificuldade(String)
+**Frequência (Elaborado por: Cláudio Redondo)** -> ID(Static int), Disciplina(Disciplina), Data da Frequência(LocalDate), Professor que a fez(Professor), Nº de Perguntas(int), Perguntas(ArrayList de Perguntas), Nível de dificuldade(String)
 
-**Perguntas (Elaborado por: Cláudio)** -> Cotação(float), Texto(String)
+**Perguntas (Elaborado por: Cláudio Redondo)** -> Cotação(float), Texto(String)
 
 ## **Aspetos a melhorar** (Joao)
 

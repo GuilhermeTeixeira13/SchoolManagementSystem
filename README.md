@@ -42,19 +42,19 @@
 
 **Cursos: (Gui 10-12)**
 1. :exclamation:Listar cursos (A implementar na classe Escola) ✔️
-2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ Verificar se dá p adicionar disciplinas corretamente ✔️
-3. :exclamation:Consultar informações de determinado curso (A implementar na classe Escola)✔️
-4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️
+2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ :warning: Não pedir ID
+3. :exclamation:Consultar informações de determinado curso (A implementar na classe Escola)✔️ :warning: Pedir ID
+4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️ :warning: Pedir ID
 5. :exclamation:Remover curso (A implementar na classe Escola) ✔️
 6. Mostrar curso mais frequentado (A implementar na classe Escola) ✔️
-7. Inserir disciplina de determinado curso (A implementar na classe Escola) ✔️
-8. Remover disciplina de determinado curso (A implementar na classe Escola) ✔️
+7. Inserir disciplina de determinado curso (A implementar na classe Escola) ✔️ :warning: Inserir por ID
+8. Remover disciplina de determinado curso (A implementar na classe Escola) ✔️ :warning: Remover por ID
 
 **Disciplinas: (Cláudio 10-12)**
 1. :exclamation:Listar disciplinas (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
 2. :exclamation:Criar disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
+3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning: :warning: Pedir ID
+4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning: :warning: Pedir ID
 5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
 6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola) ✔️
 7. Mostrar professores que lecionam determinada disciplina (A implementar na classe Escola) :warning: Testar
@@ -73,10 +73,10 @@
 
 **Professores: (João 10-12)**
 1. :exclamation:Listar professores (A implementar na classe Professor) ✔️
-2. :exclamation:Criar professor (A implementar na classe Professor) ✔️
-3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor) ✔️
-4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor) ✔️
-5. :exclamation:Remover professor (A implementar na classe Professor) ✔️
+2. :exclamation:Criar professor (A implementar na classe Professor) ✔️ :warning: Não pedir ID
+3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor) ✔️ :warning: Pedir ID em vez de nome
+4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor) ✔️ :warning: Pedir ID em vez de nome
+5. :exclamation:Remover professor (A implementar na classe Professor) ✔️ :warning: Remover por ID
 6. Mostrar professor que lecionou mais disciplinas (A implementar na classe Professor)✔️
 7. Mostrar professores deslocados (A implementar na classe Professor) ✔️
 8. Mostrar qual é o professore com melhor rating (A implementar na classe Professor) ✔️
@@ -84,12 +84,12 @@
 
 **Alunos: (Gui 10-12)**
 1. :exclamation:Listar alunos (A implementar na classe Aluno) ✔️ (Verificar outputs)
-2. :exclamation:Criar aluno (A implementar na classe Aluno) ✔️
-3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ (Verificar outputs)
-4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️
-5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️
+2. :exclamation:Criar aluno (A implementar na classe Aluno) ✔️ :warning: Não pedir ID
+3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ (Verificar outputs) :warning: Pedir ID em vez de nome
+4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️ :warning: Pedir ID em vez de nome
+5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️ :warning: Remover por ID :warning: Remover por ID
 6. Atribuir notas(A implementar na classe Aluno) ✔️
-7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) ✔️
+7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) ✔️ :warning: Pedir ID do Curso
 8. Mostrar alunos deslocados (A implementar na classe Aluno) ✔️
 9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade) ✔️
 10. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) ✔️

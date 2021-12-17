@@ -1,17 +1,19 @@
 ***
 # Relatório  
 
-**Capa** (Cláudio)
+##**Capa** (Cláudio)
 
 
-**Introdução** (Tiago)
+##**Introdução** (Tiago)
 
 
-**Desenvolvimento**
+##**Desenvolvimento**
+### Interação com o programa  
 
 
-**Aspetos a melhorar** (Joao)
+
+##**Aspetos a melhorar** (Joao)
 
 
-**Conclusão** (Joao)
+##**Conclusão** (Joao)
 

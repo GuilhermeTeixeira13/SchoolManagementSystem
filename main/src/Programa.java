@@ -2976,6 +2976,7 @@ public class Programa implements Serializable {
                                 posDisciplinaEscolhida = menuDisciplinasFreq(escolaInformatica);
                                 limpaTela();
                                 do {
+                                    limpaTela();
                                     nivelescolhido = menuEscolhaNivelAdequadaDisciplina(escolaInformatica,
                                             posDisciplinaEscolhida);
                                     switch (nivelescolhido) {
@@ -2988,8 +2989,8 @@ public class Programa implements Serializable {
                                                 listaumaFreq(freqnivelFacil(escolaInformatica, posDisciplinaEscolhida)
                                                         .get(i));
                                             }
-                                            System.out.println(
-                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]!");
+                                            System.out.print(
+                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                             condicaostop = Ler.umaString();
                                             break;
                                         case 2:
@@ -3001,8 +3002,8 @@ public class Programa implements Serializable {
                                                 listaumaFreq(freqnivelMédio(escolaInformatica, posDisciplinaEscolhida)
                                                         .get(i));
                                             }
-                                            System.out.println(
-                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]!");
+                                            System.out.print(
+                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                             condicaostop = Ler.umaString();
                                             break;
                                         case 3:
@@ -3014,12 +3015,13 @@ public class Programa implements Serializable {
                                                 listaumaFreq(freqnivelDificil(escolaInformatica, posDisciplinaEscolhida)
                                                         .get(i));
                                             }
-                                            System.out.println(
-                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]!");
+                                            System.out.print(
+                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                             condicaostop = Ler.umaString();
                                             break;
                                     }
-                                } while (!condicaostop.equals("N") || condicaostop.equals("n"));
+                                } while (!condicaostop.equals("N") && !condicaostop.equals("n"));
+                                System.out.println();
                                 pedeTecla();
                                 break;
                             case 8:

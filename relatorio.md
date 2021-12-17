@@ -54,10 +54,10 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 
 **GERIR CURSOS: (Elaborado por: Guilherme Teixeira)**
 1. :exclamation:Listar cursos - Mostra-nos, de uma forma limpa, o nome e ID dos cursos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado curso".
-2. :exclamation:Criar curso 
-3. :exclamation:Consultar informações de determinado curso 
-4. :exclamation:Modificar dados sobre um curso 
-5. :exclamation:Remover curso 
+2. :exclamation:Criar curso - Cria um curso a partir dos dados pedidos utilizador. As disciplinas que fazem parte do curso são inseridas na opção 7.
+3. :exclamation:Consultar informações de determinado curso - Dado o ID de um determinado curso, são mostradas as informações relevantes acerca do mesmo.
+4. :exclamation:Modificar dados sobre um curso - Dado o ID de um determinado curso, é possível escolher que aspeto do curso se pretende modificar.
+5. :exclamation:Remover curso - Remove o curso cujo o ID é aquele que o utilizador indicou.
 6. Mostrar curso mais frequentado 
 7. Inserir disciplina de determinado curso 
 8. Remover disciplina de determinado curso 

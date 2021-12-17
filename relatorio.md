@@ -49,7 +49,7 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 4. :exclamation:Mudar informações acerca da escola 
 5. :exclamation:Mostrar informações da escola
 
-**Cursos: (Gui 10-12)**
+**Cursos: (Elaborado por: Guilherme Teixeira)**
 1. :exclamation:Listar cursos 
 2. :exclamation:Criar curso 
 3. :exclamation:Consultar informações de determinado curso 
@@ -59,7 +59,7 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 7. Inserir disciplina de determinado curso 
 8. Remover disciplina de determinado curso 
 
-**Disciplinas: (Cláudio 10-12)**
+**Disciplinas: (Elaborado por: Cláudio Redondo)**
 1. :exclamation:Listar disciplinas
 2. :exclamation:Criar disciplina 
 3. :exclamation:Consultar informações de determinada disciplina 
@@ -69,39 +69,39 @@ O programa foi desenvolvido com o objetivo de proporcionar ao utilizador a acess
 7. Mostrar professores que lecionam determinada disciplina
 8. Mostrar alunos inscritos em determinada disciplina 
 
-**Frequências: (Tiago 10-12)**
-1. :exclamation:Listar Frequências de determinada disciplina (A implementar na classe Frequência) ✔️
-2. :exclamation:Criar Frequência (A implementar na classe Frequência) ✔️
-3. :exclamation:Mostrar determinada frequência, dado o ID da mesma (A implementar na classe Frequência) ✔️
-4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência) ✔️ Testar todas as funcionalidades e melhorar outputs :warning:
-5. :exclamation:Remover Frequência (A implementar na classe Frequência) ✔️
-6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência) ✔️
-7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) ✔️
-8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️ Melhorar outputs :warning:
-9. Mostrar frequências de determinado curso (A implementar na classe Frequência) ✔️
+**Frequências: (Elaborado por: Tiago Ribeiro)**
+1. :exclamation:Listar Frequências de determinada disciplina 
+2. :exclamation:Criar Frequência 
+3. :exclamation:Mostrar determinada frequência, dado o ID da mesma 
+4. :exclamation:Modificar dados sobre uma Frequência 
+5. :exclamation:Remover Frequência 
+6. Mostrar a pergunta com maior cotação, de determinada frequência 
+7. Mostrar frequências por nível de dificuldade 
+8. Mostrar frequências elaboradas por determinado professor
+9. Mostrar frequências de determinado curso 
 
-**Professores: (João 10-12)**
-1. :exclamation:Listar professores (A implementar na classe Professor) ✔️
-2. :exclamation:Criar professor (A implementar na classe Professor) ✔️
-3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor) ✔️
-4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor) ✔️
-5. :exclamation:Remover professor (A implementar na classe Professor) ✔️
-6. Mostrar professor que lecionou mais disciplinas (A implementar na classe Professor)✔️
-7. Mostrar professores deslocados (A implementar na classe Professor) ✔️
-8. Mostrar qual é o professore com melhor rating (A implementar na classe Professor) ✔️
-9. Mostrar professor mais velho e mais novo (A implementar na classe Professor, depois de elaborar função q calcule a idade) ✔️
+**Professores: (Elaborado por: João Baltazar)**
+1. :exclamation:Listar professores 
+2. :exclamation:Criar professor 
+3. :exclamation:Consultar informações de determinado professor 
+4. :exclamation:Modificar dados sobre um determinado professor 
+5. :exclamation:Remover professor 
+6. Mostrar professor que lecionou mais disciplinas 
+7. Mostrar professores deslocados 
+8. Mostrar qual é o professore com melhor rating 
+9. Mostrar professor mais velho e mais novo
 
-**Alunos: (Gui 10-12)**
-1. :exclamation:Listar alunos (A implementar na classe Aluno) ✔️ (Verificar outputs)
-2. :exclamation:Criar aluno (A implementar na classe Aluno) ✔️
-3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ (Verificar outputs)
-4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️
-5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️
-6. Atribuir notas(A implementar na classe Aluno) ✔️
-7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) ✔️
-8. Mostrar alunos deslocados (A implementar na classe Aluno) ✔️
-9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade) ✔️
-10. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) ✔️
+**Alunos: (Elaborado por: Guilherme Teixeira)**
+1. :exclamation:Listar alunos 
+2. :exclamation:Criar aluno 
+3. :exclamation:Consultar informações de determinado aluno 
+4. :exclamation:Modificar dados sobre um determinado aluno 
+5. :exclamation:Remover aluno 
+6. Atribuir notas
+7. Inscrever aluno em curso
+8. Mostrar alunos deslocados (
+9. Mostrar aluno mais velho e mais novo 
+10. Mostrar aluno com melhor nota numa determinada frequência 
 
 ## **Aspetos a melhorar** (Joao)
 

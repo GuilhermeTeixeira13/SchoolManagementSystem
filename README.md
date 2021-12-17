@@ -95,32 +95,32 @@
 10. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) ✔️
 
 **A implementar:**
-- Não permitir que se insiram números de telefone com mais de 9 dígitos ✔️
-- Não permitir que se insiram email sem @ e sem . ✔️
-- Definir um limite no rating do professor :warning:
-- Variáveis estáticas para atribuir ID a Curso, Disciplina :warning:
-- Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc :warning:
-- Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados :warning:
-- Adicionar comentários (só o essencial) :warning:
-- ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO :warning:
+- Não permitir que se insiram números de telefone com mais de 9 dígitos (João) ✔️
+- Não permitir que se insiram email sem @ e sem . (João) ✔️
+- Definir um limite no rating do professor (João) :warning:
+- Variáveis estáticas para atribuir ID a Curso, Disciplina (Gui) :warning:
+- Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc (Gui) :warning:
+- Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados (TODOS) :warning:
+- Adicionar comentários (só o essencial) (TODOS) :warning:
+- ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO (Gui) :warning:
 
 ***
 # Relatório  
 
-**Capa** Cláudio
+**Capa** (Cláudio)
 - Nome da Disciplina, Professora, Universidade, Ano, Nossos nomes e números
 
-**Introdução** Tiago
+**Introdução** (Tiago)
 - Descrever suscintamente em que consiste o trabalho e quem o elaborou
 
 **Desenvolvimento**
-- Falar da forma como podemos interagir com o programa (menus, menus dentro de menus etc) Gui
-- Falar das classes que temos e da forma como elas se interligam Gui
+- Falar da forma como podemos interagir com o programa (menus, menus dentro de menus etc) (Gui)
+- Falar das classes que temos e da forma como elas se interligam (Gui)
 - Descrever as funções que temos no readme mais a fundo, por exemplo, dizer que quando um aluno é inscrito num curso, é automaticamente inscrito nas disciplinas desse curso (Já que o objetivo do relatório é ajudar a professora a perceber como é que o trabalho funciona) As funções atribuídas aqui, devem ser esclarecidas por quem de direito. Cada um pode elaborar um parágrafo a explicar separadamente.
 
-**Aspetos a melhorar** Joao
+**Aspetos a melhorar** (Joao)
 - Falar de que podíamos ter posto mais exceções para ajudar nas verificações e do pq de n o termos feito
 
-**Conclusão** Joao
+**Conclusão** (Joao)
 - Concluir resumindo os aspetos positivos e negativos do trabalho, e o que este nos proporcionou
 

@@ -194,7 +194,7 @@ public class funcoesUteis implements Serializable {
 
     public static void listaumAluno(Aluno a) {
         System.out.println("Nome: " + a.getNome());
-        System.out.println("Número: " + a.getNumAluno());
+        System.out.println("ID: " + a.getNumAluno());
         System.out.println("Contactos:");
         System.out.println("  Email: " + a.getContactos().getE_mail());
         System.out.println("  Telefones: " + a.getContactos().getTelefones());
@@ -217,7 +217,7 @@ public class funcoesUteis implements Serializable {
 
     public static void listaumProf(Professor p) {
         System.out.println("Nome: " + p.getNome());
-        System.out.println("Número: " + p.getNumProf());
+        System.out.println("ID: " + p.getNumProf());
         System.out.println("Contactos:");
         System.out.println("  Email: " + p.getContactos().getE_mail());
         System.out.println("  Telefones: " + p.getContactos().getTelefones());
@@ -231,7 +231,7 @@ public class funcoesUteis implements Serializable {
 
     public static void listaumaDisciplinaProf(Disciplina d) {
         System.out.println("\nNome: " + d.getNomDisc());
-        System.out.println("Número:" + d.getNumDisc());
+        System.out.println("ID:" + d.getNumDisc());
         System.out.println("-----------------------------------------------------");
         System.out.println();
     }
@@ -1874,7 +1874,7 @@ public class funcoesUteis implements Serializable {
         } while (verificaExistenciadisc != -1);
 
         escolaInformatica.getDisciplinaEscola().get(posicao).setNomDisc(nomedisc);
-        
+
         return escolaInformatica.getDisciplinaEscola().get(posicao);
     }
 

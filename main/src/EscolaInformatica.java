@@ -164,7 +164,7 @@ public class EscolaInformatica implements Serializable{
         else{
             System.out.println("Disciplinas da "+ this.getNomeEscola()+":\n");
             for(int i = 0; i < this.getDisciplinaEscola().size(); i++)
-                System.out.println(". Cód:" + this.getDisciplinaEscola().get(i).getNumDisc() + " - " + this.getDisciplinaEscola().get(i).getNomDisc());
+                System.out.println(". ID:" + this.getDisciplinaEscola().get(i).getNumDisc() + " - " + this.getDisciplinaEscola().get(i).getNomDisc());
             System.out.println();
         }
     }
@@ -305,6 +305,17 @@ public class EscolaInformatica implements Serializable{
 
         for(int i=0; i<this.getDisciplinaEscola().size(); i++){
             if(this.getDisciplinaEscola().get(i).getNomDisc().equals(nomeDisciplina))
+                disciplina = this.getDisciplinaEscola().get(i);
+        }
+
+        return disciplina;
+    }
+
+    public Disciplina devolveDisciplinaConts(String nomeDisciplina){ 
+        Disciplina disciplina = new Disciplina();
+
+        for(int i=0; i<this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDisciplina))
                 disciplina = this.getDisciplinaEscola().get(i);
         }
 

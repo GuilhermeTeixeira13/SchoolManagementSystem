@@ -57,7 +57,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 2. :exclamation:Criar curso - Cria um curso a partir dos dados pedidos utilizador. As disciplinas que fazem parte do curso são inseridas na opção 7 (para não ficar confuso). Não é pedido o código do curso pois este é atribuido de forma automática.
 3. :exclamation:Consultar informações de determinado curso - Dado o ID de um determinado curso, são mostradas as informações relevantes acerca do mesmo.
 4. :exclamation:Modificar dados sobre um curso - Dado o ID de um determinado curso, é possível escolher que aspeto do curso se pretende modificar.
-5. :exclamation:Remover curso - Remove o curso cujo o ID é aquele que o utilizador indicou. Nesta opção é possível escolher se se pretende remover o curso pelo nome ou por palavra contida no nome.
+5. :exclamation:Remover curso - Nesta opção é possível escolher se se pretende remover o curso pelo nome ou por palavra contida no nome.
 6. Mostrar curso mais frequentado - Mostra qual ou quais os cursos mais frequentados, e mostra também a respetiva quantidade de alunos nele presente.
 7. Inserir disciplina de determinado curso - De entre as disciplinas disponíveis na escola, são pedidas (até o utilizador mandar parar) aquelas que se pretende adicionar ao curso escolhido pelo utilizador (pelo ID de curso). 
 8. Remover disciplina de determinado curso - De entre as disciplinas disponíveis na escola, são pedidas (até o utilizador mandar parar) aquelas que se pretende remover do curso escolhido pelo utilizador (pelo ID de curso). 

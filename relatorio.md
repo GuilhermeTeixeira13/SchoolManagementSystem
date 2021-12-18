@@ -109,6 +109,12 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 ### Conteúdos lecionados que foram usados no trabalho
 
 ## **Aspetos a melhorar** (João)
+Na ideia de poder ter ficado mais consistente, este trabalho podería:
+-> Conter mais exceções 
+-> Os professores estarem ligados a um curso (ou seja, os professores terem um atributo com uma lista de cursos onde eles davam aulas).
 
 ## **Conclusão** (João)
-
+Com este trabalho :
+-> O grupo aprendeu a trabalhar com GitHubDesktop e com o GitHub.
+-> Foi solidicado os conhecimentos adquiridos nas aulas teóricas e nas aulas práticas.
+-> Ficou presente a entreajuda e o debate de ideias, para que pudéssemos obter o melhor trabalho possivel.

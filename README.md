@@ -65,7 +65,7 @@
 2. :exclamation:Criar Frequência (A implementar na classe Frequência) ✔️
 3. :exclamation:Mostrar determinada frequência, dado o ID da mesma (A implementar na classe Frequência) ✔️
 4. :exclamation:Modificar dados sobre uma Frequência (A implementar na classe Frequência) ✔️
-5. :exclamation:Remover Frequência (A implementar na classe Frequência) ✔️
+5. :exclamation:Remover Frequência (A implementar na classe Frequência) ✔️ !!!
 6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência) ✔️
 7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) ✔️
 8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️ Melhorar outputs :warning:

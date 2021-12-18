@@ -110,7 +110,7 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 9. Mostrar aluno mais velho e mais novo - A partir de uma função que calcula a idade, é mostrado qual ou quais (Caso tenham a mesma idade) são os utilizador(os) mais novos e mais velhos.
 10. Mostrar aluno com melhor nota numa determinada frequência - É pedido qual o ID da disciplina e da Frequência em questão e após isto, analisa-se quais foram os alunos que realizaram essa frequência. Desse lista de alunos calcula-se qual foi o que obteve a melhor nota nessa frequência.
 
-### Conteúdos lecionados que foram usados no trabalho
+### Conteúdos lecionados que foram usados no trabalho (Gui)
 
 ## **Aspetos a melhorar** (João)
 

@@ -40,11 +40,11 @@
 4. :exclamation:Mudar informações acerca da escola (Nome, Número, Contactos, Localização) ✔️
 5. :exclamation:Mostrar informações da escola ✔️ 
   
-**Cursos: (Gui 10-12)**
+**Cursos: (Gui 10-12)** -> Os IDS são sempre diferentes e nunca deixa criarem cursos com o mesmo nome.
 1. :exclamation:Listar cursos (A implementar na classe Escola) ✔️
 2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ 
-3. :exclamation:Consultar informações de determinado curso (A implementar na classe Escola)✔️ :warning: Pedir ID
-4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️ :warning: Pedir ID
+3. :exclamation:Consultar informações de determinado curso (A implementar na classe Escola) ✔️
+4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️
 5. :exclamation:Remover curso (A implementar na classe Escola) ✔️
 6. Mostrar curso mais frequentado (A implementar na classe Escola) ✔️
 7. Inserir disciplina de determinado curso (A implementar na classe Escola) ✔️ :warning: Inserir por ID

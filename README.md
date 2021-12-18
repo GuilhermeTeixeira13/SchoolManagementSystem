@@ -51,9 +51,9 @@
 8. Remover disciplina de determinado curso (A implementar na classe Escola) ✔️
 
 **Disciplinas: (Cláudio 10-12)**
-1. :exclamation:Listar disciplinas (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-2. :exclamation:Criar disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning: :warning: Pedir ID
+1. :exclamation:Listar disciplinas (A implementar na classe Escola) ✔️ 
+2. :exclamation:Criar disciplina (A implementar na classe Escola) ✔️ 
+3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) ✔️ 
 4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning: :warning: Pedir ID
 5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
 6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola) ✔️

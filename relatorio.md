@@ -54,17 +54,17 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 
 **GERIR CURSOS: (Elaborado por: Guilherme Teixeira)**
 1. :exclamation:Listar cursos - Mostra-nos, de uma forma limpa, o nome e ID dos cursos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado curso".
-2. :exclamation:Criar curso - Cria um curso a partir dos dados pedidos utilizador. As disciplinas que fazem parte do curso são inseridas na opção 7.
+2. :exclamation:Criar curso - Cria um curso a partir dos dados pedidos utilizador. As disciplinas que fazem parte do curso são inseridas na opção 7 (para não ficar confuso). Não é pedido o código do curso pois este é atribuido de forma automática.
 3. :exclamation:Consultar informações de determinado curso - Dado o ID de um determinado curso, são mostradas as informações relevantes acerca do mesmo.
 4. :exclamation:Modificar dados sobre um curso - Dado o ID de um determinado curso, é possível escolher que aspeto do curso se pretende modificar.
-5. :exclamation:Remover curso - Remove o curso cujo o ID é aquele que o utilizador indicou.
-6. Mostrar curso mais frequentado 
-7. Inserir disciplina de determinado curso 
-8. Remover disciplina de determinado curso 
+5. :exclamation:Remover curso - Remove o curso cujo o ID é aquele que o utilizador indicou. Nesta opção é possível escolher se se pretende remover o curso pelo nome ou por palavra contida no nome.
+6. Mostrar curso mais frequentado - Mostra qual ou quais os cursos mais frequentados, e mostra também a respetiva quantidade de alunos nele presente.
+7. Inserir disciplina de determinado curso - De entre as disciplinas disponíveis na escola, são pedidas (até o utilizador mandar parar) aquelas que se pretende adicionar ao curso escolhido pelo utilizador (pelo ID de curso). 
+8. Remover disciplina de determinado curso - De entre as disciplinas disponíveis na escola, são pedidas (até o utilizador mandar parar) aquelas que se pretende remover do curso escolhido pelo utilizador (pelo ID de curso). 
 
 **GERIR DISCIPLINAS: (Elaborado por: Cláudio Redondo)**
 1. :exclamation:Listar disciplinas - Mostra-nos, de uma forma limpa, o nome e ID das disciplinas existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinada disciplina".
-2. :exclamation:Criar disciplina 
+2. :exclamation:Criar disciplina - 
 3. :exclamation:Consultar informações de determinada disciplina 
 4. :exclamation:Modificar dados sobre uma disciplina 
 5. :exclamation:Remover disciplina (A implementar na classe Escola) 
@@ -96,15 +96,15 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 
 **GERIR ALUNOS: (Elaborado por: Guilherme Teixeira)**
 1. :exclamation:Listar alunos - Mostra-nos, de uma forma limpa, o nome e o número dos alunos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado aluno". 
-2. :exclamation:Criar aluno 
-3. :exclamation:Consultar informações de determinado aluno 
-4. :exclamation:Modificar dados sobre um determinado aluno 
-5. :exclamation:Remover aluno 
-6. Atribuir notas
-7. Inscrever aluno em curso
-8. Mostrar alunos deslocados (
-9. Mostrar aluno mais velho e mais novo 
-10. Mostrar aluno com melhor nota numa determinada frequência 
+2. :exclamation:Criar aluno - Pede ao utilizador os dados do aluno que este pretende inserir. A parte de inscrição do aluno num curso é feita no ponto 7 (para não ficar confuso). Adiciona o aluno à lista de pessoa da escola.
+3. :exclamation:Consultar informações de determinado aluno  - É pedido ao utilizador o ID do aluno que se pretende consultar. De seguida são mostradas as informoções referentes ao aluno em questão.
+4. :exclamation:Modificar dados sobre um determinado aluno - É pedido ao utilizador o ID do aluno cujos dados se pretende modificar. De seguida é mostrado um menu com as várias opções referentes ao aluno, possíveis de modificar.
+5. :exclamation:Remover aluno - É pedido ao utilizador o ID do aluno que se pretende remover. De seguida, o aluno é removido , não aparecendo na lista de alunos dos cursos nem das disciplinas.
+6. Atribuir notas - É pedido ao utilizador o ID do aluno a que se pretende atribuir notas, o ID da Disciplina da Frequência que esse aluno realizou e o ID dessa mesma frequência. Após isto é pedido a classificação que o aluno obteve e é guardada nos dados do aluno. Cada aluno contem uma ArrayList< NotasDisciplina> em que cada posição contém uma disciplina e os resultados das frequências que esse aluno realizou , exemplo -> NotasDisciplinaDoAluno1(Álgebra-(IDFreq:1 Classi:17; IDFreq:2, Classi:18 ,...) ; POO-(IDFreq:5 Classi:20; IDFreq:3, Classi:16, ...) ; ...)
+7. Inscrever aluno em curso - Após ser dado o ID do aluno que se pretende inscrever, é apresentada a lista de cursos da escola e dos seus IDS. O utilizador escolhe o curso em que pretende inscrever o aluno. Caso este já se encontre inscrito em algum curso, é mostrado um aviso e pergunta-se ao utilizador se pretende alterar o curso do aluno.
+8. Mostrar alunos deslocados -  Mostra uma lista de alunos cuja localização difere daquela que é a localização da escola.
+9. Mostrar aluno mais velho e mais novo - A partir de uma função que calcula a idade, é mostrado qual ou quais (Caso tenham a mesma idade) são os utilizador(os) mais novos e mais velhos.
+10. Mostrar aluno com melhor nota numa determinada frequência - É pedido qual o ID da disciplina e da Frequência em questão e após isto, analisa-se quais foram os alunos que realizaram essa frequência. Desse lista de alunos calcula-se qual foi o que obteve a melhor nota nessa frequência.
 
 ### Conteúdos lecionados que foram usados no trabalho
 

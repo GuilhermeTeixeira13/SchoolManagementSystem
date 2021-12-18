@@ -217,6 +217,15 @@ public class EscolaInformatica implements Serializable{
         return pos;
     }
 
+    public int devolvePosCursoDadoID(int IDCurso){
+        int pos=-1;
+        for(int i = 0; i < this.getCursosEscola().size(); i++){
+            if(this.getCursosEscola().get(i).getCodCurso() == IDCurso)
+                pos = i;
+        }
+        return pos;
+    }
+
     public int devolvePosAluno(String nomeAluno, ArrayList<Pessoa> Alunos){
         int pos=-1;
 

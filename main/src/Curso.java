@@ -5,7 +5,9 @@ import java.time.LocalDate;
 
 public class Curso implements java.io.Serializable {
     // Atributos
-    private String nomeCurso, codCurso;
+    private String nomeCurso;
+    private static int ultimo = 0;
+    private int idCurso;
     private int duracaoEmHoras;
     private ArrayList<Disciplina> disciplinasCurso;
     private ArrayList<String> provasIngresso;
@@ -17,7 +19,8 @@ public class Curso implements java.io.Serializable {
     // Construtores
     public Curso(){
         this.nomeCurso = "";
-        this.codCurso = "";
+        ultimo++;
+        this.idCurso = ultimo;
         this.disciplinasCurso = new ArrayList<Disciplina>();
         this.provasIngresso = new ArrayList<String>();
         this.alunosCurso = new ArrayList<Aluno>();
@@ -26,9 +29,10 @@ public class Curso implements java.io.Serializable {
         this.dataInicio = LocalDate.now();
         this.dataFim = LocalDate.now();
     }
-    public Curso(String nomeCurso, String codCurso, int duracaoEmHoras, float mediaUltimoColocado, ArrayList<String> provasIngresso, LocalDate dataInicio, LocalDate dataFim){
+    public Curso(String nomeCurso, int duracaoEmHoras, float mediaUltimoColocado, ArrayList<String> provasIngresso, LocalDate dataInicio, LocalDate dataFim){
         this.nomeCurso = nomeCurso;
-        this.codCurso = codCurso;
+        ultimo++;
+        this.idCurso = ultimo;
         this.disciplinasCurso = new ArrayList<Disciplina>();
         this.provasIngresso = provasIngresso;
         this.alunosCurso = new ArrayList<Aluno>();
@@ -46,11 +50,16 @@ public class Curso implements java.io.Serializable {
         return this.nomeCurso;
     }
 
-    public void setCodCurso(String codCurso){
-        this.codCurso = codCurso;
+    public int getCodCurso(){
+        return this.idCurso;
     }
-    public String getCodCurso(){
-        return this.codCurso;
+
+    public static int getUltimo(){
+        return ultimo;
+    }
+
+    public static void setUltimo(int ult){
+        Curso.ultimo = ult;
     }
 
     public void setDisciplinasCurso(ArrayList<Disciplina> disciplinasCurso){
@@ -106,15 +115,15 @@ public class Curso implements java.io.Serializable {
     // To String
     public String toString(){
         String s;
-        s = "\nCurso: "+nomeCurso+"\n Cod.Curso: "+codCurso+"\n Media do Ultimo Colocado: "+mediaUltimoColocado+"\n Data de Inicio: "+dataInicio+"\n Data de Fim: "+dataFim+"\n Duracao: "+duracaoEmHoras+"h";
-        s = s + "\n Disciplinas: ";
+        s = "\nCurso: "+nomeCurso+"\n Cod.Curso: "+idCurso+"\n Media do Ultimo Colocado: "+mediaUltimoColocado+"\n Data de Inicio: "+dataInicio+"\n Data de Fim: "+dataFim+"\n Duracao: "+duracaoEmHoras+"h";
+        s = s + "\n Disciplinas: (";
         for(int i=0; i<disciplinasCurso.size(); i++){
             if(i == disciplinasCurso.size() - 1)
-                s = s + disciplinasCurso.get(i) + ")";
-            else if(i == 1)
-                s = s + disciplinasCurso.get(i) + "(";
+                s = s + disciplinasCurso.get(i).getNomDisc() + ")";
+            else if(i == 0)
+                s = s + "(" + disciplinasCurso.get(i).getNomDisc() + ", ";
             else
-                s = s + disciplinasCurso.get(i) + ", ";
+                s = s + disciplinasCurso.get(i).getNomDisc() + ", ";
         }
         s = s + "\n Provas Ingresso: ";
         for(int i=0; i<provasIngresso.size(); i++){
@@ -126,11 +135,11 @@ public class Curso implements java.io.Serializable {
         s = s + "\n Alunos Inscritos: ";
         for(int i=0; i<alunosCurso.size(); i++)
             if(i == provasIngresso.size() - 1)
-                s = s + alunosCurso.get(i).getNome();
+                s = s + alunosCurso.get(i).getNome() + ")";
             else if(i == 0)
-                s = s + "";
+                s = s + "("+alunosCurso.get(i).getNome() + ", ";
             else
-                s = s + alunosCurso.get(i).getNome() + ",";     
+                s = s + alunosCurso.get(i).getNome() + ", ";     
         return s;
     }
 
@@ -139,7 +148,7 @@ public class Curso implements java.io.Serializable {
         boolean ig = false;
         if(obj != null && obj.getClass() == this.getClass()){
             Curso e = (Curso) obj;
-            ig = this.nomeCurso.equals(e.nomeCurso) && (this.codCurso.equals(e.codCurso)) && (this.disciplinasCurso.equals(e.disciplinasCurso)) && (this.provasIngresso.equals(e.provasIngresso));
+            ig = this.nomeCurso.equals(e.nomeCurso) && (this.idCurso == e.idCurso) && (this.disciplinasCurso.equals(e.disciplinasCurso)) && (this.provasIngresso.equals(e.provasIngresso));
             ig = ig && (this.alunosCurso.equals(e.alunosCurso)) && (this.duracaoEmHoras == e.duracaoEmHoras) && (this.mediaUltimoColocado == e.mediaUltimoColocado) && (this.dataInicio.equals(e.dataInicio)) && (this.dataFim.equals(e.dataFim));
         }
         else
@@ -152,7 +161,7 @@ public class Curso implements java.io.Serializable {
         Curso copia = new Curso();
 
         copia.nomeCurso = this.nomeCurso;
-        copia.codCurso = this.codCurso;
+        copia.idCurso = this.idCurso;
         copia.disciplinasCurso = (ArrayList<Disciplina>) this.disciplinasCurso.clone();
         copia.provasIngresso = (ArrayList<String>) this.disciplinasCurso.clone();
         copia.alunosCurso = (ArrayList<Aluno>) this.alunosCurso.clone();

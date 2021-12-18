@@ -29,6 +29,7 @@ public class funcoesUteis implements Serializable {
             os.writeInt(Aluno.getUltimo());
             os.writeInt(Professor.getUltimo());
             os.writeInt(Disciplina.getUltimo());
+            os.writeInt(Curso.getUltimo());
             os.writeObject(escolaInformatica);
             os.flush(); // os dados são copiados de memória para o disco
         } catch (IOException e) {
@@ -48,6 +49,8 @@ public class funcoesUteis implements Serializable {
                 Professor.setUltimo(ultProf);
                 int ultDisc = is.readInt();
                 Disciplina.setUltimo(ultDisc);
+                int ultCurso = is.readInt();
+                Curso.setUltimo(ultCurso);
                 EscolaInformatica escolaInformatica = (EscolaInformatica) is.readObject();
                 return escolaInformatica;
             } else
@@ -558,7 +561,7 @@ public class funcoesUteis implements Serializable {
     }
 
     public static Curso criarCurso(EscolaInformatica escolaInformatica) {
-        String nomeCurso, opcaoContactoMenu = "", codCurso;
+        String nomeCurso, opcaoContactoMenu = "";
         int duracaoCurso, escolhaDisc, verificaExistenciaCurso = -1;
         float mediaUltimoColocado;
         LocalDate dataInicioCurso, dataFimCurso;
@@ -573,9 +576,6 @@ public class funcoesUteis implements Serializable {
             nomeCurso = Ler.umaString();
             verificaExistenciaCurso = escolaInformatica.devolvePosCurso(nomeCurso);
         } while (verificaExistenciaCurso != -1);
-
-        System.out.print("\nCódigo do Curso: ");
-        codCurso = Ler.umaString();
 
         System.out.println("\n------------------------------------------------------------------------------");
         System.out.println("Disciplinas para adicionar ao Curso: ");
@@ -660,7 +660,7 @@ public class funcoesUteis implements Serializable {
         System.out.print("\nMédia do Último Colocado: ");
         mediaUltimoColocado = Ler.umFloat();
 
-        Curso novoCurso = new Curso(nomeCurso, codCurso, duracaoCurso, mediaUltimoColocado, provasIngresso,
+        Curso novoCurso = new Curso(nomeCurso, duracaoCurso, mediaUltimoColocado, provasIngresso,
                 dataInicioCurso, dataFimCurso);
         novoCurso.setDisciplinasCurso(disciplinasCurso);
 
@@ -672,10 +672,10 @@ public class funcoesUteis implements Serializable {
         do {
             System.out.print("\nO que pretende modificar no curso de "
                     + escolaInformatica.getCursosEscola().get(posicao).getNomeCurso()
-                    + "?\n\n 1. Nome\n 2. Cód.Curso\n 3. Média do último colocado\n 4. Provas de Ingresso\n 5. Datas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
+                    + "?\n\n 1. Nome\n 2. Média do último colocado\n 3. Provas de Ingresso\n 4. Datas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
             opcaoUtilizador = Ler.umInt();
 
-            while (opcaoUtilizador > 5 || opcaoUtilizador < 0) {
+            while (opcaoUtilizador > 4 || opcaoUtilizador < 0) {
                 System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                 opcaoUtilizador = Ler.umInt();
             }
@@ -696,20 +696,13 @@ public class funcoesUteis implements Serializable {
                     pedeTecla();
                     break;
                 case 2:
-                    String codCurso;
-                    System.out.print("\nCódigo do Curso: ");
-                    codCurso = Ler.umaString();
-                    escolaInformatica.getCursosEscola().get(posicao).setCodCurso(codCurso);
-                    pedeTecla();
-                    break;
-                case 3:
                     float mediaUltimoColocado;
                     System.out.print("\nMédia do Último Colocado: ");
                     mediaUltimoColocado = Ler.umInt();
                     escolaInformatica.getCursosEscola().get(posicao).setMediaUltimoColocado(mediaUltimoColocado);
                     pedeTecla();
                     break;
-                case 4:
+                case 3:
                     int opcaoProvas;
                     System.out.println("\nProvas de Ingresso atuais, do curso de "
                             + escolaInformatica.getCursosEscola().get(posicao).getNomeCurso() + ": ");
@@ -748,7 +741,7 @@ public class funcoesUteis implements Serializable {
                             break;
                     }
                     break;
-                case 5:
+                case 4:
                     LocalDate dataInicioCurso, dataFimCurso;
                     System.out.println("Alterar datas do início e fim do curso de "
                             + escolaInformatica.getCursosEscola().get(posicao).getNomeCurso() + "\n");
@@ -779,7 +772,7 @@ public class funcoesUteis implements Serializable {
                     break;
             }
             limpaTela();
-        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 5);
+        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 4);
         return escolaInformatica.getCursosEscola().get(posicao);
     }
 

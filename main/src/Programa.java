@@ -108,7 +108,9 @@ public class Programa {
 
                                 int posCurso, idCursoConsultar;
                                 System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO CURSO\n\nEscreva o ID do curso que pretende consultar -->  ");
+                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO CURSO\n\n");
+                                escolaInformatica.listaCursos();
+                                System.out.print("Escreva o ID do curso que pretende consultar --> ");
                                 idCursoConsultar = Ler.umInt();
                                 posCurso = escolaInformatica.devolvePosCursoDadoID(idCursoConsultar);
                                 if (posCurso == -1)
@@ -125,7 +127,9 @@ public class Programa {
                                 int posCursoMod, idCursoModificar;
 
                                 System.out.print(
-                                        "4. MODIFICAR DADOS SOBRE DETERMINADO CURSO\n\nEscreva o ID do curso que pretende modificar -->  ");
+                                        "4. MODIFICAR DADOS SOBRE DETERMINADO CURSO\n\n");
+                                escolaInformatica.listaCursos();
+                                System.out.print("Escreva o ID do curso que pretende modificar --> ");
                                 idCursoModificar = Ler.umInt();
                                 posCursoMod = escolaInformatica.devolvePosCursoDadoID(idCursoModificar);
                                 if (posCursoMod == -1)
@@ -152,45 +156,51 @@ public class Programa {
                                 switch (opcaoCursos) {
                                     case 1:
                                         System.out.print(
-                                                "1. Remover pelo nome\n\nEscreva o nome do curso que pretende remover -->  ");
+                                                "1. Remover pelo nome\n\n");
+                                        escolaInformatica.listaCursos();
+                                        System.out.print("Escreva o nome do curso que pretende remover --> ");
                                         nomeCursoRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeCursoEquals(nomeCursoRemover);
                                         if (sucesso == true) {
                                             funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
                                                     escolaInformatica);
-                                            System.out.println("Curso " + nomeCursoRemover + " removido com sucesso.");
+                                            System.out.println("\nCurso " + nomeCursoRemover + " removido com sucesso.");
                                         } else
                                             System.out.println(
-                                                    "Não existe nenhum curso com o nome " + nomeCursoRemover + ".");
+                                                    "\nNão existe nenhum curso com o nome " + nomeCursoRemover + ".");
                                         System.out.println();
                                         break;
                                     case 2:
                                         System.out.print(
-                                                "2. Remover por palavra contida no nome\n\nEscreva o nome do curso que pretende remover -->  ");
+                                        "2. Remover por palavra contida no nome\n\n");
+                                        escolaInformatica.listaCursos();
+                                        System.out.print("Escreva uma palavra contida no curso que pretende remover --> ");
                                         nomeCursoRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeCursoContains(nomeCursoRemover);
                                         if (sucesso == true) {
                                             funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
                                                     escolaInformatica);
-                                            System.out.println("Cursos que contêm a palavra " + nomeCursoRemover
+                                            System.out.println("\nCursos que contêm a palavra " + nomeCursoRemover
                                                     + " removidos com sucesso.");
                                         } else
-                                            System.out.println("Não existe nenhum curso que contenha a palavra "
+                                            System.out.println("\nNão existe nenhum curso que contenha a palavra "
                                                     + nomeCursoRemover + ".");
                                         System.out.println();
                                         break;
                                     case 3:
                                         int idCursoRemover, posCursoRem;
                                         System.out.print(
-                                            "3. Remover por ID\n\nEscreva o ID do curso que pretende remover -->  ");
+                                                "3. Remover por ID\n\n");
+                                        escolaInformatica.listaCursos();
+                                        System.out.print("Escreva o ID do curso que pretende remover -->  ");
                                         idCursoRemover = Ler.umInt();
                                         posCursoRem = escolaInformatica.devolvePosCursoDadoID(idCursoRemover);
                                         if (posCursoRem != -1) {
                                             funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
                                                     escolaInformatica);
-                                            System.out.println("Curso "+escolaInformatica.getCursosEscola().get(posCursoRem).getNomeCurso()+" (ID:"+idCursoRemover+") removido com sucesso.");
+                                            System.out.println("\nCurso "+escolaInformatica.getCursosEscola().get(posCursoRem).getNomeCurso()+" (ID:"+idCursoRemover+") removido com sucesso.");
                                         } else
-                                            System.out.println("Não existe nenhum curso com o ID "
+                                            System.out.println("\nNão existe nenhum curso com o ID "
                                                     + idCursoRemover + ".");
                                         System.out.println();
                                         break;
@@ -214,7 +224,9 @@ public class Programa {
                                 int posCursoAddDisc, idCursoInserirDisc;
 
                                 System.out.print(
-                                        "7. INSERIR DISCIPLINAS NUM DETERMINADO CURSO\n\nEscreva o ID do curso em que pretende adicionar disciplinas -->  ");
+                                        "7. INSERIR DISCIPLINAS NUM DETERMINADO CURSO\n\n");
+                                escolaInformatica.listaCursos();
+                                System.out.print("Escreva o ID do curso em que pretende adicionar disciplinas -->  ");
                                 idCursoInserirDisc = Ler.umInt();
                                 posCursoAddDisc = escolaInformatica.devolvePosCursoDadoID(idCursoInserirDisc);
                                 if (posCursoAddDisc == -1)
@@ -222,6 +234,8 @@ public class Programa {
                                 else {
                                     int posdisc, idDisc;
                                     boolean existeNoCurso = false;
+                                    System.out.println();
+                                    escolaInformatica.listaDisciplinas();
                                     System.out.print(
                                             "Escreva o ID da disciplina que pretende adicionar ao curso "
                                                     + escolaInformatica.getCursosEscola().get(posCursoAddDisc).getNomeCurso()+ " --> ");
@@ -231,16 +245,16 @@ public class Programa {
                                             escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc());
                                     if (existeNoCurso == true || posdisc == -1){
                                         if(existeNoCurso == true && posdisc != -1)
-                                            System.out.println("Lamentamos, mas essa disciplina já existe no curso!\n");
+                                            System.out.println("\nLamentamos, mas essa disciplina já existe no curso!\n");
                                         if(existeNoCurso == false && posdisc == -1)
-                                            System.out.println("Lamentamos, mas essa disciplina não existe na escola!\n");
+                                            System.out.println("\nLamentamos, mas essa disciplina não existe na escola!\n");
                                     }
                                     else {
                                         escolaInformatica.getCursosEscola().get(posCursoAddDisc).getDisciplinasCurso()
                                                 .add(escolaInformatica.getDisciplinaEscola().get(posdisc));
                                         escolaInformatica.atualizaCurso(posCursoAddDisc);
                                         System.out.println(
-                                                "Disciplina "+ escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc()+" adicionada a " + escolaInformatica.getCursosEscola().get(posCursoAddDisc).getNomeCurso() + " com sucesso!\n");
+                                                "\nDisciplina "+ escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc()+" adicionada a " + escolaInformatica.getCursosEscola().get(posCursoAddDisc).getNomeCurso() + " com sucesso!\n");
                                         funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
                                                 escolaInformatica);
                                     }
@@ -253,7 +267,9 @@ public class Programa {
                                 int posCursoRemDisc, idCursoRemDisc;
 
                                 System.out.print(
-                                        "8. REMOVER DISCIPLINAS DE UM DETERMINADO CURSO\n\nEscreva o ID do curso em que pretende remover disciplinas -->  ");
+                                        "8. REMOVER DISCIPLINAS DE UM DETERMINADO CURSO\n\n");
+                                escolaInformatica.listaCursos();
+                                System.out.print("Escreva o ID do curso em que pretende remover disciplinas --> ");
                                 idCursoRemDisc = Ler.umInt();
                                 posCursoRemDisc = escolaInformatica.devolvePosCursoDadoID(idCursoRemDisc);
                                 if (posCursoRemDisc == -1)
@@ -261,6 +277,8 @@ public class Programa {
                                 else {
                                     int posdisc, idDiscRem;
                                     boolean existeNoCurso = false;
+                                    System.out.println();
+                                    escolaInformatica.listaDisciplinas();
                                     System.out.print(
                                             "Escreva o ID da disciplina que pretende remover do curso "
                                                     + escolaInformatica.getCursosEscola().get(posCursoRemDisc).getNomeCurso() + " --> ");
@@ -269,13 +287,13 @@ public class Programa {
                                     existeNoCurso = escolaInformatica.verificaSeDisciplinaPertenceCurso(posCursoRemDisc,
                                             escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc());
                                     if (existeNoCurso == false)
-                                        System.out.println("Lamentamos, mas esta disciplina não existe neste curso!\n");
+                                        System.out.println("\nLamentamos, mas esta disciplina não existe neste curso!\n");
                                     else {
                                         escolaInformatica.getCursosEscola().get(posCursoRemDisc).getDisciplinasCurso()
                                                 .remove(escolaInformatica.getDisciplinaEscola().get(posdisc));
                                         escolaInformatica.atualizaCurso(posCursoRemDisc);
                                         System.out.println(
-                                                "Disciplina "+ escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc()+" removida de " + escolaInformatica.getCursosEscola().get(posCursoRemDisc).getNomeCurso() + " com sucesso!\n");
+                                                "\nDisciplina "+ escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc()+" removida de " + escolaInformatica.getCursosEscola().get(posCursoRemDisc).getNomeCurso() + " com sucesso!\n");
                                         funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
                                                 escolaInformatica);
                                     }

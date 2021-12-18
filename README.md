@@ -38,8 +38,7 @@
 2. :exclamation:Modificar dados sobre o diretor (A implementar na classe Escola); ✔️
 3. :exclamation:Listar Pessoas ✔️
 4. :exclamation:Mudar informações acerca da escola (Nome, Número, Contactos, Localização) ✔️
-5. :exclamation:Mostrar informações da escola ✔️ Melhorar outputs :warning:
-
+5. :exclamation:Mostrar informações da escola ✔️ 
 **Cursos: (Gui 10-12)**
 1. :exclamation:Listar cursos (A implementar na classe Escola) ✔️
 2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ :warning: Não pedir ID

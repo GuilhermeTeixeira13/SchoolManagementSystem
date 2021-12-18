@@ -97,7 +97,7 @@
 **A implementar:**
 - Não permitir que se insiram números de telefone com mais de 9 dígitos (João) ✔️
 - Não permitir que se insiram email sem @ e sem . (João) ✔️
-- Definir um limite no rating do professor (João) :warning:
+- Definir um limite no rating do professor (João)  ✔️
 - Variáveis estáticas para atribuir ID a Curso (Gui) :warning:
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc (Gui) :warning:
 - Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados (TODOS) :warning:

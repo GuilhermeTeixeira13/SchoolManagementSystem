@@ -58,7 +58,7 @@
 5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️
 6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola) ✔️ :warning: Testar
 7. Mostrar professores que lecionam determinada disciplina (A implementar na classe Escola) ✔️
-8. Mostrar alunos inscritos em determinada disciplina (A implementar na classe Escola) :warning: Testar
+8. Mostrar alunos inscritos em determinada disciplina (A implementar na classe Escola) ✔️
 
 **Frequências: (Tiago 10-12)**
 1. :exclamation:Listar Frequências de determinada disciplina (A implementar na classe Frequência) ✔️

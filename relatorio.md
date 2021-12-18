@@ -53,6 +53,8 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 5. :exclamation: É mostrado ao utilizador, as informações pertencentes à escola, cursos, disciplinas, e nome de todas as pessoas associadas a esta entidade.
 
 **GERIR CURSOS: (Elaborado por: Guilherme Teixeira)**
+Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar cursos com o mesmo nome. Ao remover são dadas 3 opções em que duas delas é possível remover um curso pelo nome (para usarmos o conteúdo das aulas práticas e porque o programa permite que o façamos)
+
 1. :exclamation:Listar cursos - Mostra-nos, de uma forma limpa, o nome e ID dos cursos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado curso".
 2. :exclamation:Criar curso - Cria um curso a partir dos dados pedidos utilizador. As disciplinas que fazem parte do curso são inseridas na opção 7 (para não ficar confuso). Não é pedido o código do curso pois este é atribuido de forma automática.
 3. :exclamation:Consultar informações de determinado curso - Dado o ID de um determinado curso, são mostradas as informações relevantes acerca do mesmo.

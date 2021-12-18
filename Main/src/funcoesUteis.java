@@ -1436,24 +1436,24 @@ public class funcoesUteis implements Serializable {
     }
 
     public static int menuDisciplinasFreq(EscolaInformatica escolaInformatica) {
-        int idFreq = 0;
+        int idDisc = 0;
         escolaInformatica.listaDisciplinas();
         System.out.print("ID da Disciplina da Frequência: -> ");
-        idFreq = Ler.umInt();
+        idDisc = Ler.umInt();
 
-        int posDisc = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
+        int posDisc = escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
         while (posDisc == -1) {
             System.out.print("Digite uma opção VÁLIDA -> ");
-            idFreq = Ler.umInt();
-            posDisc = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
+            idDisc = Ler.umInt();
+            posDisc = escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
         }
 
         if (escolaInformatica.getDisciplinaEscola().get(posDisc).getListFreq().isEmpty()) {
             System.out.println("Esta disciplina não contém frequências.\n");
-            idFreq = -1;
+            idDisc = -1;
         } 
         
-        return idFreq;
+        return idDisc;
     }
 
     public static int menuCurso(EscolaInformatica escolaInformatica) {

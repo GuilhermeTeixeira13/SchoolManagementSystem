@@ -1191,11 +1191,11 @@ public class Programa {
                                                 "Disciplina para a qual pretende criar uma frequência [ID]: ");
                                         int idDisc = Ler.umInt();
                                         posdisc = escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
-                                        while (posdisc  == -1) {
+                                        while (posdisc == -1) {
                                             System.out
                                                     .print("Lamento, mas esta disciplina não existe! Escolha outra: ");
                                             nomediscp = Ler.umaString();
-                                            posdisc  = escolaInformatica.devolveposDisc(nomediscp);
+                                            posdisc = escolaInformatica.devolveposDisc(nomediscp);
                                         }
 
                                         disciplinaDaFreq = escolaInformatica.getDisciplinaEscola().get(posdisc);
@@ -1255,19 +1255,23 @@ public class Programa {
                                     System.out.print("\nIntroduza o ID da frequência que deseja modificar: ");
                                     idFreq = Ler.umInt();
                                     posFrequencianaDisc = escolaInformatica
-                                            .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc());
+                                            .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, escolaInformatica
+                                                    .getDisciplinaEscola().get(posicaoDisc).getNomDisc());
                                     while (posFrequencianaDisc == -1) {
                                         System.out.println("Introduza um ID da Frequência VÁLIDO: ");
                                         idFreq = Ler.umInt();
                                         posFrequencianaDisc = escolaInformatica
-                                                .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc());
+                                                .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq,
+                                                        escolaInformatica.getDisciplinaEscola().get(posicaoDisc)
+                                                                .getNomDisc());
                                     }
 
                                     Frequencia modificadaFreq = funcoesUteis.modFrequencia(escolaInformatica, idFreq,
                                             posicaoDisc,
                                             posFrequencianaDisc);
 
-                                    escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getListFreq().set(posFrequencianaDisc, modificadaFreq);
+                                    escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getListFreq()
+                                            .set(posFrequencianaDisc, modificadaFreq);
                                     funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
                                 break;
@@ -1277,19 +1281,24 @@ public class Programa {
                                 int posFrequencia2 = -1;
                                 int posDisciplinaIdFreq2;
                                 System.out.print("5. REMOVER FREQUÊNCIA\n\n");
-                                posDisciplinaIdFreq2 = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
-                                System.out.print("Escreva o ID da frequência que pretende remover "
-                                        + funcoesUteis.listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2)
-                                        + "-->  ");
-                                int idFrequencia = Ler.umInt();
-                                posFrequencia2 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia);
-                                while (posFrequencia2 == -1 || posDisciplinaIdFreq2 == -1) {
-                                    System.out.println("Introduza um ID da frequência VÁLIDO: ");
-                                    idFrequencia = Ler.umInt();
+                                posDisciplinaIdFreq2 = escolaInformatica.devolvePosDisciplinaDadoID(
+                                        funcoesUteis.menuDisciplinasFreq(escolaInformatica));
+                                if (posDisciplinaIdFreq2 != -1) {
+                                    System.out.print("Escreva o ID da frequência que pretende remover "
+                                            + funcoesUteis.listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2)
+                                            + "-->  ");
+                                    int idFrequencia = Ler.umInt();
+                                    posFrequencia2 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia);
+                                    while (posFrequencia2 == -1 || posDisciplinaIdFreq2 == -1) {
+                                        System.out.println("Introduza um ID da frequência VÁLIDO: ");
+                                        idFrequencia = Ler.umInt();
+                                    }
+                                    escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq2).getListFreq()
+                                            .remove(posFrequencia2);
+                                    funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                    System.out.println(
+                                            "\nFrequência com ID:" + idFrequencia + " removida com sucesso!\n");
                                 }
-                                escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq2).getListFreq()
-                                        .remove(posFrequencia2);
-                                funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 6:
@@ -1298,35 +1307,41 @@ public class Programa {
                                 int posFrequencia3 = -1;
                                 int posDisciplinaIdFreq3;
                                 System.out.print("6. CONSULTAR PERGUNTA COM MAIOR COTAÇÃO\n\n");
-                                posDisciplinaIdFreq3 = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
-                                System.out.print(
-                                        "\nEscreva o ID da frequência da qual pretende consultar a pergunta com maior cotação "
-                                                + funcoesUteis.listIdsDisciplina(escolaInformatica,
-                                                        posDisciplinaIdFreq3)
-                                                + "-->  ");
-                                int idFrequencia3 = Ler.umInt();
-                                posFrequencia3 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
-                                while (posFrequencia3 == -1 || posDisciplinaIdFreq3 == -1) {
-                                    System.out.println("Introduza um ID da frequência VÁLIDO: ");
-                                    idFrequencia3 = Ler.umInt();
-                                }
-                                MaioresPerguntaLista = funcoesUteis.cotacaoMaior(escolaInformatica, idFrequencia3);
-                                if (MaioresPerguntaLista.size() == 0) {
-                                    System.out.println("\nAinda não existem perguntas com cotação!");
-                                }
-                                if (MaioresPerguntaLista.size() == 1) {
-                                    System.out.println(
-                                            "\nPergunta com maior cotação (" + MaioresPerguntaLista.get(0).getcotaçao()
-                                                    + ") ->  " + MaioresPerguntaLista.get(0));
-                                }
-                                if (MaioresPerguntaLista.size() > 1) {
-                                    System.out.println("\n  EMPATE NAS PERGUNTAS COM MAIOR COTAÇÃO ("
-                                            + MaioresPerguntaLista.get(0).getcotaçao() + ") :");
-                                    for (int i = 0; i < MaioresPerguntaLista.size(); i++) {
-                                        System.out.println("->  " + MaioresPerguntaLista.get(i));
+                                int idDiscIdFreq3 = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
+                                if (idDiscIdFreq3 != -1) {
+                                    posDisciplinaIdFreq3 = escolaInformatica.devolvePosDisciplinaDadoID(idDiscIdFreq3);
+                                    System.out.print(
+                                            "\nEscreva o ID da frequência da qual pretende consultar a pergunta com maior cotação "
+                                                    + funcoesUteis.listIdsDisciplina(escolaInformatica,
+                                                            posDisciplinaIdFreq3)
+                                                    + "-->  ");
+                                    int idFrequencia3 = Ler.umInt();
+                                    posFrequencia3 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
+                                    while (posFrequencia3 == -1) {
+                                        System.out.print("Introduza um ID da frequência VÁLIDO: ");
+                                        idFrequencia3 = Ler.umInt();
+                                        posFrequencia3 = escolaInformatica
+                                                .devolvePosFrequenciaDaListaFreq(idFrequencia3);
                                     }
+                                    MaioresPerguntaLista = funcoesUteis.cotacaoMaior(escolaInformatica, idFrequencia3);
+                                    if (MaioresPerguntaLista.size() == 0) {
+                                        System.out.println("\nAinda não existem perguntas com cotação!");
+                                    }
+                                    if (MaioresPerguntaLista.size() == 1) {
+                                        System.out.println(
+                                                "\nPergunta com maior cotação ("
+                                                        + MaioresPerguntaLista.get(0).getcotaçao()
+                                                        + ") ->  " + MaioresPerguntaLista.get(0));
+                                    }
+                                    if (MaioresPerguntaLista.size() > 1) {
+                                        System.out.println("\n  EMPATE NAS PERGUNTAS COM MAIOR COTAÇÃO ("
+                                                + MaioresPerguntaLista.get(0).getcotaçao() + ") :");
+                                        for (int i = 0; i < MaioresPerguntaLista.size(); i++) {
+                                            System.out.println("->  " + MaioresPerguntaLista.get(i));
+                                        }
+                                    }
+                                    System.out.println();
                                 }
-                                System.out.println();
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 7:
@@ -1336,59 +1351,101 @@ public class Programa {
                                 int posDisciplinaEscolhida;
                                 int nivelescolhido;
                                 String condicaostop = "";
-                                posDisciplinaEscolhida = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
-                                funcoesUteis.limpaTela();
-                                do {
+                                idFreq = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
+                                if (idFreq != -1) {
+                                    posDisciplinaEscolhida = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
                                     funcoesUteis.limpaTela();
-                                    nivelescolhido = funcoesUteis.menuEscolhaNivelAdequadaDisciplina(escolaInformatica,
-                                            posDisciplinaEscolhida);
-                                    switch (nivelescolhido) {
-                                        case 1:
-                                            funcoesUteis.limpaTela();
-                                            System.out.println("Frequências de " + escolaInformatica
-                                                    .getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc());
-                                            for (int i = 0; i < funcoesUteis.freqnivelFacil(escolaInformatica,
-                                                    posDisciplinaEscolhida).size(); i++) {
-                                                funcoesUteis.listaumaFreq(funcoesUteis
-                                                        .freqnivelFacil(escolaInformatica, posDisciplinaEscolhida)
-                                                        .get(i));
-                                            }
-                                            System.out.print(
-                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
-                                            condicaostop = Ler.umaString();
-                                            break;
-                                        case 2:
-                                            funcoesUteis.limpaTela();
-                                            System.out.println("Frequências de " + escolaInformatica
-                                                    .getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc());
-                                            for (int i = 0; i < funcoesUteis.freqnivelMédio(escolaInformatica,
-                                                    posDisciplinaEscolhida).size(); i++) {
-                                                funcoesUteis.listaumaFreq(funcoesUteis
-                                                        .freqnivelMédio(escolaInformatica, posDisciplinaEscolhida)
-                                                        .get(i));
-                                            }
-                                            System.out.print(
-                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
-                                            condicaostop = Ler.umaString();
-                                            break;
-                                        case 3:
-                                            funcoesUteis.limpaTela();
-                                            System.out.println("Frequências de " + escolaInformatica
-                                                    .getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc());
-                                            for (int i = 0; i < funcoesUteis.freqnivelDificil(escolaInformatica,
-                                                    posDisciplinaEscolhida).size(); i++) {
-                                                funcoesUteis.listaumaFreq(funcoesUteis
-                                                        .freqnivelDificil(escolaInformatica, posDisciplinaEscolhida)
-                                                        .get(i));
-                                            }
-                                            System.out.print(
-                                                    "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
-                                            condicaostop = Ler.umaString();
-                                            break;
-                                    }
-                                } while (!condicaostop.equals("N") && !condicaostop.equals("n"));
-                                System.out.println();
-                                funcoesUteis.pedeTecla();
+                                    do {
+                                        funcoesUteis.limpaTela();
+                                        nivelescolhido = funcoesUteis.menuEscolhaNivelAdequadaDisciplina(
+                                                escolaInformatica,
+                                                posDisciplinaEscolhida);
+                                        switch (nivelescolhido) {
+                                            case 1:
+                                                funcoesUteis.limpaTela();
+                                                System.out.println("Frequências de " + escolaInformatica
+                                                        .getDisciplinaEscola().get(posDisciplinaEscolhida)
+                                                        .getNomDisc() + " de fácil dificuldade:");
+                                                if (!funcoesUteis.freqnivelFacil(escolaInformatica,
+                                                        posDisciplinaEscolhida).isEmpty()) {
+                                                    for (int i = 0; i < funcoesUteis.freqnivelFacil(escolaInformatica,
+                                                            posDisciplinaEscolhida).size(); i++) {
+                                                        funcoesUteis.listaumaFreq(funcoesUteis
+                                                                .freqnivelFacil(escolaInformatica,
+                                                                        posDisciplinaEscolhida)
+                                                                .get(i));
+                                                    }
+                                                } else
+                                                    System.out.println(
+                                                            "Este nível de dificuldade não contém frequências.\n");
+                                                System.out.print(
+                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                condicaostop = Ler.umaString();
+                                                while(!condicaostop.equals("s")&&!condicaostop.equals("S")&&!condicaostop.equals("n")&&!condicaostop.equals("N")){
+                                                    System.out.print(
+                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                    condicaostop = Ler.umaString(); 
+                                                }
+                                                break;
+                                            case 2:
+                                                funcoesUteis.limpaTela();
+                                                System.out.println("Frequências de " + escolaInformatica
+                                                        .getDisciplinaEscola().get(posDisciplinaEscolhida)
+                                                        .getNomDisc() + " de dificuldade média:");
+                                                if (!funcoesUteis.freqnivelMédio(escolaInformatica,
+                                                        posDisciplinaEscolhida).isEmpty()) {
+                                                    for (int i = 0; i < funcoesUteis.freqnivelMédio(escolaInformatica,
+                                                            posDisciplinaEscolhida).size(); i++) {
+                                                        funcoesUteis.listaumaFreq(funcoesUteis
+                                                                .freqnivelMédio(escolaInformatica,
+                                                                        posDisciplinaEscolhida)
+                                                                .get(i));
+                                                    }
+                                                } else {
+                                                    System.out.println(
+                                                            "Este nível de dificuldade não contém frequências.\n");
+                                                }
+                                                System.out.print(
+                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                condicaostop = Ler.umaString();
+                                                while(!condicaostop.equals("s")&&!condicaostop.equals("S")&&!condicaostop.equals("n")&&!condicaostop.equals("N")){
+                                                    System.out.print(
+                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                    condicaostop = Ler.umaString(); 
+                                                }
+                                                break;
+                                            case 3:
+                                                funcoesUteis.limpaTela();
+                                                System.out.println("Frequências de " + escolaInformatica
+                                                        .getDisciplinaEscola().get(posDisciplinaEscolhida)
+                                                        .getNomDisc() + " de dificuldade difícil");
+                                                if (!funcoesUteis.freqnivelDificil(escolaInformatica,
+                                                        posDisciplinaEscolhida).isEmpty()) {
+                                                    for (int i = 0; i < funcoesUteis.freqnivelDificil(escolaInformatica,
+                                                            posDisciplinaEscolhida).size(); i++) {
+                                                        funcoesUteis.listaumaFreq(funcoesUteis
+                                                                .freqnivelDificil(escolaInformatica,
+                                                                        posDisciplinaEscolhida)
+                                                                .get(i));
+                                                    }
+                                                } else {
+                                                    System.out.println(
+                                                            "Este nível de dificuldade não contém frequências.\n");
+                                                }
+                                                System.out.print(
+                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                condicaostop = Ler.umaString();
+                                                while(!condicaostop.equals("s")&&!condicaostop.equals("S")&&!condicaostop.equals("n")&&!condicaostop.equals("N")){
+                                                    System.out.print(
+                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                    condicaostop = Ler.umaString(); 
+                                                }
+                                                break;
+                                        }
+                                    } while (!condicaostop.equals("N") && !condicaostop.equals("n"));
+                                    System.out.println();
+                                    funcoesUteis.pedeTecla();
+                                }
                                 break;
                             case 8:
                                 // Mostrar frequências elaboradas por determinado professor

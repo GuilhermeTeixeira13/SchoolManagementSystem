@@ -47,10 +47,10 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 
 **GERIR ESCOLA: (Elaborado por: João Baltazar)** 
 1. :exclamation:Criar Diretor - Funcionalidade que, depois de pedir os dados que formam o diretor (Pessoa+Diretor), cria um novo, removendo automaticamente o que se encontrava no seu lugar, ou seja, não necessitamos de estar a remover um diretor para depois podermos criar outro. Esse processo é-nos facilitado já que só existe um diretor na escola.
-2. :exclamation:Modificar dados sobre o diretor
-3. :exclamation:Listar Pessoas 
-4. :exclamation:Mudar informações acerca da escola 
-5. :exclamation:Mostrar informações da escola
+2. :exclamation:Modificar dados sobre o diretor - Nesta função, é apresentado um submenu que permite ao utlizador escolher que informações pretende mudar sobre o diretor. Não é dado nada como parâmetro visto que, só existe um diretor na escola.
+3. :exclamation:Listar Pessoas - Mostra as informações pessoais do diretor, dos professores e dos alunos que pertencem à escola.
+4. :exclamation:Mudar informações acerca da escola - É mostrado ao utilizador um submenu, que permite mudar as informações relevantes da escola.
+5. :exclamation: É mostrado ao utilizador, as informações pertencentes à escola, cursos, disciplinas, e nome de todas as pessoas associadas a esta entidade.
 
 **GERIR CURSOS: (Elaborado por: Guilherme Teixeira)**
 1. :exclamation:Listar cursos - Mostra-nos, de uma forma limpa, o nome e ID dos cursos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado curso".
@@ -85,14 +85,14 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 
 **GERIR PROFESSORES: (Elaborado por: João Baltazar)**
 1. :exclamation:Listar professores - Mostra-nos, de uma forma limpa, o nome e o número dos professores existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado professor".
-2. :exclamation:Criar professor 
-3. :exclamation:Consultar informações de determinado professor 
-4. :exclamation:Modificar dados sobre um determinado professor 
-5. :exclamation:Remover professor 
-6. Mostrar professor que lecionou mais disciplinas 
-7. Mostrar professores deslocados 
-8. Mostrar qual é o professore com melhor rating 
-9. Mostrar professor mais velho e mais novo
+2. :exclamation:Criar professor - Nesta função, é possibilitado ao utilizador criar um professor, inserindo os seus dados pessoais. É possivel também, atribuir-lhe uma função no rating. Por último, é fornecido um menu que permite ao utilizador escolher (atráves do número que cada uma, tem lhe associada no menu) as disciplinas existentes na escola, que deseja associar ao professor.
+3. :exclamation:Consultar informações de determinado professor - O utilizador deve passar o nome do professor que deseja consultar. Na consulta, é listado o professor.
+4. :exclamation:Modificar dados sobre um determinado professor - Nesta função, o utilizador insere o nome do professor que deseja modificar e de seguida, é lhe apresentado um menu que permite modificar, separadamente, todas as caraterísticas deste. 
+5. :exclamation:Remover professor - Ao escolher esta opcão, o utilizador irá escrever o nome do professor que deseja remover. Depois disso, o programa irá conhecer a posição em que este se encontrana lista de pessoas da escola e consequentemente, eliminá-lo.
+6. Mostrar professor que lecionou mais disciplinas - É analisado qual o professor que lecionou mais disciplinas. Caso, haja empate, é lhe mostrado o nome dos sujeitos em questão. Caso contrário, é lhe mostrado somente, o nome do sujeito em questão.
+7. Mostrar professores deslocados - É fornecido ao utilizador todos os professores, nome e local, que têm como local de origem um local diferente de onde está estabelecida a escola.
+8. Mostrar qual é o professore com melhor rating - É analisado qual o professor com melhor rating. Caso, haja empate, é lhe mostrado o nome dos sujeitos em questão. Caso contrário, é lhe mostrado somente, o nome do sujeito em questão.
+9. Mostrar professor mais velho e mais novo - É analisado qual o professor mais velho e mais novo. Caso, haja empate, é lhe mostrado o nome dos sujeitos em questão. Caso contrário, é lhe mostrado somente, o nome do sujeito em questão.
 
 **GERIR ALUNOS: (Elaborado por: Guilherme Teixeira)**
 1. :exclamation:Listar alunos - Mostra-nos, de uma forma limpa, o nome e o número dos alunos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado aluno". 

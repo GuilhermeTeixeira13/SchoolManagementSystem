@@ -601,7 +601,7 @@ public class Programa {
                                     opcaodiscprof = Ler.umInt();
                                 }
                                 funcoesUteis.limpaTela();
-                            
+
                                 switch (opcaodiscalunos) {
                                     case 1:
                                         System.out.print(
@@ -1145,6 +1145,7 @@ public class Programa {
                 case 6:
                     do {
                         funcoesUteis.limpaTela();
+                        int idFreq;
                         System.out.print(
                                 "GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequência com maior Nº perguntas de um curso \n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
@@ -1158,13 +1159,15 @@ public class Programa {
                                 // Listar Frequências de determinada disciplina
 
                                 String nomediscp;
-                                int posDisc;
                                 System.out.println("1. LISTAR FREQUÊNCIAS DE DETERMINADA DISCIPLINA\n");
-                                posDisc = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
-                                ArrayList<Frequencia> listaFreqDisc = escolaInformatica.getDisciplinaEscola()
-                                        .get(posDisc).getListFreq();
-                                for (int i = 0; i < listaFreqDisc.size(); i++)
-                                    funcoesUteis.listaumaFreq(listaFreqDisc.get(i));
+                                idFreq = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
+                                if (idFreq != -1) {
+                                    int posDisc = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
+                                    ArrayList<Frequencia> listaFreqDisc = escolaInformatica.getDisciplinaEscola()
+                                            .get(posDisc).getListFreq();
+                                    for (int i = 0; i < listaFreqDisc.size(); i++)
+                                        funcoesUteis.listaumaFreq(listaFreqDisc.get(i));
+                                }
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 2:
@@ -1176,7 +1179,7 @@ public class Programa {
                                     System.out.println(
                                             "Não é possível criar Frequências pois ainda não há professores inscritos!\n");
                                 else {
-                                    int verificaExistenciaDisc = -1;
+                                    int posdisc = -1;
                                     Disciplina disciplinaDaFreq = new Disciplina();
                                     System.out.println("2. CRIAR FREQUÊNCIA\n");
 
@@ -1185,17 +1188,17 @@ public class Programa {
                                         escolaInformatica.listaDisciplinas();
 
                                         System.out.print(
-                                                "\nDisciplina para a qual pretende criar uma frequência [Nome]: ");
-                                        nomediscp = Ler.umaString();
-                                        verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp);
-                                        while (verificaExistenciaDisc == -1) {
+                                                "Disciplina para a qual pretende criar uma frequência [ID]: ");
+                                        int idDisc = Ler.umInt();
+                                        posdisc = escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
+                                        while (posdisc  == -1) {
                                             System.out
                                                     .print("Lamento, mas esta disciplina não existe! Escolha outra: ");
                                             nomediscp = Ler.umaString();
-                                            verificaExistenciaDisc = escolaInformatica.devolveposDisc(nomediscp);
+                                            posdisc  = escolaInformatica.devolveposDisc(nomediscp);
                                         }
 
-                                        disciplinaDaFreq = escolaInformatica.devolveDisciplina(nomediscp);
+                                        disciplinaDaFreq = escolaInformatica.getDisciplinaEscola().get(posdisc);
 
                                         funcoesUteis.criarfrequencia(escolaInformatica, disciplinaDaFreq);
 
@@ -1211,11 +1214,11 @@ public class Programa {
                             case 3:
                                 // Consultar uma determinada Frequência
 
-                                int idFreq;
                                 int posDisciplinaIdFreq;
                                 int posFrequencia = -1;
                                 System.out.println("3. CONSULTAR DADOS DE UM FREQUÊNCIA, DADO O SEU ID\n");
-                                posDisciplinaIdFreq = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
+                                idFreq = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
+                                posDisciplinaIdFreq = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
                                 System.out.print("\nID's das Frequências de "
                                         + escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getNomDisc()
                                         + ": "
@@ -1235,50 +1238,38 @@ public class Programa {
                                 break;
                             case 4:
                                 // Modificar dados de uma determinada Frequência
-
-                                int idFreq1;
                                 int posicaoDisc, posFrequencianaDisc;
                                 System.out.println("4. MODIFICAR DADOS DE UM FREQUÊNCIA, DADO O SEU ID\n");
-                                String disciplina;
-                                System.out.println("Disciplinas da " + escolaInformatica.getNomeEscola());
-                                for (int i = 0; i < escolaInformatica.getDisciplinaEscola().size(); i++) {
-                                    System.out.println(
-                                            i + 1 + ". " + escolaInformatica.getDisciplinaEscola().get(i).getNomDisc());
-                                }
-                                System.out.print("\nNome da Disciplina da Frequência que pretende consultar -> ");
-                                disciplina = Ler.umaString();
-                                posicaoDisc = escolaInformatica.devolvePosDisc(disciplina);
-                                while (posicaoDisc == -1) {
+                                escolaInformatica.listaDisciplinas();
+                                System.out.print("Nome da Disciplina da Frequência que pretende consultar -> ");
+                                idFreq = Ler.umInt();
+                                posicaoDisc = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
+                                if (posicaoDisc == -1) {
                                     System.out
                                             .print("Lamentamos, mas este disciplina não existe! Digite algo válido: ");
-                                    disciplina = Ler.umaString();
-                                    posicaoDisc = escolaInformatica.devolvePosDisc(disciplina);
-                                    ;
-                                }
-
-                                System.out.print("\nID's das Frequências de "
-                                        + escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc() + ": "
-                                        + funcoesUteis.listIdsDisciplina(escolaInformatica, posicaoDisc));
-                                System.out.print("\nIntroduza o ID da frequência que deseja modificar: ");
-                                idFreq1 = Ler.umInt();
-                                posFrequencianaDisc = escolaInformatica
-                                        .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq1, disciplina);
-                                while (posFrequencianaDisc == -1) {
-                                    System.out.println("Introduza um ID da Frequência VÁLIDO: ");
-                                    idFreq1 = Ler.umInt();
+                                } else {
+                                    System.out.print("\nID's das Frequências de "
+                                            + escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc()
+                                            + ": "
+                                            + funcoesUteis.listIdsDisciplina(escolaInformatica, posicaoDisc));
+                                    System.out.print("\nIntroduza o ID da frequência que deseja modificar: ");
+                                    idFreq = Ler.umInt();
                                     posFrequencianaDisc = escolaInformatica
-                                            .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq1, disciplina);
+                                            .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc());
+                                    while (posFrequencianaDisc == -1) {
+                                        System.out.println("Introduza um ID da Frequência VÁLIDO: ");
+                                        idFreq = Ler.umInt();
+                                        posFrequencianaDisc = escolaInformatica
+                                                .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc());
+                                    }
+
+                                    Frequencia modificadaFreq = funcoesUteis.modFrequencia(escolaInformatica, idFreq,
+                                            posicaoDisc,
+                                            posFrequencianaDisc);
+
+                                    escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getListFreq().set(posFrequencianaDisc, modificadaFreq);
+                                    funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
-
-                                Frequencia modificadaFreq = funcoesUteis.modFrequencia(escolaInformatica, idFreq1,
-                                        posicaoDisc,
-                                        posFrequencianaDisc);
-                                escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getListFreq()
-                                        .remove(posFrequencianaDisc);
-                                escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getListFreq()
-                                        .add(modificadaFreq);
-                                funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-
                                 break;
                             case 5:
                                 // Remover Frequência

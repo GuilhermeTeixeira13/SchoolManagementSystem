@@ -169,7 +169,6 @@ public class EscolaInformatica implements Serializable{
         }
     }
 
-
     public void addCurso(Curso c){
         this.CursosEscola.add(c);
     }
@@ -376,6 +375,19 @@ public class EscolaInformatica implements Serializable{
 
         return pos;
     }
+
+    public int devolvePosProfDadoID(int ID, ArrayList<Professor> Professores){
+        int pos=-1;
+
+        for(int i = 0; i < Professores.size(); i++){
+            if(Professores.get(i).getNumProf() == ID)
+                pos = i;
+        }
+
+        return pos;
+    }
+
+
     public int devolvePosDisc(String nomedisc){
         int pos=-1;
         for(int i = 0; i < this.getDisciplinaEscola().size(); i++){

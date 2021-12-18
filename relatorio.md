@@ -78,10 +78,10 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 
 **GERIR FREQUÊNCIAS: (Elaborado por: Tiago Ribeiro)**
 1. :exclamation:Listar Frequências de determinada disciplina - Mostra-nos, de uma forma limpa, o ID das Frequências de uma Disciplina escolhida pelo utilizador. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar uma determinada Frequência".
-2. :exclamation:Criar Frequência 
-3. :exclamation:Mostrar determinada frequência, dado o ID da mesma 
-4. :exclamation:Modificar dados sobre uma Frequência 
-5. :exclamation:Remover Frequência 
+2. :exclamation:Criar Frequência - Nesta função, é possibilitado ao utilizador criar uma Frequência, inserindo diversas informações, como o ID, a data, o número de perguntas ect. É possível também, criar diversas perguntas para a mesma. Por último, é fornecido um menu que permite ao utilizador escolher (através do número que cada uma, tem-lhe associada no menu) as disciplinas existentes na escola, que deseja associar à Frequência.
+3. :exclamation:Mostrar determinada frequência, dado o ID da mesma - O utilizador deverá colocar o ID da frequência que pretende visualizar, e então esta será listada.
+4. :exclamation:Modificar dados sobre uma Frequência - É pedido o ID da frequência e após o utilizador o inserir aparece um menu com as opções que dão para alterar na frequência escolhida.
+5. :exclamation:Remover Frequência - É pedido o ID da frequência e após o utilizador o inserir, o programa irá conhecer a posição em que este se encontra e consequentemente, eliminá-lo.
 6. Mostrar a pergunta com maior cotação, de determinada frequência 
 7. Mostrar frequências por nível de dificuldade 
 8. Mostrar frequências elaboradas por determinado professor
@@ -110,7 +110,7 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 9. Mostrar aluno mais velho e mais novo - A partir de uma função que calcula a idade, é mostrado qual ou quais (Caso tenham a mesma idade) são os utilizador(os) mais novos e mais velhos.
 10. Mostrar aluno com melhor nota numa determinada frequência - É pedido qual o ID da disciplina e da Frequência em questão e após isto, analisa-se quais foram os alunos que realizaram essa frequência. Desse lista de alunos calcula-se qual foi o que obteve a melhor nota nessa frequência.
 
-### Conteúdos lecionados que foram usados no trabalho (Gui)
+### Conteúdos lecionados que foram usados no trabalho
 
 ## **Aspetos a melhorar** (João)
 

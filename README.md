@@ -55,9 +55,9 @@
 2. :exclamation:Criar disciplina (A implementar na classe Escola) ✔️ 
 3. :exclamation:Consultar informações de determinada disciplina (A implementar na classe Escola) ✔️ 
 4. :exclamation:Modificar dados sobre uma disciplina (A implementar na classe Escola) ✔️ 
-5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️ Melhorar outputs :warning:
-6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola) ✔️
-7. Mostrar professores que lecionam determinada disciplina (A implementar na classe Escola) :warning: Testar
+5. :exclamation:Remover disciplina (A implementar na classe Escola) ✔️
+6. Mostrar qual a disciplina com a frequência mais longa (A implementar na classe Escola) ✔️ :warning: Testar
+7. Mostrar professores que lecionam determinada disciplina (A implementar na classe Escola) ✔️
 8. Mostrar alunos inscritos em determinada disciplina (A implementar na classe Escola) :warning: Testar
 
 **Frequências: (Tiago 10-12)**

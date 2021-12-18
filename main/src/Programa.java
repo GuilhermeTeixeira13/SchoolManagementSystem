@@ -1451,18 +1451,25 @@ public class Programa {
                                 // Mostrar frequências elaboradas por determinado professor
 
                                 System.out.println("8. Mostrar frequências elaboradas por um professor\n");
-                                System.out.print("\nEscolha o nome do professor: ");
-                                String nomeProf = Ler.umaString();
+                                funcoesUteis.listaProfs(escolaInformatica);
+                                System.out.print("Escolha o ID do Professor: ");
+                                int IDProf = Ler.umInt();
                                 int posProf;
-                                posProf = escolaInformatica.devolvePosProf(nomeProf,
-                                        escolaInformatica.getPessoasEscola());
+                                posProf = escolaInformatica.devolvePosProfDadoID(IDProf,
+                                        funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
                                 if (posProf == -1) {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                 } else {
-                                    ArrayList<Frequencia> listaFreqProf = escolaInformatica.getDisciplinaEscola()
-                                            .get(posProf).getListFreq();
-                                    for (int i = 0; i < listaFreqProf.size(); i++)
-                                        funcoesUteis.listaumaFreq(listaFreqProf.get(i));
+                                    // Fazer função que devolva as frequencias de um dado prof de uma lista de array de profs profs
+                                    Professor Prof = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())).get(posProf);
+                                    ArrayList<Frequencia> listaFreqProf = funcoesUteis.devolveFreqsDeUmProf(escolaInformatica, Prof, funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
+                                    System.out.println();
+                                    if(!listaFreqProf.isEmpty()){
+                                        for (int i = 0; i < listaFreqProf.size(); i++)
+                                            funcoesUteis.listaumaFreq(listaFreqProf.get(i));
+                                    }
+                                    else
+                                        System.out.println("Este professor não é responsável por nenhuma disciplina.\n");
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;

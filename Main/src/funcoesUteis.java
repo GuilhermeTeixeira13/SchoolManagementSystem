@@ -2076,4 +2076,17 @@ public class funcoesUteis implements Serializable {
             System.out.println();
         }
     }
+
+    public static ArrayList<Frequencia> devolveFreqsDeUmProf(EscolaInformatica escolaInformatica, Professor prof, ArrayList<Professor> ProfessoresEscola){
+        ArrayList<Frequencia> FrequenciasDoProf = new ArrayList<Frequencia>();
+
+        for(int i=0; i<escolaInformatica.getDisciplinaEscola().size(); i++){
+            for(int j=0; j<escolaInformatica.getDisciplinaEscola().get(i).getListFreq().size(); j++){
+                if(escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(j).getProfessorResponsavel().getNome().equals(prof.getNome()))
+                    FrequenciasDoProf.add(escolaInformatica.getDisciplinaEscola().get(i).getListFreq().get(j));
+            }
+        }
+
+        return FrequenciasDoProf;
+    }
 }

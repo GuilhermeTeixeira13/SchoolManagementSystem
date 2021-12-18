@@ -101,7 +101,7 @@
 - Variáveis estáticas para atribuir ID a Curso (Gui) :warning:
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc (Gui) :warning:
 - Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados (TODOS) :warning:
-- Verificar onde falta listar disciplinas ect antes de se pedir o ID de alguma (TODOS)
+- Verificar onde falta listar disciplinas ect antes de se pedir o ID de alguma (Gui)
 - Adicionar comentários (só o essencial) (TODOS) :warning:
 - ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO (Gui) :warning:
 - Mudar as funções que estão na main para outra classe (Gui) ✔️

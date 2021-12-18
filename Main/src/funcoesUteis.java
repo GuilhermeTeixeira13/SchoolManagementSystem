@@ -214,12 +214,12 @@ public class funcoesUteis implements Serializable {
 
     public static void listaumProf(Professor p) {
         System.out.println("Nome: " + p.getNome());
+        System.out.println("Número: " + p.getNumProf());
         System.out.println("Contactos:");
         System.out.println("  Email: " + p.getContactos().getE_mail());
         System.out.println("  Telefones: " + p.getContactos().getTelefones());
         System.out.println("Local de Origem: " + p.getLocalDeOrigem());
         System.out.println("Data de Nascimento: " + p.getDataNascimento());
-        System.out.println("Número: " + p.getNumProf());
         System.out.println("Rating: " + p.getRating());
         p.listaDisc();
         System.out.println("-----------------------------------------------------");

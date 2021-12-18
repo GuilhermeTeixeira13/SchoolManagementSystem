@@ -312,14 +312,13 @@ public class funcoesUteis implements Serializable {
                 break;
             case 3:
                 limpaTela();
-                ArrayList<Pessoa> alunosDaEscola = identAluno(escolaInformatica.getPessoasEscola());
-                for (int i = 0; i < alunosDaEscola.size(); i++)
-                    listaumAluno((Aluno) alunosDaEscola.get(i));
+                listapessoas = identAluno(pessoasEscola);
+                listaPessoasOutput(listapessoas);
                 pedeTecla();
                 break;
         }
     }
-  
+
     public static ArrayList<Perguntas> cotacaoMaior(EscolaInformatica escolaInformatica, int idFrequencia) {
         ArrayList<Perguntas> perguntaMaior = new ArrayList<>();
         ArrayList<Float> cotacaoMaior = new ArrayList<>();
@@ -337,7 +336,11 @@ public class funcoesUteis implements Serializable {
         }
         // Procura-se o valor da maior cotação através do Collections.max
         maiorValor = Collections.max(cotacaoMaior);
-        // Ao procurar a posição da ArrayList cotaçãoMaior onde o número maior está, acede-se também à posição da pergunta na lista de pergunta pois  a cada pergunta corresponde uma cotação. Ou seja, a terceira pergunta, presente na posição 2 da lista de perguntas, tem a sua cotação guardada na posição dois da cotacaoMaior. 
+        // Ao procurar a posição da ArrayList cotaçãoMaior onde o número maior está,
+        // acede-se também à posição da pergunta na lista de pergunta pois a cada
+        // pergunta corresponde uma cotação. Ou seja, a terceira pergunta, presente na
+        // posição 2 da lista de perguntas, tem a sua cotação guardada na posição dois
+        // da cotacaoMaior.
         for (int i = 0; i < cotacaoMaior.size(); i++) {
             if (cotacaoMaior.get(i) == maiorValor) {
                 posCotacaoMaior.add(i);
@@ -353,7 +356,8 @@ public class funcoesUteis implements Serializable {
                         .get(posFreq).getlistperg().get(posCotacaoMaior.get(i)));
             }
         }
-        // Ao encontrar a/as pergunta/as com maior cotação, devolve um array com estas perguntas armazenadas.
+        // Ao encontrar a/as pergunta/as com maior cotação, devolve um array com estas
+        // perguntas armazenadas.
         return perguntaMaior;
     }
 
@@ -1658,7 +1662,7 @@ public class funcoesUteis implements Serializable {
                     break;
                 case 7:
                     System.out.print("\nRating [1 - 100]: ");
-                    ratingProf= Ler.umInt();
+                    ratingProf = Ler.umInt();
                     boolean verifRating = verifRating(ratingProf);
                     while (verifRating == false) {
                         System.out.print("\nIntroduza o Rating corretamente! Rating [1 - 100] -> ");
@@ -1765,7 +1769,7 @@ public class funcoesUteis implements Serializable {
         for (int i = 0; i < professoresEscola.size(); i++) {
             arrayRatings.add(professoresEscola.get(i).getRating());
         }
-        melhorRating = Collections.max(arrayRatings);
+        melhorRating = Collections.min(arrayRatings);
         for (int i = 0; i < professoresEscola.size(); i++) {
             if (professoresEscola.get(i).getRating() == melhorRating) {
                 profMelhorRating.add(professoresEscola.get(i));

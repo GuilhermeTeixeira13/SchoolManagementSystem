@@ -36,7 +36,7 @@
 **Escola Profissional de Informática: (João 10-12)** 
 1. :exclamation:Criar Diretor (Removendo o antigo automaticamente); ((A implementar na classe Escola) ✔️
 2. :exclamation:Modificar dados sobre o diretor (A implementar na classe Escola); ✔️
-3. :exclamation:Listar Pessoas ✔️ Melhorar outputs :warning:
+3. :exclamation:Listar Pessoas ✔️
 4. :exclamation:Mudar informações acerca da escola (Nome, Número, Contactos, Localização) ✔️
 5. :exclamation:Mostrar informações da escola ✔️ Melhorar outputs :warning:
 

@@ -1849,7 +1849,7 @@ public class funcoesUteis implements Serializable {
         int verificaExistenciadisc = -1;
         do {
             if (verificaExistenciadisc == -1)
-                System.out.print("Nome da Disiplina: ");
+                System.out.print("\nNome da Disiplina: ");
             else
                 System.out.print("Esse nome já existe! Por favor, escolha outro: ");
             nomedisc = Ler.umaString();
@@ -1866,7 +1866,7 @@ public class funcoesUteis implements Serializable {
 
         do {
             if (verificaExistenciadisc == -1)
-                System.out.print("Nome da Disciplina: ");
+                System.out.print("\nNome da Disciplina: ");
             else
                 System.out.print("Esse nome já existe! Por favor, escolha outro: ");
             nomedisc = Ler.umaString();
@@ -1874,8 +1874,7 @@ public class funcoesUteis implements Serializable {
         } while (verificaExistenciadisc != -1);
 
         escolaInformatica.getDisciplinaEscola().get(posicao).setNomDisc(nomedisc);
-
-        limpaTela();
+        
         return escolaInformatica.getDisciplinaEscola().get(posicao);
     }
 

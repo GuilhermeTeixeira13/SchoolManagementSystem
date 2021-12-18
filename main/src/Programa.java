@@ -318,7 +318,7 @@ public class Programa {
                             case 1:
                                 // Listar Disciplinas
 
-                                System.out.print("1. LISTAR Disciplinas\n");
+                                System.out.println("1. LISTAR Disciplinas\n");
                                 escolaInformatica.listaDisciplinas();
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -329,41 +329,43 @@ public class Programa {
                                 escolaInformatica.getDisciplinaEscola()
                                         .add(funcoesUteis.criarDisciplina(escolaInformatica));
                                 funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-                                System.out.println("\n-->  disciplina criado com sucesso!!\n");
+                                System.out.println("\nDisciplina criada com sucesso!!\n");
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 3:
                                 // Consultar informações de determinada disciplina
 
-                                String NomeDiscConsultar;
-                                int posdisc;
+                                int posdiscCons, idDiscConsultar;
                                 System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADA DISCIPLINA\n\nEscreva o nome da disciplina que pretende consultar --> ");
-                                NomeDiscConsultar = Ler.umaString();
-                                posdisc = escolaInformatica.devolvePosDisc(NomeDiscConsultar);
-                                if (posdisc == -1)
+                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADA DISCIPLINA\n\n");
+                                escolaInformatica.listaDisciplinas();
+                                System.out.print("Escreva o ID da disciplina que pretende consultar --> ");
+                                idDiscConsultar = Ler.umInt();
+                                posdiscCons = escolaInformatica.devolvePosDisciplinaDadoID(idDiscConsultar);
+                                if (posdiscCons == -1)
                                     System.out.println("Lamentamos, mas este disciplina não existe!\n");
-                                else {
-                                    System.out.println(
-                                            escolaInformatica.getDisciplinaEscola().get(posdisc).toString() + "\n");
-                                }
+                                else 
+                                    System.out.println(escolaInformatica.getDisciplinaEscola().get(posdiscCons).toString());
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 4:
                                 // Modificar dados sobre uma determinada disciplina
 
-                                String nomediscmodificar;
-                                int posdiscmod;
+                                int posdiscmod, idDiscMod;
                                 System.out.print(
-                                        "MODIFICAR DADOS SOBRE UMA DETERMINADA DISCIPLINA\n\nEscreva o nome da disciplina que pretende modificar -->  ");
-                                nomediscmodificar = Ler.umaString();
-                                posdiscmod = escolaInformatica.devolvePosDisc(nomediscmodificar);
+                                        "MODIFICAR DADOS SOBRE UMA DETERMINADA DISCIPLINA\n\n");
+                                escolaInformatica.listaDisciplinas();
+                                System.out.print("Escreva o ID da disciplina que pretende modificar --> ");
+                                idDiscMod = Ler.umInt();
+                                posdiscmod = escolaInformatica.devolvePosDisciplinaDadoID(idDiscMod);
                                 if (posdiscmod == -1)
-                                    System.out.println("Lamentamos, mas esta disciplina não existe!\n");
+                                    System.out.println("\nLamentamos, mas esta disciplina não existe!\n");
                                 else {
                                     funcoesUteis.modificarDisciplina(escolaInformatica, posdiscmod);
                                     funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                    System.out.println("\nDisciplina modificada com sucesso!\n");
                                 }
+                                funcoesUteis.pedeTecla();
                                 break;
                             case 5:
                                 // Remover disciplina

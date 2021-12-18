@@ -42,7 +42,7 @@
   
 **Cursos: (Gui 10-12)**
 1. :exclamation:Listar cursos (A implementar na classe Escola) ✔️
-2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ :warning: Não pedir ID
+2. :exclamation:Criar curso (A implementar na classe Escola) --> Inserindo logo as disciplinas  ✔️ 
 3. :exclamation:Consultar informações de determinado curso (A implementar na classe Escola)✔️ :warning: Pedir ID
 4. :exclamation:Modificar dados sobre um curso (A implementar na classe Escola) ✔️ :warning: Pedir ID
 5. :exclamation:Remover curso (A implementar na classe Escola) ✔️

@@ -95,7 +95,7 @@ public class EscolaInformatica implements Serializable{
     // To String
     public String toString(){
         String s;
-        s = "Escola: "+NomeEscola+"// Cód.Escolaº: "+CodEscola+"// Diretor: "+DiretorEscola+"// Contactos: "+ContactoEscola+"// Localização: "+this.localizacao+"\n";
+        s = "Escola: "+NomeEscola+"\n Cód.Escola: "+CodEscola+"\n Diretor: "+DiretorEscola.getNome()+"\n Contactos: "+ContactoEscola+"\n Localização: "+this.localizacao+"\n";
         s = s + "\nCursos da "+ this.getNomeEscola()+":\n";
         if(this.getCursosEscola().isEmpty())
             s = s + "De momento, não estão registados quaisquer cursos.\n";

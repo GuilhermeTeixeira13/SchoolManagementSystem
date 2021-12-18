@@ -1381,10 +1381,11 @@ public class Programa {
                                                 System.out.print(
                                                         "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                 condicaostop = Ler.umaString();
-                                                while(!condicaostop.equals("s")&&!condicaostop.equals("S")&&!condicaostop.equals("n")&&!condicaostop.equals("N")){
+                                                while (!condicaostop.equals("s") && !condicaostop.equals("S")
+                                                        && !condicaostop.equals("n") && !condicaostop.equals("N")) {
                                                     System.out.print(
-                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
-                                                    condicaostop = Ler.umaString(); 
+                                                            "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                    condicaostop = Ler.umaString();
                                                 }
                                                 break;
                                             case 2:
@@ -1408,10 +1409,11 @@ public class Programa {
                                                 System.out.print(
                                                         "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                 condicaostop = Ler.umaString();
-                                                while(!condicaostop.equals("s")&&!condicaostop.equals("S")&&!condicaostop.equals("n")&&!condicaostop.equals("N")){
+                                                while (!condicaostop.equals("s") && !condicaostop.equals("S")
+                                                        && !condicaostop.equals("n") && !condicaostop.equals("N")) {
                                                     System.out.print(
-                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
-                                                    condicaostop = Ler.umaString(); 
+                                                            "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                    condicaostop = Ler.umaString();
                                                 }
                                                 break;
                                             case 3:
@@ -1435,10 +1437,11 @@ public class Programa {
                                                 System.out.print(
                                                         "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                 condicaostop = Ler.umaString();
-                                                while(!condicaostop.equals("s")&&!condicaostop.equals("S")&&!condicaostop.equals("n")&&!condicaostop.equals("N")){
+                                                while (!condicaostop.equals("s") && !condicaostop.equals("S")
+                                                        && !condicaostop.equals("n") && !condicaostop.equals("N")) {
                                                     System.out.print(
-                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
-                                                    condicaostop = Ler.umaString(); 
+                                                            "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                    condicaostop = Ler.umaString();
                                                 }
                                                 break;
                                         }
@@ -1456,20 +1459,25 @@ public class Programa {
                                 int IDProf = Ler.umInt();
                                 int posProf;
                                 posProf = escolaInformatica.devolvePosProfDadoID(IDProf,
-                                        funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
+                                        funcoesUteis.convPessoaProf(
+                                                funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
                                 if (posProf == -1) {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                 } else {
-                                    // Fazer função que devolva as frequencias de um dado prof de uma lista de array de profs profs
-                                    Professor Prof = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())).get(posProf);
-                                    ArrayList<Frequencia> listaFreqProf = funcoesUteis.devolveFreqsDeUmProf(escolaInformatica, Prof, funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
+                                    Professor Prof = funcoesUteis
+                                            .convPessoaProf(
+                                                    funcoesUteis.identProf(escolaInformatica.getPessoasEscola()))
+                                            .get(posProf);
+                                    ArrayList<Frequencia> listaFreqProf = funcoesUteis
+                                            .devolveFreqsDeUmProf(escolaInformatica, Prof, funcoesUteis.convPessoaProf(
+                                                    funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
                                     System.out.println();
-                                    if(!listaFreqProf.isEmpty()){
+                                    if (!listaFreqProf.isEmpty()) {
                                         for (int i = 0; i < listaFreqProf.size(); i++)
                                             funcoesUteis.listaumaFreq(listaFreqProf.get(i));
-                                    }
-                                    else
-                                        System.out.println("Este professor não é responsável por nenhuma disciplina.\n");
+                                    } else
+                                        System.out
+                                                .println("Este professor não é responsável por nenhuma disciplina.\n");
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -1480,22 +1488,24 @@ public class Programa {
                                 System.out.println("9. Mostrar frequência com maior Nº perguntas de um curso\n");
                                 ;
                                 posCursoSel = funcoesUteis.menuCurso(escolaInformatica);
-                                ArrayList<Frequencia> freqComMaisPerg = funcoesUteis.freqcommaisPerguntasCurso(
-                                        escolaInformatica,
-                                        posCursoSel);
-                                if (freqComMaisPerg.size() == 0) {
-                                    System.out.println("Nenhuma disciplina do curso tem frequências!");
-                                }
-                                if (freqComMaisPerg.size() == 1) {
-                                    System.out.println("Frequência com maior Nº Perguntas ("
-                                            + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
-                                    funcoesUteis.listaumaFreq(freqComMaisPerg.get(0));
-                                }
-                                if (freqComMaisPerg.size() > 1) {
-                                    System.out.println("EMPATE NO Nº TOTAL DE PERGUNTAS ("
-                                            + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
-                                    for (int i = 0; i < freqComMaisPerg.size(); i++) {
-                                        funcoesUteis.listaumaFreq(freqComMaisPerg.get(i));
+                                if (posCursoSel != -1) {
+                                    ArrayList<Frequencia> freqComMaisPerg = funcoesUteis.freqcommaisPerguntasCurso(
+                                            escolaInformatica,
+                                            posCursoSel);
+                                    if (freqComMaisPerg.size() == 0) {
+                                        System.out.println("\nNenhuma disciplina do curso tem frequências!");
+                                    }
+                                    if (freqComMaisPerg.size() == 1) {
+                                        System.out.println("\nFrequência com maior Nº Perguntas ("
+                                                + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
+                                        funcoesUteis.listaumaFreq(freqComMaisPerg.get(0));
+                                    }
+                                    if (freqComMaisPerg.size() > 1) {
+                                        System.out.println("\nEMPATE NO Nº TOTAL DE PERGUNTAS ("
+                                                + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
+                                        for (int i = 0; i < freqComMaisPerg.size(); i++) {
+                                            funcoesUteis.listaumaFreq(freqComMaisPerg.get(i));
+                                        }
                                     }
                                 }
                                 funcoesUteis.pedeTecla();

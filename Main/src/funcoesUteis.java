@@ -1457,19 +1457,16 @@ public class funcoesUteis implements Serializable {
     }
 
     public static int menuCurso(EscolaInformatica escolaInformatica) {
-        int opcaoCurso;
-        System.out.println("Cursos da " + escolaInformatica.getNomeEscola());
-        for (int i = 0; i < escolaInformatica.getCursosEscola().size(); i++) {
-            System.out.println(i + 1 + ". " + escolaInformatica.getCursosEscola().get(i).getNomeCurso());
-        }
-        System.out.print("\nNúmero do Curso que pretende escolher: -> ");
-        opcaoCurso = Ler.umInt();
-        while (opcaoCurso < 0 || opcaoCurso > escolaInformatica.getCursosEscola().size()) {
-            System.out.print("Digite uma opção VÁLIDA -> ");
-            opcaoCurso = Ler.umInt();
-        }
-        return opcaoCurso - 1;
+        int idCurso, posCurso;
+        escolaInformatica.listaCursos();
+        System.out.print("ID do Curso que pretende escolher: -> ");
+        idCurso = Ler.umInt();
+        posCurso = escolaInformatica.devolvePosCursoDadoID(idCurso);
 
+        if(posCurso == -1)
+            System.out.println("\nLamentamos, mas este curso não existe.\n");
+
+        return posCurso;
     }
 
     public static int menuEscolhaNivelAdequadaDisciplina(EscolaInformatica escolaInformatica, int posDisciplinaFreq) {

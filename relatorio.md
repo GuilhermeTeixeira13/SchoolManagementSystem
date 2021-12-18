@@ -6,6 +6,8 @@
 
 ## **Introdução** (Tiago)
 ### ORGANIZAÇÃO E PLANO DE ESTRUTURAÇÃO DO TRABALHO
+Desenvolvido por João Martins, Guilherme Teixeira, Cláudio Redondo e Tiago Ribeiro, este trabalho visa a elaboração de uma aplicação de uma escola profissional de informática, dando para criar e gerir várias funções da mesma.
+Para que o programa fosse desenvolvido no tempo estabelecido, foi criado um repositório no github para facilitar e agilizar o processo e mantendo sempre o trabalho organizado e atualizado para todos os elementos. Em seguida foram atribuídas tarefas a todos os elementos dos grupos e após todos concordarem com as mesmas foram estabelecidos prazos para cada uma.
 
 ## **Desenvolvimento**
 ### Interação Utilizador - Programa (Gui)
@@ -53,9 +55,8 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 5. :exclamation: É mostrado ao utilizador, as informações pertencentes à escola, cursos, disciplinas, e nome de todas as pessoas associadas a esta entidade.
 
 **GERIR CURSOS: (Elaborado por: Guilherme Teixeira)**  
-  
 Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar cursos com o mesmo nome. Ao remover são dadas 3 opções em que duas delas é possível remover um curso pelo nome (para usarmos o conteúdo das aulas práticas e porque o programa permite que o façamos)
-  
+
 1. :exclamation:Listar cursos - Mostra-nos, de uma forma limpa, o nome e ID dos cursos existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado curso".
 2. :exclamation:Criar curso - Cria um curso a partir dos dados pedidos utilizador. As disciplinas que fazem parte do curso são inseridas na opção 7 (para não ficar confuso). Não é pedido o código do curso pois este é atribuido de forma automática.
 3. :exclamation:Consultar informações de determinado curso - Dado o ID de um determinado curso, são mostradas as informações relevantes acerca do mesmo.
@@ -65,10 +66,7 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 7. Inserir disciplina de determinado curso - De entre as disciplinas disponíveis na escola, são pedidas (até o utilizador mandar parar) aquelas que se pretende adicionar ao curso escolhido pelo utilizador (pelo ID de curso). 
 8. Remover disciplina de determinado curso - De entre as disciplinas disponíveis na escola, são pedidas (até o utilizador mandar parar) aquelas que se pretende remover do curso escolhido pelo utilizador (pelo ID de curso). 
 
-**GERIR DISCIPLINAS: (Elaborado por: Cláudio Redondo)**  
-  
-Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar disciplinas com o mesmo nome. Nas opções 5,7 e 8 são dadas 3 opções em que duas delas é possível aplicar operações em Disciplinas pelo nome (para usarmos o conteúdo das aulas práticas e porque o programa permite que o façamos) e na outra pelo ID.
-  
+**GERIR DISCIPLINAS: (Elaborado por: Cláudio Redondo)**
 1. :exclamation:Listar disciplinas - Mostra-nos, de uma forma limpa, o nome e ID das disciplinas existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinada disciplina".
 2. :exclamation:Criar disciplina - 
 3. :exclamation:Consultar informações de determinada disciplina 

@@ -720,7 +720,6 @@ public class Programa {
                                 // Criar Alunos
 
                                 Aluno novoAluno = funcoesUteis.criarAluno(escolaInformatica);
-                                escolaInformatica.insereAlunoNasSuasDisciplinas(novoAluno);
                                 escolaInformatica.getPessoasEscola().add(novoAluno);
                                 funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 funcoesUteis.pedeTecla();

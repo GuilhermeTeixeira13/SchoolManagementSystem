@@ -69,10 +69,10 @@
 6. Mostrar a pergunta com maior cotação, de determinada frequência (A implementar na classe Frequência) ✔️
 7. Mostrar frequências por nível de dificuldade (A implementar na classe Frequência) ✔️
 8. Mostrar frequências elaboradas por determinado professor (A implementar na classe Frequência) ✔️ 
-9. Mostrar frequências de determinado curso (A implementar na classe Frequência) ✔️ !!!
+9. Mostrar frequências de determinado curso (A implementar na classe Frequência) ✔️ 
 
 **Professores: (João 10-12)**
-1. :exclamation:Listar professores (A implementar na classe Professor) ✔️
+1. :exclamation:Listar professores (A implementar na classe Professor) ✔️ !!!
 2. :exclamation:Criar professor (A implementar na classe Professor) ✔️ :warning: Não pedir ID
 3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor) ✔️ :warning: Pedir ID em vez de nome
 4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor) ✔️ :warning: Pedir ID em vez de nome

@@ -48,7 +48,7 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 **GERIR ESCOLA: (Elaborado por: João Baltazar)** 
 1. :exclamation:Criar Diretor - Funcionalidade que, depois de pedir os dados que formam o diretor (Pessoa+Diretor), cria um novo, removendo automaticamente o que se encontrava no seu lugar, ou seja, não necessitamos de estar a remover um diretor para depois podermos criar outro. Esse processo é-nos facilitado já que só existe um diretor na escola.
 2. :exclamation:Modificar dados sobre o diretor - Nesta função, é apresentado um submenu que permite ao utlizador escolher que informações pretende mudar sobre o diretor. Não é dado nada como parâmetro visto que, só existe um diretor na escola.
-3. :exclamation:Listar Pessoas - Mostra as informações pessoais do diretor, dos professores e dos alunos que pertencem à escola.
+3. :exclamation:Listar Pessoas - Mostra as informações pessoais do diretor, dos professores e dos alunos que pertencem à escola. Caso se pretenda saber informações mais específicas, devemos aceder a "Consultar Informações de um Aluno/Professor"
 4. :exclamation:Mudar informações acerca da escola - É mostrado ao utilizador um submenu, que permite mudar as informações relevantes da escola.
 5. :exclamation: É mostrado ao utilizador, as informações pertencentes à escola, cursos, disciplinas, e nome de todas as pessoas associadas a esta entidade.
 

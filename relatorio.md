@@ -82,10 +82,10 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 3. :exclamation:Mostrar determinada frequência, dado o ID da mesma - O utilizador deverá colocar o ID da frequência que pretende visualizar, e então esta será listada.
 4. :exclamation:Modificar dados sobre uma Frequência - É pedido o ID da frequência e após o utilizador o inserir aparece um menu com as opções que dão para alterar na frequência escolhida.
 5. :exclamation:Remover Frequência - É pedido o ID da frequência e após o utilizador o inserir, o programa irá conhecer a posição em que este se encontra e consequentemente, eliminá-lo.
-6. Mostrar a pergunta com maior cotação, de determinada frequência 
-7. Mostrar frequências por nível de dificuldade 
-8. Mostrar frequências elaboradas por determinado professor
-9. Mostrar frequências de determinado curso 
+6. Mostrar a pergunta com maior cotação, de determinada frequência - É pedido o ID da frequência e após o utilizador o inserir, o programa irá percorrer o array de cotações e escolherá a mais elevada e mostrará essa pergunta.
+7. Mostrar frequências por nível de dificuldade - O programa irá pedir ao utilizador para escolher a disciplina e em seguida perguntará o nível de dificuldade de frequências, podendo o utilizador escolher vários níveis de dificuldade em simultâneo.
+8. Mostrar frequências elaboradas por determinado professor - O programa irá pedir ao utilizador para escolher o professor e em seguida percorrerá o array de professores responsáveis das frequências e mostrará todas as frequências feitas pelo mesmo.
+9. Mostrar frequência com maior número perguntas de um curso - O programa irá percorrer o array de todas as frequências e encontrará a que tiver mais perguntas e mostrará essa frequência.
 
 **GERIR PROFESSORES: (Elaborado por: João Baltazar)**
 1. :exclamation:Listar professores - Mostra-nos, de uma forma limpa, o nome e o número dos professores existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado professor".

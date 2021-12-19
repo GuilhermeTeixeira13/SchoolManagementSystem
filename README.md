@@ -88,8 +88,8 @@
 3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ 
 4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️ 
 5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️ 
-6. Atribuir notas(A implementar na classe Aluno) ✔️ !!!
-7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️ (Talvez barrar inscrição caso o aluno não tenha uma média superior à média do curso) ✔️ :warning: Pedir ID do Curso
+6. Atribuir notas(A implementar na classe Aluno) ✔️ 
+7. Inscrever aluno em curso --> Inscrevendo-o automaticamente nas disciplinas do curso ✔️
 8. Mostrar alunos deslocados (A implementar na classe Aluno) ✔️
 9. Mostrar aluno mais velho e mais novo (A implementar da Classe Aluno, depois de elaborar função q calcule a idade) ✔️
 10. Mostrar aluno com melhor nota numa determinada frequência (A implementar na classe Aluno) ✔️
@@ -99,10 +99,9 @@
 - Não permitir que se insiram email sem @ e sem . (João) ✔️
 - Definir um limite no rating do professor (João)  ✔️
 - Variáveis estáticas para atribuir ID a Curso (Gui) ✔️
-- Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc (Gui) :warning:
+- Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc (Gui) ✔️
 - Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados (TODOS) :warning:
-- Verificar onde falta listar disciplinas ect antes de se pedir o ID de alguma (Gui)
-- Adicionar comentários (só o essencial) (TODOS) :warning:
+- Verificar onde falta listar disciplinas ect antes de se pedir o ID de alguma ✔️
 - ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO (Gui) :warning:
 - Mudar as funções que estão na main para outra classe (Gui) ✔️
 

@@ -1823,11 +1823,12 @@ public class funcoesUteis implements Serializable {
 
     public static EscolaInformatica inscreverAlunoEmCurso(EscolaInformatica escolaInformatica,
             String nomeAlunoInscrever, Aluno alunoinscrever) {
+        System.out.println();
         escolaInformatica.listaCursos();
         System.out.print(
-                "Dos cursos disponíveis, escolha aquele em que se quer inscrever o aluno " + nomeAlunoInscrever + ": ");
-        String CursoInscrever = Ler.umaString();
-        int posCurso = escolaInformatica.devolvePosCurso(CursoInscrever);
+                "Dos cursos disponíveis, escolha o ID daquele em que se quer inscrever o aluno " + nomeAlunoInscrever + ": ");
+        int idCurso = Ler.umInt();
+        int posCurso = escolaInformatica.devolvePosCursoDadoID(idCurso);
         if (posCurso == -1) {
             System.out.println("Lamentamos, mas este Curso não existe!\n");
         } else {

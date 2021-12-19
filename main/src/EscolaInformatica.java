@@ -182,6 +182,19 @@ public class EscolaInformatica implements Serializable{
         }
     }
 
+    public void listaAlunos(){
+        ArrayList<Aluno> alunos = funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(this.getPessoasEscola()));
+
+        if(alunos.isEmpty())
+            System.out.println("De momento, não estão registadas quaisquer Alunos.\n");
+        else{
+            System.out.println("Alunos da "+ this.getNomeEscola()+":\n");
+            for(int i = 0; i < alunos.size(); i++)
+                System.out.println(". ID:" + alunos.get(i).getNumAluno() + " - " + alunos.get(i).getNome());
+            System.out.println();
+        }
+    }
+
     public void addCurso(Curso c){
         this.CursosEscola.add(c);
     }

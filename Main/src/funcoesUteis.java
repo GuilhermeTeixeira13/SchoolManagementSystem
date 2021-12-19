@@ -1042,7 +1042,7 @@ public class funcoesUteis implements Serializable {
             double media;
             ArrayList<Telefone> telefones = new ArrayList<Telefone>();
             Contactos contactosAluno = new Contactos();
-
+            limpaTela();
             System.out.print("\nO que pretende modificar no aluno " + novoAluno.getNome()
                     + "?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Média de Entrada\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
             opcaoUtilizador = Ler.umInt();

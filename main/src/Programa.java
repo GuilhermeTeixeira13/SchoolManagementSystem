@@ -924,14 +924,17 @@ public class Programa {
                             opcaoUtilizador = Ler.umInt();
                         }
                         funcoesUteis.limpaTela();
-                        ArrayList<Pessoa> alunosDaEscola = funcoesUteis
-                                .identAluno(escolaInformatica.getPessoasEscola());
+                        ArrayList<Aluno> alunosDaEscola = funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(escolaInformatica.getPessoasEscola()));
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Alunos
 
-                                for (int i = 0; i < alunosDaEscola.size(); i++)
-                                    funcoesUteis.listaumAluno((Aluno) alunosDaEscola.get(i));
+                                if(!alunosDaEscola.isEmpty()){
+                                        for (int i = 0; i < alunosDaEscola.size(); i++)
+                                                funcoesUteis.listaumAluno(alunosDaEscola.get(i));
+                                }
+                                else
+                                        System.out.println("\nAinda não existem alunos inscritos.\n");
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 2:
@@ -945,18 +948,21 @@ public class Programa {
                             case 3:
                                 // Consultar informações de determinado aluno
 
-                                String nomeAlunoConsultar;
-                                int posAluno;
-                                alunosDaEscola = funcoesUteis.identAluno(escolaInformatica.getPessoasEscola());
+                                int posAluno, idAluno;
+                                
                                 System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\nEscreva o nome do aluno que pretende consultar -->  ");
-                                nomeAlunoConsultar = Ler.umaString();
-                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoConsultar, alunosDaEscola);
-                                if (posAluno == -1)
-                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
-                                else {
-                                    System.out.println();
-                                    funcoesUteis.listaumAluno((Aluno) alunosDaEscola.get(posAluno));
+                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\n");
+                                escolaInformatica.listaAlunos();
+                                if(!alunosDaEscola.isEmpty()){
+                                        System.out.print("Escreva o nome do aluno que pretende consultar -->  ");
+                                        idAluno = Ler.umInt();
+                                        posAluno = escolaInformatica.devolvePosAlunoDadoID(idAluno, alunosDaEscola);
+                                        if (posAluno == -1)
+                                        System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                        else {
+                                        System.out.println();
+                                        funcoesUteis.listaumAluno((Aluno) alunosDaEscola.get(posAluno));
+                                        }
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -964,32 +970,38 @@ public class Programa {
                                 // Modificar dados sobre uma determinado aluno
 
                                 System.out.print(
-                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\nEscreva o nome do aluno que pretende modificar -->  ");
-                                String nomeAlunoModificar = Ler.umaString();
-                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoModificar,
-                                        escolaInformatica.getPessoasEscola());
-                                if (posAluno == -1) {
-                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
-                                    funcoesUteis.pedeTecla();
-                                } else {
-                                    funcoesUteis.modificarAluno(escolaInformatica, posAluno);
-                                    funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\n");
+                                escolaInformatica.listaAlunos();
+                                if(!alunosDaEscola.isEmpty()){
+                                        System.out.print("Escreva o nome do aluno que pretende modificar -->  ");
+                                        idAluno = Ler.umInt();
+                                        posAluno = escolaInformatica.devolvePosAlunoDadoID(idAluno, alunosDaEscola);
+                                        if (posAluno == -1) {
+                                        System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                        funcoesUteis.pedeTecla();
+                                        } else {
+                                        funcoesUteis.modificarAluno(escolaInformatica, posAluno);
+                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                        }
                                 }
                                 break;
                             case 5:
                                 // Remover aluno
 
                                 System.out.print(
-                                        "5. REMOVER ALUNO\n\nEscreva o nome do aluno que pretende remover -->  ");
-                                String nomeAlunoRemover = Ler.umaString();
-                                posAluno = escolaInformatica.devolvePosAluno(nomeAlunoRemover,
-                                        escolaInformatica.getPessoasEscola());
-                                if (posAluno == -1) {
-                                    System.out.println("Lamentamos, mas este aluno não existe!\n");
-                                } else {
-                                    escolaInformatica.getPessoasEscola().remove(posAluno);
-                                    System.out.println("Aluno " + nomeAlunoRemover + " removido com sucesso.\n");
-                                    funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                        "5. REMOVER ALUNO\n\n");
+                                escolaInformatica.listaAlunos();
+                                if(!alunosDaEscola.isEmpty()){
+                                        System.out.print("Escreva o nome do aluno que pretende remover -->  ");
+                                        idAluno = Ler.umInt();
+                                        posAluno = escolaInformatica.devolvePosAlunoDadoID(idAluno, alunosDaEscola);
+                                        if (posAluno == -1) {
+                                        System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                        } else {
+                                        escolaInformatica.getPessoasEscola().remove(posAluno);
+                                        System.out.println("\nAluno " + alunosDaEscola.get(posAluno).getNome() + " removido com sucesso.\n");
+                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                        }
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -1006,8 +1018,7 @@ public class Programa {
                                 System.out.print("\nEscolha o ID do aluno a que deseja atribuir notas --> ");
                                 int numAlunoAtribuirNotas = Ler.umInt();
 
-                                posAluno = escolaInformatica.devolvePosAlunoDadoID(numAlunoAtribuirNotas,
-                                        funcoesUteis.convPessoaAluno(alunosDaEscola));
+                                posAluno = escolaInformatica.devolvePosAlunoDadoID(numAlunoAtribuirNotas, alunosDaEscola);
                                 if (posAluno == -1) {
                                     System.out.println("Lamentamos, mas este aluno não existe!\n");
                                     funcoesUteis.pedeTecla();

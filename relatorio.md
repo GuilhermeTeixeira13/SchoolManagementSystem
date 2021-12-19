@@ -68,7 +68,7 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 
 **GERIR DISCIPLINAS: (Elaborado por: Cláudio Redondo)**
 1. :exclamation:Listar disciplinas - Mostra-nos, de uma forma limpa, o nome e ID das disciplinas existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinada disciplina".
-2. :exclamation:Criar disciplina - 
+2. :exclamation:Criar disciplina 
 3. :exclamation:Consultar informações de determinada disciplina 
 4. :exclamation:Modificar dados sobre uma disciplina 
 5. :exclamation:Remover disciplina (A implementar na classe Escola) 

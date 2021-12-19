@@ -719,10 +719,8 @@ public class Programa {
                                 // Listar Professores
                                 profsDaEscola = funcoesUteis.identProf(escolaInformatica.getPessoasEscola());
 
-                                if(!profsDaEscola.isEmpty()){
-                                        for (int i = 0; i < profsDaEscola.size(); i++) 
-                                                funcoesUteis.listaumProf((Professor) profsDaEscola.get(i));
-                                }
+                                if(!profsDaEscola.isEmpty())
+                                        escolaInformatica.listaProfessores();     
                                 else
                                         System.out.println("\nAinda não existem professores inscritos.\n");
                                 funcoesUteis.pedeTecla();

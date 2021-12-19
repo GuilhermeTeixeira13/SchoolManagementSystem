@@ -72,18 +72,18 @@
 9. Mostrar frequências de determinado curso (A implementar na classe Frequência) ✔️ 
 
 **Professores: (João 10-12)**
-1. :exclamation:Listar professores (A implementar na classe Professor) ✔️ !!!
-2. :exclamation:Criar professor (A implementar na classe Professor) ✔️ :warning: Não pedir ID
-3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor) ✔️ :warning: Pedir ID em vez de nome
-4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor) ✔️ :warning: Pedir ID em vez de nome
-5. :exclamation:Remover professor (A implementar na classe Professor) ✔️ :warning: Remover por ID
+1. :exclamation:Listar professores (A implementar na classe Professor) ✔️ 
+2. :exclamation:Criar professor (A implementar na classe Professor) ✔️ 
+3. :exclamation:Consultar informações de determinado professor (A implementar na classe Professor) ✔️ 
+4. :exclamation:Modificar dados sobre um determinado professor (A implementar na classe Professor) ✔️ 
+5. :exclamation:Remover professor (A implementar na classe Professor) ✔️ 
 6. Mostrar professor que lecionou mais disciplinas (A implementar na classe Professor)✔️
 7. Mostrar professores deslocados (A implementar na classe Professor) ✔️
 8. Mostrar qual é o professore com melhor rating (A implementar na classe Professor) ✔️
 9. Mostrar professor mais velho e mais novo (A implementar na classe Professor, depois de elaborar função q calcule a idade) ✔️
 
 **Alunos: (Gui 10-12)**
-1. :exclamation:Listar alunos (A implementar na classe Aluno) ✔️ (Verificar outputs)
+1. :exclamation:Listar alunos (A implementar na classe Aluno) ✔️ (Verificar outputs) !!
 2. :exclamation:Criar aluno (A implementar na classe Aluno) ✔️ :warning: Não pedir ID
 3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ (Verificar outputs) :warning: Pedir ID em vez de nome
 4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️ :warning: Pedir ID em vez de nome

@@ -716,12 +716,15 @@ public class Programa {
                         ;
                         switch (opcaoUtilizador) {
                             case 1:
-                                profsDaEscola = funcoesUteis.identProf(escolaInformatica.getPessoasEscola());
                                 // Listar Professores
+                                profsDaEscola = funcoesUteis.identProf(escolaInformatica.getPessoasEscola());
 
-                                for (int i = 0; i < profsDaEscola.size(); i++) {
-                                    funcoesUteis.listaumProf((Professor) profsDaEscola.get(i));
+                                if(!profsDaEscola.isEmpty()){
+                                        for (int i = 0; i < profsDaEscola.size(); i++) 
+                                                funcoesUteis.listaumProf((Professor) profsDaEscola.get(i));
                                 }
+                                else
+                                        System.out.println("\nAinda não existem professores inscritos.\n");
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 2:
@@ -736,18 +739,19 @@ public class Programa {
                             case 3:
                                 // Consultar informações de determinado professor
 
-                                String nomeProfConsultar;
-                                int posProf;
-                                profsDaEscola = funcoesUteis.identProf(escolaInformatica.getPessoasEscola());
+                                int posProf, idProf;
+                                ArrayList<Professor> profs = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
                                 System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\nEscreva o nome do professor que pretende consultar -->  ");
-                                nomeProfConsultar = Ler.umaString();
-                                posProf = escolaInformatica.devolvePosProf(nomeProfConsultar, profsDaEscola);
+                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\n");
+                                escolaInformatica.listaProfessores();
+                                System.out.print("Escreva o ID do professor que pretende consultar -->  ");
+                                idProf = Ler.umInt();
+                                posProf = escolaInformatica.devolvePosProfDadoID(idProf, profs);
                                 if (posProf == -1)
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                 else {
                                     System.out.println();
-                                    funcoesUteis.listaumProf((Professor) profsDaEscola.get(posProf));
+                                    funcoesUteis.listaumProf(profs.get(posProf));
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -756,14 +760,16 @@ public class Programa {
 
                                 Professor professorModificado;
                                 System.out.print(
-                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\nEscreva o nome do professor que pretende modificar -->  ");
-                                String nomeProfModificar = Ler.umaString();
-                                posProf = escolaInformatica.devolvePosProf(nomeProfModificar,
-                                        escolaInformatica.getPessoasEscola());
+                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\n");
+                                escolaInformatica.listaProfessores();
+                                System.out.print("Escreva o ID do professor que pretende modificar -->  ");
+                                idProf = Ler.umInt();
+                                posProf = escolaInformatica.devolvePosProfDadoID(idProf, funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
                                 if (posProf == -1) {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                     funcoesUteis.pedeTecla();
                                 } else {
+                                        funcoesUteis.limpaTela();
                                     professorModificado = funcoesUteis.modificarProfessor(escolaInformatica, posProf);
                                     escolaInformatica.removeProfNasSuasDisciplinas(professorModificado);
                                     escolaInformatica.insereProfNasSuasDisciplinas(professorModificado);
@@ -772,17 +778,18 @@ public class Programa {
                                 break;
                             case 5:
                                 // Remover professor
-
+                                profsDaEscola = funcoesUteis.identProf(escolaInformatica.getPessoasEscola());
                                 System.out.print(
-                                        "5. REMOVER PROFESSOR\n\nEscreva o nome do professor que pretende remover -->  ");
-                                String nomeProfRemover = Ler.umaString();
-                                posProf = escolaInformatica.devolvePosProf(nomeProfRemover,
-                                        escolaInformatica.getPessoasEscola());
+                                        "5. REMOVER PROFESSOR\n\n");
+                                escolaInformatica.listaProfessores();
+                                System.out.print("Escreva o ID do professor que pretende remover -->  ");
+                                idProf = Ler.umInt();
+                                posProf = escolaInformatica.devolvePosProfDadoID(idProf, funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
                                 if (posProf == -1) {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                 } else {
                                     escolaInformatica.getPessoasEscola().remove(posProf);
-                                    System.out.println("Professor " + nomeProfRemover + " removido com sucesso.\n");
+                                    System.out.println("Professor " + profsDaEscola.get(posProf).getNome() + " removido com sucesso.\n");
                                     funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
                                 funcoesUteis.pedeTecla();
@@ -800,7 +807,11 @@ public class Programa {
                                     System.out.println("PROFESSORES COM MAIS DISCIPLINAS LECIONADAS ("
                                             + ArrayResultadosProf.get(0).contDiscProf() + "):\n");
                                     System.out.println(" . " + ArrayResultadosProf.get(0).getNome());
-                                } else {
+                                } 
+                                else if(ArrayResultadosProf.isEmpty()){
+                                        System.out.println("PROFESSOR COM MAIS DISCIPLINAS LECIONADAS:\n\nAinda não há professores inscritos.");
+                                }
+                                else {
                                     System.out.println("EMPATE! " + professoresEscolaDisc.get(0).contDiscProf()
                                             + " DISCIPLINAS LECIONADAS ENTRE OS SEGUINTES PROFESSORES:\n");
                                     for (int i = 0; i < ArrayResultadosProf.size(); i++)
@@ -815,10 +826,15 @@ public class Programa {
                                 ArrayList<Pessoa> pessoasDeslocadas = funcoesUteis.pessoasDeslocadas(escolaInformatica);
                                 ArrayList<Professor> professoresEscolaDeslocados = funcoesUteis.convPessoaProf(
                                         funcoesUteis.identProf(pessoasDeslocadas));
-                                System.out.println("PROFESSORES DESLOCADOS\n");
-                                for (int i = 0; i < professoresEscolaDeslocados.size(); i++)
-                                    System.out.println(" . " + professoresEscolaDeslocados.get(i).getNome() + " ("
-                                            + professoresEscolaDeslocados.get(i).getLocalDeOrigem() + ")");
+                                System.out.println("PROFESSORES DESLOCADOS:\n");
+
+                                if(!professoresEscolaDeslocados.isEmpty()){
+                                        for (int i = 0; i < professoresEscolaDeslocados.size(); i++)
+                                        System.out.println(" . " + professoresEscolaDeslocados.get(i).getNome() + " ("
+                                                + professoresEscolaDeslocados.get(i).getLocalDeOrigem() + ")");
+                                }
+                                else
+                                        System.out.println("Ainda não há professores inscritos.");
                                 System.out.println();
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -834,7 +850,11 @@ public class Programa {
                                     System.out.println("PROFESSOR COM MELHOR RATING ("
                                             + profscomMelhorRating.get(0).getRating() + "):\n");
                                     System.out.println(" . " + profscomMelhorRating.get(0).getNome());
-                                } else {
+                                }
+                                else if(profscomMelhorRating.isEmpty()){
+                                        System.out.println("PROFESSOR COM O MELHOR RATING:\n\nAinda não há professores inscritos.");
+                                }
+                                else {
                                     System.out.println(
                                             "EMPATE NO MELHOR RATING (" + professoresEscolaDisc.get(0).getRating()
                                                     + ") ENTRE OS SEGUINTES PROFESSORES:\n");
@@ -859,7 +879,10 @@ public class Programa {
                                     System.out.println("PROFESSOR MAIS NOVO (" + profMaisNovos.get(0).calculaIdade()
                                             + " ANOS):\n");
                                     System.out.println(" . " + profMaisNovos.get(0).getNome());
-                                } else {
+                                }
+                                else if(profMaisNovos.isEmpty())
+                                        System.out.println("PROFESSOR MAIS NOVO:\n\nAinda não há professores inscritos.");
+                                else {
                                     System.out.println("EMPATE NOS PROFESSORES MAIS NOVOS ("
                                             + profMaisNovos.get(0).calculaIdade() + " ANOS):\n");
                                     for (int i = 0; i < profMaisNovos.size(); i++) {
@@ -872,7 +895,10 @@ public class Programa {
                                     System.out.println("PROFESSOR MAIS VELHO (" + profMaisVelhos.get(0).calculaIdade()
                                             + " ANOS):\n");
                                     System.out.println(" . " + profMaisVelhos.get(0).getNome());
-                                } else {
+                                }
+                                else if(profMaisVelhos.isEmpty())
+                                        System.out.println("PROFESSOR MAIS VELHO:\n\nAinda não há professores inscritos.");
+                                else {
                                     System.out.println("EMPATE NOS PROFESSORES MAIS VELHOS ("
                                             + profMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
                                     for (int i = 0; i < profMaisVelhos.size(); i++) {

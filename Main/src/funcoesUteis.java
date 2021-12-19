@@ -553,7 +553,7 @@ public class funcoesUteis implements Serializable {
         }
         if (cont == escolaInformatica.getDisciplinaEscola().size() && !opcaoContactoMenu.equals("n")
                 && !opcaoContactoMenu.equals("N")) {
-            System.out.println("Não é possível adicionar mais disciplinas.");
+            System.out.println("\nNão é possível adicionar mais disciplinas.\n");
         }
         professorC.setDiscLec(disciplinasP);
 
@@ -1567,7 +1567,7 @@ public class funcoesUteis implements Serializable {
         int opcaoUtilizador;
         Professor novoProfessor = (Professor) escolaInformatica.getPessoasEscola().get(posicao);
         do {
-            int verificaExistenciaAluno = -1, numProf, ratingProf, escolhaDisc;
+            int verificaExistenciaAluno = -1, ratingProf, escolhaDisc;
             String nomePessoa, tipoContacto, localDeOrigem, email;
             String opcaoContactoMenu = "";
             long numeroContacto;
@@ -1576,10 +1576,10 @@ public class funcoesUteis implements Serializable {
             ArrayList<Disciplina> disciplinasP = novoProfessor.getDiscLec();
 
             System.out.print("\nO que pretende modificar no professor " + novoProfessor.getNome()
-                    + "?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Número de Professor\n 7. Rating\n 8. Disciplinas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
+                    + "?\n\n 1. Nome\n 2. Local de Origem\n 3. Datas de nascimento\n 4. Telefones\n 5. Email\n 6. Rating\n 7. Disciplinas\n\n 0. Nada, desejo sair\n\n Escolha a sua opção --> ");
             opcaoUtilizador = Ler.umInt();
 
-            while (opcaoUtilizador > 8 || opcaoUtilizador < 0) {
+            while (opcaoUtilizador > 7 || opcaoUtilizador < 0) {
                 System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
                 opcaoUtilizador = Ler.umInt();
             }
@@ -1651,14 +1651,6 @@ public class funcoesUteis implements Serializable {
                     pedeTecla();
                     break;
                 case 6:
-                    System.out.print("\nNúmero de Professor: ");
-                    numProf = Ler.umInt();
-                    novoProfessor.setNumProf(numProf);
-                    ;
-                    System.out.println();
-                    pedeTecla();
-                    break;
-                case 7:
                     System.out.print("\nRating [1 - 100]: ");
                     ratingProf = Ler.umInt();
                     boolean verifRating = verifRating(ratingProf);
@@ -1670,7 +1662,7 @@ public class funcoesUteis implements Serializable {
                     novoProfessor.setRating(ratingProf);
                     pedeTecla();
                     break;
-                case 8:
+                case 7:
                     System.out.println("Disciplinas para adicionar ao Professor: ");
                     ArrayList<Integer> adicionados = new ArrayList<Integer>();
                     ArrayList<Disciplina> disciplinasDisponiveis = new ArrayList<Disciplina>();
@@ -1715,7 +1707,7 @@ public class funcoesUteis implements Serializable {
                     }
                     if (cont == escolaInformatica.getDisciplinaEscola().size() && !opcaoContactoMenu.equals("n")
                             && !opcaoContactoMenu.equals("N")) {
-                        System.out.println("Não é possível adicionar mais disciplinas.");
+                        System.out.println("\nNão é possível adicionar mais disciplinas.\n");
                     }
                     novoProfessor.setDiscLec(disciplinasP);
                     pedeTecla();
@@ -1724,7 +1716,7 @@ public class funcoesUteis implements Serializable {
             limpaTela();
             if (opcaoUtilizador != 0)
                 escolaInformatica.changeProf(posicao, novoProfessor);
-        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 8);
+        } while (opcaoUtilizador > 0 && opcaoUtilizador <= 7);
 
         return novoProfessor;
     }
@@ -1734,15 +1726,15 @@ public class funcoesUteis implements Serializable {
         int nmaximodiscp;
         ArrayList<Integer> armazenaNumDiscp = new ArrayList<>();
 
-        for (int i = 0; i < profsEscola.size(); i++) {
-            armazenaNumDiscp.add(profsEscola.get(i).contDiscProf());
-        }
-
-        nmaximodiscp = Collections.max(armazenaNumDiscp);
-
-        for (int i = 0; i < profsEscola.size(); i++) {
-            if (profsEscola.get(i).contDiscProf() == nmaximodiscp) {
-                profsComMaisDiscpLec.add(profsEscola.get(i));
+        if(!profsEscola.isEmpty()){
+            for (int i = 0; i < profsEscola.size(); i++) {
+                armazenaNumDiscp.add(profsEscola.get(i).contDiscProf());
+            }
+            nmaximodiscp = Collections.max(armazenaNumDiscp);
+            for (int i = 0; i < profsEscola.size(); i++) {
+                if (profsEscola.get(i).contDiscProf() == nmaximodiscp) {
+                    profsComMaisDiscpLec.add(profsEscola.get(i));
+                }
             }
         }
         return profsComMaisDiscpLec;
@@ -1764,13 +1756,15 @@ public class funcoesUteis implements Serializable {
         int melhorRating;
         ArrayList<Professor> profMelhorRating = new ArrayList<>();
         ArrayList<Integer> arrayRatings = new ArrayList<>();
-        for (int i = 0; i < professoresEscola.size(); i++) {
-            arrayRatings.add(professoresEscola.get(i).getRating());
-        }
-        melhorRating = Collections.min(arrayRatings);
-        for (int i = 0; i < professoresEscola.size(); i++) {
-            if (professoresEscola.get(i).getRating() == melhorRating) {
-                profMelhorRating.add(professoresEscola.get(i));
+        if(!professoresEscola.isEmpty()){
+            for (int i = 0; i < professoresEscola.size(); i++) {
+                arrayRatings.add(professoresEscola.get(i).getRating());
+            }
+            melhorRating = Collections.min(arrayRatings);
+            for (int i = 0; i < professoresEscola.size(); i++) {
+                if (professoresEscola.get(i).getRating() == melhorRating) {
+                    profMelhorRating.add(professoresEscola.get(i));
+                }
             }
         }
         return profMelhorRating;
@@ -1780,34 +1774,38 @@ public class funcoesUteis implements Serializable {
         ArrayList<Pessoa> pessoasMaisVelhas = new ArrayList<>();
         int idademaisVelho;
         ArrayList<Integer> idades = new ArrayList<>();
-        for (int i = 0; i < pessoas.size(); i++) {
-            idades.add(pessoas.get(i).calculaIdade());
-        }
-        idademaisVelho = Collections.max(idades);
-        for (int i = 0; i < pessoas.size(); i++) {
-            if (pessoas.get(i).calculaIdade() == idademaisVelho) {
-                pessoasMaisVelhas.add(pessoas.get(i));
+
+        if(!pessoas.isEmpty()){
+            for (int i = 0; i < pessoas.size(); i++) {
+                idades.add(pessoas.get(i).calculaIdade());
+            }
+            idademaisVelho = Collections.max(idades);
+            for (int i = 0; i < pessoas.size(); i++) {
+                if (pessoas.get(i).calculaIdade() == idademaisVelho) {
+                    pessoasMaisVelhas.add(pessoas.get(i));
+                }
             }
         }
         return pessoasMaisVelhas;
-
     }
 
     public static ArrayList<Pessoa> pessoasMaisNovas(ArrayList<Pessoa> pessoas) {
         ArrayList<Pessoa> pessoasMaisNovas = new ArrayList<>();
         int idademaisNovo;
         ArrayList<Integer> idades = new ArrayList<>();
-        for (int i = 0; i < pessoas.size(); i++) {
-            idades.add(pessoas.get(i).calculaIdade());
-        }
-        idademaisNovo = Collections.min(idades);
-        for (int i = 0; i < pessoas.size(); i++) {
-            if (pessoas.get(i).calculaIdade() == idademaisNovo) {
-                pessoasMaisNovas.add(pessoas.get(i));
+
+        if(!pessoas.isEmpty()){
+            for (int i = 0; i < pessoas.size(); i++) {
+                idades.add(pessoas.get(i).calculaIdade());
+            }
+            idademaisNovo = Collections.min(idades);
+            for (int i = 0; i < pessoas.size(); i++) {
+                if (pessoas.get(i).calculaIdade() == idademaisNovo) {
+                    pessoasMaisNovas.add(pessoas.get(i));
+                }
             }
         }
         return pessoasMaisNovas;
-
     }
 
     public static Curso cursoMaisFrequentado(EscolaInformatica escolaInformatica) {

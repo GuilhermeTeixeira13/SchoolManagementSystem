@@ -84,7 +84,7 @@
 
 **Alunos: (Gui 10-12)**
 1. :exclamation:Listar alunos (A implementar na classe Aluno) ✔️ 
-2. :exclamation:Criar aluno (A implementar na classe Aluno) ✔️ :warning: Não pedir ID !!!
+2. :exclamation:Criar aluno (A implementar na classe Aluno) ✔️ 
 3. :exclamation:Consultar informações de determinado aluno (A implementar na classe Aluno) ✔️ 
 4. :exclamation:Modificar dados sobre um determinado aluno (A implementar na classe Aluno) ✔️ 
 5. :exclamation:Remover aluno (A implementar na classe Aluno) ✔️ 

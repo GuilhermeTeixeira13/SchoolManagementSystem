@@ -31,11 +31,8 @@ public class Programa {
                             case 1:
                                 // Criar novo diretor (Removendo automaticamento o anterior)
                                 Diretor diretorCriado = funcoesUteis.criarDiretor();
-                                // Diretor antigo removido da lista de pessoas da escola.
                                 funcoesUteis.removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
-                                // Diretor criado adicionado à lista de pessoas da escola
                                 escolaInformatica.getPessoasEscola().add(diretorCriado);
-                                // Definir diretor criado como diretor da escola
                                 escolaInformatica.setDiretorEscola(diretorCriado);
                                 funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
@@ -46,19 +43,15 @@ public class Programa {
 
                                 funcoesUteis.removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
                                 Diretor dirModificado = funcoesUteis.modDiretor(escolaInformatica);
-                                escolaInformatica.getPessoasEscola()
-                                        .add(dirModificado);
-                                escolaInformatica
-                                        .setDiretorEscola(dirModificado);
-
+                                escolaInformatica.getPessoasEscola().add(dirModificado);
+                                escolaInformatica.setDiretorEscola(dirModificado);
                                 funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();
                                 break;
                             case 3:
                                 // Listar Pessoas
 
-                                funcoesUteis.listarPessoasEscola(escolaInformatica.getPessoasEscola(),
-                                        escolaInformatica);
+                                funcoesUteis.listarPessoasEscola(escolaInformatica.getPessoasEscola(),escolaInformatica);
                                 break;
                             case 4:
                                 // Mudar informações acerca da escola
@@ -78,8 +71,7 @@ public class Programa {
                 case 2:
                     do {
                         funcoesUteis.limpaTela();
-                        System.out.print(
-                                " GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Mostrar curso mais frequentado\n7. Inserir disciplinas de determinado curso\n8. Remover disciplinas de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print(" GERIR CURSOS\n\n1. Listar cursos\n2. Criar curso\n3. Consultar informações de determinado curso\n4. Modificar dados sobre um curso\n5. Remover curso\n6. Mostrar curso mais frequentado\n7. Inserir disciplinas de determinado curso\n8. Remover disciplinas de determinado curso\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 8 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -107,18 +99,15 @@ public class Programa {
                                 // Consultar informações de determinado curso
 
                                 int posCurso, idCursoConsultar;
-                                System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO CURSO\n\n");
+                                System.out.print("3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO CURSO\n\n");
                                 escolaInformatica.listaCursos();
                                 System.out.print("Escreva o ID do curso que pretende consultar --> ");
                                 idCursoConsultar = Ler.umInt();
                                 posCurso = escolaInformatica.devolvePosCursoDadoID(idCursoConsultar);
                                 if (posCurso == -1)
                                     System.out.println("Lamentamos, mas este curso não existe!\n");
-                                else {
-                                    System.out.println(
-                                            escolaInformatica.getCursosEscola().get(posCurso).toString() + "\n");
-                                }
+                                else
+                                    System.out.println(escolaInformatica.getCursosEscola().get(posCurso).toString() + "\n");
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 4:
@@ -126,8 +115,7 @@ public class Programa {
 
                                 int posCursoMod, idCursoModificar;
 
-                                System.out.print(
-                                        "4. MODIFICAR DADOS SOBRE DETERMINADO CURSO\n\n");
+                                System.out.print("4. MODIFICAR DADOS SOBRE DETERMINADO CURSO\n\n");
                                 escolaInformatica.listaCursos();
                                 System.out.print("Escreva o ID do curso que pretende modificar --> ");
                                 idCursoModificar = Ler.umInt();
@@ -144,8 +132,7 @@ public class Programa {
 
                                 String nomeCursoRemover;
                                 int opcaoCursos;
-                                System.out.print(
-                                        "5. REMOVER CURSO\n\n  1. Remover pelo nome\n  2. Remover por palavra contida no nome\n  3. Remover por ID\n  0. Sair\n\n  ESCOLHA UMA OPCÃO --> ");
+                                System.out.print("5. REMOVER CURSO\n\n  1. Remover pelo nome\n  2. Remover por palavra contida no nome\n  3. Remover por ID\n  0. Sair\n\n  ESCOLHA UMA OPCÃO --> ");
                                 opcaoCursos = Ler.umInt();
                                 while (opcaoCursos > 3 || opcaoCursos < 0) {
                                     System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -155,58 +142,44 @@ public class Programa {
                                 boolean sucesso = false;
                                 switch (opcaoCursos) {
                                     case 1:
-                                        System.out.print(
-                                                "1. Remover pelo nome\n\n");
+                                        System.out.print("1. Remover pelo nome\n\n");
                                         escolaInformatica.listaCursos();
                                         System.out.print("Escreva o nome do curso que pretende remover --> ");
                                         nomeCursoRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeCursoEquals(nomeCursoRemover);
                                         if (sucesso == true) {
-                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                    escolaInformatica);
-                                            System.out
-                                                    .println("\nCurso " + nomeCursoRemover + " removido com sucesso.");
-                                        } else
-                                            System.out.println(
-                                                    "\nNão existe nenhum curso com o nome " + nomeCursoRemover + ".");
+                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",escolaInformatica);
+                                            System.out.println("\nCurso " + nomeCursoRemover + " removido com sucesso.");
+                                        } 
+                                        else
+                                            System.out.println("\nNão existe nenhum curso com o nome " + nomeCursoRemover + ".");
                                         System.out.println();
                                         break;
                                     case 2:
-                                        System.out.print(
-                                                "2. Remover por palavra contida no nome\n\n");
+                                        System.out.print("2. Remover por palavra contida no nome\n\n");
                                         escolaInformatica.listaCursos();
-                                        System.out.print(
-                                                "Escreva uma palavra contida no curso que pretende remover --> ");
+                                        System.out.print("Escreva uma palavra contida no curso que pretende remover --> ");
                                         nomeCursoRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeCursoContains(nomeCursoRemover);
                                         if (sucesso == true) {
-                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                    escolaInformatica);
-                                            System.out.println("\nCursos que contêm a palavra " + nomeCursoRemover
-                                                    + " removidos com sucesso.");
+                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",escolaInformatica);
+                                            System.out.println("\nCursos que contêm a palavra " + nomeCursoRemover+ " removidos com sucesso.");
                                         } else
-                                            System.out.println("\nNão existe nenhum curso que contenha a palavra "
-                                                    + nomeCursoRemover + ".");
+                                            System.out.println("\nNão existe nenhum curso que contenha a palavra "+ nomeCursoRemover + ".");
                                         System.out.println();
                                         break;
                                     case 3:
                                         int idCursoRemover, posCursoRem;
-                                        System.out.print(
-                                                "3. Remover por ID\n\n");
+                                        System.out.print("3. Remover por ID\n\n");
                                         escolaInformatica.listaCursos();
                                         System.out.print("Escreva o ID do curso que pretende remover -->  ");
                                         idCursoRemover = Ler.umInt();
                                         posCursoRem = escolaInformatica.devolvePosCursoDadoID(idCursoRemover);
                                         if (posCursoRem != -1) {
-                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                    escolaInformatica);
-                                            System.out.println("\nCurso "
-                                                    + escolaInformatica.getCursosEscola().get(posCursoRem)
-                                                            .getNomeCurso()
-                                                    + " (ID:" + idCursoRemover + ") removido com sucesso.");
+                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",escolaInformatica);
+                                            System.out.println("\nCurso "+ escolaInformatica.getCursosEscola().get(posCursoRem).getNomeCurso() + " (ID:" + idCursoRemover + ") removido com sucesso.");
                                         } else
-                                            System.out.println("\nNão existe nenhum curso com o ID "
-                                                    + idCursoRemover + ".");
+                                            System.out.println("\nNão existe nenhum curso com o ID "+ idCursoRemover + ".");
                                         System.out.println();
                                         break;
                                 }
@@ -215,12 +188,8 @@ public class Programa {
                             case 6:
                                 // Mostrar curso mais frequentado
 
-                                System.out.println(
-                                        "O curso mais frequentado da " + escolaInformatica.getNomeEscola() + " é:\n");
-                                System.out.println(" . "
-                                        + funcoesUteis.cursoMaisFrequentado(escolaInformatica).getNomeCurso() + " ("
-                                        + funcoesUteis.cursoMaisFrequentado(escolaInformatica).getAlunosCurso().size()
-                                        + " ALUNOS)\n");
+                                System.out.println("O curso mais frequentado da " + escolaInformatica.getNomeEscola() + " é:\n");
+                                System.out.println(" . "+ funcoesUteis.cursoMaisFrequentado(escolaInformatica).getNomeCurso() + " ("+ funcoesUteis.cursoMaisFrequentado(escolaInformatica).getAlunosCurso().size()+ " ALUNOS)\n");
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 7:
@@ -228,8 +197,7 @@ public class Programa {
 
                                 int posCursoAddDisc, idCursoInserirDisc;
 
-                                System.out.print(
-                                        "7. INSERIR DISCIPLINAS NUM DETERMINADO CURSO\n\n");
+                                System.out.print("7. INSERIR DISCIPLINAS NUM DETERMINADO CURSO\n\n");
                                 escolaInformatica.listaCursos();
                                 System.out.print("Escreva o ID do curso em que pretende adicionar disciplinas -->  ");
                                 idCursoInserirDisc = Ler.umInt();
@@ -241,35 +209,20 @@ public class Programa {
                                     boolean existeNoCurso = false;
                                     System.out.println();
                                     escolaInformatica.listaDisciplinas();
-                                    System.out.print(
-                                            "Escreva o ID da disciplina que pretende adicionar ao curso "
-                                                    + escolaInformatica.getCursosEscola().get(posCursoAddDisc)
-                                                            .getNomeCurso()
-                                                    + " --> ");
+                                    System.out.print("Escreva o ID da disciplina que pretende adicionar ao curso "+ escolaInformatica.getCursosEscola().get(posCursoAddDisc).getNomeCurso()+ " --> ");
                                     idDisc = Ler.umInt();
                                     posdisc = escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
-                                    existeNoCurso = escolaInformatica.verificaSeDisciplinaPertenceCurso(posCursoAddDisc,
-                                            escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc());
+                                    existeNoCurso = escolaInformatica.verificaSeDisciplinaPertenceCurso(posCursoAddDisc,escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc());
                                     if (existeNoCurso == true || posdisc == -1) {
                                         if (existeNoCurso == true && posdisc != -1)
-                                            System.out
-                                                    .println("\nLamentamos, mas essa disciplina já existe no curso!\n");
+                                            System.out.println("\nLamentamos, mas essa disciplina já existe no curso!\n");
                                         if (existeNoCurso == false && posdisc == -1)
-                                            System.out.println(
-                                                    "\nLamentamos, mas essa disciplina não existe na escola!\n");
+                                            System.out.println("\nLamentamos, mas essa disciplina não existe na escola!\n");
                                     } else {
-                                        escolaInformatica.getCursosEscola().get(posCursoAddDisc).getDisciplinasCurso()
-                                                .add(escolaInformatica.getDisciplinaEscola().get(posdisc));
+                                        escolaInformatica.getCursosEscola().get(posCursoAddDisc).getDisciplinasCurso().add(escolaInformatica.getDisciplinaEscola().get(posdisc));
                                         escolaInformatica.atualizaCurso(posCursoAddDisc);
-                                        System.out.println(
-                                                "\nDisciplina "
-                                                        + escolaInformatica.getDisciplinaEscola().get(posdisc)
-                                                                .getNomDisc()
-                                                        + " adicionada a " + escolaInformatica.getCursosEscola()
-                                                                .get(posCursoAddDisc).getNomeCurso()
-                                                        + " com sucesso!\n");
-                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                escolaInformatica);
+                                        System.out.println("\nDisciplina "+ escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc() + " adicionada a " + escolaInformatica.getCursosEscola().get(posCursoAddDisc).getNomeCurso()+ " com sucesso!\n");
+                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                     }
                                 }
                                 funcoesUteis.pedeTecla();
@@ -279,8 +232,7 @@ public class Programa {
 
                                 int posCursoRemDisc, idCursoRemDisc;
 
-                                System.out.print(
-                                        "8. REMOVER DISCIPLINAS DE UM DETERMINADO CURSO\n\n");
+                                System.out.print("8. REMOVER DISCIPLINAS DE UM DETERMINADO CURSO\n\n");
                                 escolaInformatica.listaCursos();
                                 System.out.print("Escreva o ID do curso em que pretende remover disciplinas --> ");
                                 idCursoRemDisc = Ler.umInt();
@@ -292,31 +244,18 @@ public class Programa {
                                     boolean existeNoCurso = false;
                                     System.out.println();
                                     escolaInformatica.listaDisciplinas();
-                                    System.out.print(
-                                            "Escreva o ID da disciplina que pretende remover do curso "
-                                                    + escolaInformatica.getCursosEscola().get(posCursoRemDisc)
-                                                            .getNomeCurso()
-                                                    + " --> ");
+                                    System.out.print("Escreva o ID da disciplina que pretende remover do curso "+ escolaInformatica.getCursosEscola().get(posCursoRemDisc).getNomeCurso()+ " --> ");
                                     idDiscRem = Ler.umInt();
                                     posdisc = escolaInformatica.devolvePosDisciplinaDadoID(idDiscRem);
                                     existeNoCurso = escolaInformatica.verificaSeDisciplinaPertenceCurso(posCursoRemDisc,
                                             escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc());
                                     if (existeNoCurso == false)
-                                        System.out
-                                                .println("\nLamentamos, mas esta disciplina não existe neste curso!\n");
+                                        System.out.println("\nLamentamos, mas esta disciplina não existe neste curso!\n");
                                     else {
-                                        escolaInformatica.getCursosEscola().get(posCursoRemDisc).getDisciplinasCurso()
-                                                .remove(escolaInformatica.getDisciplinaEscola().get(posdisc));
+                                        escolaInformatica.getCursosEscola().get(posCursoRemDisc).getDisciplinasCurso().remove(escolaInformatica.getDisciplinaEscola().get(posdisc));
                                         escolaInformatica.atualizaCurso(posCursoRemDisc);
-                                        System.out.println(
-                                                "\nDisciplina "
-                                                        + escolaInformatica.getDisciplinaEscola().get(posdisc)
-                                                                .getNomDisc()
-                                                        + " removida de " + escolaInformatica.getCursosEscola()
-                                                                .get(posCursoRemDisc).getNomeCurso()
-                                                        + " com sucesso!\n");
-                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                escolaInformatica);
+                                        System.out.println("\nDisciplina "+ escolaInformatica.getDisciplinaEscola().get(posdisc).getNomDisc()+ " removida de " + escolaInformatica.getCursosEscola().get(posCursoRemDisc).getNomeCurso()+ " com sucesso!\n");
+                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                     }
                                 }
                                 funcoesUteis.pedeTecla();
@@ -327,8 +266,7 @@ public class Programa {
                 case 3:
                     do {
                         funcoesUteis.limpaTela();
-                        System.out.print(
-                                "GERIR DISCIPLINAS\n\n1. Listar disciplinas\n2. Criar disciplina\n3. Consultar informações de determinada disciplina\n4. Modificar dados sobre uma disciplina\n5. Remover disciplina\n6. Mostrar a disciplina com a frequência mais longa\n7. Mostrar professores que lecionam determianda disciplina\n8. Mostrar alunos inscritos em determinada disciplina\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("GERIR DISCIPLINAS\n\n1. Listar disciplinas\n2. Criar disciplina\n3. Consultar informações de determinada disciplina\n4. Modificar dados sobre uma disciplina\n5. Remover disciplina\n6. Mostrar a disciplina com a frequência mais longa\n7. Mostrar professores que lecionam determianda disciplina\n8. Mostrar alunos inscritos em determinada disciplina\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 8 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -347,8 +285,7 @@ public class Programa {
                                 // Criar Disciplina
 
                                 System.out.print("2. Disciplinas\n");
-                                escolaInformatica.getDisciplinaEscola()
-                                        .add(funcoesUteis.criarDisciplina(escolaInformatica));
+                                escolaInformatica.getDisciplinaEscola().add(funcoesUteis.criarDisciplina(escolaInformatica));
                                 funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println("\nDisciplina criada com sucesso!!\n");
                                 funcoesUteis.pedeTecla();
@@ -357,8 +294,7 @@ public class Programa {
                                 // Consultar informações de determinada disciplina
 
                                 int posdiscCons, idDiscConsultar;
-                                System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADA DISCIPLINA\n\n");
+                                System.out.print("3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADA DISCIPLINA\n\n");
                                 escolaInformatica.listaDisciplinas();
                                 System.out.print("Escreva o ID da disciplina que pretende consultar --> ");
                                 idDiscConsultar = Ler.umInt();
@@ -366,16 +302,14 @@ public class Programa {
                                 if (posdiscCons == -1)
                                     System.out.println("Lamentamos, mas este disciplina não existe!\n");
                                 else
-                                    System.out.println(
-                                            escolaInformatica.getDisciplinaEscola().get(posdiscCons).toString());
+                                    System.out.println(escolaInformatica.getDisciplinaEscola().get(posdiscCons).toString());
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 4:
                                 // Modificar dados sobre uma determinada disciplina
 
                                 int posdiscmod, idDiscMod;
-                                System.out.print(
-                                        "MODIFICAR DADOS SOBRE UMA DETERMINADA DISCIPLINA\n\n");
+                                System.out.print("MODIFICAR DADOS SOBRE UMA DETERMINADA DISCIPLINA\n\n");
                                 escolaInformatica.listaDisciplinas();
                                 System.out.print("Escreva o ID da disciplina que pretende modificar --> ");
                                 idDiscMod = Ler.umInt();
@@ -394,8 +328,7 @@ public class Programa {
 
                                 String nomeDiscRemover;
                                 int opcaodisc;
-                                System.out.print(
-                                        "5. REMOVER DISCIPLINA\n\n  1. Remover pelo nome\n  2. Remover por palavra contida no nome\n  3. Remover pelo ID\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
+                                System.out.print("5. REMOVER DISCIPLINA\n\n  1. Remover pelo nome\n  2. Remover por palavra contida no nome\n  3. Remover pelo ID\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
                                 opcaodisc = Ler.umInt();
                                 while (opcaodisc > 3 || opcaodisc < 0) {
                                     System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -405,61 +338,46 @@ public class Programa {
                                 boolean sucesso = false;
                                 switch (opcaodisc) {
                                     case 1:
-                                        System.out.print(
-                                                "1. Remover pelo nome\n\n");
+                                        System.out.print("1. Remover pelo nome\n\n");
                                         escolaInformatica.listaDisciplinas();
                                         System.out.print("Escreva o nome da Disciplina que pretende remover -->  ");
                                         nomeDiscRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removeDiscEquals(nomeDiscRemover);
                                         if (sucesso == true) {
-                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                    escolaInformatica);
-                                            System.out.println(
-                                                    "Disciplina " + nomeDiscRemover + " removido com sucesso.");
+                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",escolaInformatica);
+                                            System.out.println("Disciplina " + nomeDiscRemover + " removido com sucesso.");
                                         } else
-                                            System.out.println(
-                                                    "Não existe nenhuma disciplina com o nome " + nomeDiscRemover
-                                                            + ".");
+                                            System.out.println("Não existe nenhuma disciplina com o nome " + nomeDiscRemover+ ".");
                                         System.out.println();
                                         funcoesUteis.pedeTecla();
                                         break;
                                     case 2:
-                                        System.out.print(
-                                                "2. Remover por palavra contida no nome\n\n");
+                                        System.out.print("2. Remover por palavra contida no nome\n\n");
                                         escolaInformatica.listaDisciplinas();
-                                        System.out.print(
-                                                "Escreva uma palavra contida no nome da disciplina que pretende remover -->  ");
+                                        System.out.print("Escreva uma palavra contida no nome da disciplina que pretende remover -->  ");
                                         nomeDiscRemover = Ler.umaString();
                                         sucesso = escolaInformatica.removediscContains(nomeDiscRemover);
                                         if (sucesso == true) {
-                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                    escolaInformatica);
-                                            System.out.println("Disciplina que contêm a palavra " + nomeDiscRemover
-                                                    + " removida com sucesso.");
+                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",escolaInformatica);
+                                            System.out.println("Disciplina que contêm a palavra " + nomeDiscRemover + " removida com sucesso.");
                                         } else
-                                            System.out.println("Não existe nenhuma disciplina que contenha a palavra "
-                                                    + nomeDiscRemover + ".");
+                                            System.out.println("Não existe nenhuma disciplina que contenha a palavra "+ nomeDiscRemover + ".");
                                         System.out.println();
                                         funcoesUteis.pedeTecla();
                                         break;
                                     case 3:
-                                        System.out.print(
-                                                "3. Remover pelo ID\n\n");
+                                        System.out.print("3. Remover pelo ID\n\n");
                                         escolaInformatica.listaDisciplinas();
                                         System.out.print("Escreva o ID da disciplina que pretende remover -->  ");
                                         int idDiscRemover = Ler.umInt();
                                         int posdiscRem = escolaInformatica.devolvePosDisciplinaDadoID(idDiscRemover);
                                         if (posdiscRem != -1) {
-                                            String nomeDiscRem = escolaInformatica.getDisciplinaEscola().get(posdiscRem)
-                                                    .getNomDisc();
+                                            String nomeDiscRem = escolaInformatica.getDisciplinaEscola().get(posdiscRem).getNomDisc();
                                             escolaInformatica.getDisciplinaEscola().remove(posdiscRem);
-                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                    escolaInformatica);
-                                            System.out.println(
-                                                    "\nDisciplina " + nomeDiscRem + " removida com sucesso!\n");
+                                            funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                            System.out.println("\nDisciplina " + nomeDiscRem + " removida com sucesso!\n");
                                         } else
-                                            System.out.println("Não existe nenhuma disciplina com o ID "
-                                                    + idDiscRemover + ".");
+                                            System.out.println("Não existe nenhuma disciplina com o ID "+ idDiscRemover + ".");
                                         funcoesUteis.pedeTecla();
                                         break;
                                 }
@@ -469,11 +387,7 @@ public class Programa {
                                 if (funcoesUteis.discfrequenciamaislonga(escolaInformatica).getNomDisc().equals(""))
                                     System.out.println("Ainda não existem frequências criadas!");
                                 else
-                                    System.out.println("A Disciplina com a frequencia mais longa da "
-                                            + escolaInformatica.getNomeEscola() + " é:\n . "
-                                            + funcoesUteis.discfrequenciamaislonga(escolaInformatica).getNomDisc()
-                                            + "\n");
-
+                                    System.out.println("A Disciplina com a frequencia mais longa da "+ escolaInformatica.getNomeEscola() + " é:\n . "+ funcoesUteis.discfrequenciamaislonga(escolaInformatica).getNomDisc()+ "\n");
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 7:
@@ -481,10 +395,8 @@ public class Programa {
 
                                 String nomeDiscprof = "";
                                 int opcaodiscprof;
-                                ArrayList<Professor> discescolaprof = funcoesUteis.convPessoaProf(
-                                        funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
-                                System.out.print(
-                                        "5. Professores de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  3. Pelo ID da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
+                                ArrayList<Professor> discescolaprof = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
+                                System.out.print("5. Professores de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  3. Pelo ID da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
                                 opcaodiscprof = Ler.umInt();
                                 while (opcaodiscprof > 3 || opcaodiscprof < 0) {
                                     System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -494,91 +406,61 @@ public class Programa {
                                 boolean sucesso1 = false;
                                 switch (opcaodiscprof) {
                                     case 1:
-                                        System.out.print(
-                                                "1. Pelo nome da Disciplina\n\n");
+                                        System.out.print("1. Pelo nome da Disciplina\n\n");
                                         escolaInformatica.listaDisciplinas();
                                         System.out.print("Escreva o nome da Disciplina que pretende -->  ");
                                         nomeDiscprof = Ler.umaString();
                                         sucesso1 = escolaInformatica.profDiscEquals(nomeDiscprof);
                                         if (sucesso1 == true) {
-                                            ArrayList<Professor> ArrayResultadosdiscProf = funcoesUteis
-                                                    .profdasdisciplinas(
-                                                            discescolaprof, nomeDiscprof);
+                                            ArrayList<Professor> ArrayResultadosdiscProf = funcoesUteis.profdasdisciplinas(discescolaprof, nomeDiscprof);
                                             if (ArrayResultadosdiscProf.isEmpty())
-                                                System.out.println(
-                                                        "Ainda não existem professores de " + nomeDiscprof + ".");
+                                                System.out.println("Ainda não existem professores de " + nomeDiscprof + ".");
                                             else {
                                                 System.out.println("\nProfessores de " + nomeDiscprof + ":");
                                                 for (int i = 0; i < ArrayResultadosdiscProf.size(); i++)
-                                                    System.out.println(" . ID:"
-                                                            + ArrayResultadosdiscProf.get(i).getNumProf() + ", Nome:"
-                                                            + ArrayResultadosdiscProf.get(i).getNome());
+                                                    System.out.println(" . ID:"+ ArrayResultadosdiscProf.get(i).getNumProf() + ", Nome:"+ ArrayResultadosdiscProf.get(i).getNome());
                                             }
                                         } else
-                                            System.out.println(
-                                                    "\nNão existe nenhuma disciplina com o nome " + nomeDiscprof + ".");
+                                            System.out.println("\nNão existe nenhuma disciplina com o nome " + nomeDiscprof + ".");
                                         System.out.println();
                                         break;
                                     case 2:
-                                        System.out.print(
-                                                "2. Pela palavra contida no nome\n\n");
+                                        System.out.print("2. Pela palavra contida no nome\n\n");
                                         escolaInformatica.listaDisciplinas();
                                         System.out.print("Escreva uma palavra contida no nome da disciplina -->  ");
                                         nomeDiscprof = Ler.umaString();
                                         sucesso1 = escolaInformatica.discprofContains(nomeDiscprof);
                                         if (sucesso1 == true) {
-                                            ArrayList<Professor> ArrayResultadosdiscProfcont = funcoesUteis
-                                                    .profdasdisciplinascont(
-                                                            discescolaprof, nomeDiscprof);
+                                            ArrayList<Professor> ArrayResultadosdiscProfcont = funcoesUteis.profdasdisciplinascont(discescolaprof, nomeDiscprof);
                                             if (ArrayResultadosdiscProfcont.isEmpty()) {
-                                                System.out.println(
-                                                        "\nAinda não existem professores de " + nomeDiscprof + ".");
+                                                System.out.println("\nAinda não existem professores de " + nomeDiscprof + ".");
                                             } else {
-                                                System.out.println("\nProfessores da Disciplina que contêm a palavra "
-                                                        + nomeDiscprof + ":");
-                                                for (int i = 0; i < ArrayResultadosdiscProfcont.size(); i++) {
-                                                    System.out.println(" . ID:"
-                                                            + ArrayResultadosdiscProfcont.get(i).getNumProf()
-                                                            + ", Nome:" + ArrayResultadosdiscProfcont.get(i).getNome());
-                                                }
+                                                System.out.println("\nProfessores da Disciplina que contêm a palavra "+ nomeDiscprof + ":");
+                                                for (int i = 0; i < ArrayResultadosdiscProfcont.size(); i++)
+                                                    System.out.println(" . ID:"+ ArrayResultadosdiscProfcont.get(i).getNumProf()+ ", Nome:" + ArrayResultadosdiscProfcont.get(i).getNome());     
                                             }
                                         } else
-                                            System.out.println("\nNão existe nenhuma disciplina que contenha a palavra "
-                                                    + nomeDiscprof + ".");
+                                            System.out.println("\nNão existe nenhuma disciplina que contenha a palavra "+ nomeDiscprof + ".");
                                         System.out.println();
                                         break;
                                     case 3:
-                                        System.out.print(
-                                                "2. Pelo ID da Disciplina\n\n");
+                                        System.out.print("2. Pelo ID da Disciplina\n\n");
                                         escolaInformatica.listaDisciplinas();
                                         System.out.print("Escreva o ID da disciplina -->  ");
                                         int idDiscProf = Ler.umInt();
                                         int posDiscProf = escolaInformatica.devolvePosDisciplinaDadoID(idDiscProf);
-                                        sucesso1 = escolaInformatica.discprofContains(
-                                                escolaInformatica.getDisciplinaEscola().get(posDiscProf).getNomDisc());
+                                        sucesso1 = escolaInformatica.discprofContains(escolaInformatica.getDisciplinaEscola().get(posDiscProf).getNomDisc());
                                         if (sucesso1 == true) {
-                                            ArrayList<Professor> ArrayResultadosdiscProfcont = funcoesUteis
-                                                    .profdasdisciplinascont(
-                                                            discescolaprof, nomeDiscprof);
+                                            ArrayList<Professor> ArrayResultadosdiscProfcont = funcoesUteis.profdasdisciplinascont(discescolaprof, nomeDiscprof);
                                             if (ArrayResultadosdiscProfcont.isEmpty()) {
-                                                System.out.println("\nAinda não existem professores de "
-                                                        + escolaInformatica.getDisciplinaEscola().get(posDiscProf)
-                                                                .getNomDisc()
-                                                        + ".");
+                                                System.out.println("\nAinda não existem professores de "+ escolaInformatica.getDisciplinaEscola().get(posDiscProf).getNomDisc()+ ".");
                                             } else {
-                                                System.out.println("\nProfessores da Disciplina de "
-                                                        + escolaInformatica.getDisciplinaEscola().get(posDiscProf)
-                                                                .getNomDisc()
-                                                        + ":");
-                                                for (int i = 0; i < ArrayResultadosdiscProfcont.size(); i++) {
-                                                    System.out.println(" . ID:"
-                                                            + ArrayResultadosdiscProfcont.get(i).getNumProf()
-                                                            + ", Nome:" + ArrayResultadosdiscProfcont.get(i).getNome());
-                                                }
+                                                System.out.println("\nProfessores da Disciplina de "+ escolaInformatica.getDisciplinaEscola().get(posDiscProf).getNomDisc()+ ":");
+                                                for (int i = 0; i < ArrayResultadosdiscProfcont.size(); i++)
+                                                    System.out.println(" . ID:"+ ArrayResultadosdiscProfcont.get(i).getNumProf()+ ", Nome:" + ArrayResultadosdiscProfcont.get(i).getNome());
                                             }
                                         } else
-                                            System.out.println("\nNão existe nenhuma disciplina com ID "
-                                                    + idDiscProf + ".");
+                                            System.out.println("\nNão existe nenhuma disciplina com ID "+ idDiscProf + ".");
                                         System.out.println();
                                         break;
                                 }
@@ -590,11 +472,8 @@ public class Programa {
                                 String nomeDiscalunos = "", nomedisc;
                                 int opcaodiscalunos;
                                 boolean sucesso2 = false;
-                                ArrayList<Aluno> discescolaalunos = funcoesUteis.convPessoaAluno(
-                                        funcoesUteis.identAluno(escolaInformatica.getPessoasEscola()));
-
-                                System.out.print(
-                                        "5. Alunos de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  3. Pelo ID da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
+                                ArrayList<Aluno> discescolaalunos = funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(escolaInformatica.getPessoasEscola()));
+                                System.out.print("5. Alunos de uma determinada Disciplina\n\n  1. Pelo nome da Disciplina\n  2. Por uma palavra contida no nome da Disciplina\n  3. Pelo ID da Disciplina\n  0. Sair\n\n  ESCOLHA UMA OPCAO --> ");
                                 opcaodiscalunos = Ler.umInt();
                                 while (opcaodiscalunos > 3 || opcaodiscalunos < 0) {
                                     System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -604,92 +483,63 @@ public class Programa {
 
                                 switch (opcaodiscalunos) {
                                     case 1:
-                                        System.out.print(
-                                                "1. Pelo nome da Disciplina\n\n");
+                                        System.out.print("1. Pelo nome da Disciplina\n\n");
                                         escolaInformatica.listaDisciplinas();
                                         System.out.print("Escreva o nome da Disciplina que pretende --> ");
                                         nomeDiscalunos = Ler.umaString();
                                         sucesso2 = escolaInformatica.alunosDiscEquals(nomeDiscalunos);
                                         if (sucesso2 == true) {
-                                            ArrayList<Aluno> arrayResultadosdiscalunos = funcoesUteis
-                                                    .alunosdasdisciplinas(
-                                                            discescolaalunos, nomeDiscalunos);
+                                            ArrayList<Aluno> arrayResultadosdiscalunos = funcoesUteis.alunosdasdisciplinas(discescolaalunos, nomeDiscalunos);
                                             if (arrayResultadosdiscalunos.isEmpty())
-                                                System.out.println(
-                                                        "\nAinda não há alunos inscritos em cursos que contenham esta disciplina.");
+                                                System.out.println("\nAinda não há alunos inscritos em cursos que contenham esta disciplina.");
                                             else {
                                                 System.out.println("\nAlunos de " + nomeDiscalunos + ":");
                                                 for (int i = 0; i < arrayResultadosdiscalunos.size(); i++)
-                                                    System.out.println(" . ID:"
-                                                            + arrayResultadosdiscalunos.get(i).getNumAluno() + ", Nome:"
-                                                            + arrayResultadosdiscalunos.get(i).getNome());
+                                                    System.out.println(" . ID:"+ arrayResultadosdiscalunos.get(i).getNumAluno() + ", Nome:"+ arrayResultadosdiscalunos.get(i).getNome());
                                             }
                                         } else
-                                            System.out.println(
-                                                    "\nNão existe nenhum disciplina com o nome " + nomeDiscalunos
-                                                            + ".");
+                                            System.out.println("\nNão existe nenhum disciplina com o nome " + nomeDiscalunos+ ".");
                                         System.out.println();
                                         break;
                                     case 2:
-                                        System.out.print(
-                                                "2. Pela palavra contida no nome\n\n");
+                                        System.out.print("2. Pela palavra contida no nome\n\n");
                                         escolaInformatica.listaDisciplinas();
-                                        System.out.print(
-                                                "Escreva uma palavra contida no nome da disciplina que pretende --> ");
+                                        System.out.print("Escreva uma palavra contida no nome da disciplina que pretende --> ");
                                         nomeDiscalunos = Ler.umaString();
-                                        nomedisc = escolaInformatica.devolveDisciplinaConts(nomeDiscalunos)
-                                                .getNomDisc();
+                                        nomedisc = escolaInformatica.devolveDisciplinaConts(nomeDiscalunos).getNomDisc();
                                         sucesso2 = escolaInformatica.discalunosContains(nomeDiscalunos);
                                         if (sucesso2 == true) {
-                                            ArrayList<Aluno> arrayResultadosdiscalunoscont = funcoesUteis
-                                                    .alunosdasdisciplinascont(
-                                                            discescolaalunos, nomeDiscalunos);
+                                            ArrayList<Aluno> arrayResultadosdiscalunoscont = funcoesUteis.alunosdasdisciplinascont(discescolaalunos, nomeDiscalunos);
                                             if (arrayResultadosdiscalunoscont.isEmpty())
-                                                System.out.println(
-                                                        "\nAinda não há alunos inscritos em cursos que contenham "
-                                                                + nomedisc + ".");
+                                                System.out.println("\nAinda não há alunos inscritos em cursos que contenham "+ nomedisc + ".");
                                             else {
                                                 System.out.println("\nAlunos de " + nomedisc + ":");
                                                 for (int i = 0; i < arrayResultadosdiscalunoscont.size(); i++)
-                                                    System.out.println(" . ID:"
-                                                            + arrayResultadosdiscalunoscont.get(i).getNumAluno()
-                                                            + ", Nome:"
-                                                            + arrayResultadosdiscalunoscont.get(i).getNome());
+                                                    System.out.println(" . ID:"+ arrayResultadosdiscalunoscont.get(i).getNumAluno()+ ", Nome:"+ arrayResultadosdiscalunoscont.get(i).getNome());
                                             }
                                         } else
-                                            System.out.println("\nNão existe nenhuma disciplina que contenha a palavra "
-                                                    + nomeDiscalunos + ".");
+                                            System.out.println("\nNão existe nenhuma disciplina que contenha a palavra "+ nomeDiscalunos + ".");
                                         System.out.println();
                                         break;
                                     case 3:
-                                        System.out.print(
-                                                "3. Pelo ID da Disciplina\n\n");
+                                        System.out.print("3. Pelo ID da Disciplina\n\n");
                                         escolaInformatica.listaDisciplinas();
-                                        System.out.print(
-                                                "Escreva o ID da Disciplina que pretende consultar os alunos --> ");
+                                        System.out.print("Escreva o ID da Disciplina que pretende consultar os alunos --> ");
                                         int idDiscAlun = Ler.umInt();
                                         int pos = escolaInformatica.devolvePosDisciplinaDadoID(idDiscAlun);
                                         nomedisc = escolaInformatica.getDisciplinaEscola().get(pos).getNomDisc();
                                         sucesso2 = escolaInformatica.discalunosContains(nomedisc);
                                         if (sucesso2 == true) {
-                                            ArrayList<Aluno> arrayResultadosdiscalunos = funcoesUteis
-                                                    .alunosdasdisciplinascont(
-                                                            discescolaalunos, nomedisc);
+                                            ArrayList<Aluno> arrayResultadosdiscalunos = funcoesUteis.alunosdasdisciplinascont(discescolaalunos, nomedisc);
                                             if (arrayResultadosdiscalunos.isEmpty())
-                                                System.out.println(
-                                                        "\nAinda não há alunos inscritos em cursos que contenham "
-                                                                + nomedisc + ".");
+                                                System.out.println("\nAinda não há alunos inscritos em cursos que contenham " + nomedisc + ".");
                                             else {
                                                 System.out.println("\nAlunos de " + nomedisc + ":");
                                                 for (int i = 0; i < arrayResultadosdiscalunos.size(); i++)
-                                                    System.out.println(" . ID:"
-                                                            + arrayResultadosdiscalunos.get(i).getNumAluno()
-                                                            + ", Nome:"
-                                                            + arrayResultadosdiscalunos.get(i).getNome());
+                                                    System.out.println(" . ID:"+ arrayResultadosdiscalunos.get(i).getNumAluno()+ ", Nome:"+ arrayResultadosdiscalunos.get(i).getNome());
                                             }
                                         } else
-                                            System.out.println("\nNão existe nenhuma disciplina com o ID "
-                                                    + idDiscAlun + ".");
+                                            System.out.println("\nNão existe nenhuma disciplina com o ID "+ idDiscAlun + ".");
                                         System.out.println();
                                         break;
                                 }
@@ -701,8 +551,7 @@ public class Programa {
                 case 4:
                     do {
                         funcoesUteis.limpaTela();
-                        System.out.print(
-                                "GERIR PROFESSORES\n\n1. Listar professores\n2. Criar professor\n3. Consultar informações de determinado professor\n4. Modificar dados sobre um determinado professor\n5. Remover professor\n6. Mostrar professor que lecionou mais disciplinas\n7. Mostrar professores deslocados\n8. Mostrar qual é o professor com melhor rating\n9. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("GERIR PROFESSORES\n\n1. Listar professores\n2. Criar professor\n3. Consultar informações de determinado professor\n4. Modificar dados sobre um determinado professor\n5. Remover professor\n6. Mostrar professor que lecionou mais disciplinas\n7. Mostrar professores deslocados\n8. Mostrar qual é o professor com melhor rating\n9. Mostrar professor mais velho e mais novo\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 9 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -713,7 +562,6 @@ public class Programa {
                         ArrayList<Professor> professoresEscolaDisc;
                         ArrayList<Professor> professoresEscolaRating;
                         ArrayList<Professor> profscomMelhorRating;
-                        ;
                         switch (opcaoUtilizador) {
                             case 1:
                                 // Listar Professores
@@ -741,8 +589,7 @@ public class Programa {
 
                                 int posProf, idProf;
                                 ArrayList<Professor> profs = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
-                                System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\n");
+                                System.out.print("3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\n");
                                 escolaInformatica.listaProfessores();
                                 System.out.print("Escreva o ID do professor que pretende consultar -->  ");
                                 idProf = Ler.umInt();
@@ -759,8 +606,7 @@ public class Programa {
                                 // Modificar dados sobre uma determinado professor
 
                                 Professor professorModificado;
-                                System.out.print(
-                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\n");
+                                System.out.print("4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO PROFESSOR\n\n");
                                 escolaInformatica.listaProfessores();
                                 System.out.print("Escreva o ID do professor que pretende modificar -->  ");
                                 idProf = Ler.umInt();
@@ -769,7 +615,7 @@ public class Programa {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
                                     funcoesUteis.pedeTecla();
                                 } else {
-                                        funcoesUteis.limpaTela();
+                                    funcoesUteis.limpaTela();
                                     professorModificado = funcoesUteis.modificarProfessor(escolaInformatica, posProf);
                                     escolaInformatica.removeProfNasSuasDisciplinas(professorModificado);
                                     escolaInformatica.insereProfNasSuasDisciplinas(professorModificado);
@@ -779,8 +625,7 @@ public class Programa {
                             case 5:
                                 // Remover professor
                                 profsDaEscola = funcoesUteis.identProf(escolaInformatica.getPessoasEscola());
-                                System.out.print(
-                                        "5. REMOVER PROFESSOR\n\n");
+                                System.out.print("5. REMOVER PROFESSOR\n\n");
                                 escolaInformatica.listaProfessores();
                                 System.out.print("Escreva o ID do professor que pretende remover -->  ");
                                 idProf = Ler.umInt();
@@ -797,23 +642,18 @@ public class Programa {
                             case 6:
                                 // Mostrar professores com mais disciplinas lecionadas
 
-                                professoresEscolaDisc = funcoesUteis
-                                        .convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
-                                ArrayList<Professor> professorMaisDiscLec = funcoesUteis.convPessoaProf(
-                                        funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
-                                ArrayList<Professor> ArrayResultadosProf = funcoesUteis.profcommaisdiscpLecionadas(
-                                        professorMaisDiscLec);
+                                professoresEscolaDisc = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
+                                ArrayList<Professor> professorMaisDiscLec = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
+                                ArrayList<Professor> ArrayResultadosProf = funcoesUteis.profcommaisdiscpLecionadas(professorMaisDiscLec);
                                 if (ArrayResultadosProf.size() == 1) {
-                                    System.out.println("PROFESSORES COM MAIS DISCIPLINAS LECIONADAS ("
-                                            + ArrayResultadosProf.get(0).contDiscProf() + "):\n");
+                                    System.out.println("PROFESSORES COM MAIS DISCIPLINAS LECIONADAS ("+ ArrayResultadosProf.get(0).contDiscProf() + "):\n");
                                     System.out.println(" . " + ArrayResultadosProf.get(0).getNome());
                                 } 
                                 else if(ArrayResultadosProf.isEmpty()){
                                         System.out.println("PROFESSOR COM MAIS DISCIPLINAS LECIONADAS:\n\nAinda não há professores inscritos.");
                                 }
                                 else {
-                                    System.out.println("EMPATE! " + professoresEscolaDisc.get(0).contDiscProf()
-                                            + " DISCIPLINAS LECIONADAS ENTRE OS SEGUINTES PROFESSORES:\n");
+                                    System.out.println("EMPATE! " + professoresEscolaDisc.get(0).contDiscProf() + " DISCIPLINAS LECIONADAS ENTRE OS SEGUINTES PROFESSORES:\n");
                                     for (int i = 0; i < ArrayResultadosProf.size(); i++)
                                         System.out.println(" . " + ArrayResultadosProf.get(i).getNome());
                                 }
@@ -824,14 +664,12 @@ public class Programa {
                                 // Mostrar professores deslocados
 
                                 ArrayList<Pessoa> pessoasDeslocadas = funcoesUteis.pessoasDeslocadas(escolaInformatica);
-                                ArrayList<Professor> professoresEscolaDeslocados = funcoesUteis.convPessoaProf(
-                                        funcoesUteis.identProf(pessoasDeslocadas));
+                                ArrayList<Professor> professoresEscolaDeslocados = funcoesUteis.convPessoaProf(funcoesUteis.identProf(pessoasDeslocadas));
                                 System.out.println("PROFESSORES DESLOCADOS:\n");
 
                                 if(!professoresEscolaDeslocados.isEmpty()){
                                         for (int i = 0; i < professoresEscolaDeslocados.size(); i++)
-                                        System.out.println(" . " + professoresEscolaDeslocados.get(i).getNome() + " ("
-                                                + professoresEscolaDeslocados.get(i).getLocalDeOrigem() + ")");
+                                                System.out.println(" . " + professoresEscolaDeslocados.get(i).getNome() + " ("+ professoresEscolaDeslocados.get(i).getLocalDeOrigem() + ")");
                                 }
                                 else
                                         System.out.println("Ainda não há professores inscritos.");
@@ -841,23 +679,18 @@ public class Programa {
                             case 8:
                                 // Mostrar professores com melhor rating
 
-                                professoresEscolaRating = funcoesUteis.convPessoaProf(
-                                        funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
+                                professoresEscolaRating = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
                                 profscomMelhorRating = funcoesUteis.professorComMelhorRating(professoresEscolaRating);
-                                professoresEscolaDisc = funcoesUteis
-                                        .convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
+                                professoresEscolaDisc = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola()));
                                 if (profscomMelhorRating.size() == 1) {
-                                    System.out.println("PROFESSOR COM MELHOR RATING ("
-                                            + profscomMelhorRating.get(0).getRating() + "):\n");
+                                    System.out.println("PROFESSOR COM MELHOR RATING ("+ profscomMelhorRating.get(0).getRating() + "):\n");
                                     System.out.println(" . " + profscomMelhorRating.get(0).getNome());
                                 }
                                 else if(profscomMelhorRating.isEmpty()){
                                         System.out.println("PROFESSOR COM O MELHOR RATING:\n\nAinda não há professores inscritos.");
                                 }
                                 else {
-                                    System.out.println(
-                                            "EMPATE NO MELHOR RATING (" + professoresEscolaDisc.get(0).getRating()
-                                                    + ") ENTRE OS SEGUINTES PROFESSORES:\n");
+                                    System.out.println("EMPATE NO MELHOR RATING (" + professoresEscolaDisc.get(0).getRating() + ") ENTRE OS SEGUINTES PROFESSORES:\n");
                                     for (int i = 0; i < profscomMelhorRating.size(); i++)
                                         System.out.println(" . " + profscomMelhorRating.get(i).getNome());
                                     System.out.println();
@@ -868,23 +701,18 @@ public class Programa {
                             case 9:
                                 // Mostrar professores mais velhos e mais novos
 
-                                ArrayList<Pessoa> professores = funcoesUteis
-                                        .identProf(escolaInformatica.getPessoasEscola());
-                                ArrayList<Professor> profMaisVelhos = funcoesUteis.convPessoaProf(
-                                        funcoesUteis.identProf(funcoesUteis.pessoasMaisVelhas(professores)));
-                                ArrayList<Professor> profMaisNovos = funcoesUteis.convPessoaProf(
-                                        funcoesUteis.identProf(funcoesUteis.pessoasMaisNovas(professores)));
+                                ArrayList<Pessoa> professores = funcoesUteis.identProf(escolaInformatica.getPessoasEscola());
+                                ArrayList<Professor> profMaisVelhos = funcoesUteis.convPessoaProf(funcoesUteis.identProf(funcoesUteis.pessoasMaisVelhas(professores)));
+                                ArrayList<Professor> profMaisNovos = funcoesUteis.convPessoaProf(funcoesUteis.identProf(funcoesUteis.pessoasMaisNovas(professores)));
 
                                 if (profMaisNovos.size() == 1) {
-                                    System.out.println("PROFESSOR MAIS NOVO (" + profMaisNovos.get(0).calculaIdade()
-                                            + " ANOS):\n");
+                                    System.out.println("PROFESSOR MAIS NOVO (" + profMaisNovos.get(0).calculaIdade()+ " ANOS):\n");
                                     System.out.println(" . " + profMaisNovos.get(0).getNome());
                                 }
                                 else if(profMaisNovos.isEmpty())
                                         System.out.println("PROFESSOR MAIS NOVO:\n\nAinda não há professores inscritos.");
                                 else {
-                                    System.out.println("EMPATE NOS PROFESSORES MAIS NOVOS ("
-                                            + profMaisNovos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println("EMPATE NOS PROFESSORES MAIS NOVOS (" + profMaisNovos.get(0).calculaIdade() + " ANOS):\n");
                                     for (int i = 0; i < profMaisNovos.size(); i++) {
                                         if (profMaisNovos.get(i).calculaIdade() == profMaisNovos.get(0).calculaIdade())
                                             System.out.println(" . " + profMaisNovos.get(i).getNome());
@@ -892,18 +720,15 @@ public class Programa {
                                 }
                                 System.out.println("\n------------------------------------------------");
                                 if (profMaisVelhos.size() == 1) {
-                                    System.out.println("PROFESSOR MAIS VELHO (" + profMaisVelhos.get(0).calculaIdade()
-                                            + " ANOS):\n");
+                                    System.out.println("PROFESSOR MAIS VELHO (" + profMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
                                     System.out.println(" . " + profMaisVelhos.get(0).getNome());
                                 }
                                 else if(profMaisVelhos.isEmpty())
                                         System.out.println("PROFESSOR MAIS VELHO:\n\nAinda não há professores inscritos.");
                                 else {
-                                    System.out.println("EMPATE NOS PROFESSORES MAIS VELHOS ("
-                                            + profMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println("EMPATE NOS PROFESSORES MAIS VELHOS ("+ profMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
                                     for (int i = 0; i < profMaisVelhos.size(); i++) {
-                                        if (profMaisVelhos.get(i).calculaIdade() == profMaisVelhos.get(0)
-                                                .calculaIdade())
+                                        if (profMaisVelhos.get(i).calculaIdade() == profMaisVelhos.get(0).calculaIdade())
                                             System.out.println(" . " + profMaisVelhos.get(i).getNome());
                                     }
                                 }
@@ -916,8 +741,7 @@ public class Programa {
                 case 5:
                     do {
                         funcoesUteis.limpaTela();
-                        System.out.print(
-                                "GERIR ALUNOS\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Atribuir notas a alunos\n7. Inscrever aluno em curso\n8. Mostrar alunos deslocados\n9. Mostrar aluno mais velho e mais novo\n10. Mostrar aluno com melhor nota, numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("GERIR ALUNOS\n\n1. Listar alunos\n2. Criar aluno\n3. Consultar informações de determinado aluno\n4. Modificar dados sobre um determinado aluno\n5. Remover aluno\n6. Atribuir notas a alunos\n7. Inscrever aluno em curso\n8. Mostrar alunos deslocados\n9. Mostrar aluno mais velho e mais novo\n10. Mostrar aluno com melhor nota, numa determinada frequência\n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 10 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -950,18 +774,17 @@ public class Programa {
 
                                 int posAluno, idAluno;
                                 
-                                System.out.print(
-                                        "3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\n");
+                                System.out.print("3. CONSULTAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\n");
                                 escolaInformatica.listaAlunos();
                                 if(!alunosDaEscola.isEmpty()){
                                         System.out.print("Escreva o nome do aluno que pretende consultar -->  ");
                                         idAluno = Ler.umInt();
                                         posAluno = escolaInformatica.devolvePosAlunoDadoID(idAluno, alunosDaEscola);
                                         if (posAluno == -1)
-                                        System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                                System.out.println("Lamentamos, mas este aluno não existe!\n");
                                         else {
-                                        System.out.println();
-                                        funcoesUteis.listaumAluno((Aluno) alunosDaEscola.get(posAluno));
+                                                System.out.println();
+                                                funcoesUteis.listaumAluno((Aluno) alunosDaEscola.get(posAluno));
                                         }
                                 }
                                 funcoesUteis.pedeTecla();
@@ -969,38 +792,36 @@ public class Programa {
                             case 4:
                                 // Modificar dados sobre uma determinado aluno
 
-                                System.out.print(
-                                        "4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\n");
+                                System.out.print("4. MODIFICAR INFORMAÇÕES SOBRE DETERMINADO ALUNO\n\n");
                                 escolaInformatica.listaAlunos();
                                 if(!alunosDaEscola.isEmpty()){
                                         System.out.print("Escreva o nome do aluno que pretende modificar -->  ");
                                         idAluno = Ler.umInt();
                                         posAluno = escolaInformatica.devolvePosAlunoDadoID(idAluno, alunosDaEscola);
                                         if (posAluno == -1) {
-                                        System.out.println("Lamentamos, mas este aluno não existe!\n");
-                                        funcoesUteis.pedeTecla();
+                                                System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                                funcoesUteis.pedeTecla();
                                         } else {
-                                        funcoesUteis.modificarAluno(escolaInformatica, posAluno);
-                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                                funcoesUteis.modificarAluno(escolaInformatica, posAluno);
+                                                funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                         }
                                 }
                                 break;
                             case 5:
                                 // Remover aluno
 
-                                System.out.print(
-                                        "5. REMOVER ALUNO\n\n");
+                                System.out.print("5. REMOVER ALUNO\n\n");
                                 escolaInformatica.listaAlunos();
                                 if(!alunosDaEscola.isEmpty()){
                                         System.out.print("Escreva o nome do aluno que pretende remover -->  ");
                                         idAluno = Ler.umInt();
                                         posAluno = escolaInformatica.devolvePosAlunoDadoID(idAluno, alunosDaEscola);
                                         if (posAluno == -1) {
-                                        System.out.println("Lamentamos, mas este aluno não existe!\n");
+                                                System.out.println("Lamentamos, mas este aluno não existe!\n");
                                         } else {
-                                        escolaInformatica.getPessoasEscola().remove(posAluno);
-                                        System.out.println("\nAluno " + alunosDaEscola.get(posAluno).getNome() + " removido com sucesso.\n");
-                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
+                                                escolaInformatica.getPessoasEscola().remove(posAluno);
+                                                System.out.println("\nAluno " + alunosDaEscola.get(posAluno).getNome() + " removido com sucesso.\n");
+                                                funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                         }
                                 }
                                 funcoesUteis.pedeTecla();
@@ -1040,39 +861,29 @@ public class Programa {
                                             Aluno alunoinscrever = (Aluno) escolaInformatica.getPessoasEscola().get(posAluno);
         
                                             if (alunoinscrever.getCurso().getNomeCurso() == "") {
-                                                funcoesUteis.inscreverAlunoEmCurso(escolaInformatica, alunoinscrever.getNome(),
-                                                        alunoinscrever);
+                                                funcoesUteis.inscreverAlunoEmCurso(escolaInformatica, alunoinscrever.getNome(),alunoinscrever);
                                                 escolaInformatica.insereAlunoNasSuasDisciplinas(alunoinscrever);
-                                                for (int i = 0; i < alunoinscrever.getCurso().getDisciplinasCurso()
-                                                        .size(); i++) {
+                                                for (int i = 0; i < alunoinscrever.getCurso().getDisciplinasCurso().size(); i++) {
                                                     ArrayList<Resultado> resultados = new ArrayList<Resultado>();
-                                                    NotasDisciplina notasDisciplina = new NotasDisciplina(
-                                                            alunoinscrever.getCurso().getDisciplinasCurso().get(i).getNomDisc(),
-                                                            resultados);
+                                                    NotasDisciplina notasDisciplina = new NotasDisciplina(alunoinscrever.getCurso().getDisciplinasCurso().get(i).getNomDisc(),resultados);
                                                     alunoinscrever.getNotasDisciplinas().add(notasDisciplina);
                                                 }
-                                            } else {
+                                            } 
+                                            else {
                                                 String opcao = "";
-                                                System.out.println("O Aluno " + alunoinscrever.getNome()
-                                                        + " já se encontra inscrito num curso! ("
-                                                        + alunoinscrever.getCurso().getNomeCurso() + ")\n");
-                                                while (!opcao.equals("n") && !opcao.equals("N") && !opcao.equals("S")
-                                                        && !opcao.equals("s")) {
+                                                System.out.println("O Aluno " + alunoinscrever.getNome()+ " já se encontra inscrito num curso! ("+ alunoinscrever.getCurso().getNomeCurso() + ")\n");
+                                                while (!opcao.equals("n") && !opcao.equals("N") && !opcao.equals("S")&& !opcao.equals("s")) {
                                                     System.out.print("Pretende alterar o Curso? [S/N] -> ");
                                                     opcao = Ler.umaString();
                                                 }
                                                 System.out.println();
                                                 if (opcao.equals("s") || opcao.equals("S")) {
                                                     escolaInformatica.removeAlunoNasSuasDisciplinas(alunoinscrever);
-                                                    funcoesUteis.inscreverAlunoEmCurso(escolaInformatica, alunoinscrever.getNome(),
-                                                            alunoinscrever);
+                                                    funcoesUteis.inscreverAlunoEmCurso(escolaInformatica, alunoinscrever.getNome(),alunoinscrever);
                                                     escolaInformatica.insereAlunoNasSuasDisciplinas(alunoinscrever);
-                                                    for (int i = 0; i < alunoinscrever.getCurso().getDisciplinasCurso()
-                                                            .size(); i++) {
+                                                    for (int i = 0; i < alunoinscrever.getCurso().getDisciplinasCurso().size(); i++) {
                                                         ArrayList<Resultado> resultados = new ArrayList<Resultado>();
-                                                        NotasDisciplina notasDisciplina = new NotasDisciplina(alunoinscrever
-                                                                .getCurso().getDisciplinasCurso().get(i).getNomDisc(),
-                                                                resultados);
+                                                        NotasDisciplina notasDisciplina = new NotasDisciplina(alunoinscrever.getCurso().getDisciplinasCurso().get(i).getNomDisc(),resultados);
                                                         alunoinscrever.getNotasDisciplinas().add(notasDisciplina);
                                                     }
                                                 }
@@ -1085,62 +896,50 @@ public class Programa {
                                 // Mostrar alunos não deslocados
 
                                 ArrayList<Pessoa> pessoasDeslocadas = funcoesUteis.pessoasDeslocadas(escolaInformatica);
-                                ArrayList<Aluno> alunosEscolaDeslocados = funcoesUteis.convPessoaAluno(
-                                        funcoesUteis.identAluno(pessoasDeslocadas));
+                                ArrayList<Aluno> alunosEscolaDeslocados = funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(pessoasDeslocadas));
                                 System.out.println("ALUNOS DESLOCADOS\n");
                                 if(!pessoasDeslocadas.isEmpty()){
                                         for (int i = 0; i < alunosEscolaDeslocados.size(); i++)
-                                        System.out.println(" . " + alunosEscolaDeslocados.get(i).getNome() + " ("
-                                                + alunosEscolaDeslocados.get(i).getLocalDeOrigem() + ")");
+                                                System.out.println(" . " + alunosEscolaDeslocados.get(i).getNome() + " ("+ alunosEscolaDeslocados.get(i).getLocalDeOrigem() + ")");
                                 }
-                                else{
+                                else
                                         System.out.println("Ainda não há alunos inscritos.");
-                                }
                                 System.out.println();
                                 funcoesUteis.pedeTecla();
                                 break;
                             case 9:
                                 // Mostrar aluno mais velho e mais novo
 
-                                ArrayList<Pessoa> alunos = funcoesUteis
-                                        .identAluno(escolaInformatica.getPessoasEscola());
-                                ArrayList<Aluno> alunoMaisVelhos = funcoesUteis.convPessoaAluno(
-                                        funcoesUteis.identAluno(funcoesUteis.pessoasMaisVelhas(alunos)));
-                                ArrayList<Aluno> alunoMaisNovos = funcoesUteis.convPessoaAluno(
-                                        funcoesUteis.identAluno(funcoesUteis.pessoasMaisNovas(alunos)));
+                                ArrayList<Pessoa> alunos = funcoesUteis.identAluno(escolaInformatica.getPessoasEscola());
+                                ArrayList<Aluno> alunoMaisVelhos = funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(funcoesUteis.pessoasMaisVelhas(alunos)));
+                                ArrayList<Aluno> alunoMaisNovos = funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(funcoesUteis.pessoasMaisNovas(alunos)));
 
                                 if (alunoMaisNovos.size() == 1) {
-                                    System.out.println(
-                                            "ALUNO MAIS NOVO (" + alunoMaisNovos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println("ALUNO MAIS NOVO (" + alunoMaisNovos.get(0).calculaIdade() + " ANOS):\n");
                                     System.out.println(" . " + alunoMaisNovos.get(0).getNome());
                                 } 
                                 else if(alunoMaisNovos.isEmpty()){
                                         System.out.println("ALUNOS MAIS NOVOS:\n\nAinda não há alunos inscritos."); 
                                 }
                                 else {
-                                    System.out.println("EMPATE NOS ALUNOS MAIS NOVOS ("
-                                            + alunoMaisNovos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println("EMPATE NOS ALUNOS MAIS NOVOS ("+ alunoMaisNovos.get(0).calculaIdade() + " ANOS):\n");
                                     for (int i = 0; i < alunoMaisNovos.size(); i++) {
-                                        if (alunoMaisNovos.get(i).calculaIdade() == alunoMaisNovos.get(0)
-                                                .calculaIdade())
+                                        if (alunoMaisNovos.get(i).calculaIdade() == alunoMaisNovos.get(0).calculaIdade())
                                             System.out.println(" . " + alunoMaisNovos.get(i).getNome());
                                     }
                                 }
                                 System.out.println("\n------------------------------------------------");
                                 if (alunoMaisVelhos.size() == 1) {
-                                    System.out.println(
-                                            "ALUNO MAIS VELHO (" + alunoMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println("ALUNO MAIS VELHO (" + alunoMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
                                     System.out.println(" . " + alunoMaisVelhos.get(0).getNome());
                                 } 
                                 else if(alunoMaisVelhos.isEmpty()){
                                         System.out.println("ALUNOS MAIS VELHOS:\n\nAinda não há alunos inscritos.");
                                 }
                                 else {
-                                    System.out.println("EMPATE NOS ALUNOS MAIS VELHOS ("
-                                            + alunoMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
+                                    System.out.println("EMPATE NOS ALUNOS MAIS VELHOS (" + alunoMaisVelhos.get(0).calculaIdade() + " ANOS):\n");
                                     for (int i = 0; i < alunoMaisVelhos.size(); i++) {
-                                        if (alunoMaisVelhos.get(i).calculaIdade() == alunoMaisVelhos.get(0)
-                                                .calculaIdade())
+                                        if (alunoMaisVelhos.get(i).calculaIdade() == alunoMaisVelhos.get(0).calculaIdade())
                                             System.out.println(" . " + alunoMaisVelhos.get(i).getNome());
                                     }
                                 }
@@ -1160,33 +959,22 @@ public class Programa {
                                         idDisc = Ler.umInt();
                                         escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
                                         while (escolaInformatica.devolvePosDisciplinaDadoID(idDisc) == -1) {
-                                        System.out.print("ID NÃO EXISTENTE, ESCOLHA OUTRO: ");
-                                        idDisc = Ler.umInt();
-                                        escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
+                                                System.out.print("ID NÃO EXISTENTE, ESCOLHA OUTRO: ");
+                                                idDisc = Ler.umInt();
+                                                escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
                                         }
 
-                                        System.out
-                                                .print("\nEscolha o ID da Frequência "
-                                                        + funcoesUteis.listIdsDisciplina(escolaInformatica,
-                                                                escolaInformatica.devolvePosDisc(escolaInformatica
-                                                                        .devolveDisciplinaDadoID(idDisc).getNomDisc()))
-                                                        + " --> ");
+                                        System.out.print("\nEscolha o ID da Frequência "+ funcoesUteis.listIdsDisciplina(escolaInformatica,escolaInformatica.devolvePosDisc(escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc()))+ " --> ");
                                         idFreq = Ler.umInt();
                                         while (escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq) == -1) {
-                                        System.out.print("ID NÃO EXISTENTE, ESCOLHA OUTRO: ");
-                                        idFreq = Ler.umInt();
-                                        escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
+                                                System.out.print("ID NÃO EXISTENTE, ESCOLHA OUTRO: ");
+                                                idFreq = Ler.umInt();
+                                                escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
                                         }
 
-                                        Aluno alunoComMelhorNota = funcoesUteis.alunoComMelhorNotaNumaFreq(idFreq,
-                                                escolaInformatica.devolveDisciplinaDadoID(idDisc),
-                                                funcoesUteis.convPessoaAluno(
-                                                        funcoesUteis.identAluno(escolaInformatica.getPessoasEscola())));
+                                        Aluno alunoComMelhorNota = funcoesUteis.alunoComMelhorNotaNumaFreq(idFreq,escolaInformatica.devolveDisciplinaDadoID(idDisc),funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(escolaInformatica.getPessoasEscola())));
 
-                                        System.out.println("\nO aluno com melhor nota na Frequência com o ID " + idFreq
-                                                + " da Disciplina de "
-                                                + escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc() + " foi:\n . "
-                                                + alunoComMelhorNota.getNome() + "\n");
+                                        System.out.println("\nO aluno com melhor nota na Frequência com o ID " + idFreq + " da Disciplina de "+ escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc() + " foi:\n . " + alunoComMelhorNota.getNome() + "\n");
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -1197,8 +985,7 @@ public class Programa {
                     do {
                         funcoesUteis.limpaTela();
                         int idFreq;
-                        System.out.print(
-                                "GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequência com maior Nº perguntas de um curso \n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
+                        System.out.print("GERIR FREQUÊNCIAS\n\n1. Listar Frequências de determinada disciplina\n2. Criar Frequência\n3. Mostrar determinada frequência, dado o ID da mesma\n4. Modificar dados sobre uma Frequência\n5. Remover Frequência\n6. Mostrar a pergunta com maior cotação, de determinada frequência\n7. Mostrar frequências por nível de dificuldade\n8. Mostrar frequências elaboradas por determinado professor\n9. Mostrar frequência com maior Nº perguntas de um curso \n\n0. Voltar ao menu anterior\n\nESCOLHA A SUA OPCÃO -> ");
                         opcaoUtilizador = Ler.umInt();
                         while (opcaoUtilizador > 9 || opcaoUtilizador < 0) {
                             System.out.print("OPCÃO INVÁLIDA! DIGITE A SUA OPÇÃO --> ");
@@ -1214,8 +1001,7 @@ public class Programa {
                                 idFreq = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
                                 if (idFreq != -1) {
                                     int posDisc = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
-                                    ArrayList<Frequencia> listaFreqDisc = escolaInformatica.getDisciplinaEscola()
-                                            .get(posDisc).getListFreq();
+                                    ArrayList<Frequencia> listaFreqDisc = escolaInformatica.getDisciplinaEscola().get(posDisc).getListFreq();
                                     for (int i = 0; i < listaFreqDisc.size(); i++)
                                         funcoesUteis.listaumaFreq(listaFreqDisc.get(i));
                                 }
@@ -1224,11 +1010,9 @@ public class Programa {
                             case 2:
                                 // Criar Frequência
 
-                                ArrayList<Pessoa> profsDaEscola = funcoesUteis
-                                        .identProf(escolaInformatica.getPessoasEscola());
+                                ArrayList<Pessoa> profsDaEscola = funcoesUteis.identProf(escolaInformatica.getPessoasEscola());
                                 if (profsDaEscola.isEmpty())
-                                    System.out.println(
-                                            "Não é possível criar Frequências pois ainda não há professores inscritos!\n");
+                                    System.out.println("Não é possível criar Frequências pois ainda não há professores inscritos!\n");
                                 else {
                                     int posdisc = -1;
                                     Disciplina disciplinaDaFreq = new Disciplina();
@@ -1238,13 +1022,11 @@ public class Programa {
                                         System.out.print("\nDisciplina disponíveis na escola: ");
                                         escolaInformatica.listaDisciplinas();
 
-                                        System.out.print(
-                                                "Disciplina para a qual pretende criar uma frequência [ID]: ");
+                                        System.out.print("Disciplina para a qual pretende criar uma frequência [ID]: ");
                                         int idDisc = Ler.umInt();
                                         posdisc = escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
                                         while (posdisc == -1) {
-                                            System.out
-                                                    .print("Lamento, mas esta disciplina não existe! Escolha outra: ");
+                                            System.out.print("Lamento, mas esta disciplina não existe! Escolha outra: ");
                                             nomediscp = Ler.umaString();
                                             posdisc = escolaInformatica.devolveposDisc(nomediscp);
                                         }
@@ -1253,12 +1035,11 @@ public class Programa {
 
                                         funcoesUteis.criarfrequencia(escolaInformatica, disciplinaDaFreq);
 
-                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt",
-                                                escolaInformatica);
+                                        funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                         System.out.println("\n-->  Frequência criada com sucesso!!\n");
-                                    } else
-                                        System.out.println(
-                                                "Não é possível criar uma frequência pois ainda não existem disciplinas criadas nesta escola.\n");
+                                    } 
+                                    else
+                                        System.out.println("Não é possível criar uma frequência pois ainda não existem disciplinas criadas nesta escola.\n");
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -1270,22 +1051,16 @@ public class Programa {
                                 System.out.println("3. CONSULTAR DADOS DE UM FREQUÊNCIA, DADO O SEU ID\n");
                                 idFreq = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
                                 posDisciplinaIdFreq = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
-                                System.out.print("\nID's das Frequências de "
-                                        + escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getNomDisc()
-                                        + ": "
-                                        + funcoesUteis.listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq));
+                                System.out.print("\nID's das Frequências de "+ escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getNomDisc()+ ": "+ funcoesUteis.listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq));
                                 System.out.print("\nIntroduza o ID da frequência que deseja consultar: ");
                                 idFreq = Ler.umInt();
                                 posFrequencia = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
                                 while (posFrequencia == -1 || posDisciplinaIdFreq == -1) {
-                                    System.out.print(
-                                            "Introduza o ID da frequência que deseja consultar (DE ENTRE OS VÁLIDOS): ");
+                                    System.out.print("Introduza o ID da frequência que deseja consultar (DE ENTRE OS VÁLIDOS): ");
                                     idFreq = Ler.umInt();
                                     posFrequencia = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
                                 }
-                                funcoesUteis.consultarFrequencia(escolaInformatica, idFreq, posDisciplinaIdFreq,
-                                        posFrequencia);
-
+                                funcoesUteis.consultarFrequencia(escolaInformatica, idFreq, posDisciplinaIdFreq,posFrequencia);
                                 break;
                             case 4:
                                 // Modificar dados de uma determinada Frequência
@@ -1296,33 +1071,21 @@ public class Programa {
                                 idFreq = Ler.umInt();
                                 posicaoDisc = escolaInformatica.devolvePosDisciplinaDadoID(idFreq);
                                 if (posicaoDisc == -1) {
-                                    System.out
-                                            .print("Lamentamos, mas este disciplina não existe! Digite algo válido: ");
+                                    System.out.print("Lamentamos, mas este disciplina não existe! Digite algo válido: ");
                                 } else {
-                                    System.out.print("\nID's das Frequências de "
-                                            + escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc()
-                                            + ": "
-                                            + funcoesUteis.listIdsDisciplina(escolaInformatica, posicaoDisc));
+                                    System.out.print("\nID's das Frequências de "+ escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc()+ ": "+ funcoesUteis.listIdsDisciplina(escolaInformatica, posicaoDisc));
                                     System.out.print("\nIntroduza o ID da frequência que deseja modificar: ");
                                     idFreq = Ler.umInt();
-                                    posFrequencianaDisc = escolaInformatica
-                                            .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, escolaInformatica
-                                                    .getDisciplinaEscola().get(posicaoDisc).getNomDisc());
+                                    posFrequencianaDisc = escolaInformatica.devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq, escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc());
                                     while (posFrequencianaDisc == -1) {
                                         System.out.println("Introduza um ID da Frequência VÁLIDO: ");
                                         idFreq = Ler.umInt();
-                                        posFrequencianaDisc = escolaInformatica
-                                                .devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq,
-                                                        escolaInformatica.getDisciplinaEscola().get(posicaoDisc)
-                                                                .getNomDisc());
+                                        posFrequencianaDisc = escolaInformatica.devolvePosFrequenciaDaListaFreqDeUmaDisciplina(idFreq,escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getNomDisc());
                                     }
 
-                                    Frequencia modificadaFreq = funcoesUteis.modFrequencia(escolaInformatica, idFreq,
-                                            posicaoDisc,
-                                            posFrequencianaDisc);
+                                    Frequencia modificadaFreq = funcoesUteis.modFrequencia(escolaInformatica, idFreq, posicaoDisc, posFrequencianaDisc);
 
-                                    escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getListFreq()
-                                            .set(posFrequencianaDisc, modificadaFreq);
+                                    escolaInformatica.getDisciplinaEscola().get(posicaoDisc).getListFreq().set(posFrequencianaDisc, modificadaFreq);
                                     funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 }
                                 break;
@@ -1335,20 +1098,16 @@ public class Programa {
                                 posDisciplinaIdFreq2 = escolaInformatica.devolvePosDisciplinaDadoID(
                                         funcoesUteis.menuDisciplinasFreq(escolaInformatica));
                                 if (posDisciplinaIdFreq2 != -1) {
-                                    System.out.print("Escreva o ID da frequência que pretende remover "
-                                            + funcoesUteis.listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2)
-                                            + "-->  ");
+                                    System.out.print("Escreva o ID da frequência que pretende remover "+ funcoesUteis.listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq2)+ "-->  ");
                                     int idFrequencia = Ler.umInt();
                                     posFrequencia2 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia);
                                     while (posFrequencia2 == -1 || posDisciplinaIdFreq2 == -1) {
                                         System.out.println("Introduza um ID da frequência VÁLIDO: ");
                                         idFrequencia = Ler.umInt();
                                     }
-                                    escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq2).getListFreq()
-                                            .remove(posFrequencia2);
+                                    escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq2).getListFreq().remove(posFrequencia2);
                                     funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
-                                    System.out.println(
-                                            "\nFrequência com ID:" + idFrequencia + " removida com sucesso!\n");
+                                    System.out.println("\nFrequência com ID:" + idFrequencia + " removida com sucesso!\n");
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -1361,35 +1120,25 @@ public class Programa {
                                 int idDiscIdFreq3 = funcoesUteis.menuDisciplinasFreq(escolaInformatica);
                                 if (idDiscIdFreq3 != -1) {
                                     posDisciplinaIdFreq3 = escolaInformatica.devolvePosDisciplinaDadoID(idDiscIdFreq3);
-                                    System.out.print(
-                                            "\nEscreva o ID da frequência da qual pretende consultar a pergunta com maior cotação "
-                                                    + funcoesUteis.listIdsDisciplina(escolaInformatica,
-                                                            posDisciplinaIdFreq3)
-                                                    + "-->  ");
+                                    System.out.print("\nEscreva o ID da frequência da qual pretende consultar a pergunta com maior cotação "+ funcoesUteis.listIdsDisciplina(escolaInformatica, posDisciplinaIdFreq3)+ "-->  ");
                                     int idFrequencia3 = Ler.umInt();
                                     posFrequencia3 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
                                     while (posFrequencia3 == -1) {
                                         System.out.print("Introduza um ID da frequência VÁLIDO: ");
                                         idFrequencia3 = Ler.umInt();
-                                        posFrequencia3 = escolaInformatica
-                                                .devolvePosFrequenciaDaListaFreq(idFrequencia3);
+                                        posFrequencia3 = escolaInformatica.devolvePosFrequenciaDaListaFreq(idFrequencia3);
                                     }
                                     MaioresPerguntaLista = funcoesUteis.cotacaoMaior(escolaInformatica, idFrequencia3);
                                     if (MaioresPerguntaLista.size() == 0) {
                                         System.out.println("\nAinda não existem perguntas com cotação!");
                                     }
                                     if (MaioresPerguntaLista.size() == 1) {
-                                        System.out.println(
-                                                "\nPergunta com maior cotação ("
-                                                        + MaioresPerguntaLista.get(0).getcotaçao()
-                                                        + ") ->  " + MaioresPerguntaLista.get(0));
+                                        System.out.println("\nPergunta com maior cotação ("+ MaioresPerguntaLista.get(0).getcotaçao()+ ") ->  " + MaioresPerguntaLista.get(0));
                                     }
                                     if (MaioresPerguntaLista.size() > 1) {
-                                        System.out.println("\n  EMPATE NAS PERGUNTAS COM MAIOR COTAÇÃO ("
-                                                + MaioresPerguntaLista.get(0).getcotaçao() + ") :");
-                                        for (int i = 0; i < MaioresPerguntaLista.size(); i++) {
+                                        System.out.println("\n  EMPATE NAS PERGUNTAS COM MAIOR COTAÇÃO ("+ MaioresPerguntaLista.get(0).getcotaçao() + ") :");
+                                        for (int i = 0; i < MaioresPerguntaLista.size(); i++) 
                                             System.out.println("->  " + MaioresPerguntaLista.get(i));
-                                        }
                                     }
                                     System.out.println();
                                 }
@@ -1408,90 +1157,54 @@ public class Programa {
                                     funcoesUteis.limpaTela();
                                     do {
                                         funcoesUteis.limpaTela();
-                                        nivelescolhido = funcoesUteis.menuEscolhaNivelAdequadaDisciplina(
-                                                escolaInformatica,
-                                                posDisciplinaEscolhida);
+                                        nivelescolhido = funcoesUteis.menuEscolhaNivelAdequadaDisciplina(escolaInformatica,posDisciplinaEscolhida);
                                         switch (nivelescolhido) {
                                             case 1:
                                                 funcoesUteis.limpaTela();
-                                                System.out.println("Frequências de " + escolaInformatica
-                                                        .getDisciplinaEscola().get(posDisciplinaEscolhida)
-                                                        .getNomDisc() + " de fácil dificuldade:");
-                                                if (!funcoesUteis.freqnivelFacil(escolaInformatica,
-                                                        posDisciplinaEscolhida).isEmpty()) {
-                                                    for (int i = 0; i < funcoesUteis.freqnivelFacil(escolaInformatica,
-                                                            posDisciplinaEscolhida).size(); i++) {
-                                                        funcoesUteis.listaumaFreq(funcoesUteis
-                                                                .freqnivelFacil(escolaInformatica,
-                                                                        posDisciplinaEscolhida)
-                                                                .get(i));
-                                                    }
-                                                } else
-                                                    System.out.println(
-                                                            "Este nível de dificuldade não contém frequências.\n");
-                                                System.out.print(
-                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                System.out.println("Frequências de " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc() + " de fácil dificuldade:");
+                                                if (!funcoesUteis.freqnivelFacil(escolaInformatica,posDisciplinaEscolhida).isEmpty()){
+                                                    for (int i = 0; i < funcoesUteis.freqnivelFacil(escolaInformatica,posDisciplinaEscolhida).size(); i++) 
+                                                        funcoesUteis.listaumaFreq(funcoesUteis.freqnivelFacil(escolaInformatica,posDisciplinaEscolhida).get(i));
+                                                } 
+                                                else
+                                                    System.out.println("Este nível de dificuldade não contém frequências.\n");
+                                                System.out.print("Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                 condicaostop = Ler.umaString();
-                                                while (!condicaostop.equals("s") && !condicaostop.equals("S")
-                                                        && !condicaostop.equals("n") && !condicaostop.equals("N")) {
-                                                    System.out.print(
-                                                            "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                while (!condicaostop.equals("s") && !condicaostop.equals("S") && !condicaostop.equals("n") && !condicaostop.equals("N")) {
+                                                    System.out.print("Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                     condicaostop = Ler.umaString();
                                                 }
                                                 break;
                                             case 2:
                                                 funcoesUteis.limpaTela();
-                                                System.out.println("Frequências de " + escolaInformatica
-                                                        .getDisciplinaEscola().get(posDisciplinaEscolhida)
-                                                        .getNomDisc() + " de dificuldade média:");
-                                                if (!funcoesUteis.freqnivelMédio(escolaInformatica,
-                                                        posDisciplinaEscolhida).isEmpty()) {
-                                                    for (int i = 0; i < funcoesUteis.freqnivelMédio(escolaInformatica,
-                                                            posDisciplinaEscolhida).size(); i++) {
-                                                        funcoesUteis.listaumaFreq(funcoesUteis
-                                                                .freqnivelMédio(escolaInformatica,
-                                                                        posDisciplinaEscolhida)
-                                                                .get(i));
-                                                    }
-                                                } else {
-                                                    System.out.println(
-                                                            "Este nível de dificuldade não contém frequências.\n");
-                                                }
-                                                System.out.print(
-                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                System.out.println("Frequências de " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc() + " de dificuldade média:");
+                                                if (!funcoesUteis.freqnivelMédio(escolaInformatica,posDisciplinaEscolhida).isEmpty()) {
+                                                    for (int i = 0; i < funcoesUteis.freqnivelMédio(escolaInformatica,posDisciplinaEscolhida).size(); i++)
+                                                        funcoesUteis.listaumaFreq(funcoesUteis.freqnivelMédio(escolaInformatica,posDisciplinaEscolhida).get(i));
+                                                } 
+                                                else 
+                                                    System.out.println("Este nível de dificuldade não contém frequências.\n");
+                                                
+                                                System.out.print("Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                 condicaostop = Ler.umaString();
-                                                while (!condicaostop.equals("s") && !condicaostop.equals("S")
-                                                        && !condicaostop.equals("n") && !condicaostop.equals("N")) {
-                                                    System.out.print(
-                                                            "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                while (!condicaostop.equals("s") && !condicaostop.equals("S")&& !condicaostop.equals("n") && !condicaostop.equals("N")) {
+                                                    System.out.print("Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                     condicaostop = Ler.umaString();
                                                 }
                                                 break;
                                             case 3:
                                                 funcoesUteis.limpaTela();
-                                                System.out.println("Frequências de " + escolaInformatica
-                                                        .getDisciplinaEscola().get(posDisciplinaEscolhida)
-                                                        .getNomDisc() + " de dificuldade difícil");
-                                                if (!funcoesUteis.freqnivelDificil(escolaInformatica,
-                                                        posDisciplinaEscolhida).isEmpty()) {
-                                                    for (int i = 0; i < funcoesUteis.freqnivelDificil(escolaInformatica,
-                                                            posDisciplinaEscolhida).size(); i++) {
-                                                        funcoesUteis.listaumaFreq(funcoesUteis
-                                                                .freqnivelDificil(escolaInformatica,
-                                                                        posDisciplinaEscolhida)
-                                                                .get(i));
-                                                    }
-                                                } else {
-                                                    System.out.println(
-                                                            "Este nível de dificuldade não contém frequências.\n");
-                                                }
-                                                System.out.print(
-                                                        "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                System.out.println("Frequências de " + escolaInformatica.getDisciplinaEscola().get(posDisciplinaEscolhida).getNomDisc() + " de dificuldade difícil");
+                                                if (!funcoesUteis.freqnivelDificil(escolaInformatica,posDisciplinaEscolhida).isEmpty()) {
+                                                    for (int i = 0; i < funcoesUteis.freqnivelDificil(escolaInformatica,posDisciplinaEscolhida).size(); i++) 
+                                                        funcoesUteis.listaumaFreq(funcoesUteis.freqnivelDificil(escolaInformatica,posDisciplinaEscolhida).get(i));
+                                                } 
+                                                else 
+                                                    System.out.println("Este nível de dificuldade não contém frequências.\n"); 
+                                                System.out.print("Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                 condicaostop = Ler.umaString();
-                                                while (!condicaostop.equals("s") && !condicaostop.equals("S")
-                                                        && !condicaostop.equals("n") && !condicaostop.equals("N")) {
-                                                    System.out.print(
-                                                            "Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
+                                                while (!condicaostop.equals("s") && !condicaostop.equals("S")&& !condicaostop.equals("n") && !condicaostop.equals("N")) {
+                                                    System.out.print("Pretende explorar outros níveis de dificuldade ? Se sim [S], se não [N]! --> ");
                                                     condicaostop = Ler.umaString();
                                                 }
                                                 break;
@@ -1509,26 +1222,20 @@ public class Programa {
                                 System.out.print("Escolha o ID do Professor: ");
                                 int IDProf = Ler.umInt();
                                 int posProf;
-                                posProf = escolaInformatica.devolvePosProfDadoID(IDProf,
-                                        funcoesUteis.convPessoaProf(
-                                                funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
+                                posProf = escolaInformatica.devolvePosProfDadoID(IDProf,funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
                                 if (posProf == -1) {
                                     System.out.println("Lamentamos, mas este professor não existe!\n");
-                                } else {
-                                    Professor Prof = funcoesUteis
-                                            .convPessoaProf(
-                                                    funcoesUteis.identProf(escolaInformatica.getPessoasEscola()))
-                                            .get(posProf);
-                                    ArrayList<Frequencia> listaFreqProf = funcoesUteis
-                                            .devolveFreqsDeUmProf(escolaInformatica, Prof, funcoesUteis.convPessoaProf(
-                                                    funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
+                                } 
+                                else {
+                                    Professor Prof = funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())).get(posProf);
+                                    ArrayList<Frequencia> listaFreqProf = funcoesUteis.devolveFreqsDeUmProf(escolaInformatica, Prof, funcoesUteis.convPessoaProf(funcoesUteis.identProf(escolaInformatica.getPessoasEscola())));
                                     System.out.println();
                                     if (!listaFreqProf.isEmpty()) {
                                         for (int i = 0; i < listaFreqProf.size(); i++)
                                             funcoesUteis.listaumaFreq(listaFreqProf.get(i));
-                                    } else
-                                        System.out
-                                                .println("Este professor não é responsável por nenhuma disciplina.\n");
+                                    } 
+                                    else
+                                        System.out.println("Este professor não é responsável por nenhuma disciplina.\n");
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -1537,26 +1244,19 @@ public class Programa {
 
                                 int posCursoSel;
                                 System.out.println("9. Mostrar frequência com maior Nº perguntas de um curso\n");
-                                ;
                                 posCursoSel = funcoesUteis.menuCurso(escolaInformatica);
                                 if (posCursoSel != -1) {
-                                    ArrayList<Frequencia> freqComMaisPerg = funcoesUteis.freqcommaisPerguntasCurso(
-                                            escolaInformatica,
-                                            posCursoSel);
-                                    if (freqComMaisPerg.size() == 0) {
-                                        System.out.println("\nNenhuma disciplina do curso tem frequências!");
-                                    }
-                                    if (freqComMaisPerg.size() == 1) {
-                                        System.out.println("\nFrequência com maior Nº Perguntas ("
-                                                + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
+                                    ArrayList<Frequencia> freqComMaisPerg = funcoesUteis.freqcommaisPerguntasCurso(escolaInformatica,posCursoSel);
+                                    if (freqComMaisPerg.size() == 0) 
+                                        System.out.println("\nNenhuma disciplina do curso tem frequências!"); 
+                                    else if (freqComMaisPerg.size() == 1) {
+                                        System.out.println("\nFrequência com maior Nº Perguntas ("+ freqComMaisPerg.get(0).getNumPergTotal() + ") :");
                                         funcoesUteis.listaumaFreq(freqComMaisPerg.get(0));
                                     }
-                                    if (freqComMaisPerg.size() > 1) {
-                                        System.out.println("\nEMPATE NO Nº TOTAL DE PERGUNTAS ("
-                                                + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
-                                        for (int i = 0; i < freqComMaisPerg.size(); i++) {
+                                    else if (freqComMaisPerg.size() > 1) {
+                                        System.out.println("\nEMPATE NO Nº TOTAL DE PERGUNTAS (" + freqComMaisPerg.get(0).getNumPergTotal() + ") :");
+                                        for (int i = 0; i < freqComMaisPerg.size(); i++) 
                                             funcoesUteis.listaumaFreq(freqComMaisPerg.get(i));
-                                        }
                                     }
                                 }
                                 funcoesUteis.pedeTecla();
@@ -1566,14 +1266,12 @@ public class Programa {
                     break;
             }
             funcoesUteis.limpaTela();
-            System.out.print(
-                    "ESCOLA PROFISSIONAL DE INFORMÁTICA\n\n1. Gerir Escola\n2. Gerir Cursos\n3. Gerir Disciplinas\n4. Gerir Professores\n5. Gerir Alunos\n6. Gerir Frequências\n\n0. Sair\n\nESCOLHA A SUA OPÇÃO -> ");
+            System.out.print("ESCOLA PROFISSIONAL DE INFORMÁTICA\n\n1. Gerir Escola\n2. Gerir Cursos\n3. Gerir Disciplinas\n4. Gerir Professores\n5. Gerir Alunos\n6. Gerir Frequências\n\n0. Sair\n\nESCOLHA A SUA OPÇÃO -> ");
             opcaoUtilizador = Ler.umInt();
         }
         funcoesUteis.limpaTela();
         System.out.print("_______________________________________________\n");
-        System.out.print(
-                "Programa elaborado por:\n\n-> João Martins\n-> Guilherme Teixeira\n-> Cláudio Redondo\n-> Tiago Ribeiro\n\n  POO - Engenharia Informática - UBI ");
+        System.out.print("Programa elaborado por:\n\n-> João Martins\n-> Guilherme Teixeira\n-> Cláudio Redondo\n-> Tiago Ribeiro\n\n  POO - Engenharia Informática - UBI ");
         System.out.print("\n_______________________________________________\n");
     }
 }

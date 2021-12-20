@@ -50,6 +50,9 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 **Perguntas (Elaborado por: Cláudio Redondo)** -> Cotação(float), Texto(String)
 ***
 ### Funcões (Cada um completa as que fez)
+**Verificação Telemóvel** -> Recebe um número, no tipo primitivo long.
+Algoritmo feito com base : https://www.ti-enxame.com/pt/java/expressoes-regulares-de-java-para-validar-numeros-de-telefone/829895690/.
+
 
 **GERIR ESCOLA: (Elaborado por: João Baltazar)** 
 1. :exclamation:Criar Diretor - Funcionalidade que, depois de pedir os dados que formam o diretor (Pessoa+Diretor), cria um novo, removendo automaticamente o que se encontrava no seu lugar, ou seja, não necessitamos de estar a remover um diretor para depois podermos criar outro. Esse processo é-nos facilitado já que só existe um diretor na escola.
@@ -94,9 +97,9 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 **GERIR PROFESSORES: (Elaborado por: João Baltazar)**
 1. :exclamation:Listar professores - Mostra-nos, de uma forma limpa, o nome e o número dos professores existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinado professor".
 2. :exclamation:Criar professor - Nesta função, é possibilitado ao utilizador criar um professor, inserindo os seus dados pessoais. É possivel também, atribuir-lhe uma função no rating. Por último, é fornecido um menu que permite ao utilizador escolher (atráves do número que cada uma, tem lhe associada no menu) as disciplinas existentes na escola, que deseja associar ao professor.
-3. :exclamation:Consultar informações de determinado professor - O utilizador deve passar o nome do professor que deseja consultar. Na consulta, é listado o professor.
-4. :exclamation:Modificar dados sobre um determinado professor - Nesta função, o utilizador insere o nome do professor que deseja modificar e de seguida, é lhe apresentado um menu que permite modificar, separadamente, todas as caraterísticas deste. 
-5. :exclamation:Remover professor - Ao escolher esta opcão, o utilizador irá escrever o nome do professor que deseja remover. Depois disso, o programa irá conhecer a posição em que este se encontrana lista de pessoas da escola e consequentemente, eliminá-lo.
+3. :exclamation:Consultar informações de determinado professor - O utilizador deve passar o ID do professor que deseja consultar. Na consulta, é listado o professor.
+4. :exclamation:Modificar dados sobre um determinado professor - Nesta função, o utilizador insere o ID do professor que deseja modificar e de seguida, é lhe apresentado um menu que permite modificar, separadamente, todas as caraterísticas deste. 
+5. :exclamation:Remover professor - Ao escolher esta opcão, o utilizador irá escrever o ID do professor que deseja remover. Depois disso, o programa irá conhecer a posição em que este se encontrana lista de pessoas da escola e consequentemente, eliminá-lo.
 6. Mostrar professor que lecionou mais disciplinas - É analisado qual o professor que lecionou mais disciplinas. Caso, haja empate, é lhe mostrado o nome dos sujeitos em questão. Caso contrário, é lhe mostrado somente, o nome do sujeito em questão.
 7. Mostrar professores deslocados - É fornecido ao utilizador todos os professores, nome e local, que têm como local de origem um local diferente de onde está estabelecida a escola.
 8. Mostrar qual é o professore com melhor rating - É analisado qual o professor com melhor rating. Caso, haja empate, é lhe mostrado o nome dos sujeitos em questão. Caso contrário, é lhe mostrado somente, o nome do sujeito em questão.
@@ -117,6 +120,9 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 ### Conteúdos lecionados que foram usados no trabalho
 
 ## **Aspetos a melhorar** (João)
+De forma a enriquecer o trabalho poderíamos ter usado com maior frequência, as exceções. 
 
 ## **Conclusão** (João)
+O trabalho correu como previsto, as tarefas foram sempre completadas antes da data limite, por cada elemento do grupo. Houve discussão de ideias, e entreajuda.
+Isto tudo, levou a que consigamos apresentar à docente, o nosso melhor trabalho possível.
 

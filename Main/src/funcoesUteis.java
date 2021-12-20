@@ -25,13 +25,12 @@ public class funcoesUteis implements Serializable {
 
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(filepath));
-            // escrever o objeto livros no ficheiro
             os.writeInt(Aluno.getUltimo());
             os.writeInt(Professor.getUltimo());
             os.writeInt(Disciplina.getUltimo());
             os.writeInt(Curso.getUltimo());
             os.writeObject(escolaInformatica);
-            os.flush(); // os dados são copiados de memória para o disco
+            os.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -1887,10 +1886,8 @@ public class funcoesUteis implements Serializable {
         ArrayList<Professor> profdasdisciplinasLec = new ArrayList<>();
         for (int i = 0; i < profsEscola.size(); i++) {
             for (int j = 0; j < profsEscola.get(i).getDiscLec().size(); j++) {
-                // if (profsEscola.get(i).getDiscLec().isEmpty()==false) {
                 if (profsEscola.get(i).getDiscLec().get(j).getNomDisc().equals(nomediscprof))
                     profdasdisciplinasLec.add(profsEscola.get(i));
-                // }
             }
         }
         return profdasdisciplinasLec;
@@ -1901,10 +1898,8 @@ public class funcoesUteis implements Serializable {
         ArrayList<Professor> profdasdisciplinasLec = new ArrayList<>();
         for (int i = 0; i < profsEscola.size(); i++) {
             for (int j = 0; j < profsEscola.get(i).getDiscLec().size(); j++) {
-                // if (profsEscola.get(i).getDiscLec().isEmpty()==false) {
                 if (profsEscola.get(i).getDiscLec().get(j).getNomDisc().contains(nomediscprof))
                     profdasdisciplinasLec.add(profsEscola.get(i));
-                // }
             }
         }
         return profdasdisciplinasLec;
@@ -1915,10 +1910,8 @@ public class funcoesUteis implements Serializable {
         ArrayList<Aluno> alunosdasdisciplinasLec = new ArrayList<>();
         for (int i = 0; i < alunosEscola.size(); i++) {
             for (int j = 0; j < alunosEscola.get(i).getCurso().getDisciplinasCurso().size(); j++) {
-                // if (alunosEscola.get(i).getDiscLec().isEmpty()==false) {
                 if (alunosEscola.get(i).getCurso().getDisciplinasCurso().get(j).getNomDisc().equals(nomediscalunos))
                     alunosdasdisciplinasLec.add(alunosEscola.get(i));
-                // }
             }
         }
         return alunosdasdisciplinasLec;
@@ -1929,10 +1922,8 @@ public class funcoesUteis implements Serializable {
         ArrayList<Aluno> alunosdasdisciplinasLec = new ArrayList<>();
         for (int i = 0; i < alunosEscola.size(); i++) {
             for (int j = 0; j < alunosEscola.get(i).getCurso().getDisciplinasCurso().size(); j++) {
-                // if (alunosEscola.get(i).getDiscLec().isEmpty()==false) {
                 if (alunosEscola.get(i).getCurso().getDisciplinasCurso().get(j).getNomDisc().contains(nomediscalunos))
                     alunosdasdisciplinasLec.add(alunosEscola.get(i));
-                // }
             }
         }
         return alunosdasdisciplinasLec;

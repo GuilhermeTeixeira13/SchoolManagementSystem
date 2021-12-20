@@ -2,7 +2,11 @@
 # Relatório  
 
 ## **Capa** (Cláudio)
-
+Nome da Disciplina:Programação Orientada a Objetos(POO).
+Regente da disciplina:Paula Prata.
+Universidade:Universidade da Beira Interior(UBI).
+Ano:2021/22.
+Criadores:João Martins(45644),Gilherme Teixeira(45662),Tiago Ribeiro(46346),Cláudio Redondo(45856).
 
 ## **Introdução** (Tiago)
 ### ORGANIZAÇÃO E PLANO DE ESTRUTURAÇÃO DO TRABALHO
@@ -68,13 +72,13 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 
 **GERIR DISCIPLINAS: (Elaborado por: Cláudio Redondo)**
 1. :exclamation:Listar disciplinas - Mostra-nos, de uma forma limpa, o nome e ID das disciplinas existentes na escola. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar informações de determinada disciplina".
-2. :exclamation:Criar disciplina 
-3. :exclamation:Consultar informações de determinada disciplina 
-4. :exclamation:Modificar dados sobre uma disciplina 
-5. :exclamation:Remover disciplina (A implementar na classe Escola) 
-6. Mostrar qual a disciplina com a frequência mais longa 
-7. Mostrar professores que lecionam determinada disciplina
-8. Mostrar alunos inscritos em determinada disciplina 
+2. :exclamation:Criar disciplina -Cria uma disciplina a partir dos dados pedidos pelo utilizador, inserindo diversas informações sobre esta(id do curso, nomedo curso...).
+3. :exclamation:Consultar informações de determinada disciplina- Dado o ID de uma determinada disciplina, são mostradas as informações relevantes acerca da mesma,como por exemplo(nome, id,professores,alunos...).
+4. :exclamation:Modificar dados sobre uma disciplina-Dado o ID de uma determinada disciplina, é possível escolher que aspeto da disciplina que se pretende modificar. 
+5. :exclamation:Remover disciplina (A implementar na classe Escola)-Nesta opção é possível remover uma disciplina ,escolhendo se pretende remover a disciplina pelo nome ou por palavra contida no nome.
+6. Mostrar qual a disciplina com a frequência mais longa-Mostrar qual ou quais as frequencias mais longas de uma determinada disciplina existente na escola.
+7. Mostrar professores que lecionam determinada disciplina-Mostrar qual ou quais os professores que lecionam uma determinada disciplina existente na escola.
+8. Mostrar alunos inscritos em determinada disciplina-Mostrar qual ou quais os alunos que frequentão uma determinada disciplina existente na escola.
 
 **GERIR FREQUÊNCIAS: (Elaborado por: Tiago Ribeiro)**
 1. :exclamation:Listar Frequências de determinada disciplina - Mostra-nos, de uma forma limpa, o ID das Frequências de uma Disciplina escolhida pelo utilizador. Caso se pretenda mais informações e detalhes, consultar a funcionalidade "Consultar uma determinada Frequência".

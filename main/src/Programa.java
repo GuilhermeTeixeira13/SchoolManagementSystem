@@ -690,7 +690,7 @@ public class Programa {
                                         System.out.println("PROFESSOR COM O MELHOR RATING:\n\nAinda não há professores inscritos.");
                                 }
                                 else {
-                                    System.out.println("EMPATE NO MELHOR RATING (" + professoresEscolaDisc.get(0).getRating() + ") ENTRE OS SEGUINTES PROFESSORES:\n");
+                                    System.out.println("EMPATE NO MELHOR RATING (" + profscomMelhorRating.get(0).getRating() + ") ENTRE OS SEGUINTES PROFESSORES:\n");
                                     for (int i = 0; i < profscomMelhorRating.size(); i++)
                                         System.out.println(" . " + profscomMelhorRating.get(i).getNome());
                                     System.out.println();

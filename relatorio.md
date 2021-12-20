@@ -50,6 +50,9 @@ No ficheiro Programa.java está localizada classe main que possibilita a execuç
 **Perguntas (Elaborado por: Cláudio Redondo)** -> Cotação(float), Texto(String)
 ***
 ### Funcões (Cada um completa as que fez)
+**Verificação Telemóvel** -> Recebe um número, no tipo primitivo long.
+Algoritmo feito com base : https://www.ti-enxame.com/pt/java/expressoes-regulares-de-java-para-validar-numeros-de-telefone/829895690/.
+
 
 **GERIR ESCOLA: (Elaborado por: João Baltazar)** 
 1. :exclamation:Criar Diretor - Funcionalidade que, depois de pedir os dados que formam o diretor (Pessoa+Diretor), cria um novo, removendo automaticamente o que se encontrava no seu lugar, ou seja, não necessitamos de estar a remover um diretor para depois podermos criar outro. Esse processo é-nos facilitado já que só existe um diretor na escola.

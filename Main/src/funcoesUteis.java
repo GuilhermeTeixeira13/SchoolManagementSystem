@@ -73,6 +73,7 @@ public class funcoesUteis implements Serializable {
         return correto;
     }
 
+    // A explicação desta função está no relatório
     public static boolean verificacaoTelemovel(long numero) {
         String numeroConvString;
         numeroConvString = String.valueOf(numero);

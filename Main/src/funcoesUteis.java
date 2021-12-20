@@ -1501,7 +1501,7 @@ public class funcoesUteis implements Serializable {
         for (int i = 0; i < escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq()
                 .size(); i++) {
             if (escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(i).getdificuldade()
-                    .contains("Médio")) {
+                    .contains("Média")) {
                 freqnivelMedio
                         .add(escolaInformatica.getDisciplinaEscola().get(posDisciplinaIdFreq).getListFreq().get(i));
             }
@@ -1760,7 +1760,7 @@ public class funcoesUteis implements Serializable {
             for (int i = 0; i < professoresEscola.size(); i++) {
                 arrayRatings.add(professoresEscola.get(i).getRating());
             }
-            melhorRating = Collections.min(arrayRatings);
+            melhorRating = Collections.max(arrayRatings);
             for (int i = 0; i < professoresEscola.size(); i++) {
                 if (professoresEscola.get(i).getRating() == melhorRating) {
                     profMelhorRating.add(professoresEscola.get(i));
@@ -1952,8 +1952,6 @@ public class funcoesUteis implements Serializable {
         Aluno alunoSelecionado = alunosEscola.get(numAluno - 1);
         int idDisc, idFreq;
         float nota;
-
-        System.out.println(alunoSelecionado.getNotasDisciplinas());
 
         if (!alunoSelecionado.getCurso().getNomeCurso().equals("")) {
             if (!alunoSelecionado.getCurso().getDisciplinasCurso().isEmpty()) {

@@ -858,7 +858,7 @@ public class Programa {
                                         if (posAluno == -1) {
                                             System.out.println("Lamentamos, mas este aluno não existe!\n");
                                         } else {
-                                            Aluno alunoinscrever = (Aluno) escolaInformatica.getPessoasEscola().get(posAluno);
+                                            Aluno alunoinscrever = (Aluno) funcoesUteis.identAluno(escolaInformatica.getPessoasEscola()).get(posAluno);
         
                                             if (alunoinscrever.getCurso().getNomeCurso() == "") {
                                                 funcoesUteis.inscreverAlunoEmCurso(escolaInformatica, alunoinscrever.getNome(),alunoinscrever);
@@ -950,7 +950,7 @@ public class Programa {
                                 // Mostrar aluno com melhor nota, numa determinada frequência
 
                                 int idFreq, idDisc;
-                                System.out.println("10 - MOSTRAR ALUNO COM MELHOR NOTA NUMA DAD FREQUÊNCIA\n");
+                                System.out.println("10 - MOSTRAR ALUNO COM MELHOR NOTA NUMA DADA FREQUÊNCIA\n");
 
                                 escolaInformatica.listaDisciplinas();
 
@@ -964,17 +964,21 @@ public class Programa {
                                                 escolaInformatica.devolvePosDisciplinaDadoID(idDisc);
                                         }
 
-                                        System.out.print("\nEscolha o ID da Frequência "+ funcoesUteis.listIdsDisciplina(escolaInformatica,escolaInformatica.devolvePosDisc(escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc()))+ " --> ");
-                                        idFreq = Ler.umInt();
-                                        while (escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq) == -1) {
-                                                System.out.print("ID NÃO EXISTENTE, ESCOLHA OUTRO: ");
-                                                idFreq = Ler.umInt();
-                                                escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
+                                        if(!funcoesUteis.listIdsDisciplina(escolaInformatica,escolaInformatica.devolvePosDisc(escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc())).isEmpty()){
+                                            System.out.print("\nEscolha o ID da Frequência "+ funcoesUteis.listIdsDisciplina(escolaInformatica,escolaInformatica.devolvePosDisc(escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc()))+ " --> ");
+                                            idFreq = Ler.umInt();
+                                            while (escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq) == -1) {
+                                                    System.out.print("ID NÃO EXISTENTE, ESCOLHA OUTRO: ");
+                                                    idFreq = Ler.umInt();
+                                                    escolaInformatica.devolvePosFrequenciaDaListaFreq(idFreq);
+                                            }
+
+                                            Aluno alunoComMelhorNota = funcoesUteis.alunoComMelhorNotaNumaFreq(idFreq,escolaInformatica.devolveDisciplinaDadoID(idDisc),funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(escolaInformatica.getPessoasEscola())));
+
+                                            System.out.println("\nO aluno com melhor nota na Frequência com o ID " + idFreq + " da Disciplina de "+ escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc() + " foi:\n . " + alunoComMelhorNota.getNome() + "\n");
                                         }
-
-                                        Aluno alunoComMelhorNota = funcoesUteis.alunoComMelhorNotaNumaFreq(idFreq,escolaInformatica.devolveDisciplinaDadoID(idDisc),funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(escolaInformatica.getPessoasEscola())));
-
-                                        System.out.println("\nO aluno com melhor nota na Frequência com o ID " + idFreq + " da Disciplina de "+ escolaInformatica.devolveDisciplinaDadoID(idDisc).getNomDisc() + " foi:\n . " + alunoComMelhorNota.getNome() + "\n");
+                                        else
+                                            System.out.println("Esta Disciplina ainda não contém frequências!\n");
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;
@@ -1235,7 +1239,7 @@ public class Programa {
                                             funcoesUteis.listaumaFreq(listaFreqProf.get(i));
                                     } 
                                     else
-                                        System.out.println("Este professor não é responsável por nenhuma disciplina.\n");
+                                        System.out.println("Este professor não é responsável por nenhuma frequência.\n");
                                 }
                                 funcoesUteis.pedeTecla();
                                 break;

@@ -120,6 +120,9 @@ Os IDS são sempre diferentes (variáveis estáticas) e não é possível criar 
 ### Conteúdos lecionados que foram usados no trabalho
 
 ## **Aspetos a melhorar** (João)
+De forma a enriquecer o trabalho poderíamos ter usado com maior frequência, as exceções. 
 
 ## **Conclusão** (João)
+O trabalho correu como previsto, as tarefas foram sempre completadas antes da data limite, por cada elemento do grupo. Houve discussão de ideias, e entreajuda.
+Isto tudo, levou a que consigamos apresentar à docente, o nosso melhor trabalho possível.
 

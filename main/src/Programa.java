@@ -31,11 +31,8 @@ public class Programa {
                             case 1:
                                 // Criar novo diretor (Removendo automaticamento o anterior)
                                 Diretor diretorCriado = funcoesUteis.criarDiretor();
-                                // Diretor antigo removido da lista de pessoas da escola.
                                 funcoesUteis.removeDiretorDaListaDePessoas(escolaInformatica.getPessoasEscola());
-                                // Diretor criado adicionado à lista de pessoas da escola
                                 escolaInformatica.getPessoasEscola().add(diretorCriado);
-                                // Definir diretor criado como diretor da escola
                                 escolaInformatica.setDiretorEscola(diretorCriado);
                                 funcoesUteis.EscreveEscolaNoFicheiro("escolaInformática.txt", escolaInformatica);
                                 System.out.println();

@@ -1760,7 +1760,7 @@ public class funcoesUteis implements Serializable {
             for (int i = 0; i < professoresEscola.size(); i++) {
                 arrayRatings.add(professoresEscola.get(i).getRating());
             }
-            melhorRating = Collections.max(arrayRatings);
+            melhorRating = Collections.min(arrayRatings);
             for (int i = 0; i < professoresEscola.size(); i++) {
                 if (professoresEscola.get(i).getRating() == melhorRating) {
                     profMelhorRating.add(professoresEscola.get(i));

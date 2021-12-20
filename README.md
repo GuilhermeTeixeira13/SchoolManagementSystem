@@ -100,9 +100,9 @@
 - Definir um limite no rating do professor (João)  ✔️
 - Variáveis estáticas para atribuir ID a Curso (Gui) ✔️
 - Para consultar e modificar, pedir ID em vez do nome, pois podem haver pessoas com o mesmo nome etc (Gui) ✔️
-- Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados (TODOS) :warning:
+- Correr o código à procura de erros ortográficos e de outputs que podem ser melhorados (TODOS) ✔️
 - Verificar onde falta listar disciplinas ect antes de se pedir o ID de alguma ✔️
-- ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO (Gui) :warning:
+- ADICIONAR DADOS (CORRETOS) NO PROGRAMA, DEPOIS DE TERMINARMOS TUDO (Gui) ✔️
 - Mudar as funções que estão na main para outra classe (Gui) ✔️
 
 ***

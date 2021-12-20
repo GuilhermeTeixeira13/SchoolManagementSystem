@@ -153,7 +153,7 @@ public class EscolaInformatica implements Serializable{
         else{
             System.out.println("Cursos da "+ this.getNomeEscola()+":\n");
         for(int i = 0; i < this.getCursosEscola().size(); i++)
-            System.out.println(". Cód:" + this.getCursosEscola().get(i).getCodCurso() + " - " + this.getCursosEscola().get(i).getNomeCurso());
+            System.out.println(". ID:" + this.getCursosEscola().get(i).getCodCurso() + " - " + this.getCursosEscola().get(i).getNomeCurso());
          System.out.println();
         }
     }
@@ -164,11 +164,36 @@ public class EscolaInformatica implements Serializable{
         else{
             System.out.println("Disciplinas da "+ this.getNomeEscola()+":\n");
             for(int i = 0; i < this.getDisciplinaEscola().size(); i++)
-                System.out.println(". Cód:" + this.getDisciplinaEscola().get(i).getNumDisc() + " - " + this.getDisciplinaEscola().get(i).getNomDisc());
+                System.out.println(". ID:" + this.getDisciplinaEscola().get(i).getNumDisc() + " - " + this.getDisciplinaEscola().get(i).getNomDisc());
             System.out.println();
         }
     }
 
+    public void listaProfessores(){
+        ArrayList<Professor> profs = funcoesUteis.convPessoaProf(funcoesUteis.identProf(this.getPessoasEscola()));
+
+        if(profs.isEmpty())
+            System.out.println("De momento, não estão registadas quaisquer Professores.\n");
+        else{
+            System.out.println("Professores da "+ this.getNomeEscola()+":\n");
+            for(int i = 0; i < profs.size(); i++)
+                System.out.println(". ID:" + profs.get(i).getNumProf() + " - " + profs.get(i).getNome());
+            System.out.println();
+        }
+    }
+
+    public void listaAlunos(){
+        ArrayList<Aluno> alunos = funcoesUteis.convPessoaAluno(funcoesUteis.identAluno(this.getPessoasEscola()));
+
+        if(alunos.isEmpty())
+            System.out.println("De momento, não estão registadas quaisquer Alunos.\n");
+        else{
+            System.out.println("Alunos da "+ this.getNomeEscola()+":\n");
+            for(int i = 0; i < alunos.size(); i++)
+                System.out.println(". ID:" + alunos.get(i).getNumAluno() + " - " + alunos.get(i).getNome());
+            System.out.println();
+        }
+    }
 
     public void addCurso(Curso c){
         this.CursosEscola.add(c);
@@ -212,6 +237,15 @@ public class EscolaInformatica implements Serializable{
         int pos=-1;
         for(int i = 0; i < this.getCursosEscola().size(); i++){
             if(this.getCursosEscola().get(i).getNomeCurso().equals(nomeCurso))
+                pos = i;
+        }
+        return pos;
+    }
+
+    public int devolvePosCursoDadoID(int IDCurso){
+        int pos=-1;
+        for(int i = 0; i < this.getCursosEscola().size(); i++){
+            if(this.getCursosEscola().get(i).getCodCurso() == IDCurso)
                 pos = i;
         }
         return pos;
@@ -302,6 +336,17 @@ public class EscolaInformatica implements Serializable{
         return disciplina;
     }
 
+    public Disciplina devolveDisciplinaConts(String nomeDisciplina){ 
+        Disciplina disciplina = new Disciplina();
+
+        for(int i=0; i<this.getDisciplinaEscola().size(); i++){
+            if(this.getDisciplinaEscola().get(i).getNomDisc().contains(nomeDisciplina))
+                disciplina = this.getDisciplinaEscola().get(i);
+        }
+
+        return disciplina;
+    }
+
     public Disciplina devolveDisciplinaDadoID(int ID){ 
         Disciplina disciplina = new Disciplina();
 
@@ -356,6 +401,19 @@ public class EscolaInformatica implements Serializable{
 
         return pos;
     }
+
+    public int devolvePosProfDadoID(int ID, ArrayList<Professor> Professores){
+        int pos=-1;
+
+        for(int i = 0; i < Professores.size(); i++){
+            if(Professores.get(i).getNumProf() == ID)
+                pos = i;
+        }
+
+        return pos;
+    }
+
+
     public int devolvePosDisc(String nomedisc){
         int pos=-1;
         for(int i = 0; i < this.getDisciplinaEscola().size(); i++){
